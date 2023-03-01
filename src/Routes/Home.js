@@ -124,22 +124,6 @@ const Home = () => {
             }
         </Row>
 
-        <Row xs={ 1 } md={ 4 } className='main-hotels-section-row'>
-            {
-              roomsArray.map(( room, index ) => (
-                <Col key={ index } onClick={() => console.log( room )}>
-                  <Card className='cover-page-card-style'>
-                    <Card.Img src={ room.room_cover_photo_url } alt='' className='hotel-card-img' />
-                    <Card.Body>
-                        <Card.Title>{ room.room_number }</Card.Title>
-                        <Card.Subtitle>{ room.room_description }</Card.Subtitle>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))
-
-            }
-        </Row>
 
         <Row xs={ 1 } >
           <Col>

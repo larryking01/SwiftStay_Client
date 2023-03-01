@@ -1,0 +1,51 @@
+import './App.css'
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
+
+
+// routing.
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './Routes/Home'
+import FetchAllBookings from './Routes/FetchAllBookings'
+import FetchAllRooms from './Routes/FetchAllRooms'
+import FetchAllStaff from './Routes/FetchAllStaff'
+import GetRoomDetails from './Routes/GetRoomDetails'
+import Maps from './Routes/Maps'
+import StartDatePicker from './Routes/StartDatePicker'
+// import EndDatePicker from './Routes/EndDatePicker'
+
+
+
+
+
+
+
+const App = () => {
+
+  
+
+  return (
+      <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={ <Home /> } />
+                    <Route path='fetch-all-bookings' element={ <FetchAllBookings /> } />
+                    <Route path='fetch-all-rooms' element={ <FetchAllRooms /> } />
+                    <Route path='fetch-all-staff' element={ <FetchAllStaff /> } />
+                    <Route path='get-room-details/:room_id' element={ <GetRoomDetails /> } />
+                    <Route path='maps' element={ <Maps /> } />
+                    <Route path='start-date' element={ <StartDatePicker /> } />
+                    {/* <Route path='end-date' element={ <EndDatePicker /> } /> */}
+                </Routes>
+
+            </BrowserRouter>
+      </>
+
+  )
+  
+}
+
+
+export default App;

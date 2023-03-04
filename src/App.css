@@ -5,6 +5,9 @@
 /* card title */
 @import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+
 
 
 
@@ -58,6 +61,7 @@
     cursor: pointer;
     /* transition: transform 0.3s ease; */
     margin-bottom: 10%;
+
 } 
 
 
@@ -98,16 +102,42 @@
 
 
 .card-title {
-    /* font-weight: bold; */
+    font-weight: bolder;
     font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    color: #212529;
+    margin-bottom: 20%;
+    
 }
+
+.card-subtitle {
+
+}
+
+.card-room-location {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3%;
+}
+
+/* .location-detail {
+    padding-bottom: 5px;
+} */
+
+
+.card-room-rate {
+    padding-bottom: 3%;
+
+}
+
+/* react-rater-styling */
 
 
 .save-big-text {
     color: rgb(0, 60, 138);
     font-size: 1.3em;
     margin-left: 4%;
-
+    font-family: 'Lora', serif;
 }
 
 
@@ -205,16 +235,51 @@
     margin-left: 4%;
     font-size: 2.3rem;
     padding-bottom: 2%;
+    font-family: 'Lora', serif;
 }
 
 
 .get-best-prices-section {
     text-align: center;
     margin-bottom: 3%;
+    font-family: 'Lora', serif;
 }
 
 
 .get-best-prices-text {
     color:rgb(0, 60, 138);
     font-size: 1.8rem;
+}
+
+
+.extra-info-section {
+    margin: 5%;
+}
+
+.extra-info-row {
+    margin-bottom: 8%;
+}
+
+
+.extra-info-title {
+    font-family: 'Lora', serif;
+    padding-bottom: 5%;
+    color:rgb(0, 60, 138)
+}
+
+
+.extra-info-text-col {
+    padding: 4%;
+
+}
+
+
+.extra-info-details {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+
+.extra-info-img {
+    width: 100%;
+    max-height: 350px;
 }

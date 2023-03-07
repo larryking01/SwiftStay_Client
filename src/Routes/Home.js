@@ -76,7 +76,7 @@ const Home = () => {
     
       <main className='main-content'>
         <article>
-          <h3><strong className='save-big-text'>Save big on your next hotel</strong></h3>
+          <h3><strong className='save-big-text'>Find your place to stay</strong></h3>
         </article>
 
         <section className='intro-background'>
@@ -84,9 +84,13 @@ const Home = () => {
         </section>
 
         <section className='intro-form'>
+          <Row>
+            <h6 className='intro-form-catch-phrase'>Easy to book, hard to say goodbye to</h6>
+          </Row>
+
           <Form.Group className='mb-3' controlId='formBasicText'>
-            <Form.Label>Where do you want to stay?</Form.Label>
-            <Form.Control type='text' placeholder='Enter destination or hotel name' className='destination-textbox' />
+            {/* <Form.Label style={{ color: 'blue'}}>Where do you want to stay?</Form.Label> */}
+            <Form.Control type='text' placeholder='Enter a hotel, city, address....' className='destination-textbox' />
           </Form.Group>
 
           <Row className='mb-3' xs={ 1 } md={ 2 }>
@@ -99,7 +103,11 @@ const Home = () => {
             </Col>
           </Row>
 
-          <Row>
+          <Row xs={ 1 } md={ 2 }>
+            <Col>
+              <Form.Control className='number-of-guests-textbox' type='text' placeholder='1 room, 2 guests' />
+            </Col>
+
             <Col>
               <Button variant='custom' className='find-hotel-button'>Find your hotel</Button>
             </Col>
@@ -130,7 +138,7 @@ const Home = () => {
                             </section>
 
                             <section>
-                              <Rating name="read-only" value={ 3 } readOnly />
+                              <Rating name="read-only" value={ room.room_rating } readOnly />
                             </section>
                           </div>
                         </Card.Subtitle>

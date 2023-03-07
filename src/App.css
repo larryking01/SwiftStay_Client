@@ -45,6 +45,35 @@
 
 .footer-link-item {
     font-family: 'PT Serif', serif;
+    
+}
+
+.footer-link-icon {
+    padding-left: 30%;
+}
+
+
+.newsletter-textbox {
+    width: 100%;    
+    margin-bottom: 5%;
+}
+
+
+.newsletter-button {
+    width: 100%;
+    background-color: rgb(0, 60, 138);
+    color: white;
+    margin-bottom: 2%;
+}
+
+.newsletter-button:hover {
+    background-color: rgb(0, 60, 138);
+    color: white;
+}
+
+
+.copyrights-section {
+    text-align: center;
 }
 
 /* end of footer styling */
@@ -54,6 +83,7 @@
 /* home page styling */
 .main-content {
     margin-top: 2%;
+
 }
 
 
@@ -180,14 +210,28 @@
     height: 45%;
     background-color: white;
     margin-left: 14%;;
-    padding: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
     /* box-shadow: 4px 8px solid grey; */
     box-shadow: 0px 1px 3px grey;
+}
+
+.intro-form-catch-phrase {
+    text-align: center;
+    font-family: 'Lora', serif;
+    color: rgb(0, 60, 138);
+    padding-bottom: 1%;
+    font-size: 1.2rem;
 }
 
 
 .destination-textbox {
     height: 55px;  
+}
+
+.number-of-guests-textbox {
+    height: 55px;
 }
 
 .find-hotel-button {

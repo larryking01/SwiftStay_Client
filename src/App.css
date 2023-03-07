@@ -175,22 +175,34 @@
 
 .intro-form {
     position:absolute;
-    top: 47%;
+    top: 57%;
     width: 70%;
-    height: 40%;
+    height: 45%;
     background-color: white;
     margin-left: 14%;;
-    border-radius: 2%;
-    text-align: center;
     padding: 3%;
-    box-shadow: 2px solid grey;
+    /* box-shadow: 4px 8px solid grey; */
+    box-shadow: 0px 1px 3px grey;
 }
 
 
-.intro-choice-form {
-    /* width: 80%; */
-    /* margin-left: 10%; */
+.destination-textbox {
+    height: 55px;  
 }
+
+.find-hotel-button {
+    width: 100%;
+    background-color: rgb(0, 60, 138); 
+    color: white;
+    height: 55px;
+}
+
+.find-hotel-button:hover {
+    background-color: rgb(0, 60, 138); 
+    color: white;
+}
+
+
 
 .intro-form-row {
     margin-bottom: 2%;
@@ -229,6 +241,10 @@
     color: white;
 }
 
+
+.plan-staycation-section {
+    margin-top: 5%;
+}
 
 .plan-staycation-text {
     color:rgb(0, 60, 138);
@@ -282,4 +298,17 @@
 .extra-info-img {
     width: 100%;
     max-height: 350px;
+}
+
+
+
+/* start date picker styling */
+.start-date-picker-styling {
+    width: 100%;
+}
+
+
+/* end date picker styling */
+.end-date-picker-styling {
+    width: 100%;
 }

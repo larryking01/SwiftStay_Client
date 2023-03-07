@@ -84,42 +84,26 @@ const Home = () => {
         </section>
 
         <section className='intro-form'>
-          <Form className='intro-choice-form'>
-              <Row xs={ 1 } md={ 5 } /*className='form-header-div'*/>
-                <Col className='intro-choice-options'> <FaHotel /> <h6 className='intro-choice-text'>Hotels</h6> </Col>
-                <Col className='intro-choice-options'> <MdFlight /> <h6 className='intro-choice-text'>Flights</h6> </Col>
-                <Col className='intro-choice-options'> <SiCashapp /> <h6 className='intro-choice-text'>Bundle & Save</h6> </Col>
-                <Col className='intro-choice-options'> <IoCarSport /> <h6 className='intro-choice-text'>Cars</h6> </Col>
-                <Col className='intro-choice-options'> <MdDirectionsBoat /> <h6 className='intro-choice-text'>Cruises</h6> </Col>
-              </Row>
+          <Form.Group className='mb-3' controlId='formBasicText'>
+            <Form.Label>Where do you want to stay?</Form.Label>
+            <Form.Control type='text' placeholder='Enter destination or hotel name' className='destination-textbox' />
+          </Form.Group>
 
-            <Row className='intro-form-row'>
-              <Col>
-                  <Form.Control type='text' placeholder='Where to?' />
-              </Col>
-            </Row>
+          <Row className='mb-3' xs={ 1 } md={ 2 }>
+            <Col>
+              <StartDatePicker />
+            </Col>
 
-            <Row className='intro-form-row'>
-              <Col>
-                <StartDatePicker />
-              </Col>
+            <Col>
+              <EndDatePicker />
+            </Col>
+          </Row>
 
-              <Col>
-                <EndDatePicker />
-              </Col>
-            </Row>
-
-            <Row>
-              <Col>
-                <Button variant='primary' type='submit' style={{ width: '100%'}}>Find your hotel</Button>
-              </Col>
-
-              <Col>
-                <Button variant='primary' type='submit' style={{ width: '100%'}}>Search flight</Button>
-              </Col>
-            </Row>
-
-          </Form>
+          <Row>
+            <Col>
+              <Button variant='custom' className='find-hotel-button'>Find your hotel</Button>
+            </Col>
+          </Row>
         </section>
 
         <section className='plan-staycation-section'>

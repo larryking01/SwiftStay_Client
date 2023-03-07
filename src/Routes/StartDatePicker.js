@@ -20,10 +20,11 @@ const StartDatePicker = () => {
   return (
     <LocalizationProvider dateAdapter={ AdapterMoment }>
         <DatePicker 
-            label='Start Date'
+            label='Check-in'
             value={ value }
             onChange={ ( newValue ) => setValue( newValue )}
             renderInput={ ( params ) => <TextField {...params} /> }
+            className='start-date-picker-styling'
         />
     </LocalizationProvider>
 

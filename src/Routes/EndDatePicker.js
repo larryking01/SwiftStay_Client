@@ -16,10 +16,11 @@ const EndDatePicker = ( ) => {
     return (
         <LocalizationProvider dateAdapter={ AdapterMoment } >
             <DatePicker
-                label='End Date'
+                label='Check-out'
                 value={ value }
                 onChange={ ( newValue) => setValue( newValue )}
                 renderInput={ ( params ) => <TextField {...params} /> } 
+                className='end-date-picker-styling'
             />
         </LocalizationProvider>
     )

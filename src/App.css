@@ -10,6 +10,13 @@
 
 
 
+/* global variables */
+:root {
+    --primary-color: rgb(0, 60, 138);
+}
+
+
+
 
 * {
     box-sizing: border-box;
@@ -29,7 +36,7 @@
     padding-right: 5%;
     padding-top: 4%;
     width: 100%;
-    background-image: linear-gradient(to right, white, #6495ED);
+    background-image: linear-gradient(to right, white, #6495ED);    
 
 }
 
@@ -61,13 +68,13 @@
 
 .newsletter-button {
     width: 100%;
-    background-color: rgb(0, 60, 138);
+    background-color: var(--primary-color);
     color: white;
     margin-bottom: 2%;
 }
 
 .newsletter-button:hover {
-    background-color: rgb(0, 60, 138);
+    background-color: var(--primary-color);
     color: white;
 }
 
@@ -121,6 +128,7 @@
     transition: transform 0.3s ease;
 }
 
+
 .hotel-card-img:hover {
     transform: scale(1.06);
 }
@@ -164,7 +172,7 @@
 
 
 .save-big-text {
-    color: rgb(0, 60, 138);
+    color: var(--primary-color);
     font-size: 1.3em;
     margin-left: 4%;
     font-family: 'Lora', serif;
@@ -189,7 +197,7 @@
 
 
 .view-all-hotels-text-div h5 {
-    color:rgb(0, 60, 138);
+    color:var(--primary-color);
 }
 
 
@@ -220,7 +228,7 @@
 .intro-form-catch-phrase {
     text-align: center;
     font-family: 'Lora', serif;
-    color: rgb(0, 60, 138);
+    color: var(--primary-color);
     padding-bottom: 1%;
     font-size: 1.2rem;
 }
@@ -236,13 +244,13 @@
 
 .find-hotel-button {
     width: 100%;
-    background-color: rgb(0, 60, 138); 
+    background-color: var(--primary-color); 
     color: white;
     height: 55px;
 }
 
 .find-hotel-button:hover {
-    background-color: rgb(0, 60, 138); 
+    background-color: var(--primary-color);
     color: white;
 }
 
@@ -291,7 +299,7 @@
 }
 
 .plan-staycation-text {
-    color:rgb(0, 60, 138);
+    color: var(--primary-color);
     margin-left: 4%;
     font-size: 2.3rem;
     padding-bottom: 2%;
@@ -307,7 +315,7 @@
 
 
 .get-best-prices-text {
-    color:rgb(0, 60, 138);
+    color: var(--primary-color);
     font-size: 1.8rem;
 }
 
@@ -324,7 +332,7 @@
 .extra-info-title {
     font-family: 'Lora', serif;
     padding-bottom: 5%;
-    color:rgb(0, 60, 138)
+    color: var(--primary-color);
 }
 
 
@@ -341,7 +349,7 @@
 
 .extra-info-img {
     width: 100%;
-    max-height: 350px;
+    max-height: 320px;
 }
 
 

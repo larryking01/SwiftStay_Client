@@ -12,20 +12,13 @@ import trip_dotcom from '../Media Files/trip.com_logo.png'
 import booking_dotcom from '../Media Files/booking.com_logo.png'
 import hyatt_dotcom from '../Media Files/hyatt.com_logo.jpg'
 import hotels_dotcom from '../Media Files/hotels.com_logo.jpg'
-import { FaHotel } from 'react-icons/fa'
-import { MdFlight, MdDirectionsBoat } from 'react-icons/md'
-import { IoCarSport } from 'react-icons/io5'
-import { SiCashapp } from 'react-icons/si'
 import { BsArrowRight } from 'react-icons/bs'
 import { IoLocationSharp } from 'react-icons/io5'
 import Carousel from 'react-bootstrap/Carousel'
-
 import Rating from '@mui/material/Rating'
 import StartDatePicker from './StartDatePicker.js'
 import EndDatePicker from './EndDatePicker.js'
 
-
-import background_2 from '../Media Files/background_2.jpg'
 import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp'
 import rooms_and_suites_2 from '../Media Files/Rooms And Suites/rooms_and_suites_2.jpg'
 import rooms_and_suites_3 from '../Media Files/Rooms And Suites/rooms_and_suites_3.jpg'
@@ -65,9 +58,6 @@ const Home = () => {
     { src: rooms_and_suites_4 }
 
   ]
-
-
-
 
 
   return (
@@ -285,8 +275,6 @@ const Home = () => {
           </Row>
 
       </section>
-
-
 
       <Footer />
 

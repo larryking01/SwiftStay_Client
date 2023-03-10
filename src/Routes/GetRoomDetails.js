@@ -16,18 +16,36 @@ const GetRoomDetails = () => {
   const params = useParams()
 
   // for state.
-  const [ selectedRoomDetailsArray, setSelectedRoomDetailsArray ] = useState([])
+  const [ selectedRoomDetailsArray, setSelectedRoomDetailsArray ] = useState({})
 
   // use effect hook to fetch details of selected room.
   useEffect(() => {
-      fetch(`http://127.0.0.1:8000/get/room-details/${ params.room_id }`, {
+    // async function to fetch data.
+    const fetchData = async () => {
+      let response = await fetch(`http://127.0.0.1:8000/get/room-details/${ params.room_id }`, {
         method: 'GET'
       })
-      .then( response => response.json())
-      .then( data => { setSelectedRoomDetailsArray( {...data} ); console.log( selectedRoomDetailsArray ) })
+      
+      if ( response.ok ) {
+        console.log( response )
+        let data = await response.json()
+        console.log( data )
+        // setSelectedRoomDetailsArray( data )
+        // console.log( selectedRoomDetailsArray )
+        // setSelectedRoomDetailsArray(currentState => ( { currentState, ...data }) )
+        // console.log( selectedRoomDetailsArray )
+
+      }
+
+      else {
+        throw new Error('failed to fetch hotel details due to error')
+      }
+
+    }
+
+    fetchData()
 
   }, [ ])
-
 
 
 
@@ -39,6 +57,11 @@ const GetRoomDetails = () => {
       <NavbarComponent />
 
       <section className='selected-room-extra-pics-grid'>
+        {/* {
+          selectedRoomDetailsArray.map(( room ) => (
+            <h3>{ room.room_number }</h3>
+          ))
+        } */}
 
       </section>
 
@@ -53,7 +76,6 @@ const GetRoomDetails = () => {
 
   )
 }
-
 
 
 

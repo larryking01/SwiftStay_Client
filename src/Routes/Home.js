@@ -40,6 +40,7 @@ const Home = () => {
 
   // fetching all rooms
   useEffect(() => {
+    console.log( `type of rooms array == ${ typeof roomsArray }`)
     fetch('http://localhost:8000/get/fetch-all-rooms', {
       method: 'GET'
     })

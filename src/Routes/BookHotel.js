@@ -69,6 +69,33 @@ const BookHotel = ( ) => {
 
                 </Row>
 
+                <Row>
+                    <h4>Step 3: Payment Details</h4>
+                    <Col>
+                        <Form>
+                            <Form.Control type='text' placeholder='First Name' />
+
+                            <Form.Control type='text' placeholder='Last Name' />
+
+                            <Form.Control type='text' placeholder='Card Number' />
+
+                            <Form.Control type='text' placeholder='Expiry Date' />
+
+                            <Form.Control type='text' placeholder='Security Code' />
+
+
+
+
+
+                        </Form>
+
+
+                        
+                    </Col>
+
+                </Row>
+
+
             </section>
 
             <section className='footer-gap'>

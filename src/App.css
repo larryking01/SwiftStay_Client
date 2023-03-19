@@ -13,6 +13,7 @@
 /* global variables */
 :root {
     --primary-color: rgb(0, 60, 138);
+    --light-blue-color: #CCCCFF;
 }
 
 
@@ -363,4 +364,250 @@
 /* end date picker styling */
 .end-date-picker-styling {
     width: 100%;
+}
+
+
+
+
+/* selected room details styling */
+.book-now-section {
+    text-align: center;
+    margin-bottom: 5%;
+
+}
+
+.book-now-button-first {
+    width: 30%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+}
+
+.book-now-button-first:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.book-now-btn-row {
+    text-align: center;
+}
+
+.book-now-button-last {
+    width: 90%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+}
+
+.book-now-button-last:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.selected-room-checkin-dates {
+    margin-left: 6%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    box-shadow: 2px 2px 8px grey;
+    padding-top: 2%;
+    padding-left: 2%;
+    margin-right: 6%;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.selected-room-details-destination {
+    height: 55px;
+}
+
+.selected-room-details-category {
+    height: 55px;
+}
+
+.selected-room-details-search-hotel-button {
+    height: 55px;
+    width: 100%;
+}
+
+.selected-room-extra-pics-grid {
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2%;
+}
+
+
+.selected-room-details-section {
+    padding-left: 6%;
+    padding-right: 6%;
+    margin-top: 3%;
+    padding-bottom: 3%;
+}
+
+.selected-room-name {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-weight: bolder;
+    
+}
+
+
+.selected-room-details-price-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+}
+
+
+.selected-room-details-headers {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+
+.selected-room-details-sub-section {
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 3%;
+    padding-bottom: 4%;
+
+}
+
+
+.selected-room-details-sub-header {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+
+}
+
+.srd-padding-bottom {
+    padding-bottom: 3%;
+}
+
+
+
+
+
+.selected-room-details-description-section {
+
+}
+
+/* .selected-room-details-good-to-know-div {
+    background-color: #6495ED;
+} */
+
+
+
+.selected-room-features-amenities-div {
+    background-color: var(--light-blue-color);
+    display: inline-block;
+    padding: 10%;
+    border-radius: 5%;
+    margin-bottom: 10%;
+
+}
+
+
+.book-now-btn-row {
+    margin-top: 3%;
+}
+
+
+
+
+
+/* fetch all rooms section */
+.fetch-all-rooms-main-section {
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 3%;
+}
+
+
+.fetch-all-hotels-row {
+    border-radius: 1%;
+    padding: 1%;
+    margin-bottom: 2%;
+    box-shadow: 1px 1px 5px grey;
+    cursor: pointer;
+
+}
+
+
+.fetch-all-hotels-title {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+}
+
+
+.go-to-site-button {
+    width: 100%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+    margin-top: 8%;
+}
+
+
+.go-to-site-button:hover {
+    background-color: var(--primary-color); 
+    color: white;
+}
+
+
+.fetch-all-rooms-search-tab-section {
+    padding-left: 9%;
+    padding-right: 9%;
+    margin-top: 3%;
+}
+
+
+.search-hotel-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.search-hotel-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.search-hotel-textbox {
+    height: 55px;
+}
+
+.hotel-img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+/* booking hotel.js styling */
+.book-hotel-wrapper-section {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer-gap {
+    margin-bottom: 30%;
 }

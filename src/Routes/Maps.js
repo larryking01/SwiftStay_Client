@@ -5,8 +5,8 @@ import { LoadScript, GoogleMap, Marker } from '@react-google-maps/api'
 
 // google maps styling.
 const maps_styling = {
-    width: '50vw',
-    height: '60vh'
+    width: '85vw',
+    height: '80vh'
 }
 
 

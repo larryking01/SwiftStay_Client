@@ -15,8 +15,7 @@ const StartDatePicker = () => {
 
   const [value, setValue] = useState(null)
 
-
-
+  
   return (
     <LocalizationProvider dateAdapter={ AdapterMoment }>
         <DatePicker 

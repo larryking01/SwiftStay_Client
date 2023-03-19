@@ -12,6 +12,7 @@ import FetchAllBookings from './Routes/FetchAllBookings'
 import FetchAllRooms from './Routes/FetchAllRooms'
 import FetchAllStaff from './Routes/FetchAllStaff'
 import GetRoomDetails from './Routes/GetRoomDetails'
+import BookHotel from './Routes/BookHotel'
 import Maps from './Routes/Maps'
 import StartDatePicker from './Routes/StartDatePicker'
 // import EndDatePicker from './Routes/EndDatePicker'
@@ -35,6 +36,7 @@ const App = () => {
                     <Route path='fetch-all-rooms' element={ <FetchAllRooms /> } />
                     <Route path='fetch-all-staff' element={ <FetchAllStaff /> } />
                     <Route path='get-room-details/:room_id' element={ <GetRoomDetails /> } />
+                    <Route path='book-hotel/:room_id' element={ <BookHotel /> } />
                     <Route path='maps' element={ <Maps /> } />
                     <Route path='start-date' element={ <StartDatePicker /> } />
                     {/* <Route path='end-date' element={ <EndDatePicker /> } /> */}

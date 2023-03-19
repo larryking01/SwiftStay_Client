@@ -115,7 +115,7 @@ const Home = () => {
               roomsArray.map(( room, index ) => (
                 <Col key={ index }>
                   <Card className='cover-page-card-style'>
-                    <Card.Img src={ room.room_cover_photo_url } alt='' className='hotel-card-img' onClick={() => navigate(`get-room-details/${ room._id }`)} />
+                    <Card.Img src={ room.room_cover_photo_url } alt='' className='hotel-card-img' onClick={() => navigate(`/get-room-details/${ room._id }`)} />
                     <Card.Body>
                         <Card.Title className='card-title'>{ room.room_number }</Card.Title>
                         
@@ -144,7 +144,7 @@ const Home = () => {
 
         <Row xs={ 1 } >
           <Col>
-            <div className='view-all-hotels-text-div'>
+            <div className='view-all-hotels-text-div' onClick={() => navigate('fetch-all-rooms')}>
               <h5>View all hotels</h5>
               <BsArrowRight size={ 20 } className='view-all-hotels-arrow'/>
             </div>

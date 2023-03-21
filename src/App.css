@@ -592,11 +592,61 @@
 }
 
 
+.booking-hotel-summary-div {
+    border-radius: 2%;
+    box-shadow: 2px 2px 7px grey;
+    padding: 3%;
+}
 
 
+.details-section {      
+    border-radius: 2%;
+    box-shadow: 2px 2px 7px grey;
+    padding: 3%;
+}
 
 
+.details-section-sub-div {
+    margin-bottom: 9%;
+}
 
+.form-control-no-text {
+    margin-bottom: 3%;
+}
+
+
+.details-section-header {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* .card-types-accepted-header {
+    padding-bottom: 3%;
+} */
+
+
+.accepted-cards-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.accepted-card-style {
+    margin-right: 2%;
+}
+
+
+.book-button {
+    width: 100%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+    
+}
+
+.book-button:hover {
+    background-color: var(--primary-color); 
+    color: white;
+}
 
 
 

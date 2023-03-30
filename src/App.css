@@ -2,6 +2,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
 
+
 /* card title */
 @import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
@@ -17,17 +18,32 @@
 }
 
 
-
-
 * {
     box-sizing: border-box;
 } 
 
 
+
 /* navbar styling */
 .nav-link-text {
-    font-family: 'PT Serif', serif;
+    font-family: 'Lora', serif;
+    
 }
+
+
+.navbar-login-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.navbar-login-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+/* end of navbar styling */
+
 
 
 
@@ -43,21 +59,32 @@
 
 
 .footer-header {
-    font-size: 18px;
-    font-family: 'PT Serif', serif;
+    font-size: 1.2rem;
+    font-family: 'Lora', serif;
     padding-bottom: 2%;
+    color: var(--primary-color)
 }
 
 
 
 
 .footer-link-item {
-    font-family: 'PT Serif', serif;
-    
+    font-family: 'Lora', serif;
+    cursor: pointer;
 }
+
+.footer-link-item:hover {
+    color: var(--primary-color)
+}
+
 
 .footer-link-icon {
     padding-left: 30%;
+    cursor: pointer;    
+}
+
+.footer-link-icon:hover {
+    color: var(--primary-color)
 }
 
 
@@ -88,6 +115,7 @@
 
 
 
+
 /* home page styling */
 .main-content {
     margin-top: 2%;
@@ -101,13 +129,6 @@
     margin-bottom: 10%;
 
 } 
-
-
-/* .cover-page-card-style:hover {
-    transform: scale(1.08);
-
-} */
-
 
 
 .main-hotels-section {
@@ -135,11 +156,6 @@
 }
 
 
-/* .hotel-card-img {
-    filter: brightness(100%)
-} */
-
-
 .card-title {
     font-weight: bolder;
     font-family: 'Lora', serif;
@@ -149,9 +165,6 @@
     
 }
 
-.card-subtitle {
-
-}
 
 .card-room-location {
     display: flex;
@@ -159,17 +172,11 @@
     margin-bottom: 3%;
 }
 
-/* .location-detail {
-    padding-bottom: 5px;
-} */
-
 
 .card-room-rate {
     padding-bottom: 3%;
 
 }
-
-/* react-rater-styling */
 
 
 .save-big-text {
@@ -355,6 +362,9 @@
 
 
 
+/* end of home page styling */
+
+
 /* start date picker styling */
 .start-date-picker-styling {
     width: 100%;
@@ -366,6 +376,8 @@
     width: 100%;
 }
 
+
+/* end of date pickers styling */
 
 
 
@@ -485,19 +497,6 @@
 }
 
 
-
-
-
-.selected-room-details-description-section {
-
-}
-
-/* .selected-room-details-good-to-know-div {
-    background-color: #6495ED;
-} */
-
-
-
 .selected-room-features-amenities-div {
     background-color: var(--light-blue-color);
     display: inline-block;
@@ -514,9 +513,11 @@
 
 
 
+/* end of selected room details styling */
 
 
-/* fetch all rooms section */
+
+/* fetch all rooms styling */
 .fetch-all-rooms-main-section {
     padding-left: 10%;
     padding-right: 10%;
@@ -582,10 +583,12 @@
 }
 
 
+/* end of fetch all rooms styling */
 
 
 
-/* booking hotel.js styling */
+
+/* book hotel page styling */
 .book-hotel-wrapper-section {
     padding-left: 6%;
     padding-right: 6%;
@@ -620,10 +623,6 @@
     font-weight: bold;
 }
 
-/* .card-types-accepted-header {
-    padding-bottom: 3%;
-} */
-
 
 .accepted-cards-div {
     display: flex;
@@ -650,11 +649,262 @@
 
 
 
+/* end of book hotel page styling */
+
+
+
+/* help page styling */
+.help-page-wrapper {
+    padding-left: 6%;
+    padding-right: 6%;
+
+}
+
+
+.help-title-text {
+    color: var(--primary-color);
+    font-family: 'Lora', serif;
+    text-align: center;
+    margin-top: 7%;
+    margin-bottom: 3%;
+}
+
+
+.help-category-div {
+    text-align: center;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    border-radius: 2%;
+    background-color: #f1f2f8;
+    margin-bottom: 7%;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+
+.help-category-div:hover {
+    transform: scale(1.1);
+}
+
+
+.help-category-image {
+    width: 40%;
+    margin-bottom: 3%;
+}
+
+
+.help-category-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color)
+}
+
+
+/* end of help page styling */
 
 
 
 
+/* contact us styling */
+.contact-us-wrapper {
+    padding-left: 6%;
+    padding-right: 6%;
+}
 
+
+.contact-us-header {
+    margin-top: 3%;
+    margin-bottom: 7%;
+}
+
+
+.contact-us-details-section {
+    width: 60%;
+}
+
+
+.attach-files-div {
+    border-style: dotted;
+    border-color: #6495ED;
+    border-radius: 2%;
+    text-align: center;
+    padding-top: 15%;  
+    padding-bottom: 15%; 
+    cursor: pointer;
+}
+
+
+.contact-us-btn {
+    width: 100%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+}
+
+.contact-us-btn:hover {
+    width: 100%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+
+}
+
+
+.contact-us-header-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+
+}
+
+
+.contact-us-textbox {
+    height: 50px;
+    cursor: pointer;
+}
+
+
+/* end of contact us styling */
+
+
+
+
+/* about us styling */
+.about-us-main-background {
+    width: 100%;
+    height: 90vh;
+}
+
+
+.img-text {
+    position: absolute;
+    bottom: -2%;
+    padding-left: 15%;
+    color: black;
+    /* color: var(--primary-color); */
+    font-family: 'Lora', serif;
+    font-size: 2.3rem;
+    font-style: normal;
+}
+
+
+.about-us-header-section {
+    margin-top: 4%;
+}
+
+
+.main-header-text {
+    text-align: center;
+    font-family: 'Lora', serif;
+
+}
+
+
+.about-us-row-generic-style {
+    margin-top: 4%;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-bottom: 4%;
+}
+
+
+.about-us-mission-row {
+    /* background-color: orangered; */
+    background-image: linear-gradient(to top, white, blue);
+    padding-top: 10%;
+    padding-bottom: 10%;
+    text-align: center;
+    color: white
+}
+
+.about-us-mission-text {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.about-us-team-section {
+    margin-top: 4%;
+    margin-left: 6%;
+    margin-right: 6%;
+
+}
+
+
+.column-icon-style {
+    width: 30%;
+}
+
+
+.team-pic-style {
+    width: 80%;
+
+}
+
+
+.our-team-row {
+    margin-bottom: 9%;
+}
+
+
+
+/* end of about us styling */
+
+
+
+
+/* faq page styling */
+.faq-header-section-generic-style {
+    margin-top: 6%;
+    margin-right: 6%;
+    margin-left: 6%;
+    margin-bottom: 6%;
+}
+
+
+.faq-header-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+}
+
+
+.answer-div-show {
+    display: block;
+}
+
+
+.answer-div-hide {
+    display: none;
+}
+
+.faq-question-answer-section {
+    margin-top: 6%;
+    margin-right: 6%;
+    margin-left: 6%;
+    margin-bottom: 6%;
+
+}
+
+.faq-question-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+}
+
+
+.q_and_a_div {
+    cursor: pointer;
+}
+
+
+.faq-row-selected {
+    background-color: var(--light-blue-color);
+    cursor: pointer;
+} 
+
+.faq-row-unselected {
+    cursor: pointer;
+
+}
+
+
+/* end of faq page styling */
 
 
 

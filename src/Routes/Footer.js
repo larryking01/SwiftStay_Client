@@ -26,37 +26,46 @@ const Footer = () => {
         <footer className='footer-container'>
             <Row xs={ 1 } md={ 4 } >
                 <Col md={ 3 }>
-                    <h4 className='footer-header'> Our Products </h4>
-                    <Link> <p className='footer-link-item'> Hotel Express Deals </p> </Link>
-                    <Link> <p className='footer-link-item'> Hotels </p> </Link>
-                    <Link> <p className='footer-link-item'> Cars </p> </Link>
-                    <Link> <p className='footer-link-item'> Flights </p> </Link>
-                    <Link> <p className='footer-link-item'> Bundle + Save </p></Link>
-                    <Link> <p className='footer-link-item'> Cruises </p> </Link>
+                    <h4 className='footer-header'> Explore </h4>
+                    <p className='footer-link-item'> Hotels </p>
+                    <p className='footer-link-item'> Flights </p>
+                    <p className='footer-link-item'> Car Hire </p>
+                    <p className='footer-link-item'> Rewards </p>
+                    <p className='footer-link-item'> Site Map </p>
                 </Col>
 
                 <Col md={ 3 }>
-                    <h4 className='footer-header'> About Skyscanner </h4>
-                    <Link> <p className='footer-link-item'> Contact Us </p></Link>
-                    <Link> <p className='footer-link-item'> Our Story </p> </Link>
-                    <Link> <p className='footer-link-item'> Careers </p> </Link>
-                    <Link> <p className='footer-link-item'> Press Center </p> </Link>
-                    <Link> <p className='footer-link-item'> Privacy Policy </p></Link>
-                    <Link> <p className='footer-link-item'> Terms and Conditions </p></Link>
+                    <h4 className='footer-header'> Partners </h4>
+                    <p className='footer-link-item'> Work With Us </p>
+                    <p className='footer-link-item'> Advertise With Us </p>
+                    <p className='footer-link-item'> Affiliates </p>
+                    <p className='footer-link-item'> Booking Insight </p> 
                 </Col>
 
-                <Col md={ 3 }>
-                    <h4 className='footer-header'> Connect with Skyscanner </h4>
-                    <Link> <p className='footer-link-icon'> <SiGmail size={ 22 } /> </p> </Link>
-                    <Link> <p className='footer-link-icon'> <BsFacebook size={ 22 } /> </p> </Link>
-                    <Link> <p className='footer-link-icon'> <GrTwitter size={ 22 } /> </p> </Link>
-                    <Link> <p className='footer-link-icon'> <AiFillInstagram size={ 22 } /> </p> </Link>
-                    <Link> <p className='footer-link-icon'> <BsYoutube size={ 22 } /> </p> </Link>
-                    <Link> <p className='footer-link-icon'> <BsLinkedin size={ 22 } /> </p> </Link>
 
+                <Col md={ 3 }>
+                    <h4 className='footer-header'> Help </h4>
+                    <p className='footer-link-item'> About Us </p>
+                    <p className='footer-link-item'> Contact Us </p>
+                    <p className='footer-link-item'> Bookings </p> 
+                    <p className='footer-link-item'> Frequently Asked Questions </p>
+                    <p className='footer-link-item'> Rewards </p>
+                    <p className='footer-link-item'> Terms and Conditions </p>
                 </Col>
 
+
                 <Col md={ 3 }>
+                    <h4 className='footer-header'> Connect with Us </h4>
+                    <p className='footer-link-icon'> <SiGmail size={ 22 } /> </p>
+                    <p className='footer-link-icon'> <BsFacebook size={ 22 } /> </p>
+                    <p className='footer-link-icon'> <GrTwitter size={ 22 } /> </p>
+                    <p className='footer-link-icon'> <AiFillInstagram size={ 22 } /> </p>
+                    <p className='footer-link-icon'> <BsYoutube size={ 22 } /> </p>
+                    <p className='footer-link-icon'> <BsLinkedin size={ 22 } /> </p>
+                </Col>
+
+
+                <Col md={ 4 }>
                     <h4 className='footer-header'> Newsletter Signup </h4>
                     <Form.Control type='email' placeholder='email' className='newsletter-textbox' />
                     <Button variant='custom' className='newsletter-button' >Subscribe</Button>

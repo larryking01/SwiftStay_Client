@@ -8,6 +8,11 @@ import Button from 'react-bootstrap/Button'
 
 
 
+
+
+
+
+
 const NavbarComponent = ( ) => {
 
 
@@ -26,14 +31,14 @@ const NavbarComponent = ( ) => {
                             <Nav.Link href='#' className='nav-link-text'> Cars </Nav.Link>
                             <Nav.Link href='#' className='nav-link-text'> Flights </Nav.Link>
                             <Nav.Link href='#' className='nav-link-text'> Bundle + Save </Nav.Link>
-                            <Nav.Link href='#' className='nav-link-text'> Cruises </Nav.Link>
+                            <Nav.Link href='#' className='nav-link-text'> Rewards </Nav.Link>
                             <Nav.Link href='#' className='nav-link-text'> Experiences </Nav.Link>
                         </Nav>
 
                         <Nav className='ms-auto'>
-                            <Nav.Link href='#' className='nav-link-text-help'> Help </Nav.Link>
+                            <Nav.Link href='/help' className='nav-link-text-help'> Help </Nav.Link>
                             <Nav.Link href='#' className='nav-link-button'>
-                                <Button variant='primary'> Login </Button>
+                                <Button variant='custom' className='navbar-login-btn'> Login </Button>
                             </Nav.Link>
                         </Nav>
 

@@ -139,14 +139,14 @@ const BookHotel = ( ) => {
                                 <hr />
                             </Row>
 
-                            <Row md={ 4 }>
+                            {/* <Row md={ 4 }>
                                 {
                                     bookingHotelObject.room_features.map(( feature, index ) => (
                                         <Col>{ feature }</Col>
                                     ))
                                 }
                             
-                            </Row>
+                            </Row> */}
                             <hr />
 
 
@@ -273,16 +273,10 @@ const BookHotel = ( ) => {
                     </Col>
 
                     {/* End of payment details column */ }
-
-
-
                     
                 </Row>
 
             </section>
-
-
-
 
 
             <section className='footer-gap'>

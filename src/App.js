@@ -21,6 +21,8 @@ import SearchingHelp from './Routes/SearchingHelp'
 import AboutHelp from './Routes/AboutHelp'
 import Maps from './Routes/Maps'
 import FrequentlyAskedQuestionsHelp from './Routes/FrequentlyAskedQuestionsHelp'
+import Login from './Routes/Login'
+import SignUp from './Routes/SignUp'
 // import StartDatePicker from './Routes/StartDatePicker'
 // import EndDatePicker from './Routes/EndDatePicker'
 
@@ -52,8 +54,8 @@ const App = () => {
                     <Route path='help-contact-us' element={ <ContactUsHelp /> } />
                     <Route path='help-about-us' element={ <AboutHelp /> } />
                     <Route path='frequently-asked-questions' element={ <FrequentlyAskedQuestionsHelp /> } />
-                    {/* <Route path='start-date' element={ <StartDatePicker /> } /> */}
-                    {/* <Route path='end-date' element={ <EndDatePicker /> } /> */}
+                    <Route path='login' element={ <Login /> } />
+                    <Route path='sign-up' element={ <SignUp /> } />
                 </Routes>
 
             </BrowserRouter>

@@ -37,7 +37,7 @@ const NavbarComponent = ( ) => {
 
                         <Nav className='ms-auto'>
                             <Nav.Link href='/help' className='nav-link-text-help'> Help </Nav.Link>
-                            <Nav.Link href='#' className='nav-link-button'>
+                            <Nav.Link href='/login' className='nav-link-button'>
                                 <Button variant='custom' className='navbar-login-btn'> Login </Button>
                             </Nav.Link>
                         </Nav>

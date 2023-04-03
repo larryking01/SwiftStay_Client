@@ -6,7 +6,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Rating from '@mui/material/Rating'
 import { IoLocationSharp } from 'react-icons/io5'
-import { BsSearch } from 'react-icons/bs'
+import { FaTimesCircle } from 'react-icons/fa'
+import { BsSearch, BsCheckCircleFill } from 'react-icons/bs'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
@@ -67,23 +68,26 @@ const FetchAllRooms = () => {
           <section className='fetch-all-rooms-main-section'>
           {
             allRoomsArray.map(( rooms, index ) => {
-              return <Row key={ index } className='fetch-all-hotels-row' onClick={() => navigate(`/get-room-details/${ rooms._id }`) }>
-                <Col>
+              return <Row md={ 3 } xs={ 1 } sm={ 1 } key={ index } className='fetch-all-hotels-row' onClick={() => navigate(`/get-room-details/${ rooms._id }`) }>
+                <Col md={ 4 }>
                   <img src={ rooms.room_cover_photo_url } alt='' className='hotel-img'  />
                 </Col>
 
-                <Col md={ 4 }>
+                <Col md={ 5 } >
                   <h3 className='fetch-all-hotels-title'>{ rooms.room_number }</h3>
+                  <p> <IoLocationSharp /> <span>2 miles from the airport</span></p>
                   <Rating name='read-only' value={ rooms.room_rating } readOnly /> <p></p>
-                  <span> <IoLocationSharp /> <span>Located 2 miles from the airport</span> </span>
+                  <p className='room-rate-text'>GH<span>&#8373;</span>{ rooms.room_rate }</p>
+                  <Button variant='custom' className='go-to-site-button'>More details</Button>
                 </Col>
 
-                <Col md={ 4 }>
-                  <h5>Lowest Price</h5>
-                  <h4>GH<span>&#8373;</span>{ rooms.room_rate}</h4>
-                  <p>All taxes and fees included</p>
-                  {/* <p>Free cancellation</p> */}
-                  <Button variant='custom' className='go-to-site-button'>More details</Button>
+                <Col md={ 3 }>  
+                  <p className='key-features-head'>Key Features Include:</p>
+                  <p>Free cancellation: Yes <BsCheckCircleFill /></p>
+                  <p>Refund: No <FaTimesCircle /></p>
+                  <p>Free cancellation: Yes <BsCheckCircleFill /></p>
+                  <p>Free cancellation: No <FaTimesCircle /></p>
+
                 </Col>
 
               </Row>

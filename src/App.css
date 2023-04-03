@@ -537,16 +537,21 @@
 
 .fetch-all-hotels-title {
     font-family: 'Lora', serif;
+    font-size: 1.3rem;
     color: var(--primary-color);
+}
+
+.room-rate-text {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
 }
 
 
 .go-to-site-button {
-    width: 100%;
+    width: 40%;
     background-color: var(--primary-color); 
     color: white;
-    height: 55px;
-    margin-top: 8%;
+    height: 40px;
 }
 
 
@@ -561,6 +566,7 @@
     padding-right: 9%;
     margin-top: 3%;
 }
+
 
 
 .search-hotel-button {
@@ -905,6 +911,106 @@
 
 
 /* end of faq page styling */
+
+
+
+
+
+/* login page styling */
+.login-header-nav {
+    text-align: center;
+}
+
+
+.sign-in-header-text {
+    margin-top: 2%;
+    font-family: 'Lora', serif;
+}
+
+
+.login-form-section {
+    text-align: center;
+}
+
+
+.login-form-wrapper {
+    margin-top: 2%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
+
+.login-form-control {
+    margin-bottom: 3%;
+}
+
+
+.login-form-control-checkbox {
+    margin-bottom: 10%;
+}
+
+
+.tnc-text {
+    font-size: 0.78rem;
+    margin-bottom: 7%;
+}
+
+
+.sign-in-options-text {
+    margin-bottom: 2%;
+    font-size: 0.8rem;
+}
+
+
+.blue {
+    color: #156bc1;
+    cursor: pointer;
+}
+
+
+.sign-in-btn {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+
+.sign-in-btn:hover {
+    background-color: var(--primary-color);
+    color: white
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

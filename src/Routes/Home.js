@@ -32,6 +32,7 @@ import rooms_and_suites_4 from '../Media Files/Rooms And Suites/rooms_and_suites
 
 const Home = () => {
 
+  
   // setting up state.
   const [ roomsArray, setRoomsArray ] = useState([ ])
 
@@ -41,7 +42,7 @@ const Home = () => {
   // fetching all rooms
   useEffect(() => {
     console.log( `type of rooms array == ${ typeof roomsArray }`)
-    fetch('http://localhost:8000/get/fetch-all-rooms', {
+    fetch('https://hotel-finder-app-server-rest.onrender.com/get/fetch-all-rooms', {
       method: 'GET'
     })
     .then( response => response.json())

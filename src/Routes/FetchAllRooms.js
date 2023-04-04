@@ -30,7 +30,7 @@ const FetchAllRooms = () => {
   // use effect to fetch all rooms.
   useEffect(() => {
     const fetchAllRooms = async () => {
-      let response = await fetch('http://127.0.0.1:8000/get/fetch-all-rooms', {
+      let response = await fetch('https://hotel-finder-app-server-rest.onrender.com/get/fetch-all-rooms', {
         method: 'GET'
       })
 

@@ -38,7 +38,7 @@ const BookHotel = ( ) => {
     // useEffect to fetch the booking hotel.
     useEffect(() => {
         const fetchBookingHotel = async () => {
-            let response = await fetch(`http://127.0.0.1:8000/get/room-details/${ params.room_id }`, {
+            let response = await fetch(`https://hotel-finder-app-server-rest.onrender.com/get/room-details/${ params.room_id }`, {
                 method: 'GET'
             })
             

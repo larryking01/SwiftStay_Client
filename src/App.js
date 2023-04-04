@@ -23,6 +23,8 @@ import Maps from './Routes/Maps'
 import FrequentlyAskedQuestionsHelp from './Routes/FrequentlyAskedQuestionsHelp'
 import Login from './Routes/Login'
 import SignUp from './Routes/SignUp'
+import NavbarComponent from './Routes/NavBar'
+import Footer from './Routes/Footer'
 // import StartDatePicker from './Routes/StartDatePicker'
 // import EndDatePicker from './Routes/EndDatePicker'
 
@@ -56,6 +58,8 @@ const App = () => {
                     <Route path='frequently-asked-questions' element={ <FrequentlyAskedQuestionsHelp /> } />
                     <Route path='login' element={ <Login /> } />
                     <Route path='sign-up' element={ <SignUp /> } />
+                    <Route path='nav-bar' element={ <NavbarComponent /> } />
+                    <Route path='footer' element={ <Footer /> } />
                 </Routes>
 
             </BrowserRouter>

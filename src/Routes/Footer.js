@@ -3,8 +3,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import InputGroup from 'react-bootstrap/InputGroup'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AiOutlineCopyrightCircle } from 'react-icons/ai'
 import { BsFacebook } from 'react-icons/bs'
 import { GrTwitter } from 'react-icons/gr'
@@ -19,7 +18,7 @@ import { SiGmail } from 'react-icons/si'
 
 const Footer = () => {
 
-    
+    const navigate = useNavigate()
     
     return (
 
@@ -44,13 +43,13 @@ const Footer = () => {
 
 
                 <Col md={ 3 }>
-                    <h4 className='footer-header'> Help </h4>
-                    <p className='footer-link-item'> About Us </p>
-                    <p className='footer-link-item'> Contact Us </p>
-                    <p className='footer-link-item'> Bookings </p> 
-                    <p className='footer-link-item'> Frequently Asked Questions </p>
-                    <p className='footer-link-item'> Rewards </p>
-                    <p className='footer-link-item'> Terms and Conditions </p>
+                    <h4 className='footer-header' onClick={() => navigate('/help')}> Help </h4>
+                    <p className='footer-link-item' onClick={() => navigate('/help-about-us')}> About Us </p>
+                    <p className='footer-link-item' onClick={() => navigate('/help-contact-us')}> Contact Us </p>
+                    <p className='footer-link-item' onClick={() => navigate('/help-bookings')}> Bookings </p> 
+                    <p className='footer-link-item' onClick={() => navigate('/frequently-asked-questions')}> Frequently Asked Questions </p>
+                    <p className='footer-link-item' onClick={() => navigate('/help-prices')}> Rewards </p>
+                    <p className='footer-link-item' onClick={() => navigate('/help')}> Terms and Conditions </p>
                 </Col>
 
 

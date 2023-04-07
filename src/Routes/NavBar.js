@@ -23,7 +23,7 @@ const NavbarComponent = ( ) => {
         <>
             <Navbar collapseOnSelect bg='light' variant='light' expand='lg'>
                 <Container>
-                    <Navbar.Brand>
+                    <Navbar.Brand onClick={() => navigate('/')} className='navbar-brand'>
                         <img src={ skyscanner_1 } alt='' width={ 120 } />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />

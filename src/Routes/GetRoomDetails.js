@@ -106,26 +106,26 @@ const GetRoomDetails = () => {
       </section>
 
       <section className='selected-room-checkin-dates'>
-        <Form>
+        <Form className='selected-room-details-destination-form'>
           <Row xs={ 1 } md={ 5 }>
-            <Col>
+            <Col className='selected-room-details-destination-column'>
               <Form.Control type='text' placeholder='Going to' className='selected-room-details-destination' />
             </Col>
 
-            <Col>
+            <Col className='selected-room-details-destination-column'>
               <StartDatePicker />
             </Col>
 
-            <Col>
+            <Col className='selected-room-details-destination-column'>
               <EndDatePicker />
             </Col>
 
-            <Col>
+            <Col className='selected-room-details-destination-column'>
               <Form.Control type='text' placeholder='2 adults, 1 room' className='selected-room-details-category' />
             </Col>
 
-            <Col>
-              <Button variant='primary' className='selected-room-details-search-hotel-button'>Search</Button>
+            <Col className='selected-room-details-destination-column'>
+              <Button variant='custom' className='selected-room-details-search-hotel-button'>Search</Button>
             </Col>
           </Row>
         </Form>
@@ -218,7 +218,7 @@ const GetRoomDetails = () => {
 
 
       <section className='selected-room-details-headers'>
-        <Row md={ 5 } xs={ 1 }>
+        <Row md={ 5 } xs={ 3 }>
           <Col>
             Description
           </Col>

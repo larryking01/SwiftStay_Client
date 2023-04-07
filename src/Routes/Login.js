@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
@@ -16,6 +17,7 @@ import { BsFacebook, BsApple, BsGoogle } from 'react-icons/bs'
 
 const Login = ( ) => {
 
+    const navigate = useNavigate()
 
     return (
         <div>
@@ -37,7 +39,7 @@ const Login = ( ) => {
 
                     <p className='sign-in-options-text blue mb-4'>Forgot password?</p>
 
-                    <p className='sign-in-options-text'>Don't have an account? <span className='blue'>Create One</span></p>
+                    <p className='sign-in-options-text'>Don't have an account? <span className='blue' onClick={() => navigate('/sign-up')}>Create One</span></p>
 
                     <p className='sign-in-options-text mb-4'>Or continue with</p>
 

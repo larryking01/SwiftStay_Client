@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
@@ -16,6 +17,7 @@ import { BsFacebook, BsApple, BsGoogle } from 'react-icons/bs'
 
 const SignUp = ( ) => {
 
+    const navigate = useNavigate()
 
     return (
         <div>
@@ -34,13 +36,11 @@ const SignUp = ( ) => {
                     <Form.Check className='login-form-control-checkbox' type='checkbox' label='Keep me signed in' />
                     <Form.Check className='login-form-control-checkbox' type='checkbox' label="I'd like to receive travel deals, special offers and other information from Hotels via email." />
 
-                    <Button variant='custom' className='sign-in-btn'>Sign in</Button>
+                    <Button variant='custom' className='sign-in-btn'>Create account</Button>
 
-                    <p className='tnc-text'>By signing in, I agree to the <span className='blue'>Terms and Conditions</span> and <span className='blue'>Privacy Statement</span></p>
+                    <p className='tnc-text'>By signing up, I agree to the <span className='blue'>Terms and Conditions</span> and <span className='blue'>Privacy Statement</span></p>
 
-                    <p className='sign-in-options-text blue mb-4'>Forgot password?</p>
-
-                    <p className='sign-in-options-text'>Don't have an account? <span className='blue'>Create One</span></p>
+                    <p className='sign-in-options-text'>Already have an account? <span className='blue' onClick={() => navigate('/login')}>Sign in</span></p>
 
                     <p className='sign-in-options-text mb-4'>Or continue with</p>
 

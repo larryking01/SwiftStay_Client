@@ -75,6 +75,8 @@ const Home = () => {
           <img src={ background_4 } alt='background' className='intro-background-img' />
         </section>
 
+        <div className='intro-form-div'>
+
         <section className='intro-form'>
           <Row>
             <h6 className='intro-form-catch-phrase'>Easy to book, hard to say goodbye to</h6>
@@ -85,26 +87,28 @@ const Home = () => {
             <Form.Control type='text' placeholder='Enter a hotel, city, address....' className='destination-textbox' />
           </Form.Group>
 
-          <Row className='mb-3' xs={ 1 } md={ 2 }>
-            <Col>
+          <Row xs={ 1 } md={ 2 }>
+            <Col className='mb-3'>
               <StartDatePicker />
             </Col>
 
-            <Col>
+            <Col className='mb-3'>
               <EndDatePicker />
             </Col>
           </Row>
 
           <Row xs={ 1 } md={ 2 }>
-            <Col>
+            <Col className='mb-3'>
               <Form.Control className='number-of-guests-textbox' type='text' placeholder='1 room, 2 guests' />
             </Col>
 
-            <Col>
+            <Col className='mb-3'>
               <Button variant='custom' className='find-hotel-button'>Find your hotel</Button>
             </Col>
           </Row>
         </section>
+        </div>
+
 
         <section className='plan-staycation-section'>
             <h3 className='plan-staycation-text'><strong>Plan your next staycation</strong></h3>
@@ -146,8 +150,7 @@ const Home = () => {
         <Row xs={ 1 } >
           <Col>
             <div className='view-all-hotels-text-div' onClick={() => navigate('fetch-all-rooms')}>
-              <h5>View all hotels</h5>
-              <BsArrowRight size={ 20 } className='view-all-hotels-arrow'/>
+              <h5>View all hotels <BsArrowRight size={ 20 } /> </h5>
             </div>
           </Col>
 

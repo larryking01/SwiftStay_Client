@@ -66,7 +66,7 @@ const BookHotel = ( ) => {
                 <Row>
                     <Col>
                         <h4>{ bookingHotelObject.room_number }</h4> <br />
-                        <h6>Sign in to book faster and collect 21 stamps with this stay. Then you'll get two reward* nights</h6>
+                        <h6 className='booking-hotel-extra-details'>Sign in to book faster and collect 21 stamps with this stay. Then you'll get two reward* nights</h6>
                     </Col>
                 </Row>
 
@@ -74,11 +74,11 @@ const BookHotel = ( ) => {
                 <Row xs={ 1 } md={ 2 }>
 
                     {/* Hotel details column */ }
-                    <Col>
+                    <Col className='mb-5'>
                         <div className='booking-hotel-summary-div'>
-                            <h4>{ bookingHotelObject.room_number } </h4> 
+                            <h4 className='booking-hotel-name'>{ bookingHotelObject.room_number } </h4> 
                             <h4> <Rating value={ bookingHotelObject.room_rating } readOnly name='read-only' /> </h4>
-                            <p>located at accra</p>
+                            <p className='booking-hotel-extra-details'>located at accra</p>
                             <hr />
 
                             <section>
@@ -116,25 +116,25 @@ const BookHotel = ( ) => {
 
                             <Row>
                                 <Col>
-                                    <h5>Check-in</h5>
-                                    <p>Friday, March 24 2023</p>
+                                    <h5 className='section-sub-header'>Check-in</h5>
+                                    <p className='booking-hotel-extra-details'>Friday, March 24 2023</p>
                                 </Col>
 
                                 <Col>
-                                    <h5>Check-out</h5>
-                                    <p>Tuesday, April 18 2023</p>
+                                    <h5 className='section-sub-header'>Check-out</h5>
+                                    <p className='booking-hotel-extra-details'>Tuesday, April 18 2023</p>
                                 </Col>
                             </Row>
 
                             <Row>
                                 <Col>
-                                    <h5>Guests</h5>
-                                    <p>2 adults</p>
+                                    <h5 className='section-sub-header'>Guests</h5>
+                                    <p className='booking-hotel-extra-details'>2 adults</p>
                                 </Col>
 
                                 <Col>
-                                    <h5>Stay</h5>
-                                    <p>1 night</p>
+                                    <h5 className='section-sub-header'>Stay</h5>
+                                    <p className='booking-hotel-extra-details'>1 night</p>
                                 </Col>
                                 <hr />
                             </Row>
@@ -152,20 +152,20 @@ const BookHotel = ( ) => {
 
                             <Row>
                                 <Col>
-                                    <h6>1 night</h6>
+                                    <h6 className='booking-hotel-extra-details'>1 night</h6>
 
-                                    <h6>Taxes and fees</h6>
+                                    <h6 className='booking-hotel-extra-details'>Taxes and fees</h6>
 
-                                    <h3>Total</h3>
+                                    <h3 className='section-sub-header'>Total</h3>
 
                                 </Col>
 
                                 <Col>
-                                    <h6>GH<span>&#8373;</span>100.00</h6>
+                                    <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span>100.00</h6>
 
-                                    <h6>GH<span>&#8373;</span>14.76</h6>
+                                    <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span>14.76</h6>
 
-                                    <h3>GH<span>&#8373;</span>114.76</h3>
+                                    <h3 className='section-sub-header'>GH<span>&#8373;</span>114.76</h3>
                                 </Col>
                             </Row>
                             <hr />
@@ -173,8 +173,8 @@ const BookHotel = ( ) => {
 
                             <Row>
                                 <section>
-                                    <h3>Non refundable</h3>
-                                    <p>If you cancel or don't attend your hotel booking, you'll not be refunded any of your original payment.</p>
+                                    <h3 className='section-sub-header'>Non refundable</h3>
+                                    <p className='booking-hotel-extra-details'>If you cancel or don't attend your hotel booking, you'll not be refunded any of your original payment.</p>
                                 </section>
                             </Row>
                             <hr />
@@ -182,8 +182,8 @@ const BookHotel = ( ) => {
 
                             <Row>
                                 <section>
-                                    <h3>Instant confirmation</h3>
-                                    <p>Your booking will be confirmed instantly by Logo. You'll get a confirmation email right after.</p>
+                                    <h3 className='section-sub-header'>Instant confirmation</h3>
+                                    <p className='booking-hotel-extra-details'>Your booking will be confirmed instantly by Logo. You'll get a confirmation email right after.</p>
                                 </section>
                             </Row>
 
@@ -197,9 +197,9 @@ const BookHotel = ( ) => {
 
 
                     {/*Payment details column */ }
-                    <Col className='details-section'>
+                    <Col className='details-section mb-5'>
                     <div className='details-section-sub-div'>
-                    <h4 className='details-section-header'>Step 1: Your Details</h4>
+                    <h4 className='section-sub-header'>Step 1: Your Details</h4>
                         <Form>
                             <Form.Group>
                                 {/* <Form.Label>First name*</Form.Label> */}
@@ -226,7 +226,7 @@ const BookHotel = ( ) => {
 
 
                         <div className='details-section-sub-div'>
-                            <h4 className='details-section-header'>Step 2: Payment Details</h4>
+                            <h4 className='section-sub-header'>Step 2: Payment Details</h4>
                             <Form>
                                 <Form.Group className='form-control-no-text'>
                                     <Form.Text className='card-types-accepted-header'>Card types accepted:</Form.Text>

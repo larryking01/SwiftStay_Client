@@ -61,7 +61,7 @@ const AboutHelp = ( ) => {
             <section>
                 <Row md={ 2 } xs={ 1 } sm={ 1 } className='about-us-row-generic-style'>
                     <Col>
-                        <h3>Travel your way</h3>
+                        <h3 className='about-us-sub-headers'>Travel your way</h3>
                     </Col>
 
                     <Col>
@@ -127,7 +127,7 @@ const AboutHelp = ( ) => {
                 </Row>
 
                 <section className='about-us-team-section'>
-                    <h3>Our Team</h3>
+                    <h3 className='our-team-header'>Our Team</h3>
                 </section>
 
 
@@ -139,8 +139,8 @@ const AboutHelp = ( ) => {
                             </Col>
 
                             <Col>
-                                <h3>{ team_member.name }</h3>
-                                <h5>{ team_member.position }</h5>
+                                <h3 className='team-member-name'>{ team_member.name }</h3>
+                                <h5 className='team-member-position'>{ team_member.position }</h5>
                                 <p>{ team_member.about }</p>
                             </Col>
 

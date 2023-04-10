@@ -73,9 +73,6 @@ const Home = () => {
 
         <section className='intro-background'>
           <img src={ background_4 } alt='background' className='intro-background-img' />
-        </section>
-
-        <div className='intro-form-div'>
 
         <section className='intro-form'>
           <Row>
@@ -107,7 +104,7 @@ const Home = () => {
             </Col>
           </Row>
         </section>
-        </div>
+        </section>
 
 
         <section className='plan-staycation-section'>

@@ -1049,8 +1049,8 @@
 
 
     .intro-form {
-        position:absolute;
-        top: 40%;
+        position: relative;
+        bottom: 250px;
         width: 80%;
         height: 75%;
         background-color: white;
@@ -1062,7 +1062,7 @@
 
 
     .plan-staycation-section {
-        margin-top: 60%;
+        margin-top: -60%;
     }
     
 

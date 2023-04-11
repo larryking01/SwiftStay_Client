@@ -20,6 +20,13 @@ import Form from 'react-bootstrap/Form'
 
 const FetchAllRooms = () => {
 
+  
+  // local and remote servers
+  const local_server = 'http://127.0.0.1:8000'
+
+  const remote_server = 'https://hotel-finder-app-server-rest.onrender.com'
+
+
   // navigation.
   const navigate = useNavigate()
 
@@ -30,7 +37,7 @@ const FetchAllRooms = () => {
   // use effect to fetch all rooms.
   useEffect(() => {
     const fetchAllRooms = async () => {
-      let response = await fetch('https://hotel-finder-app-server-rest.onrender.com/get/fetch-all-rooms', {
+      let response = await fetch(`${local_server}/get/fetch-all-rooms`, {
         method: 'GET'
       })
 
@@ -50,6 +57,34 @@ const FetchAllRooms = () => {
 
 
 
+  // updating search hotel state.
+  const UpdateSearchHotel = ( event ) => {
+    setSearchHotel( event.target.value )
+
+  }
+
+
+  // useEffect to get search hotel.
+  // useEffect(() => {
+  //   const fetchSearchRoom = async ( ) => {
+  //       let response = await fetch(`${local_server}/get/search-room/${searchHotel}`, {
+  //         method: 'GET'
+  //       })
+
+  //       if( response.ok ) {
+  //         let data = await response.json()
+  //         console.log('search hotel data = ')
+  //         console.log( data )
+  //       }
+  //   }
+
+  //   fetchSearchRoom()
+  // }, [ searchHotel ])
+
+
+
+
+
 
   return (
     <>
@@ -59,9 +94,9 @@ const FetchAllRooms = () => {
           <section className='fetch-all-rooms-search-tab-section'>
             <InputGroup>
               <Form.Control type='text' placeholder='search hotel by name, place or price' 
-                className='search-hotel-textbox' onChange={( event ) => { setSearchHotel( event.target.value ); console.log( searchHotel ) }} 
-                value={ searchHotel } />
-              <Button variant='custom' className='search-hotel-button'><span><BsSearch /> Search</span></Button>
+                className='search-hotel-textbox' onChange={ UpdateSearchHotel } value={ searchHotel }
+                 />
+              <Button variant='custom' className='search-hotel-button' onClick={ ( ) => console.log( searchHotel )}><span><BsSearch /> Search</span></Button>
             </InputGroup>
           </section>
 
@@ -75,7 +110,7 @@ const FetchAllRooms = () => {
 
                 <Col md={ 5 } >
                   <h3 className='fetch-all-hotels-title'>{ rooms.room_number }</h3>
-                  <p> <IoLocationSharp /> <span>2 miles from the airport</span></p>
+                  <p> <IoLocationSharp /> <span>{ rooms.room_location }</span></p>
                   <Rating name='read-only' value={ rooms.room_rating } readOnly /> <p></p>
                   <p className='room-rate-text'>GH<span>&#8373;</span>{ rooms.room_rate }</p>
                   <Button variant='custom' className='go-to-site-button'>More details</Button>

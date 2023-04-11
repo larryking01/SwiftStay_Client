@@ -102,7 +102,7 @@ const GetRoomDetails = () => {
       <section className='selected-room-details-section'>
         <h3 className='selected-room-name'> { selectedRoomDetailsObject.room_number } </h3>
         <Rating name='read-only' value={ 4 } readOnly />
-        <p> <IoLocationSharp /> Labadi - Accra - Ghana.</p>
+        <p> <IoLocationSharp /> { selectedRoomDetailsObject.room_location }</p>
       </section>
 
       <section className='selected-room-checkin-dates'>

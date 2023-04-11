@@ -37,7 +37,7 @@ const FetchAllRooms = () => {
   // use effect to fetch all rooms.
   useEffect(() => {
     const fetchAllRooms = async () => {
-      let response = await fetch(`${local_server}/get/fetch-all-rooms`, {
+      let response = await fetch(`${remote_server}/get/fetch-all-rooms`, {
         method: 'GET'
       })
 

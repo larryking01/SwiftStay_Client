@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom'
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
@@ -8,6 +9,7 @@ import Rating from '@mui/material/Rating'
 import { IoLocationSharp } from 'react-icons/io5'
 import { FaTimesCircle } from 'react-icons/fa'
 import { BsSearch, BsCheckCircleFill } from 'react-icons/bs'
+import { RxDoubleArrowLeft, RxDoubleArrowRight } from 'react-icons/rx'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
@@ -34,6 +36,13 @@ const FetchAllRooms = () => {
   const [ allRoomsArray, setAllRoomsArray ] = useState([])
   const [ searchHotel, setSearchHotel ] = useState('')
 
+  // state for pagination.
+  const [firstItemIndex, setFirstItemIndex] = useState(0);
+  const [currentItems, setCurrentItems] = useState([ ])
+  const [pageCount, setPageCount] = useState(0) 
+  const itemsPerPage = 4;
+
+
   // use effect to fetch all rooms.
   useEffect(() => {
     const fetchAllRooms = async () => {
@@ -54,6 +63,22 @@ const FetchAllRooms = () => {
     fetchAllRooms()
 
   }, [ ])
+
+
+  // effect to handle pagination
+  useEffect(() => {
+    const lastItemIndex = firstItemIndex + itemsPerPage;
+    setCurrentItems(allRoomsArray.slice(firstItemIndex, lastItemIndex));
+    setPageCount(Math.ceil(allRoomsArray.length / itemsPerPage));
+  }, [ firstItemIndex, itemsPerPage, allRoomsArray ])
+
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % allRoomsArray.length;
+    setFirstItemIndex(newOffset);
+  };
+
+
 
 
 
@@ -101,8 +126,9 @@ const FetchAllRooms = () => {
           </section>
 
           <section className='fetch-all-rooms-main-section'>
+          <div>
           {
-            allRoomsArray.map(( rooms, index ) => {
+            currentItems.map(( rooms, index ) => {
               return <Row md={ 3 } xs={ 1 } sm={ 1 } key={ index } className='fetch-all-hotels-row' onClick={() => navigate(`/get-room-details/${ rooms._id }`) }>
                 <Col md={ 4 }>
                   <img src={ rooms.room_cover_photo_url } alt='' className='hotel-img'  />
@@ -128,12 +154,23 @@ const FetchAllRooms = () => {
               </Row>
             })
           }
-          </section>
+          </div>
 
-
-          <section>
-
-          </section>
+        <ReactPaginate
+            breakLabel="..."
+            previousLabel={ <RxDoubleArrowLeft /> }
+            nextLabel={ <RxDoubleArrowRight /> }
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={4}
+            pageCount={pageCount}
+            renderOnZeroPageCount={null}
+            containerClassName='pagination'
+            pageLinkClassName='page-num'
+            previousLinkClassName='page-num'
+            nextLinkClassName='page-num'
+            activeLinkClassName='active'
+          />
+        </section>
 
 
         </div>

@@ -13,7 +13,7 @@
 
 /* global variables */
 :root {
-    --primary-color: rgb(0, 60, 138);
+    --primary-color: #5a50eb; /* #6b75ff #5a50eb*/
     --light-blue-color: #CCCCFF;
     --primary-font: 'Lora', serif;
 }

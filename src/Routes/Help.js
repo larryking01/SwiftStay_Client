@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
@@ -22,6 +22,15 @@ import question_svg from  '../Media Files/question.png'
 
 const Help = ( ) => { 
 
+// making certain component always displays from top on initial render.
+    useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+         })
+    })
+  
     let categoryArray = [
         { helpCategory: 'Contact Us', categoryImage: contact_us_svg, navigate: '/help-contact-us' },
         { helpCategory: 'About', categoryImage: about_svg, navigate: '/help-about-us' },

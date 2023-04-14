@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
 import about_us_bg2 from '../Media Files/Rooms And Suites/about-us-bg2.jpg'
@@ -21,6 +21,16 @@ import Col from 'react-bootstrap/Col'
 
 
 const AboutHelp = ( ) => {
+
+    // making certain component always displays from top on initial render.
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+        })
+      
 
     let teams_array = [
         {

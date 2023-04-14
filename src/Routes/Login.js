@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -18,6 +18,15 @@ import { BsFacebook, BsApple, BsGoogle } from 'react-icons/bs'
 const Login = ( ) => {
 
     const navigate = useNavigate()
+
+// making certain component always displays from top on initial render.
+    useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+         })
+    })
 
     return (
         <div>

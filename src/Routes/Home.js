@@ -39,6 +39,16 @@ const Home = () => {
   // for navigation.
   const navigate = useNavigate()
 
+  // making certain component always displays from top on initial render.
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+
+  })
+
   // fetching all rooms
   useEffect(() => {
     console.log( `type of rooms array == ${ typeof roomsArray }`)
@@ -65,7 +75,7 @@ const Home = () => {
   return (
     <div>
       <NavbarComponent />
-    
+
       <main className='main-content'>
         <article>
           <h3><strong className='save-big-text'>Find your place to stay</strong></h3>

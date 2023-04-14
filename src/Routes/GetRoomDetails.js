@@ -47,6 +47,15 @@ const GetRoomDetails = () => {
   const [ selectedRoomDetailsObject, setselectedRoomDetailsObject ] = useState({})
 
 
+  // making certain component always displays from top on initial render.
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+  })
+
   // use effect hook to fetch details of selected room.
   useEffect(() => {
     // async function to fetch data.

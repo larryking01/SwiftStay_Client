@@ -24,6 +24,16 @@ import Button from 'react-bootstrap/Button'
 
 const BookHotel = ( ) => {
 
+    // making certain component always displays from top on initial render.
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+    })
+      
+
     // setting up state.
     const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
 

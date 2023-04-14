@@ -43,6 +43,17 @@ const FetchAllRooms = () => {
   const itemsPerPage = 4;
 
 
+    // making certain component always displays from top on initial render.
+    useEffect(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      })
+    })
+  
+
+
   // use effect to fetch all rooms.
   useEffect(() => {
     const fetchAllRooms = async () => {

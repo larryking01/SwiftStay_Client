@@ -1,3 +1,5 @@
+import React from 'react'
+
 import './App.css'
 import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
@@ -7,6 +9,7 @@ import '@fontsource/roboto/700.css'
 
 // routing.
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ScrollToTop from 'react-scroll-to-top'
 import Home from './Routes/Home'
 import FetchAllBookings from './Routes/FetchAllBookings'
 import FetchAllRooms from './Routes/FetchAllRooms'
@@ -36,7 +39,8 @@ import Footer from './Routes/Footer'
 
 const App = () => {
 
-  
+
+
 
   return (
       <>
@@ -61,6 +65,9 @@ const App = () => {
                     <Route path='nav-bar' element={ <NavbarComponent /> } />
                     <Route path='footer' element={ <Footer /> } />
                 </Routes>
+
+                <ScrollToTop smooth top={ 200 } />
+
 
             </BrowserRouter>
       </>

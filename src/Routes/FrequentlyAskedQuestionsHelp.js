@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
@@ -20,6 +20,15 @@ const FrequentlyAskedQuestionsHelp = ( ) => {
 
     const navigate = useNavigate()
 
+    // making certain component always displays from top on initial render.
+    useEffect(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        })
+      })
+  
 
     const [ showFAQAns1, setShowFAQAns1 ] = useState( false )
     const [ showFAQAns2, setShowFAQAns2 ] = useState( false )

@@ -79,7 +79,8 @@
 }
 
 .footer-link-item:hover {
-    color: var(--primary-color)
+    color: var(--primary-color);
+    padding-left: 5%;
 }
 
 
@@ -89,7 +90,8 @@
 }
 
 .footer-link-icon:hover {
-    color: var(--primary-color)
+    color: var(--primary-color);
+
 }
 
 
@@ -1065,6 +1067,29 @@
     margin-bottom: 30%;
 }
 
+
+
+/* scroll to top btn styling */
+/* .top-to-bottom {
+    position: relative;
+} */
+
+.scroll-to-top-btn {
+    background-color:/* #5a50eb**/ white;
+    color: #5a50eb;
+    position: fixed;
+    bottom: 5%;
+    right: 2%;
+    z-index: 10;
+    border: 2px solid #5a50eb;
+
+}
+
+
+.scroll-to-top-btn:hover {
+    background-color: #5a50eb;
+    color: white;
+}
 
 
 

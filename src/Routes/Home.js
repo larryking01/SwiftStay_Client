@@ -26,7 +26,7 @@ import rooms_and_suites_4 from '../Media Files/Rooms And Suites/rooms_and_suites
 
 
 
-
+import ScrollToTop from  './ScrollToTop'
 
 
 
@@ -74,6 +74,7 @@ const Home = () => {
 
   return (
     <div>
+
       <NavbarComponent />
 
       <main className='main-content'>
@@ -263,6 +264,7 @@ const Home = () => {
               </Col>
           </Row>
 
+
           <Row xs={ 1 } md={ 2 } className='extra-info-row'>
               <Col className='extra-info-text-col'>
                   <h3 className='extra-info-title'>Special Deals</h3>
@@ -289,6 +291,8 @@ const Home = () => {
       </section>
 
       <Footer />
+
+      <ScrollToTop />
 
     </div>
   )

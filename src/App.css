@@ -40,7 +40,25 @@
 .navbar-login-btn:hover {
     background-color: var(--primary-color);
     color: white;
+    /* background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color); */
+
 }
+
+.navbar-signup-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.navbar-signup-btn:hover {
+    /* background-color: var(--primary-color);
+    color: white; */
+    border: 3px solid var(--primary-color);
+
+}
+
 
 
 .navbar-brand {
@@ -80,7 +98,6 @@
 
 .footer-link-item:hover {
     color: var(--primary-color);
-    padding-left: 5%;
 }
 
 
@@ -715,6 +732,14 @@
 }
 
 
+.book-room-features {
+    background-color: var(--light-blue-color);
+    padding: 7%;
+    text-align: center;
+    border-radius: 5%;
+    /* display: inline-block; */
+}
+
 
 /* end of book hotel page styling */
 
@@ -994,6 +1019,13 @@
 
 
 /* login page styling */
+/*login and register brand logo */
+.loginregister-brand-logo {
+    cursor: pointer;
+}
+
+
+
 .login-header-nav {
     text-align: center;
 }

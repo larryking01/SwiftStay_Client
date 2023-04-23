@@ -140,8 +140,8 @@ const AboutHelp = ( ) => {
                     <h3 className='our-team-header'>Our Team</h3>
                 </section>
 
-
-                {
+                {  
+                /*
                     teams_array.map(( team_member, index ) => (
                         <Row md={ 2 } xs={ 1 } sm={ 1 } className='about-us-row-generic-style our-team-row' key={ index }>
                             <Col>
@@ -156,6 +156,7 @@ const AboutHelp = ( ) => {
 
                         </Row>
                     ))
+                */ 
                 }
 
             </section>

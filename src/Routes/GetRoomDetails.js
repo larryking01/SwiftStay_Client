@@ -300,7 +300,7 @@ const GetRoomDetails = () => {
              selectedRoomDetailsObject ? 
                 selectedRoomDetailsObject.room_features ?
                   selectedRoomDetailsObject.room_features.map(( feature, index ) => (
-                    <Col>
+                    <Col key={ index }>
                         <div className='selected-room-features-amenities-div'>
                             <h5>{ feature }</h5>
                         </div>
@@ -321,7 +321,7 @@ const GetRoomDetails = () => {
         <Maps />
 
         <div className='book-now-btn-row'>
-          <Button variant='custom' className='book-now-button-last'>Book Hotel Now</Button>
+          <Button variant='custom' className='book-now-button-last' onClick={ () => navigate(`/book-hotel/${ booking_room_id }`) }>Book Hotel Now</Button>
         </div>
       </section>
 

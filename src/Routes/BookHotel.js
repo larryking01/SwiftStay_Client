@@ -24,6 +24,14 @@ import Button from 'react-bootstrap/Button'
 
 const BookHotel = ( ) => {
 
+    
+    // setting up state.
+    const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
+
+    // url params
+    const params = useParams()
+
+
     // making certain component always displays from top on initial render.
     useEffect(() => {
         window.scrollTo({
@@ -32,13 +40,7 @@ const BookHotel = ( ) => {
             behavior: 'smooth'
         })
     })
-      
-
-    // setting up state.
-    const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
-
-    // url params
-    const params = useParams()
+    
 
     useEffect(() => {
         console.log( params.room_id )
@@ -149,18 +151,32 @@ const BookHotel = ( ) => {
                                 <hr />
                             </Row>
 
-                            {/* <Row md={ 4 }>
-                                {
-                                    bookingHotelObject.room_features.map(( feature, index ) => (
-                                        <Col>{ feature }</Col>
-                                    ))
-                                }
+                            {
+                                <>
+                                <h5 className='section-sub-header'>Summary of features</h5>
+                                <Row md={ 4 }>
+                                    {
+                                        Object.keys( bookingHotelObject ).length > 0 ?
+                                            bookingHotelObject.room_features.map(( feature, index ) => (
+                                                <Col key={ index }>
+                                                    <div className='book-room-features'>
+                                                        { feature }
+                                                    </div>
+                                                </Col>
+                                            ))
+                                        :
+                                            null
+                                    }
+                                </Row>
+                                </>
+                            }
                             
-                            </Row> */}
                             <hr />
 
 
                             <Row>
+                                <h5 className='section-sub-header'>Pricing</h5>
+
                                 <Col>
                                     <h6 className='booking-hotel-extra-details'>1 night</h6>
 

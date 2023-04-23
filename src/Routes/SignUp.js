@@ -61,7 +61,9 @@ const CreateNewUser = async ( ) => {
                 }
             setCurrentUser( user )
             console.log('user created.') 
-            console.log( currentUser )
+            setTimeout(() => {
+                console.log( currentUser )
+            }, 5000 )
         }
         } 
         else {
@@ -86,9 +88,15 @@ const CreateNewUser = async ( ) => {
 
 // function sign out user.
 const SignOutUser = async ( ) => {
-    await firebaseAuth.signOut()
-    console.log('user signed out')
-    setCurrentUser( null ) 
+    let existingUser = firebaseAuth.currentUser
+    if( existingUser ) {
+        await firebaseAuth.signOut()
+        console.log('user signed out')
+        setCurrentUser( null ) 
+    } 
+    else {
+        console.log('no current user is logged in')
+    }
 
 }
 
@@ -108,7 +116,7 @@ const SignOutUser = async ( ) => {
     return (
         <div>
             <section className='login-header-nav'>
-                <img src={ skyscanner_1 } alt='' width={ 200 } />
+                <img className='loginregister-brand-logo' src={ skyscanner_1 } alt='' width={ 200 } onClick={() => navigate('/')} />
             </section>
 
             <section className='login-form-section'>

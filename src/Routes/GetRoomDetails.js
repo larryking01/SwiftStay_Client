@@ -9,8 +9,8 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Carousel from 'react-grid-carousel'
 import Rating from '@mui/material/Rating'
-import StartDatePicker from './StartDatePicker'
-import EndDatePicker from './EndDatePicker'
+import StartDatePicker from '../Configuration/StartDatePicker'
+import EndDatePicker from '../Configuration/EndDatePicker'
 import { IoLocationSharp } from 'react-icons/io5'
 import { MdOutlinePets } from 'react-icons/md'
 import { MdEmojiFoodBeverage } from 'react-icons/md'
@@ -21,7 +21,7 @@ import { FaCcMastercard } from 'react-icons/fa'
 import { FaCcPaypal } from 'react-icons/fa'
 
 
-import Maps from './Maps'
+import Maps from '../Configuration/Maps'
 
 
 

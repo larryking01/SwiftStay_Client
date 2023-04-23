@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
@@ -16,8 +16,8 @@ import { BsArrowRight } from 'react-icons/bs'
 import { IoLocationSharp } from 'react-icons/io5'
 import Carousel from 'react-bootstrap/Carousel'
 import Rating from '@mui/material/Rating'
-import StartDatePicker from './StartDatePicker.js'
-import EndDatePicker from './EndDatePicker.js'
+import StartDatePicker from '../Configuration/StartDatePicker.js'
+import EndDatePicker from '../Configuration/EndDatePicker.js'
 
 import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp'
 import rooms_and_suites_2 from '../Media Files/Rooms And Suites/rooms_and_suites_2.jpg'
@@ -26,7 +26,15 @@ import rooms_and_suites_4 from '../Media Files/Rooms And Suites/rooms_and_suites
 
 
 
-import ScrollToTop from  './ScrollToTop'
+import ScrollToTop from  '../Configuration/ScrollToTop'
+import { UserContext } from '../App'
+
+
+
+
+
+
+
 
 
 
@@ -38,6 +46,9 @@ const Home = () => {
 
   // for navigation.
   const navigate = useNavigate()
+
+  // retrieving user info from context.
+  const { user } = useContext( UserContext )
 
   // making certain component always displays from top on initial render.
   useEffect(() => {
@@ -79,7 +90,7 @@ const Home = () => {
 
       <main className='main-content'>
         <article>
-          <h3><strong className='save-big-text'>Find your place to stay</strong></h3>
+          <h3><strong className='save-big-text'>Find your place to stay { user } </strong></h3>
         </article>
 
         <section className='intro-background'>

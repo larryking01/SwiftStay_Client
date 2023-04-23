@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import skyscanner_1 from '../Media Files/skyscanner_1.jpeg'
 import Button from 'react-bootstrap/Button'
 
-
-
+import { UserContext } from '../App'
 
 
 
@@ -16,8 +15,12 @@ import Button from 'react-bootstrap/Button'
 
 const NavbarComponent = ( ) => {
 
+
     // for navigation.
     const navigate = useNavigate()
+
+    const userObject = useContext( UserContext )
+
 
     return (
         <>
@@ -35,6 +38,8 @@ const NavbarComponent = ( ) => {
                             <Nav.Link href='#' className='nav-link-text'> Bundle + Save </Nav.Link>
                             <Nav.Link href='#' className='nav-link-text'> Rewards </Nav.Link>
                             <Nav.Link href='#' className='nav-link-text'> Experiences </Nav.Link>
+                            <Nav.Link href='#' className='nav-link-text'> { userObject.user ? userObject.user.email : ' '} </Nav.Link>
+
                         </Nav>
 
                         <Nav className='ms-auto'>

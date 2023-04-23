@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 
 import './App.css'
 import '@fontsource/roboto/300.css'
@@ -21,7 +21,7 @@ import PricesHelp from './Routes/PricesHelp'
 import ContactUsHelp from './Routes/ContactUsHelp'
 import SearchingHelp from './Routes/SearchingHelp'
 import AboutHelp from './Routes/AboutHelp'
-import Maps from './Routes/Maps'
+import Maps from './Configuration/Maps'
 import FrequentlyAskedQuestionsHelp from './Routes/FrequentlyAskedQuestionsHelp'
 import Login from './Routes/Login'
 import SignUp from './Routes/SignUp'
@@ -33,6 +33,11 @@ import Footer from './Routes/Footer'
 
 
 
+// context variable to handle user state.
+const UserContext = createContext( null )
+
+
+
 
 
 
@@ -40,10 +45,15 @@ const App = () => {
 
 
 
+    // handling user state.
+    const [ currentUser, setCurrentUser ] = useState( null )
+
+  
 
   return (
       <>
-            <BrowserRouter>
+        <BrowserRouter>
+            <UserContext.Provider value={{ currentUser, setCurrentUser }}>
                 <Routes>
                     <Route path='/' element={ <Home /> } />
                     <Route path='fetch-all-bookings' element={ <FetchAllBookings /> } />
@@ -64,13 +74,21 @@ const App = () => {
                     <Route path='nav-bar' element={ <NavbarComponent /> } />
                     <Route path='footer' element={ <Footer /> } />
                 </Routes>
-
-            </BrowserRouter>
+            </UserContext.Provider>
+        </BrowserRouter>
       </>
-
   )
   
 }
 
 
+
+
+export {
+    UserContext
+}
+
+
+
 export default App;
+

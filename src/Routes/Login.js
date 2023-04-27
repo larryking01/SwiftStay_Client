@@ -45,14 +45,16 @@ const Login = ( ) => {
             if( !existingUser ) {
                 let userCredentials = await firebaseAuth.signInWithEmailAndPassword( logInUserEmail, logInUserPassword )
                 if( userCredentials ) {
+                    console.log('display name is')
+                    console.log( userCredentials.user )
                     let user = {
-                        email: userCredentials.user.email
+                        email: userCredentials.user.email,
+                        displayName: userCredentials.user.displayName,
+                        photoUrl: userCredentials.user.photoURL
                     }
                     setCurrentUser( user )
-                    console.log('user logged in')
-                    setTimeout(() => {
-                        console.log( currentUser )
-                    }, 5000 )
+                    console.log('user signed in')
+                    navigate( -1 )
                 }
             }
             else {

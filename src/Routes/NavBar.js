@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { IoPersonOutline } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
 import skyscanner_1 from '../Media Files/skyscanner_1.jpeg'
 import Button from 'react-bootstrap/Button'
@@ -20,6 +21,14 @@ const NavbarComponent = ( ) => {
     const navigate = useNavigate()
 
     const { currentUser, setCurrentUser } = useContext( UserContext )
+
+
+    // effect to show current user.
+    useEffect(() => {
+        console.log('from navbar, current user is')
+        console.log( currentUser )
+
+    }, [ currentUser ])
 
 
     // function sign out user.
@@ -61,7 +70,7 @@ const NavbarComponent = ( ) => {
                             {
                                 currentUser ? 
                                 <>
-                                    <NavDropdown title={ currentUser.email } id='nav-dropdown'>
+                                    <NavDropdown title={ currentUser.displayName } id='nav-dropdown'>
                                         <NavDropdown.Item eventKey='4.1'>View profile</NavDropdown.Item>
                                         <NavDropdown.Item eventKey='4.2'>Booking history</NavDropdown.Item>
                                     </NavDropdown>
@@ -76,6 +85,11 @@ const NavbarComponent = ( ) => {
                                     <Nav.Link className='nav-link-button'>                                    
                                         <Button variant='custom' className='navbar-signup-btn' onClick={() => navigate('/sign-up')}> Register </Button>
                                     </Nav.Link>
+
+                                    <Nav.Link className='nav-link-button'>                                    
+                                        <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button>
+                                    </Nav.Link>
+
                                 </>
                             }
 

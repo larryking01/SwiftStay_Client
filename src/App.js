@@ -8,7 +8,7 @@ import '@fontsource/roboto/700.css'
 
 
 // routing.
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom'
 import Home from './Routes/Home'
 import FetchAllBookings from './Routes/FetchAllBookings'
 import FetchAllRooms from './Routes/FetchAllRooms'
@@ -52,7 +52,7 @@ const App = () => {
 
   return (
       <>
-        <BrowserRouter>
+        <HashRouter>
             <UserContext.Provider value={{ currentUser, setCurrentUser }}>
                 <Routes>
                     <Route path='/' element={ <Home /> } />
@@ -75,7 +75,7 @@ const App = () => {
                     <Route path='footer' element={ <Footer /> } />
                 </Routes>
             </UserContext.Provider>
-        </BrowserRouter>
+        </HashRouter>
       </>
   )
   

@@ -5,7 +5,9 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import skyscanner_1 from '../Media Files/skyscanner_1.jpeg'
-import { BsFacebook, BsApple, BsGoogle } from 'react-icons/bs'
+import InputGroup from 'react-bootstrap/InputGroup'
+import { BsFacebook, BsApple, BsGoogle, BsFillPersonFill, BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
+import { AiOutlineMail } from 'react-icons/ai'
 
 import { firebaseAuth } from '../Configuration/Firebase'
 import { UserContext } from '../App'
@@ -29,45 +31,94 @@ const Login = ( ) => {
     const [ logInUserEmail, setLogInUserEmail ] = useState('')
     const [ logInUserPassword, setLogInUserPassword ] = useState('')
 
+    // handling user input errors.
+    const [ emailErrorExists, setEmailErrorExists ] = useState( false )
+    const [ passwordErrorExists, setPasswordErrorExists ] = useState( false )
+
+    const [ emailErrorMessage, setEmailErrorMessage ] = useState( null )
+    const [ passwordErrorMessage, setPasswordErrorMessage ] = useState( null )
+    const [ otherError, setOtherError ] = useState( null ) 
+
+    const [ passwordVisible, setPasswordVisible ] = useState( false )
+
+
+    const TogglePasswordVisible = ( ) => {
+        setPasswordVisible( !passwordVisible )
+    }    
+    
+
     const UpdateLogInUserEmail = ( event ) => {
-        setLogInUserEmail( event.target.value )
+        setEmailErrorExists( false )
+        setLogInUserEmail( event.target.value.trim() )
     }
 
     const UpdateLogInUserPassword = ( event ) => {
+        setPasswordErrorExists( false )
         setLogInUserPassword( event.target.value )
     }
 
 
     // function to log user in.
     const SignInUser = async ( ) => {
+
         try {
-            let existingUser = firebaseAuth.currentUser
-            if( !existingUser ) {
-                let userCredentials = await firebaseAuth.signInWithEmailAndPassword( logInUserEmail, logInUserPassword )
-                if( userCredentials ) {
-                    console.log('display name is')
-                    console.log( userCredentials.user )
-                    let user = {
-                        email: userCredentials.user.email,
-                        displayName: userCredentials.user.displayName,
-                        photoUrl: userCredentials.user.photoURL
-                    }
-                    setCurrentUser( user )
-                    console.log('user signed in')
-                    navigate( -1 )
-                }
+            // resetting all error states
+            setEmailErrorExists( false )
+            setPasswordErrorExists( false )
+            setOtherError( null )
+
+
+            // ensuring form does not submit if any required field is empty. ( step 1 )
+            if ( logInUserEmail.length < 1 || logInUserPassword.length < 1 ) {
+
+                if( logInUserEmail.length < 1 ) {
+                    setEmailErrorExists( true )
+                    setEmailErrorMessage('This field cannot be empty *')
+                } 
+                else {  setEmailErrorExists( false )}
+
+                if( logInUserPassword.length < 1 ) {
+                    setPasswordErrorExists( true )
+                    setPasswordErrorMessage('This field cannot be empty *')
+                } 
+                else {  setPasswordErrorExists( false )}
+
             }
+
             else {
-                throw new Error('a user is already logged in')
-            }
+
+                let existingUser = firebaseAuth.currentUser
+                if( !existingUser ) {
+                    let userCredentials = await firebaseAuth.signInWithEmailAndPassword( logInUserEmail, logInUserPassword )
+                    if( userCredentials ) {
+                        console.log('display name is')
+                        console.log( userCredentials.user )
+                        let user = {
+                            email: userCredentials.user.email,
+                            displayName: userCredentials.user.displayName,
+                            photoUrl: userCredentials.user.photoURL
+                        }
+                        setCurrentUser( user )
+                        console.log('user signed in')
+                        navigate( -1 )
+                    }
+                }
+                else {
+                    throw new Error('a user is already logged in')
+                }
+        }
+
         }
         catch( error ) {
             switch( error.code ) {
                 case 'auth/network-request-failed':
+                    setOtherError('Sorry, your account could not be created due to a poor internet connection. Try again when you have a stable network.')
                     throw new Error('Server could not be reached. Please make sure you have a good internet connection and try again.')
                 case 'auth/invalid-email':
+                    setOtherError('Your email is invalid. Please enter a valid email and try again')
                     throw new Error('Your email is invalid. Please enter a valid email and try again')
                 default:
+                    setOtherError( error.message )
                     throw new Error(`${ error.message }`)
                 }
         }
@@ -76,13 +127,13 @@ const Login = ( ) => {
 
 
     // making certain component always displays from top on initial render.
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        })
-    })
+    // useEffect(() => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         left: 0,
+    //         behavior: 'smooth'
+    //     })
+    // })
 
 
 
@@ -90,36 +141,64 @@ const Login = ( ) => {
 
 
     return (
-        <div>
-            <section className='login-header-nav'>
-                <img className='loginregister-brand-logo' src={ skyscanner_1 } alt='' width={ 200 } onClick={() => navigate('/')} />
+
+        <div className='log-in-wrapper'>
+            <section>
+                <img className='log-in-brand-logo' src={ skyscanner_1 } alt='' width={ 200 } onClick={() => navigate('/')} />
             </section>
 
-            <section className='login-form-section'>
-                <h4 className='sign-in-header-text'>Sign in</h4>
+            <section className='login-account-section'>
+                <h4 className='log-in-header-text'>Login to your account</h4>
+                <p className='login-other-error-text'>{ otherError ? otherError : null }</p>
+                <h4 className='login-header-text mb-5'>
+                    { currentUser ? currentUser.email : '' }
+                </h4>
+            </section>
 
-                <Form className='login-form-wrapper'> 
-                    <Form.Control className='login-form-control' type='text' placeholder='Email' onChange={ UpdateLogInUserEmail }  value={ logInUserEmail } />
-                    <Form.Control className='login-form-control' type='password' placeholder='Password' onChange={ UpdateLogInUserPassword } value={ logInUserPassword } />
-                    <Form.Check className='login-form-control-checkbox' type='checkbox' label='Keep me signed in' />
-                    
-                    <Button variant='custom' className='sign-in-btn' onClick={ SignInUser }>Sign in</Button>
 
-                    <p className='tnc-text'>By signing in, I agree to the <span className='blue'>Terms and Conditions</span> and <span className='blue'>Privacy Statement</span></p>
+            <section className='login-form'>
+                <Form> 
+                    <Row md={ 2 } xs={ 1 } sm={ 1 }>
+                        <Col>
+                            <div className='login-input-group-margin'>
+                                <Form.Text>{ emailErrorExists ? emailErrorMessage : 'Email *'}</Form.Text>
+                                <InputGroup className={ emailErrorExists ? 'login-input-group-error' : 'login-input-group-style' }>
+                                    <Form.Control type='email' placeholder='' onChange={ UpdateLogInUserEmail } value={ logInUserEmail } />
+                                    <InputGroup.Text>{ <AiOutlineMail /> }</InputGroup.Text>
+                                </InputGroup>
+                            </div>
+                        </Col>
 
-                    <p className='sign-in-options-text blue mb-4'>Forgot password?</p>
 
-                    <p className='sign-in-options-text'>Don't have an account? <span className='blue' onClick={() => navigate('/sign-up')}>Create One</span></p>
+                        <Col>
+                            <div className='login-input-group-margin'>
+                                <Form.Text>{ passwordErrorExists ? passwordErrorMessage : 'Password *'}</Form.Text>
+                                <InputGroup className={ passwordErrorExists ? 'login-input-group-error' : 'login-input-group-style' }>
+                                    <Form.Control type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateLogInUserPassword } value={ logInUserPassword } />
+                                    <InputGroup.Text className='login-input-group-text' onClick={ TogglePasswordVisible }>{ passwordVisible ? <BsFillEyeFill /> : <BsFillEyeSlashFill /> }</InputGroup.Text>
+                                </InputGroup>
+                            </div>
+                        </Col>
 
-                    <p className='sign-in-options-text mb-4'>Or continue with</p>
-
-                    <Row>
-                        <Col> <BsFacebook /> </Col>
-
-                        <Col> <BsApple /> </Col>
-
-                        <Col> <BsGoogle /> </Col>
                     </Row>
+
+                    <Button variant='custom' className='login-btn mb-5' onClick={ SignInUser }>Sign in</Button>
+
+
+                    <section>
+                        <Row>
+                            <p className='login-tnc-text'>By signing in, I agree to the <span className='login-tnc-span'>Terms and Conditions</span> and <span className='login-tnc-span'>Privacy Statement</span></p>
+                            <p className='forgot-password-text'>Forgot password?</p>
+                            <p className='create-account-text'>Don't have an account? <span className='sign-up-span' onClick={() => navigate('/sign-up')}>Create One</span></p>
+                            <p className='continue-with-text'>Or continue with</p>
+
+                        </Row>
+
+                    </section>
+
+
+
+
 
                 </Form>
 

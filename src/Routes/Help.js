@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
 import Row from 'react-bootstrap/Row'
@@ -44,6 +44,7 @@ const Help = ( ) => {
 
     // navigation.
     const navigate = useNavigate()
+    const location = useLocation()
 
 
 
@@ -59,7 +60,7 @@ const Help = ( ) => {
                         {
                             categoryArray.map(( category, index ) => (
                                 <Col key={ index } >
-                                    <div className='help-category-div' onClick={() => navigate( category.navigate )}>
+                                    <div className='help-category-div' onClick={() => navigate( `${location.pathname}${category.navigate}` )}>
                                         <img src={ category.categoryImage } alt='' className='help-category-image' />
                                         <h5 className='help-category-text'> { category.helpCategory } </h5>
                                     </div>

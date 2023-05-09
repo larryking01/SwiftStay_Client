@@ -230,43 +230,30 @@ const Reviews = ( ) => {
 
 
                     {
-                    allReviewsArray ? 
-                    allReviewsArray.length > 1 ?
-                    allReviewsArray.map(( review, index ) => (
-                        <div className='posted-reviews-wrapper-div' key={ index }>
+                        allReviewsArray.map(( review, index ) => (
+                            <div className='posted-reviews-wrapper-div' key={ index }>
 
-                            <section className='reviewer-info'>
-                                <div>
-                                    <BsPersonFill size={ 30 } />
-                                </div>
-                    
-                                <div className='reviewer-info-name-date'>
-                                    <h5 className='reviewer-name'> { review.user_email } </h5>
-                                    <p className='review-date'>Wrote a review { review.review_date } @ { review.review_time } </p>
-                                </div>
-                            </section>
+                                <section className='reviewer-info'>
+                                    <div>
+                                        <BsPersonFill size={ 30 } />
+                                    </div>
+                        
+                                    <div className='reviewer-info-name-date'>
+                                        <h5 className='reviewer-name'> { review.user_email } </h5>
+                                        <p className='review-date'>Wrote a review { review.review_date } @ { review.review_time } </p>
+                                    </div>
+                                </section>
 
-                            <section className='review-body'>
-                                <Row>
-                                    <p className='review-body-text'>{ review.review_body }</p>
-                                </Row>
-                                <hr />
-                            </section>
+                                <section className='review-body'>
+                                    <Row>
+                                        <p className='review-body-text'>{ review.review_body }</p>
+                                    </Row>
+                                    <hr />
+                                </section>
 
-                        </div>
-            
+                            </div>
+                
                         ))
-
-                        :
-
-                        <div>
-                            failed to fetch reviews
-                        </div>
-
-                        :
-                        <div>
-                            failed to fetch reviews
-                        </div>
 
                     }
 

@@ -19,11 +19,15 @@ import Rating from '@mui/material/Rating'
 import StartDatePicker from '../Configuration/StartDatePicker.js'
 import EndDatePicker from '../Configuration/EndDatePicker.js'
 
+// font awesome icons.
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
+
 import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp'
 import rooms_and_suites_2 from '../Media Files/Rooms And Suites/rooms_and_suites_2.jpg'
 import rooms_and_suites_3 from '../Media Files/Rooms And Suites/rooms_and_suites_3.jpg'
 import rooms_and_suites_4 from '../Media Files/Rooms And Suites/rooms_and_suites_4.webp'
-
 
 
 import ScrollToTop from  '../Configuration/ScrollToTop'
@@ -40,9 +44,17 @@ import { UserContext } from '../App'
 
 const Home = () => {
 
+  // local and online server urls
+  // let local_server = 'http://127.0.0.1:8000'
+  let online_server = 'https://hotel-finder-app-server-rest.onrender.com/'
+
   
+
   // setting up state.
   const [ roomsArray, setRoomsArray ] = useState([ ])
+  const [ loadingHotels, setIsLoadingHotels ] = useState( true )
+  const [ fetchError, setFetchError ] = useState( false )
+  const [ fetchErrorMessage, setFetchErrorMessage ] = useState( null )
 
   // for navigation.
   const navigate = useNavigate()
@@ -51,23 +63,48 @@ const Home = () => {
   const { user } = useContext( UserContext )
 
   // making certain component always displays from top on initial render.
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: 'smooth'
+  //   })
 
-  })
+  // })
+
 
   // fetching all rooms
   useEffect(() => {
     console.log( `type of rooms array == ${ typeof roomsArray }`)
-    fetch('https://hotel-finder-app-server-rest.onrender.com/get/fetch-all-rooms', {
-      method: 'GET'
-    })
-    .then( response => response.json())
-    .then( data => { setRoomsArray( data ); console.log( `rooms Array === ${ roomsArray }` )})
+
+    const fetchHotels = async () => {
+
+      // setIsLoadingHotels( true )
+      let response = await fetch(`${ online_server }/get/fetch-all-rooms`, {
+        method: 'GET'
+      })
+
+      if ( response.status === 200 ) {
+        let data = await response.json()
+        setRoomsArray( data )
+        setIsLoadingHotels( false )
+        console.log( `success status is ${response.status} ` )
+        console.log( fetchError )
+        console.log( `rooms Array === ${ roomsArray }` )
+
+      }
+      else {
+        console.log( `failure status is ${response.status} ` )
+        setIsLoadingHotels( false )
+        setFetchError( true )
+        setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
+        console.log( fetchError )
+        console.log('failed to load hotels due to error')
+      }
+      
+    }
+
+      fetchHotels()
 
   }, [ ])
 
@@ -134,46 +171,66 @@ const Home = () => {
         </section>
 
       <section className='main-hotels-section'>
-        <Row xs={ 1 } md={ 4 } className='main-hotels-section-row'>
-            {
-              roomsArray.map(( room, index ) => (
-                <Col key={ index }>
-                  <Card className='cover-page-card-style' onClick={() => navigate(`/get-room-details/${ room._id }`)}>
-                    <Card.Img src={ room.room_cover_photo_url } alt='' className='hotel-card-img' />
-                    <Card.Body>
-                        <Card.Title className='card-title'>{ room.room_number }</Card.Title>
-                        
-                        <Card.Subtitle className='card-subtitle'>
-                          <div>
-                            <section className='card-room-location'>
-                              <IoLocationSharp /> <h6 className='location-detail'>Accra</h6>
-                            </section>
-                            <section className='card-room-rate'>
-                              GH<span>&#8373;</span>{ room.room_rate }
-                            </section>
+        {
+          loadingHotels === true ? 
+              <div className='loading-hotels-div-style'>
+                <FontAwesomeIcon icon={ faSpinner } size='3x' spinPulse className='mb-4' />
+                <p className='fetching-hotels-text'>fetching available hotels... please wait</p>
+              </div>
 
-                            <section>
-                              <Rating name="read-only" value={ room.room_rating } readOnly />
-                            </section>
-                          </div>
-                        </Card.Subtitle>
-                    </Card.Body>
-                  </Card>
+            :
+
+            fetchError === true ?
+                <section className='fetch-hotels-error-section'>
+                  <h5 className='fetch-hotels-error-text'> { fetchErrorMessage } </h5>
+                </section>
+
+              :
+
+          <>
+            <Row xs={ 1 } md={ 4 } className='main-hotels-section-row'>
+                {
+                  roomsArray.map(( room, index ) => (
+                    <Col key={ index }>
+                      <Card className='cover-page-card-style' onClick={() => navigate(`/get-room-details/${ room.room_number }/${ room._id }`)}>
+                        <Card.Img src={ room.room_cover_photo_url } alt='' className='hotel-card-img' />
+                        <Card.Body>
+                            <Card.Title className='card-title'>{ room.room_number }</Card.Title>
+                            
+                            <Card.Subtitle className='card-subtitle'>
+                              <div>
+                                <section className='card-room-location'>
+                                  <IoLocationSharp /> <h6 className='location-detail'>Accra</h6>
+                                </section>
+                                <section className='card-room-rate'>
+                                  GH<span>&#8373;</span>{ room.room_rate }
+                                </section>
+
+                                <section>
+                                  <Rating name="read-only" value={ room.room_rating } readOnly />
+                                </section>
+                              </div>
+                            </Card.Subtitle>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  ))
+
+                }
+            </Row>
+
+
+            <Row xs={ 1 } >
+                <Col>
+                  <div className='view-all-hotels-text-div' onClick={() => navigate('fetch-all-rooms')}>
+                    <h5>View all hotels <BsArrowRight size={ 20 } /> </h5>
+                  </div>
                 </Col>
-              ))
 
-            }
-        </Row>
+            </Row>
+          </>
 
-
-        <Row xs={ 1 } >
-          <Col>
-            <div className='view-all-hotels-text-div' onClick={() => navigate('fetch-all-rooms')}>
-              <h5>View all hotels <BsArrowRight size={ 20 } /> </h5>
-            </div>
-          </Col>
-
-        </Row>
+          }
 
 
       </section>

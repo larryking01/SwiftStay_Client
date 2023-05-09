@@ -23,8 +23,12 @@ import { FaCcPaypal } from 'react-icons/fa'
 
 import Maps from '../Configuration/Maps'
 
+// font awesome icons.
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
+import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp'
 
 
 
@@ -36,52 +40,65 @@ import Maps from '../Configuration/Maps'
 
 const GetRoomDetails = () => {
 
+  // local and online server urls
+  // let local_server = 'http://127.0.0.1:8000'
+  let online_server = 'https://hotel-finder-app-server-rest.onrender.com/'
+
+
   // for params
   const params = useParams()
-  let booking_room_id = params.room_id
+  let booking_room_id = params.hotel_id
 
   // navigation
   const navigate = useNavigate()
 
   // for state.
   const [ selectedRoomDetailsObject, setselectedRoomDetailsObject ] = useState({})
+  const [ fetchError, setFetchError ] = useState( false )
+  const [ fetchErrorMessage, setFetchErrorMessage ] = useState( null )
+  const [ isLoadingHotelDetails, setIsLoadingHotelDetails ] = useState( true )
 
 
   // making certain component always displays from top on initial render.
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    })
-  })
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: 'smooth'
+  //   })
+  // })
+
 
   // use effect hook to fetch details of selected room.
   useEffect(() => {
     // async function to fetch data.
-    const fetchData = async () => {
-      let response = await fetch(`https://hotel-finder-app-server-rest.onrender.com/get/room-details/${ params.room_id }`, {
+    const FetchData = async () => {
+      let response = await fetch(`${ online_server }/get/room-details/${ params.hotel_name }/${ params.hotel_id }`, {
         method: 'GET'
       })
       
-      if ( response.ok ) {
-        console.log( response )
+      if ( response.status === 200 ) {
+        console.log( `selected room success response is ${ response.status }` )
         let data = await response.json()
-        console.log( data )
         setselectedRoomDetailsObject({ ...data }) 
+        console.log('selected room data is')
+        console.log( data )
         setTimeout(() => {
-          console.log( selectedRoomDetailsObject )
-        }, 5000)
+          setIsLoadingHotelDetails( false )
+        }, 1000 )
 
       }
 
       else {
-        throw new Error('failed to fetch hotel details due to error')
+        console.log( `failure status is ${response.status} ` )
+        setIsLoadingHotelDetails( false )
+        setFetchError( false )
+        setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
       }
 
     }
 
-    fetchData()
+    FetchData()
 
   }, [ ])
 
@@ -100,6 +117,22 @@ const GetRoomDetails = () => {
   ]
 
 
+  // reviews array.
+  const ReviewsArray = [
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Quan', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Loretta Williams', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Ruth Ansah', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Nana Adwoa', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Joseph Dwamena', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Marian Amoah', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Kelvin Asante Debrah', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Deborah Terkper', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Aku Shika', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+    { reviewerImage: rooms_and_suites_1, reviewerName: 'Richmond Ghanney Theophilus', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
+
+  ]
+
+
 
 
 
@@ -109,11 +142,31 @@ const GetRoomDetails = () => {
       <NavbarComponent />
 
       <section className='selected-room-details-section'>
-        <h3 className='selected-room-name'> { selectedRoomDetailsObject.room_number } </h3>
-        <Rating name='read-only' value={ 4 } readOnly />
+        <h3 className='selected-room-name'> { params.hotel_name } </h3>
+        <Rating name='read-only' value={ 4 } readOnly /> <h5>{ ReviewsArray.length + 1 } Reviews</h5>
         <p> <IoLocationSharp /> { selectedRoomDetailsObject.room_location }</p>
       </section>
 
+
+      <div>
+
+      {
+      isLoadingHotelDetails === true ? 
+          <section className='fetch-all-hotels-loading-section'>
+            <FontAwesomeIcon icon={ faSpinner } size='3x' spinPulse className='mb-4' />
+            <p className='fetching-hotels-text'>fetching details of { params.hotel_name } hotel... please wait</p>
+          </section>
+
+          :
+
+      fetchError === true ?
+          <section className='fetch-all-hotels-fetch-error-section'>
+            <h5 className='fetch-hotels-error-text'> { fetchErrorMessage } </h5>
+          </section>
+
+          :
+
+      <section>
       <section className='selected-room-checkin-dates'>
         <Form className='selected-room-details-destination-form'>
           <Row xs={ 1 } md={ 5 }>
@@ -328,17 +381,55 @@ const GetRoomDetails = () => {
 
       <section className='selected-room-details-sub-section'>
         <h3 className='selected-room-details-sub-header'>Reviews</h3>
+        {
+          ReviewsArray.map(( review, index ) => (
+              <div className='posted-reviews-wrapper-div' key={ index }>
+
+                  <section className='reviewer-info'>
+                      <div>
+                        <img src={ review.reviewerImage } alt='' className='reviewer-info-img' width={ 80 } />
+                      </div>
+          
+                      <div className='reviewer-info-name-date'>
+                        <h5 className='reviewer-name'> { review.reviewerName } </h5>
+                        <p className='review-date'>Wrote a review { review.reviewDate } @ { review.reviewTime } </p>
+                      </div>
+                  </section>
+
+                  <section className='review-body'>
+                      <Row>
+                        <p className='review-body-text'>{ review.reviewBody }</p>
+                      </Row>
+                      <hr />
+                  </section>
+
+            </div>
+  
+            ))
+        }
+
+      <Button variant='custom' className='see-all-reviews-btn' onClick={ () => navigate(`/all-reviews/${ params.hotel_name }/${ params.hotel_id }`)} > 
+          See all { ReviewsArray.length + 1 } reviews 
+      </Button>
+
+
       </section>
 
 
 
+      </section>
 
+      }
+
+      </div>
+    
 
 
 
       <section className='footer-gap'>
 
       </section>
+
       <Footer />
     </div>
 

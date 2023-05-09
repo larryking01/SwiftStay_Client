@@ -26,7 +26,9 @@ import FrequentlyAskedQuestionsHelp from './Routes/FrequentlyAskedQuestionsHelp'
 import Login from './Routes/Login'
 import SignUp from './Routes/SignUp'
 import NavbarComponent from './Routes/NavBar'
+import Reviews from './Routes/AllReviews'
 import Footer from './Routes/Footer'
+import FaIcons from './Routes/FaIcons'
 // import StartDatePicker from './Routes/StartDatePicker'
 // import EndDatePicker from './Routes/EndDatePicker'
 
@@ -59,7 +61,7 @@ const App = () => {
                     <Route path='fetch-all-bookings' element={ <FetchAllBookings /> } />
                     <Route path='fetch-all-rooms' element={ <FetchAllRooms /> } />
                     <Route path='fetch-all-staff' element={ <FetchAllStaff /> } />
-                    <Route path='get-room-details/:room_id' element={ <GetRoomDetails /> } />
+                    <Route path='get-room-details/:hotel_name/:hotel_id' element={ <GetRoomDetails /> } />
                     <Route path='book-hotel/:room_id' element={ <BookHotel /> } />
                     <Route path='maps' element={ <Maps /> } />
                     <Route path='help' element={ <Help /> } />
@@ -71,8 +73,10 @@ const App = () => {
                     <Route path='frequently-asked-questions' element={ <FrequentlyAskedQuestionsHelp /> } />
                     <Route path='login' element={ <Login /> } />
                     <Route path='sign-up' element={ <SignUp /> } />
+                    <Route path='all-reviews/:hotel_name/:hotel_id' element={ <Reviews /> } />
                     <Route path='nav-bar' element={ <NavbarComponent /> } />
                     <Route path='footer' element={ <Footer /> } />
+                    <Route path='icons' element={ <FaIcons /> } />
                 </Routes>
             </UserContext.Provider>
         </HashRouter>

@@ -33,8 +33,12 @@
 
 
 .navbar-login-btn {
-    background-color: var(--primary-color);
-    color: white;
+    /* background-color: var(--primary-color);
+    color: white; */
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+
 }
 
 .navbar-login-btn:hover {
@@ -54,8 +58,8 @@
 
 .navbar-signup-btn:hover {
     /* background-color: var(--primary-color); */
-    color: var(--primary-color);
-    border: 1.8px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
 
 }
 
@@ -166,6 +170,25 @@
     margin-bottom: 3%;
 }
 
+
+.loading-hotels-div-style {
+    text-align: center;
+
+}
+
+.fetching-hotels-text {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+}
+
+.fetch-hotels-error-section {
+    text-align: center;
+}
+
+.fetch-hotels-error-text {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+}
 
 .hotel-card-img {
     min-height: 250px;
@@ -545,6 +568,62 @@
 }
 
 
+.selected-hotel-details-loading-section {
+    margin-top: 10%;
+    text-align: center;
+
+}
+
+.selected-hotel-details-fetch-error-section {
+
+}
+
+
+.posted-reviews-wrapper-div {
+    margin-top: 3%;
+}
+
+.reviewer-info {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.reviewer-info-img {
+    border-radius: 50%;
+}
+
+.reviewer-info-name-date {
+    margin-left: 3%;
+}
+
+.reviewer-name {
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    color: var(--primary-color)
+}
+
+.review-date {
+    font-family: 'Lora', serif;
+    color: #808080;
+}
+
+.review-body-text {
+    font-family: 'Lora', serif;
+}
+
+.see-all-reviews-btn {
+    border: 1px solid var(--primary-color);
+}
+
+.see-all-reviews-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+
+
 
 /* end of selected room details styling */
 
@@ -565,6 +644,19 @@
     border: 1px solid lightgray;
     /* box-shadow: 1px 1px 5px grey; */
     cursor: pointer;
+
+}
+
+
+.fetch-all-hotels-fetch-error-section {
+    margin-top: 10%;
+    text-align: center;
+}
+
+
+.fetch-all-hotels-loading-section {
+    margin-top: 10%;
+    text-align: center;
 
 }
 
@@ -1232,6 +1324,67 @@
     background-color: #5a50eb;
     color: white;
 }
+
+
+
+
+/* reviews page styling */
+.reviewed-hotel-info-section {
+    padding-left: 6%;
+    padding-right: 6%;
+    margin-top: 3%;
+    padding-bottom: 3%;
+}
+
+
+.reviewed-hotel-name {
+    font-family: 'Lora', serif;
+    color: var(--primary-color)
+}
+
+.post-review-section {
+    margin-left: 6%;
+    margin-right: 50%;
+}
+
+.review-email-control {
+    height: 55px;
+}
+
+.review-email-control-error {
+    border: 1px solid red;
+    height: 55px;
+
+}
+
+
+.post-review-header {
+    font-family: 'Lora', serif;
+    color: var(--primary-color)
+}
+
+
+.post-review-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.post-review-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+
+.review-body-text-area-error {
+    border: 1px solid red;
+}
+
+
+
+
+/* end of reviews page styling */
 
 
 

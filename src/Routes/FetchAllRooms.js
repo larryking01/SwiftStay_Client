@@ -14,6 +14,11 @@ import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
 
+// font awesome icons.
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
+
 
 
 
@@ -23,10 +28,9 @@ import Form from 'react-bootstrap/Form'
 const FetchAllRooms = () => {
 
   
-  // local and remote servers
-  const local_server = 'http://127.0.0.1:8000'
-
-  const remote_server = 'https://hotel-finder-app-server-rest.onrender.com'
+  // local and online server urls
+  // let local_server = 'http://127.0.0.1:8000'
+  let online_server = 'https://hotel-finder-app-server-rest.onrender.com/'
 
 
   // navigation.
@@ -35,6 +39,9 @@ const FetchAllRooms = () => {
   // handling state.
   const [ allRoomsArray, setAllRoomsArray ] = useState([])
   const [ searchHotel, setSearchHotel ] = useState('')
+  const [ fetchError, setFetchError ] = useState( false )
+  const [ fetchErrorMessage, setFetchErrorMessage ] = useState( null )
+  const [ isLoadingAllHotels, setIsLoadingAllHotels ] = useState( true )
 
   // state for pagination.
   const [firstItemIndex, setFirstItemIndex] = useState(0);
@@ -56,24 +63,37 @@ const FetchAllRooms = () => {
 
   // use effect to fetch all rooms.
   useEffect(() => {
-    const fetchAllRooms = async () => {
-      let response = await fetch(`${remote_server}/get/fetch-all-rooms`, {
+    
+    const FetchAllRooms = async () => {
+
+      // setIsLoadingAllHotels( true )
+      let response = await fetch(`${ online_server }/get/fetch-all-rooms`, {
         method: 'GET'
       })
 
-      if ( response.ok ) {
+      if ( response.status === 200 ) {
         let data = await response.json()
-        console.log( data )
         setAllRoomsArray( data )
-        console.log('all rooms array === ')
-        console.log( allRoomsArray )
+        setIsLoadingAllHotels( false )
+        console.log( data )
+        // console.log('all rooms array === ')
+        // console.log( allRoomsArray )
+      }
+      
+      else {
+        console.log( `failure status is ${response.status} ` )
+        setIsLoadingAllHotels( false )
+        setFetchError( true )
+        setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
       }
 
     }
 
-    fetchAllRooms()
+    FetchAllRooms()
 
   }, [ ])
+
+
 
 
   // effect to handle pagination
@@ -90,35 +110,11 @@ const FetchAllRooms = () => {
   };
 
 
-
-
-
   // updating search hotel state.
   const UpdateSearchHotel = ( event ) => {
     setSearchHotel( event.target.value )
 
   }
-
-
-  // useEffect to get search hotel.
-  // useEffect(() => {
-  //   const fetchSearchRoom = async ( ) => {
-  //       let response = await fetch(`${local_server}/get/search-room/${searchHotel}`, {
-  //         method: 'GET'
-  //       })
-
-  //       if( response.ok ) {
-  //         let data = await response.json()
-  //         console.log('search hotel data = ')
-  //         console.log( data )
-  //       }
-  //   }
-
-  //   fetchSearchRoom()
-  // }, [ searchHotel ])
-
-
-
 
 
 
@@ -136,51 +132,73 @@ const FetchAllRooms = () => {
             </InputGroup>
           </section>
 
-          <section className='fetch-all-rooms-main-section'>
-          <div>
-          {
-            currentItems.map(( rooms, index ) => {
-              return <Row md={ 3 } xs={ 1 } sm={ 1 } key={ index } className='fetch-all-hotels-row' onClick={() => navigate(`/get-room-details/${ rooms._id }`) }>
-                <Col md={ 4 }>
-                  <img src={ rooms.room_cover_photo_url } alt='' className='hotel-img'  />
-                </Col>
 
-                <Col md={ 5 } >
-                  <h3 className='fetch-all-hotels-title'>{ rooms.room_number }</h3>
-                  <p> <IoLocationSharp /> <span>{ rooms.room_location }</span></p>
-                  <Rating name='read-only' value={ rooms.room_rating } readOnly /> <p></p>
-                  <p className='room-rate-text'>GH<span>&#8373;</span>{ rooms.room_rate }</p>
-                  <Button variant='custom' className='go-to-site-button'>More details</Button>
-                </Col>
+          <section>
+            {
+              isLoadingAllHotels === true ? 
+                    <section className='fetch-all-hotels-loading-section'>
+                      <FontAwesomeIcon icon={ faSpinner } size='3x' spinPulse className='mb-4' />
+                      <p className='fetching-hotels-text'>fetching all hotels... please wait</p>
+                    </section>
 
-                <Col md={ 3 }>  
-                  <p className='key-features-head'>Key Features Include:</p>
-                  <p>Free cancellation: Yes <BsCheckCircleFill /></p>
-                  <p>Refund: No <FaTimesCircle /></p>
-                  <p>Free cancellation: Yes <BsCheckCircleFill /></p>
-                  <p>Free cancellation: No <FaTimesCircle /></p>
+                  :
 
-                </Col>
+              fetchError === true ?
+                  <section className='fetch-all-hotels-fetch-error-section'>
+                    <h5 className='fetch-hotels-error-text'> { fetchErrorMessage } </h5>
+                  </section>
 
-              </Row>
-            })
+                      :
+
+                  <section className='fetch-all-rooms-main-section'>
+                      <div>
+                      {
+                        currentItems.map(( rooms, index ) => {
+                          return <Row md={ 3 } xs={ 1 } sm={ 1 } key={ index } className='fetch-all-hotels-row' onClick={() => navigate(`/get-room-details/${ rooms._id }`) }>
+                            <Col md={ 4 }>
+                              <img src={ rooms.room_cover_photo_url } alt='' className='hotel-img'  />
+                            </Col>
+
+                            <Col md={ 5 } >
+                              <h3 className='fetch-all-hotels-title'>{ rooms.room_number }</h3>
+                              <p> <IoLocationSharp /> <span>{ rooms.room_location }</span></p>
+                              <Rating name='read-only' value={ rooms.room_rating } readOnly /> <p></p>
+                              <p className='room-rate-text'>GH<span>&#8373;</span>{ rooms.room_rate }</p>
+                              <Button variant='custom' className='go-to-site-button'>More details</Button>
+                            </Col>
+
+                            <Col md={ 3 }>  
+                              <p className='key-features-head'>Key Features Include:</p>
+                              <p>Free cancellation: Yes <BsCheckCircleFill /></p>
+                              <p>Refund: No <FaTimesCircle /></p>
+                              <p>Free cancellation: Yes <BsCheckCircleFill /></p>
+                              <p>Free cancellation: No <FaTimesCircle /></p>
+
+                            </Col>
+
+                          </Row>
+                        })
+                      }
+                      </div>
+
+                      <ReactPaginate
+                          breakLabel="..."
+                          previousLabel={ <RxDoubleArrowLeft /> }
+                          nextLabel={ <RxDoubleArrowRight /> }
+                          onPageChange={handlePageClick}
+                          pageRangeDisplayed={4}
+                          pageCount={pageCount}
+                          renderOnZeroPageCount={null}
+                          containerClassName='pagination'
+                          pageLinkClassName='page-num'
+                          previousLinkClassName='page-num'
+                          nextLinkClassName='page-num'
+                          activeLinkClassName='active'
+                        />
+                      </section>
+
           }
-          </div>
 
-        <ReactPaginate
-            breakLabel="..."
-            previousLabel={ <RxDoubleArrowLeft /> }
-            nextLabel={ <RxDoubleArrowRight /> }
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={4}
-            pageCount={pageCount}
-            renderOnZeroPageCount={null}
-            containerClassName='pagination'
-            pageLinkClassName='page-num'
-            previousLinkClassName='page-num'
-            nextLinkClassName='page-num'
-            activeLinkClassName='active'
-          />
         </section>
 
 

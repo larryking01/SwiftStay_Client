@@ -1382,6 +1382,10 @@
 }
 
 
+.review-feedback-text {
+    font-family: 'Lora', serif;
+}
+
 
 
 /* end of reviews page styling */
@@ -1622,5 +1626,13 @@
 
     /* end of fetch all rooms responsive styling */
 
+
+    /* review section responsive styling */
+    .post-review-section {
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
+    
     
 }

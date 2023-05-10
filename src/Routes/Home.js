@@ -46,7 +46,7 @@ const Home = () => {
 
   // local and online server urls
   // let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'https://hotel-finder-app-server-rest.onrender.com/'
+  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
 
   
 
@@ -71,6 +71,7 @@ const Home = () => {
   //   })
 
   // })
+
 
 
   // fetching all rooms

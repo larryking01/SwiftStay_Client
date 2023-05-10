@@ -21,8 +21,8 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 const Reviews = ( ) => {
 
   // local and online server urls
-  // let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'https://hotel-finder-app-server-rest.onrender.com/'
+//   let local_server = 'http://127.0.0.1:8000'
+  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
 
     // setting up params.
     const params = useParams()
@@ -42,6 +42,11 @@ const Reviews = ( ) => {
     const [ reviewBody, setReviewBody ] = useState('')
     const [ reviewerEmailError, setReviewerEmailError ] = useState( false )
     const [ reviewBodyError, setReviewBodyError ] = useState( false )
+
+
+    // review feedback state.
+    const [ postingReview, setPostingReview ] = useState( false )
+    const [ reviewFeedback, setReviewFeedback ] = useState('')
 
 
   // use effect hook to fetch details of selected room.
@@ -94,6 +99,12 @@ const Reviews = ( ) => {
                 console.log('all reviews fetched')
                 console.log( data )
             }
+            else if ( response.status === 404 ) {
+                setTimeout(() => {
+                    setIsLoadingReviews( false )
+                }, 1000 )
+                console.log('no reviews for this hotel yet')
+            }
             else {
                 setIsLoadingReviews( false )
                 console.log('failed to fetch reviews')
@@ -142,18 +153,39 @@ const Reviews = ( ) => {
 
         else {
             // actually posting the review.
+            setPostingReview( true )
             let response = await fetch(`${ online_server }/post/post-review/${ params.hotel_name }/${ params.hotel_id }`, {
                 method: 'POST',
-                body: {
-                    // user_email: req.body.user_email,
-                    // review_body: req.body.review_body,
-                    // review_date: DesiredReviewDate(),
-                    // review_time: DesiredReviewTime(),
-                    // reviewed_hotel_name: req.params.hotel_name,
-                    // reviewed_hotel_id: req.params.hotel_id
-
-                    }
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_email: reviewerEmail,
+                    review_body: reviewBody,
+                    reviewed_hotel_name: params.hotel_name,
+                    reviewed_hotel_id: params.hotel_id
+                })
             })
+
+            if ( response.status === 200 ) {
+                console.log('review posted')
+                setReviewerEmail('')
+                setReviewBody('')
+                setPostingReview( false )
+                setReviewFeedback('your review has been posted successfully...')
+                setTimeout(() => {
+                    setReviewFeedback('')
+                }, 5000)
+            }
+            else {
+                setPostingReview( false )
+                console.log('failed to post review')
+                setReviewFeedback('failed to post your review due to an error...')
+                setTimeout(() => {
+                    setReviewFeedback('')
+                }, 5000)
+
+            }
 
         }
 
@@ -265,11 +297,20 @@ const Reviews = ( ) => {
                     <Form>
                         <Form.Control type='email' placeholder='Your email *' className={ reviewerEmailError === true ? 'review-email-control-error mb-4' : 'review-email-control mb-4' } onChange={ HandleReviewerEmailUpdate } value={ reviewerEmail } />
 
-                        <FloatingLabel controlId='floatingTextarea' label='Review body *' className='mb-4'>
+                        <FloatingLabel style={{ color: 'gray' }} controlId='floatingTextarea' label='Review body *' className='mb-4'>
                             <Form.Control as='textarea' placeholder='' className={ reviewBodyError === true ? 'review-body-text-area-error' : 'review-body-text-area' } style={{ height: 150 }} onChange={ HandleReviewBodyUpdate } value={ reviewBody } />
                         </FloatingLabel>
 
-                        <Button variant='custom' className='post-review-btn' onClick={ HandlePostReview }>Post review</Button>
+                        <Row>
+                            <Col>
+                                <Button variant='custom' className='post-review-btn' onClick={ HandlePostReview }>Post review</Button>
+                            </Col>
+
+                            <Col md={ 7 }>
+                                <p className='posting-review-icon mt-4'>{ postingReview === true ? <FontAwesomeIcon icon={ faSpinner } spinPulse size='2x' className='mb-2' /> : null }</p>
+                                <p className='review-feedback-text'>{ reviewFeedback.length > 1 ? reviewFeedback : '' }</p>
+                            </Col>
+                        </Row>
 
                     </Form>
 

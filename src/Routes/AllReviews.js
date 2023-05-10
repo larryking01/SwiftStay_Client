@@ -107,8 +107,8 @@ const Reviews = ( ) => {
             }
             else {
                 setIsLoadingReviews( false )
-                console.log('failed to fetch reviews')
-                setReviewsErrorMessage('failed to fetch reviews')
+                console.log('failed to fetch reviews......')
+                setReviewsErrorMessage('failed to fetch reviews....')
             }
         }
 

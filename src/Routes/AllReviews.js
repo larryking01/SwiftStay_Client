@@ -213,7 +213,7 @@ const Reviews = ( ) => {
 
                 isLoadingHotelDetails === true ? 
                 <section className='fetch-all-hotels-loading-section'>
-                <FontAwesomeIcon icon={ faSpinner } size='3x' spinPulse className='mb-4' />
+                <FontAwesomeIcon icon={ faSpinner } size='2x' spinPulse className='mb-4' color='#808080' />
                 <p className='fetching-hotels-text'>fetching reviews on { params.hotel_name } hotel... please wait</p>
                 </section>
 

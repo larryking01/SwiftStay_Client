@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import InputGroup from 'react-bootstrap/InputGroup'
 import { useNavigate } from 'react-router-dom'
 import { AiOutlineCopyrightCircle } from 'react-icons/ai'
 import { BsFacebook } from 'react-icons/bs'
@@ -66,14 +67,15 @@ const Footer = () => {
 
                 <Col md={ 4 }>
                     <h4 className='footer-header'> Newsletter Signup </h4>
-                    <Form.Control type='email' placeholder='email' className='newsletter-textbox' />
-                    <Button variant='custom' className='newsletter-button' >Subscribe</Button>
-                    <p>Subscribe to get all the latest updates</p>
+                    {/* <Form.Control type='email' placeholder='email' className='newsletter-textbox' />
+                    <Button variant='custom' className='newsletter-button' >Subscribe</Button> 
+                    <p>Subscribe to get all the latest updates</p> */}    
 
-                    {/* <InputGroup>
-                        <Form.Control type='text' placeholder='email' aria-label='email' aria-describedby='basic-addon-2' />
-                        <Button variant='primary' id='button-addon'>Subscribe</Button>
-                    </InputGroup> */}
+                    <InputGroup>
+                        <Form.Control type='email' placeholder='email' className='newsletter-textbox' aria-label='email' aria-describedby='basic-addon-2' />
+                        <Button variant='custom' className='newsletter-button' id='button-addon'>Subscribe</Button>
+                    </InputGroup>
+                    <p className='subscribe-updates-text'>Subscribe to get all the latest updates</p>
                 </Col>
 
             </Row>
@@ -82,7 +84,7 @@ const Footer = () => {
 
             <Row>
                 <Col>
-                    <h6 className='copyrights-section'>All rights reserved | <AiOutlineCopyrightCircle /> 2023.</h6>
+                    <h6 className='rights-reserved-text'>All rights reserved | <AiOutlineCopyrightCircle /> 2023.</h6>
                 </Col>
             </Row>
 

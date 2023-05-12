@@ -5,6 +5,7 @@ import NavbarComponent from './NavBar'
 import Footer from './Footer'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
 import Rating from '@mui/material/Rating'
 import { IoLocationSharp } from 'react-icons/io5'
 import { FaTimesCircle } from 'react-icons/fa'
@@ -19,9 +20,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
-
-
-
+import trending_accra_marriott_cover from '../Media Files/trending_accra_marriott_cover.jpg'
+import trending_kempinski_cover from '../Media Files/trending_kempinski_cover.jpg'
+import trending_movenpick_cover from '../Media Files/trending_movenpick_cover.jpg'
+import trending_mensvic_cover from '../Media Files/trending_mensvic_hotel.jpg'
 
 
 
@@ -51,14 +53,14 @@ const FetchAllRooms = () => {
   const itemsPerPage = 4;
 
 
-    // making certain component always displays from top on initial render.
-    useEffect(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-      })
+  // making certain component always displays from top on initial render.
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     })
+  })
   
 
 
@@ -118,12 +120,27 @@ const FetchAllRooms = () => {
   }
 
 
+  let trendingHotelsArray = [
+    { coverImage: trending_accra_marriott_cover, hotelName: 'Accra Marriott Hotel', averagePrice: 3206 },
+    { coverImage: trending_movenpick_cover, hotelName: 'Movempick Ambassador Hotel', averagePrice: 3000 },
+    { coverImage: trending_kempinski_cover, hotelName: 'Kempinski Hotel', averagePrice: 3407 },
+    { coverImage: trending_mensvic_cover, hotelName: 'Mensvic Grand Hotel', averagePrice: 2345 }
+
+  ]
+
+
 
   return (
     <>
       <NavbarComponent />
 
         <div>
+            <section className='find-perfect-hotel-section'>
+              <h3 className='find-perfect-hotel-text'>Find the perfect hotel on Skyscanner.com</h3>
+              <p className='from-budget-text'>From budget hotels to luxury rooms and everything in between </p>
+            </section>
+
+          
           <section className='fetch-all-rooms-search-tab-section'>
             <InputGroup>
               <Form.Control type='text' placeholder='search hotel by name, place or price' 
@@ -138,7 +155,7 @@ const FetchAllRooms = () => {
             {
               isLoadingAllHotels === true ? 
                     <section className='fetch-all-hotels-loading-section'>
-                      <FontAwesomeIcon icon={ faSpinner } size='3x' spinPulse className='mb-4' />
+                      <FontAwesomeIcon icon={ faSpinner } size='2x' spinPulse className='mb-4' color='#808080' />
                       <p className='fetching-hotels-text'>fetching all hotels... please wait</p>
                     </section>
 
@@ -195,10 +212,37 @@ const FetchAllRooms = () => {
                           previousLinkClassName='page-num'
                           nextLinkClassName='page-num'
                           activeLinkClassName='active'
-                        />
-                      </section>
+                      />
 
-          }
+                      </section>
+                }
+
+        </section>
+
+
+        <section className='trending-hotels-section'>
+          <h4 className='trending-hotels-text'>Trending hotel destinations</h4>
+          <p className='explore-popular-destinations-text'>Explore destinations currently popular with travelers from Ghana </p>
+          <Row className='trending-hotels-row' md={ 4 } xs={ 1 }>
+              {
+                trendingHotelsArray.map(( hotel, index ) => (
+                  <Col key={ index }>
+                    <Card>
+                      <Card.Img src={ hotel.coverImage } alt='' width={ 150 } height={ 200 } />
+                    </Card>
+
+                    <Card.Body>
+                      <Card.Title>
+                        <h5 className='trending-hotels-title'>{ hotel.hotelName }</h5>
+                        <h6 className='trending-hotels-sub-text'>Avg. { hotel.averagePrice }.00 per night</h6>
+                      </Card.Title>
+                    </Card.Body>
+                  
+                  </Col>
+                ))
+              }
+          </Row>
+
 
         </section>
 

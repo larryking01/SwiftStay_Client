@@ -68,6 +68,7 @@ const AboutHelp = ( ) => {
                 <h3 className='main-header-text'>About Skyscanner</h3>
             </section>
 
+
             <section>
                 <Row md={ 2 } xs={ 1 } sm={ 1 } className='about-us-row-generic-style'>
                     <Col>
@@ -95,7 +96,7 @@ const AboutHelp = ( ) => {
 
                 <Row md={ 2 } xs={ 1 } sm={ 1 } className='about-us-row-generic-style'>
                     <Col>
-                        <h3 className='mb-3'>What we mean by modern travel</h3>
+                        <h3 className='about-us-sub-headers mb-3 '>What we mean by modern travel</h3>
                         <img src={ traveler } alt='' className='column-icon-style' />
                     </Col>
 
@@ -117,7 +118,7 @@ const AboutHelp = ( ) => {
 
                 <Row md={ 2 } xs={ 1 } sm={ 1 } className='about-us-row-generic-style'>
                     <Col>
-                        <h3 className='mb-3'>What we mean by sustainable travel</h3>
+                        <h3 className='mb-3 about-us-sub-headers'>What we mean by sustainable travel</h3>
                         <img src={ upcycling } alt='' className='column-icon-style' />
                     </Col>
 
@@ -141,7 +142,7 @@ const AboutHelp = ( ) => {
                 </section>
 
                 {  
-                /*
+                
                     teams_array.map(( team_member, index ) => (
                         <Row md={ 2 } xs={ 1 } sm={ 1 } className='about-us-row-generic-style our-team-row' key={ index }>
                             <Col>
@@ -156,7 +157,7 @@ const AboutHelp = ( ) => {
 
                         </Row>
                     ))
-                */ 
+                
                 }
 
             </section>

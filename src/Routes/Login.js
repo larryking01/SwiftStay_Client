@@ -182,17 +182,32 @@ const Login = ( ) => {
 
                     </Row>
 
-                    <Button variant='custom' className='login-btn mb-5' onClick={ SignInUser }>Sign in</Button>
+                    <Button variant='custom' className='login-btn mb-3' onClick={ SignInUser }>Sign in</Button>
 
 
                     <section>
-                        <Row>
-                            <p className='login-tnc-text'>By signing in, I agree to the <span className='login-tnc-span'>Terms and Conditions</span> and <span className='login-tnc-span'>Privacy Statement</span></p>
-                            <p className='forgot-password-text'>Forgot password?</p>
-                            <p className='create-account-text'>Don't have an account? <span className='sign-up-span' onClick={() => navigate('/sign-up')}>Create One</span></p>
+                        <Row className='mb-5'>
                             <p className='continue-with-text'>Or continue with</p>
 
+                            <Col className='alt-sign-in-icon'>
+                                <BsGoogle size={ 19 } />
+                            </Col>
+
+                            <Col className='alt-sign-in-icon'>
+                                <BsApple size={ 19 } />
+                            </Col>
+
+                            <Col className='alt-sign-in-icon'>
+                                <BsFacebook size={ 19 } />
+                            </Col>
                         </Row>
+
+                        <Row>
+                            <p className='create-account-text'>Don't have an account? <span className='sign-up-span' onClick={() => navigate('/sign-up')}>Create One</span></p>
+                            <p className='forgot-password-text'>Forgot password?</p>
+                            <p className='login-tnc-text'>By signing in, I agree to the <span className='login-tnc-span'>Terms and Conditions</span> and <span className='login-tnc-span'>Privacy Statement</span></p>
+                        </Row>
+
 
                     </section>
 

@@ -127,9 +127,15 @@ const Home = () => {
       <NavbarComponent />
 
       <main className='main-content'>
-        <article>
+        
+        <section className='get-away'>
+          <h3 className='get-away-text'><strong>Get away for a while</strong></h3>
+          <h6 className='get-away-details-text'>Whether for business, vacation or pleasure, Skyscanner can help you find the best hotel for your needs right here.</h6>
+        </section>
+
+        <section className='place-to-stay'>
           <h3><strong className='save-big-text'>Find your place to stay { user } </strong></h3>
-        </article>
+        </section>
 
         <section className='intro-background'>
           <img src={ background_4 } alt='background' className='intro-background-img' />
@@ -164,6 +170,13 @@ const Home = () => {
             </Col>
           </Row>
         </section>
+
+        </section> 
+
+
+        <section className='world-of-hotels-section'>
+            <h4 className='world-of-hotels-text'>A whole world of hotels</h4>
+            <p className='book-perfect-hotel-text'>Book the perfect room in the best hotel, wherever you're heading</p>
         </section>
 
 
@@ -175,7 +188,7 @@ const Home = () => {
         {
           loadingHotels === true ? 
               <div className='loading-hotels-div-style'>
-                <FontAwesomeIcon icon={ faSpinner } size='3x' spinPulse className='mb-4' />
+                <FontAwesomeIcon icon={ faSpinner } size='2x' spinPulse className='mb-4' color='#808080' />
                 <p className='fetching-hotels-text'>fetching available hotels... please wait</p>
               </div>
 
@@ -222,17 +235,13 @@ const Home = () => {
 
 
             <Row xs={ 1 } >
-                <Col>
-                  <div className='view-all-hotels-text-div' onClick={() => navigate('fetch-all-rooms')}>
-                    <h5>View all hotels <BsArrowRight size={ 20 } /> </h5>
-                  </div>
-                </Col>
-
+                <div className='view-all-hotels-text-div' onClick={() => navigate('fetch-all-rooms')}>
+                    <Button variant='custom' className='view-all-hotels-btn'>View all hotels <BsArrowRight size={ 20 } /> </Button>
+                </div>
             </Row>
           </>
 
           }
-
 
       </section>
       </main>

@@ -282,17 +282,36 @@ const CreateNewUser = async ( ) => {
                         </Col>
 
                         <Col>
-                            <Form.Text>Create your account now *</Form.Text>
-                            <Button variant='custom' className='sign-up-btn' onClick={ CreateNewUser }>Create account</Button>
+                            <div className='input-group-margin'>
+                                <Form.Text>Create your account now *</Form.Text>
+                                <Button variant='custom' className='sign-up-btn' onClick={ CreateNewUser }>Create account</Button>
+                            </div>
                         </Col>
 
                     </Row>
 
                     <section>
                         <Row>
-                            <p className='sign-up-tnc-text'>By signing up, I agree to the <span className='tnc-span'>Terms and Conditions</span> and <span className='tnc-span'>Privacy Statement</span></p>
                             <p className='sign-up-already-account-text'>Already have an account? <span className='sign-in-span' onClick={ () => navigate('/login')}>Sign in</span></p>
                             <p className='sign-up-continue-with-text'>Or continue with</p>
+                        </Row>
+
+                        <Row className='mb-5'>
+                            <Col>
+                                <BsGoogle className='alt-sign-up-icon' size={ 19 } />
+                            </Col>
+
+                            <Col>
+                                <BsApple className='alt-sign-up-icon' size={ 19 } />
+                            </Col>
+
+                            <Col>
+                                <BsFacebook className='alt-sign-up-icon' size={ 19 } />
+                            </Col>
+                        </Row>
+
+                        <Row className='mb-3'>
+                            <p className='sign-up-tnc-text'>By signing up, I agree to the <span className='tnc-span'>Terms and Conditions</span> and <span className='tnc-span'>Privacy Statement</span></p>
                         </Row>
 
                     </section>

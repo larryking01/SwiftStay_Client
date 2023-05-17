@@ -42,7 +42,6 @@ const Help = ( ) => {
 
     ]
 
-
     // navigation.
     const navigate = useNavigate()
     const location = useLocation()

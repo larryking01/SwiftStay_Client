@@ -62,7 +62,7 @@ const App = () => {
                     <Route path='fetch-all-rooms' element={ <FetchAllRooms /> } />
                     <Route path='fetch-all-staff' element={ <FetchAllStaff /> } />
                     <Route path='get-room-details/:hotel_name/:hotel_id' element={ <GetRoomDetails /> } />
-                    <Route path='book-hotel/:room_id' element={ <BookHotel /> } />
+                    <Route path='book-hotel/:hotel_name/:room_id' element={ <BookHotel /> } />
                     <Route path='maps' element={ <Maps /> } />
                     <Route path='help' element={ <Help /> } />
                     <Route path='help-bookings' element={ <BookingsHelp /> } />

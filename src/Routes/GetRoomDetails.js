@@ -50,6 +50,7 @@ const GetRoomDetails = () => {
   // for params
   const params = useParams()
   let booking_room_id = params.hotel_id
+  let hotel_name = params.hotel_name
 
   // navigation
   const navigate = useNavigate()
@@ -399,7 +400,7 @@ const GetRoomDetails = () => {
       </section>
 
       <section className='book-now-section'>
-        <Button variant='custom' className='book-now-button-first' onClick={ () => navigate(`/book-hotel/${ booking_room_id }`) }>Book Now</Button>
+        <Button variant='custom' className='book-now-button-first' onClick={ () => navigate(`/book-hotel/${ hotel_name }/${ booking_room_id }`) }>Book Now</Button>
       </section>
 
 
@@ -498,7 +499,7 @@ const GetRoomDetails = () => {
         <Maps />
 
         <div className='book-now-btn-row'>
-          <Button variant='custom' className='book-now-button-last' onClick={ () => navigate(`/book-hotel/${ booking_room_id }`) }>Book Hotel Now</Button>
+          <Button variant='custom' className='book-now-button-last' onClick={ () => navigate(`/book-hotel/${ hotel_name }/${ booking_room_id }`) }>Book Hotel Now</Button>
         </div>
       </section>
 

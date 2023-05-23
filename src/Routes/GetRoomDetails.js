@@ -276,7 +276,7 @@ const GetRoomDetails = () => {
       <div>
 
       {
-      isLoadingHotelDetails === true ? 
+        isLoadingHotelDetails === true ? 
           <section className='fetch-all-hotels-loading-section'>
             <FontAwesomeIcon icon={ faSpinner } size='2x' spinPulse className='mb-4' color='#808080' />
             <p className='fetching-hotels-text'>fetching details of { params.hotel_name } hotel... please wait</p>
@@ -458,16 +458,18 @@ const GetRoomDetails = () => {
       
       <section className='selected-room-details-sub-section'>
           <h3 className='selected-room-details-sub-header'>Hotel Description</h3>
-          <p>Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, 
-             WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and 
-             offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star 
-             Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of 
-             Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place,             WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and 
-             offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star 
-             Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of 
-             Edinburgh and offers free WiFi.
-          </p>
+          <p>
+              { 
+                selectedRoomDetailsObject ? 
+                    selectedRoomDetailsObject.room_description ?
+                        selectedRoomDetailsObject.room_description
+                        :
+                        null
+                :
+                null
 
+              }
+          </p>
       </section>
 
 

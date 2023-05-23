@@ -14,7 +14,7 @@ import { BsShieldCheck } from 'react-icons/bs'
 import Carousel from 'react-grid-carousel'
 import Rating from '@mui/material/Rating'
 import Button from 'react-bootstrap/Button'
-
+import { IoLocationSharp } from 'react-icons/io5'
 
 
 
@@ -24,27 +24,23 @@ import Button from 'react-bootstrap/Button'
 
 const BookHotel = ( ) => {
 
-    
-    // setting up state.
-    const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
-
     // url params
     const params = useParams()
 
 
     // making certain component always displays from top on initial render.
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        })
-    })
+    // useEffect(() => {
+    //     window.scrollTo({
+    //         top: 0,
+    //         left: 0,
+    //         behavior: 'smooth'
+    //     })s
+    // })
     
 
-    useEffect(() => {
-        console.log( params.room_id )
-    }, [])
+    // useEffect(() => {
+    //     console.log( params.room_id )
+    // }, [])
 
 
     // useEffect to fetch the booking hotel.
@@ -66,6 +62,86 @@ const BookHotel = ( ) => {
     }, [ ])
 
 
+    
+    // setting up state.
+    const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
+    const [ bookingCustomerFirstName, setBookingCustomerFirstName ] = useState('')
+    const [ bookingCustomerLastName, setBookingCustomerLastName ] = useState('')
+    const [ bookingCustomerEmail, setBookingCustomerEmail ] = useState('')
+    const [ bookingCustomerNumber, setBookingCustomerNumber ] = useState('')
+    const [ customerPaymentCardName, setPaymentCardName ] = useState('')
+    const [ customerPaymentBookingEmail, setPaymentBookingEmail ] = useState('')
+    const [ customerPaymentCardNumber, setPaymentCardNumber ] = useState('')
+    const [ customerPaymentCardExpiryDate, setPaymentCardExpiryDate ] = useState('')
+    const [ customerPaymentCardSecurityCode, setCustomerPaymentCardSecurityCode ] = useState('')
+    const [ bookingFieldsErrorStatus, setBookingFieldsErrorStatus ] = useState( false )
+    const [ bookingFieldsErrorMessage, setBookingFieldsErrorMessage ] = useState('')
+
+
+
+
+    // updating state values.
+    const UpdateCustomerFirstName = ( event ) => {
+        setBookingCustomerFirstName( event.target.value )
+    }
+
+    const UpdateCustomerLastName = ( event ) => {
+        setBookingCustomerLastName( event.target.value )
+    }
+
+    const UpdateCustomerEmail = ( event ) => {
+        setBookingCustomerEmail( event.target.value )
+    }
+
+    const UpdateCustomerNumber = ( event ) => {
+        setBookingCustomerNumber( event.target.value )
+    }
+
+
+    // payment details
+    const UpdateCustomerPaymentCardName = ( event ) => {
+        setPaymentCardName( event.target.value )
+    }
+
+    const UpdateCustomerPaymentBookingEmail = ( event ) => {
+        setPaymentBookingEmail( event.target.value )
+    }
+
+    const UpdateCustomerPaymentCardNumber = ( event ) => {
+        setPaymentCardNumber( event.target.value )
+    }
+
+    const UpdateCustomerPaymentCardExpiryDate = ( event ) => {
+        setPaymentCardExpiryDate( event.target.value )
+    }
+
+    const UpdateCustomerPaymentCardSecurityCode = ( event ) => {
+        setCustomerPaymentCardSecurityCode( event.target.value )
+    }
+
+
+    const HandleBookHotelAction = ( ) => {
+
+        if( bookingCustomerFirstName.length < 1 || bookingCustomerLastName.length < 1 || bookingCustomerEmail.length < 1 || bookingCustomerNumber.length < 1 || customerPaymentCardName.length < 1 || customerPaymentBookingEmail.length < 1 || customerPaymentCardNumber.length < 1 || customerPaymentCardExpiryDate.length < 1 || customerPaymentCardSecurityCode.length < 1  ) {
+            setBookingFieldsErrorStatus( true )
+            setBookingFieldsErrorMessage('One or more fields is(are) empty. All fields are required')
+        }
+        else {
+            setBookingFieldsErrorStatus( false )
+            console.log(`customer first name: ${ bookingCustomerFirstName }`)
+            console.log(`customer last name: ${ bookingCustomerLastName }`)
+            console.log(`customer email: ${ bookingCustomerEmail }`)
+            console.log(`customer number: ${ bookingCustomerNumber }`)
+    
+            console.log(`customer name on card: ${ customerPaymentCardName }`)
+            console.log(`customer booking email: ${ customerPaymentBookingEmail }`)
+            console.log(`customer card number: ${ customerPaymentCardNumber }`)
+            console.log(`customer card expiry date: ${ customerPaymentCardExpiryDate }`)
+            console.log(`customer card security code: ${ customerPaymentCardSecurityCode }`)
+            }
+
+    }
+
 
 
 
@@ -75,10 +151,10 @@ const BookHotel = ( ) => {
             <NavbarComponent />
 
             <section className='book-hotel-wrapper-section'>
-                <Row>
+                <Row className='booking-hotel-name-row'>
                     <Col>
-                        <h4>{ bookingHotelObject.room_number }</h4> <br />
-                        <h6 className='booking-hotel-extra-details'>Sign in to book faster and collect 21 stamps with this stay. Then you'll get two reward* nights</h6>
+                        <h4 className='booking-hotel-name-primary'>{ bookingHotelObject.room_number }</h4> <br />
+                        <h6 className='booking-hotel-extra-details mb-4'>Sign in to book faster and collect 21 stamps with this stay. Then you'll get two reward* nights</h6>
                     </Col>
                 </Row>
 
@@ -88,9 +164,9 @@ const BookHotel = ( ) => {
                     {/* Hotel details column */ }
                     <Col className='mb-5'>
                         <div className='booking-hotel-summary-div'>
-                            <h4 className='booking-hotel-name'>{ bookingHotelObject.room_number } </h4> 
+                            <h4 className='booking-hotel-features'> Hotel Features </h4> 
                             <h4> <Rating value={ bookingHotelObject.room_rating } readOnly name='read-only' /> </h4>
-                            <p className='booking-hotel-extra-details'>located at accra</p>
+                            <p className='booking-hotel-extra-details'> <IoLocationSharp /> { bookingHotelObject.room_location }</p>
                             <hr />
 
                             <section>
@@ -229,19 +305,19 @@ const BookHotel = ( ) => {
                         <Form>
                             <Form.Group>
                                 {/* <Form.Label>First name*</Form.Label> */}
-                                <Form.Control type='text' placeholder='First Name' className='form-control-no-text' />
+                                <Form.Control type='text' placeholder='First Name *' className='form-control-no-text' onChange={ UpdateCustomerFirstName } value={ bookingCustomerFirstName } />
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control type='text' placeholder='Last Name' className='form-control-no-text' />
+                                <Form.Control type='text' placeholder='Last Name *' className='form-control-no-text' onChange={ UpdateCustomerLastName } value={ bookingCustomerLastName } />
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control type='text' placeholder='Email Address' className='form-control-no-text' />
+                                <Form.Control type='text' placeholder='Email Address *' className='form-control-no-text' onChange={ UpdateCustomerEmail } value={ bookingCustomerEmail } />
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control type='text' placeholder='Mobile Number' className='form-control' />
+                                <Form.Control type='text' placeholder='Mobile Number *' className='form-control' onChange={ UpdateCustomerNumber } value={ bookingCustomerNumber } />
                                 <Form.Text>We'll only contact you in an emergency</Form.Text>
                             </Form.Group>
 
@@ -268,29 +344,30 @@ const BookHotel = ( ) => {
 
 
                                 <Form.Group className='form-control-no-text'>
-                                    <Form.Control type='text' placeholder='Name on card' />
+                                    <Form.Control type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />
                                     <Form.Text>Enter your name exactly as it appears on the card.</Form.Text>
                                 </Form.Group>
 
                                 <Form.Group className='form-control-no-text'>
-                                    <Form.Control type='email' placeholder='Booking email' />
+                                    <Form.Control type='email' placeholder='Booking email *' onChange={ UpdateCustomerPaymentBookingEmail } />
                                     <Form.Text>We’ll send your booking confirmation to this email address. Make sure it’s correct.</Form.Text>
                                 </Form.Group>
 
                                 <Form.Group>
-                                    <Form.Control type='text' placeholder='Card number'  className='form-control-no-text'/>
+                                    <Form.Control type='text' placeholder='Card number *'  className='form-control-no-text' onChange={  UpdateCustomerPaymentCardNumber } />
                                 </Form.Group>
 
-                                <Form.Control type='text' placeholder='Expiry date' className='form-control-no-text' />
+                                <Form.Control type='text' placeholder='Expiry date (MM/YY) *' className='form-control-no-text' onChange={ UpdateCustomerPaymentCardExpiryDate } />
 
                                 <Form.Group className='form-control-no-text'>
-                                    <Form.Control type='text' placeholder='Security dode' />
+                                    <Form.Control type='text' placeholder='Security code *' onChange={ UpdateCustomerPaymentCardSecurityCode } />
                                     <Form.Text>The 3 digits at the back of the card.</Form.Text>
                                 </Form.Group>
 
                                 <p><Form.Text>Card information is fully encrypted and protected. <BsShieldCheck size={ 15 } /> </Form.Text></p>
 
-                                <Button variant='custom' className='book-button'>Book</Button>
+                                <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
+                                <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p>
 
                             </Form>
 

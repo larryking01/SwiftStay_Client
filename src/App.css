@@ -1,0 +1,1956 @@
+/* google fonts */
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+
+
+/* card title */
+@import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+
+
+
+/* global variables */
+:root {
+    --primary-color: #5a50eb; /* #6b75ff #5a50eb*/
+    --light-blue-color: #CCCCFF;
+    --primary-font: 'Lora', serif;
+}
+
+
+* {
+    box-sizing: border-box;
+} 
+
+
+
+/* navbar styling */
+.nav-link-text {
+    font-family: 'Lora', serif;
+    
+}
+
+
+.navbar-login-btn {
+    /* background-color: var(--primary-color);
+    color: white; */
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+
+}
+
+.navbar-login-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    /* background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color); */
+
+}
+
+.navbar-signup-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.navbar-signup-btn:hover {
+    /* background-color: var(--primary-color); */
+    background-color: var(--primary-color);
+    color: white;
+
+}
+
+
+
+.navbar-brand {
+    cursor: pointer;
+}
+
+/* end of navbar styling */
+
+
+
+
+/* footer styling */
+.footer-container {
+    padding-left: 7%;   
+    padding-right: 5%;
+    padding-top: 4%;
+    width: 100%;
+    background-image: linear-gradient(to right, white, #6495ED);    
+
+}
+
+
+.footer-header {
+    font-size: 1.5rem;
+    font-family: 'Lora', serif;
+    padding-bottom: 2%;
+    color: var(--primary-color)
+}
+
+
+
+
+.footer-link-item {
+    font-family: 'Lora', serif;
+    cursor: pointer;
+}
+
+.footer-link-item:hover {
+    color: var(--primary-color);
+}
+
+
+.footer-link-icon {
+    padding-left: 30%;
+    cursor: pointer;    
+}
+
+.footer-link-icon:hover {
+    color: var(--primary-color);
+
+}
+
+
+.newsletter-textbox {
+    height: 40px;
+}
+
+
+.newsletter-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.newsletter-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.subscribe-updates-text {
+    font-family: 'Lora', serif;
+}
+
+
+.rights-reserved-text {
+    font-family: 'Lora', serif;
+    text-align: center;
+    font-size: 1rem;
+}
+
+
+.copyrights-section {
+    text-align: center;
+}
+
+/* end of footer styling */
+
+
+
+
+/* home page styling */
+.main-content {
+    margin-top: 3%;
+
+}
+
+
+.get-away {
+    margin-left: 4%;
+    margin-bottom: 5%;
+}
+
+.get-away-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+}
+
+.get-away-details-text {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+}
+
+.cover-page-card-style {
+    cursor: pointer;
+    /* transition: transform 0.3s ease; */
+    margin-bottom: 10%;
+
+} 
+
+
+.main-hotels-section {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+
+.main-hotels-section-row {
+    margin-bottom: 3%;
+}
+
+
+.loading-hotels-div-style {
+    text-align: center;
+
+}
+
+.fetching-hotels-text {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    color:#808080;
+    /* color: var(--primary-color); */
+}
+
+.fetch-hotels-error-section {
+    text-align: center;
+}
+
+.fetch-hotels-error-text {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+}
+
+.hotel-card-img {
+    min-height: 250px;
+    max-height: 250px;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+
+.hotel-card-img:hover {
+    transform: scale(1.06);
+}
+
+
+.card-title {
+    font-weight: bolder;
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    color: #212529;
+    margin-bottom: 20%;
+    
+}
+
+
+.card-room-location {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3%;
+}
+
+
+.card-room-rate {
+    padding-bottom: 3%;
+
+}
+
+
+.save-big-text {
+    color: var(--primary-color);
+    font-size: 1.1em;
+    margin-left: 4%;
+    font-family: 'Lora', serif;
+    margin-top: 2%;
+}
+
+
+
+.intro-background-img {
+    width: 100%;
+    height: 450px;
+    margin-bottom: 5%;
+
+}
+
+
+.view-all-hotels-text-div {
+    cursor: pointer;
+}
+
+
+.view-all-hotels-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.view-all-hotels-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+
+/* .view-all-hotels-arrow {
+    margin-left: 5%;
+    margin-top: 3%;
+} */
+
+
+.best-prices-img {
+    width: 120px;
+}
+
+.intro-form {
+    position:absolute;
+    top: 57%;
+    width: 70%;
+    height: 45%;
+    background-color: white;
+    margin-left: 14%;;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+    box-shadow: 0px 1px 3px grey;
+}
+
+.intro-form-catch-phrase {
+    text-align: center;
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    padding-bottom: 1%;
+    font-size: 1.3rem;
+}
+
+
+.destination-textbox {
+    height: 55px;  
+}
+
+.number-of-guests-textbox {
+    height: 55px;
+}
+
+.find-hotel-button {
+    width: 100%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+}
+
+.find-hotel-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+
+.intro-form-row {
+    margin-bottom: 2%;
+}
+
+
+.intro-choice-options {
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.3s ease;
+}
+
+
+.intro-choice-options:hover {
+    cursor: pointer;
+    color:#6495ED;
+    transform: scale(1.2);
+
+}
+
+.intro-choice-text {
+    padding-left: 2%;
+    margin-top: -2%;
+}
+
+
+.form-header-div {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.form-header-div h6 {
+    padding-right: 1%;
+    margin-left: 9%;
+    color: white;
+}
+
+.world-of-hotels-section {
+    text-align: center;
+}
+
+.world-of-hotels-text {
+    font-weight: bold;
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.book-perfect-hotel-text {
+    font-family: 'Lora', serif;
+
+}
+
+.plan-staycation-section {
+    margin-top: 5%;
+}
+
+.plan-staycation-text {
+    color: var(--primary-color);
+    margin-left: 4%;
+    font-size: 2.3rem;
+    padding-bottom: 2%;
+    font-family: 'Lora', serif;
+}
+
+
+.get-best-prices-section {
+    text-align: center;
+    margin-bottom: 3%;
+    font-family: 'Lora', serif;
+    margin-top: 10%;
+}
+
+
+.get-best-prices-text {
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+
+.extra-info-section {
+    margin: 5%;
+}
+
+.extra-info-row {
+    margin-bottom: 8%;
+}
+
+
+.extra-info-title {
+    font-family: 'Lora', serif;
+    padding-bottom: 5%;
+    color: var(--primary-color);
+}
+
+
+.extra-info-text-col {
+    padding: 4%;
+
+}
+
+
+.extra-info-details {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+
+.extra-info-img {
+    width: 100%;
+    max-height: 320px;
+}
+
+/* end of home page styling */
+
+
+/* start date picker styling */
+.start-date-picker-styling {
+    width: 100%;
+}
+
+
+/* end date picker styling */
+.end-date-picker-styling {
+    width: 100%;
+}
+
+
+/* end of date pickers styling */
+
+
+
+/* selected room details styling */
+.book-now-section {
+    text-align: center;
+    margin-bottom: 5%;
+
+}
+
+.book-now-button-first {
+    width: 30%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+}
+
+.book-now-button-first:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.book-now-btn-row {
+    text-align: center;
+}
+
+.book-now-button-last {
+    width: 90%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+}
+
+.book-now-button-last:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.selected-room-checkin-dates {
+    margin-left: 6%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    border-radius: 2%;
+    /* box-shadow: 2px 2px 8px grey; */
+    border: 1px solid lightgrey;
+    padding-top: 2%;
+    padding-left: 2%;
+    margin-right: 6%;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.selected-room-details-destination {
+    height: 55px;
+}
+
+.selected-room-details-category {
+    height: 55px;
+}
+
+.selected-room-details-search-hotel-button {
+    height: 55px;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.selected-room-details-search-hotel-button:hover {
+    height: 55px;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.selected-room-extra-pics-grid {
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2%;
+}
+
+
+.selected-room-details-section {
+    padding-left: 6%;
+    padding-right: 6%;
+    margin-top: 3%;
+    padding-bottom: 3%;
+}
+
+.selected-room-name {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-weight: bolder;
+    
+}
+
+
+.selected-room-details-price-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+}
+
+
+.selected-room-details-headers {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+
+.selected-room-details-sub-section {
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 3%;
+    padding-bottom: 4%;
+
+}
+
+
+.selected-room-details-sub-header {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+
+}
+
+.srd-padding-bottom {
+    padding-bottom: 3%;
+}
+
+
+.selected-room-features-amenities-div {
+    background-color: var(--light-blue-color);
+    display: inline-block;
+    padding: 10%;
+    border-radius: 5%;
+    margin-bottom: 10%;
+
+}
+
+
+.book-now-btn-row {
+    margin-top: 3%;
+}
+
+
+.selected-hotel-details-loading-section {
+    margin-top: 10%;
+    text-align: center;
+
+}
+
+.selected-hotel-details-fetch-error-section {
+
+}
+
+
+.posted-reviews-wrapper-div {
+    margin-top: 3%;
+}
+
+.reviewer-info {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.reviewer-info-img {
+    border-radius: 50%;
+}
+
+.reviewer-info-name-date {
+    margin-left: 3%;
+}
+
+.reviewer-name {
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    color: var(--primary-color)
+}
+
+.review-date {
+    font-family: 'Lora', serif;
+    color: #808080;
+}
+
+.review-body-text {
+    font-family: 'Lora', serif;
+}
+
+.see-all-reviews-btn {
+    border: 1px solid var(--primary-color);
+}
+
+.see-all-reviews-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.get-room-details-review-section {
+    margin-left: 6%;
+    margin-right: 50%;
+}
+
+.review-email-control {
+    height: 55px;
+}
+
+.review-email-control-error {
+    border: 1px solid red;
+    height: 55px;
+
+}
+
+
+.get-room-details-post-review-header {
+    font-family: 'Lora', serif;
+    color: var(--primary-color)
+}
+
+
+.get-room-details-post-review-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.post-review-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+
+.review-body-text-area-error {
+    border: 1px solid red;
+}
+
+
+.review-feedback-text {
+    font-family: 'Lora', serif;
+}
+
+
+/* .css-try {
+    width: 300px;
+    border-radius: 50%;
+    background: conic-gradient(red, orange, yellow, green, blue, indigo, violet);
+    aspect-ratio: 1;
+} */
+/* end of selected room details styling */
+
+
+
+
+
+
+
+/* fetch all rooms styling */
+.fetch-all-rooms-main-section {
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 3%;
+}
+
+.find-perfect-hotel-section {
+    padding-left: 8.8%;
+    margin-top: 4%;
+}
+
+.find-perfect-hotel-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color)
+}
+
+.from-budget-text {
+    font-family: 'Lora', serif;
+    font-weight: bold;
+}
+
+.fetch-all-hotels-row {
+    border-radius: 1%;
+    padding: 1%;
+    margin-bottom: 2%;
+    border: 1px solid lightgray;
+    /* box-shadow: 1px 1px 5px grey; */
+    cursor: pointer;
+
+}
+
+
+.fetch-all-hotels-fetch-error-section {
+    margin-top: 10%;
+    text-align: center;
+}
+
+
+.fetch-all-hotels-loading-section {
+    margin-top: 10%;
+    text-align: center;
+
+}
+
+
+.fetch-all-hotels-title {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}
+
+.room-rate-text {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+}
+
+
+.go-to-site-button {
+    width: 40%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 40px;
+}
+
+
+.go-to-site-button:hover {
+    background-color: var(--primary-color); 
+    color: white;
+}
+
+
+.fetch-all-rooms-search-tab-section {
+    padding-left: 9%;
+    padding-right: 9%;
+    margin-top: 3%;
+}
+
+
+
+.search-hotel-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.search-hotel-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.search-hotel-textbox {
+    height: 55px;
+}
+
+.hotel-img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* for pagination */
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+    font-size: 1.2rem;
+    gap: 5px;
+}
+
+
+.pagination .page-num {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+}
+
+
+.pagination .page-num:hover {
+    background-color: #5AB1BB;
+    color: white;
+}
+
+
+.pagination .active {
+    background-color: #5AB1BB;
+    color: white;
+}
+
+
+.trending-hotels-section {
+    /* padding-left: 8.8%; */
+}
+
+.trending-hotels-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    padding-left: 8.8%;
+}
+
+.explore-popular-destinations-text {
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    padding-left: 8.8%;
+
+}
+
+.trending-hotels-row {
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.trending-hotels-title {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.trending-hotels-sub-text {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+}
+
+
+.genius-travel-section {
+    background-image: linear-gradient(to right, lightblue, var(--primary-color));
+    padding-top: 5%;
+    padding-bottom: 10%;
+    padding-right: 3%;
+    padding-left: 3%;
+}
+
+
+.genius-travel-text {
+    color: white;
+    font-weight: bold;
+    font-family: 'Lora', serif;
+    font-size: 2.7rem;
+}
+
+.genius-meta-text {
+    color: white;
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+}
+
+
+.genius-started-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.genius-started-btn:hover {
+    background-color: blue;
+    color: white;
+}
+
+
+.genius-travel-img {
+    width: 70%;
+}
+
+.genius-travel-info-row {
+    padding-right: 3%;
+    padding-left: 3%;
+}
+
+
+.genius-travel-info-text {
+    color: white;
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+
+}
+
+
+.genius-travel-info-text-meta {
+    color: white;
+    font-family: 'Lora', serif;
+}
+
+
+/* end of fetch all rooms styling */
+
+
+
+
+/* book hotel page styling */
+.book-hotel-wrapper-section {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+
+.booking-hotel-summary-div {
+    border-radius: 2%;
+    border: 1px solid lightgray;
+    padding: 3%;
+}
+
+
+.booking-hotel-name {
+    font-family: var(--primary-font )
+}
+
+
+.details-section {      
+    border-radius: 2%;
+    border: 1px solid lightgray;
+    padding: 3%;
+}
+
+
+.details-section-sub-div {
+    margin-bottom: 9%;
+}
+
+.form-control-no-text {
+    margin-bottom: 3%;
+}
+
+
+.section-sub-header {
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: var(--primary-font);
+    
+}
+
+
+.booking-hotel-extra-details {
+    font-family: var(--primary-font);
+    font-size: 0.9rem;
+}
+
+.accepted-cards-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.accepted-card-style {
+    margin-right: 2%;
+}
+
+
+.book-button {
+    width: 100%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+    
+}
+
+.book-button:hover {
+    background-color: var(--primary-color); 
+    color: white;
+}
+
+
+.book-room-features {
+    background-color: var(--light-blue-color);
+    padding: 7%;
+    text-align: center;
+    border-radius: 5%;
+    /* display: inline-block; */
+}
+
+.booking-hotel-name-primary {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-weight: bold;
+
+}
+
+.booking-hotel-name-row {
+    margin-top: 5%;
+
+}
+
+.booking-hotel-features {
+    font-family: var(--primary-font);
+    font-weight: bold;
+}
+
+
+.booking-fields-error-message {
+    color: red;
+}
+
+
+/* end of book hotel page styling */
+
+
+
+/* help page styling */
+.help-page-wrapper {
+    padding-left: 6%;
+    padding-right: 6%;
+
+}
+
+
+.help-title-text {
+    color: var(--primary-color);
+    font-family: 'Lora', serif;
+    text-align: center;
+    margin-top: 7%;
+    margin-bottom: 3%;
+}
+
+
+.help-category-div {
+    text-align: center;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    border-radius: 2%;
+    background-color: #f1f2f8;
+    margin-bottom: 7%;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+
+.help-category-div:hover {
+    transform: scale(1.1);
+}
+
+
+.help-category-image {
+    width: 40%;
+    margin-bottom: 3%;
+}
+
+
+.help-category-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color)
+}
+
+
+/* end of help page styling */
+
+
+
+
+/* contact us styling */
+.contact-us-wrapper {
+    margin-top: 10%;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+
+.contact-us-header {
+    margin-top: 3%;
+    margin-bottom: 7%;
+}
+
+
+.contact-us-details-section {
+    width: 60%;
+}
+
+
+.attach-files-div {
+    border-style: dotted;
+    border-color: #6495ED;
+    border-radius: 2%;
+    text-align: center;
+    padding-top: 15%;  
+    padding-bottom: 15%; 
+    cursor: pointer;
+}
+
+
+.contact-us-btn {
+    width: 100%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+}
+
+.contact-us-btn:hover {
+    width: 100%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px;
+
+}
+
+
+.contact-us-header-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+
+}
+
+
+.contact-us-textbox {
+    height: 50px;
+    cursor: pointer;
+}
+
+
+/* end of contact us styling */
+
+
+
+
+/* about us styling */
+.about-us-main-background {
+    width: 100%;
+    height: 90vh;
+}
+
+
+.img-text {
+    position: absolute;
+    bottom: -2%;
+    padding-left: 15%;
+    color: black;
+    /* color: var(--primary-color); */
+    font-family: 'Lora', serif;
+    font-size: 2.3rem;
+    font-style: normal;
+}
+
+
+.about-us-header-section {
+    margin-top: 4%;
+}
+
+
+.main-header-text {
+    text-align: center;
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.8rem;
+
+}
+
+
+.about-us-sub-headers {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+
+}
+
+
+.about-us-row-generic-style {
+    margin-top: 4%;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-bottom: 4%;
+}
+
+
+.about-us-mission-row {
+    background-image: linear-gradient(to top, white, blue);
+    padding-top: 10%;
+    padding-bottom: 10%;
+    text-align: center;
+    color: white
+}
+
+.about-us-mission-text {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.about-us-team-section {
+    margin-top: 4%;
+    margin-left: 6%;
+    margin-right: 6%;
+
+}
+
+
+.our-team-header {
+    font-family: 'Lora', serif;
+    text-align: center;
+    margin-top: 8%;
+    color: var(--primary-color)
+}
+
+
+.column-icon-style {
+    width: 30%;
+}
+
+
+.team-pic-style {
+    width: 80%;
+
+}
+
+
+.our-team-row {
+    margin-bottom: 9%;
+}
+
+
+.team-member-name {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+}
+
+.team-member-position {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+}
+
+
+
+/* end of about us styling */
+
+
+
+
+/* faq page styling */
+.faq-header-section-generic-style {
+    margin-top: 10%;
+    margin-right: 6%;
+    margin-left: 6%;
+    margin-bottom: 6%;
+}
+
+
+.faq-header-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+}
+
+
+.answer-div-show {
+    display: block;
+}
+
+
+.answer-div-hide {
+    display: none;
+}
+
+.faq-question-answer-section {
+    margin-top: 6%;
+    margin-right: 6%;
+    margin-left: 6%;
+    margin-bottom: 6%;
+
+}
+
+.faq-question-text {
+    font-family: 'Lora', serif;
+    color: var(--primary-color);
+}
+
+
+.q_and_a_div {
+    cursor: pointer;
+}
+
+
+.faq-row-selected {
+    /* background-color: var(--light-blue-color); */
+    cursor: pointer;
+} 
+
+.faq-row-unselected {
+    cursor: pointer;
+
+}
+
+
+/* end of faq page styling */
+
+
+
+/* sign up page styling */
+.sign-up-wrapper {
+    text-align: center;
+}
+
+.create-account-section {
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.sign-up-header-text {
+    font-family: 'Lora', serif;
+}
+
+.sign-up-form {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.input-group-margin {
+    margin-bottom: 8%;
+}
+
+.input-group-style {
+    height: 45px;
+}
+
+.input-group-error {
+    border: 1px solid red;
+    height: 45px;    
+}
+
+.input-group-text {
+    cursor: pointer;
+}
+
+.sign-up-brand-logo {
+    cursor: pointer;
+}
+
+.sign-up-btn {
+    width: 100%;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: white;
+    /* margin-top: 6.5%; */
+}
+
+.sign-up-btn:hover {
+    width: 100%;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: white;
+    /* margin-top: 6.5%; */
+}
+
+
+.other-error-text {
+    color: red;
+    font-family: 'Lora', serif;
+}
+
+.sign-up-tnc-text {
+    font-size: 0.8rem;
+}
+
+.sign-up-already-account-text {
+    font-size: 0.8rem;
+}
+
+.sign-up-continue-with-text {
+    font-size: 0.8rem;
+}
+
+.tnc-span {
+    color: blue;
+    cursor: pointer;
+}
+
+.sign-in-span {
+    color: blue;
+    cursor: pointer;
+}
+
+
+.alt-sign-up-icon {
+    cursor: pointer;
+    
+}
+
+.alt-sign-up-icon:hover {
+    color: var(--primary-color)
+}
+
+
+
+/* end of sign up styling */
+
+
+
+/* login page styling */
+.log-in-wrapper {
+    text-align: center;
+}
+
+.login-account-section {
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+.log-in-header-text {
+    font-family: 'Lora', serif;
+}
+
+.login-other-error-text {
+    color: red;
+    font-family: 'Lora', serif;
+}
+
+.login-form {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.login-input-group-margin {
+    margin-bottom: 8%;
+}
+
+.login-input-group-style {
+    height: 45px;
+}
+
+.login-input-group-error {
+    border: 1px solid red;
+    height: 45px;    
+}
+
+.input-group-text {
+    cursor: pointer;
+}
+
+.log-in-brand-logo {
+    cursor: pointer;
+}
+
+.login-btn {
+    width: 100%;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: white;
+    /* margin-top: 6.5%; */
+}
+
+.login-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.login-tnc-text {
+    font-size: 0.8rem;
+}
+
+.login-tnc-span {
+    color: blue;
+    cursor: pointer;
+}
+
+.forgot-password-text {
+    font-size: 0.8rem;
+    color: blue;
+    cursor: pointer;
+
+}
+
+.sign-up-span {
+    color: blue;
+    cursor: pointer;
+
+}
+
+.create-account-text {
+    font-size: 0.8rem;
+}
+
+.continue-with-text {
+    font-size: 0.8rem;
+}
+
+
+.alt-sign-in-icon {
+    cursor: pointer;
+    
+}
+
+.alt-sign-in-icon:hover {
+    color: var(--primary-color)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.footer-gap {
+    margin-bottom: 30%;
+}
+
+
+
+/* scroll to top btn styling */
+/* .top-to-bottom {
+    position: relative;
+} */
+
+.scroll-to-top-btn {
+    background-color:/* #5a50eb**/ white;
+    color: #5a50eb;
+    position: fixed;
+    bottom: 5%;
+    right: 2%;
+    z-index: 10;
+    border: 2px solid #5a50eb;
+
+}
+
+
+.scroll-to-top-btn:hover {
+    background-color: #5a50eb;
+    color: white;
+}
+
+
+
+
+/* reviews page styling */
+.reviewed-hotel-info-section {
+    padding-left: 6%;
+    padding-right: 6%;
+    margin-top: 3%;
+    padding-bottom: 3%;
+}
+
+
+.reviewed-hotel-name {
+    font-family: 'Lora', serif;
+    color: var(--primary-color)
+}
+
+.post-review-section {
+    margin-left: 6%;
+    margin-right: 50%;
+}
+
+.review-email-control {
+    height: 55px;
+}
+
+.review-email-control-error {
+    border: 1px solid red;
+    height: 55px;
+
+}
+
+
+.post-review-header {
+    font-family: 'Lora', serif;
+    color: var(--primary-color)
+}
+
+
+.post-review-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.post-review-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+
+.review-body-text-area-error {
+    border: 1px solid red;
+}
+
+
+.review-feedback-text {
+    font-family: 'Lora', serif;
+}
+
+/* end of reviews page styling */
+
+
+
+
+/* responsive styling */
+@media screen and ( min-width: 300px ) and ( max-width: 480px ) {
+
+    /* home page responsive styling */
+    .place-to-stay{
+        margin-top: 30px;
+    }
+
+
+    .save-big-text {
+        margin-top: 2%;
+        font-size: 1.3rem;
+
+    }
+
+    .get-away-text {
+        font-size: 1.3rem;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+    }
+
+    .intro-form-catch-phrase {
+        font-size: 1rem;
+    }
+    
+    .intro-background-img {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 5%;
+    
+    }
+
+    .get-away-details-text {
+        font-size: 0.87rem;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+
+    .intro-form {
+        position: relative;
+        top: -220px;
+        width: 80%;
+        height: 75%;
+        background-color: white;
+        padding-left: 3%;
+        padding-right: 3%;
+        padding-top: 1%;
+        box-shadow: 0px 1px 3px grey;
+    }
+
+    .world-of-hotels-section {
+        position: relative;
+        bottom: 140px;
+    }
+
+    .plan-staycation-section {
+        margin-top: -25%;
+    }
+
+    .plan-staycation-text {
+        font-size: 1.3rem;
+    }
+
+    .get-best-prices-text {
+        font-size: 1.3rem;
+    }
+
+    .fetching-hotels-text {
+        font-size: 1rem;
+        color:#808080;
+    }
+    
+
+    .view-all-hotels-text-div {
+        cursor: pointer;
+        margin-bottom: 6%;
+    }
+
+    .view-all-hotels-btn {
+        height: 40px;
+    }
+    
+
+    .footer-header {
+        margin-top: 8%;
+    }
+
+    /* end of home page responsive styling */
+
+
+
+    /* contact us responsive styling */
+    .contact-us-details-section {
+        width: 100%;
+    }
+
+    /* end of contact us responsive styling */
+
+
+    /* about us responsive styling */
+    .about-us-main-background {
+        width: 100%;
+        height: 50vh;
+    }
+
+
+    .img-text {
+        position: relative;
+        padding-left: 8%;
+        color: black; 
+        /* color: var(--primary-color); */
+        font-family: 'Lora', serif;
+        font-size: 1.1rem;
+        font-style: normal;
+        font-weight: bold;
+
+        }
+
+    
+    .about-us-header-section {
+        margin-top: 20%;
+        margin-bottom: 10%;
+        margin-right: 3.1rem;
+    }
+
+
+    .main-header-text {
+        padding-left: 5%;
+        font-family: 'Lora', serif;
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+
+
+    .about-us-mission-row {
+        background-image: linear-gradient(to top, white, blue);
+        padding: 5%;
+        text-align: center;
+        color: white
+    }    
+
+    .about-us-mission-text {
+        font-size: 2.3rem;
+        font-weight: bold;
+    }
+
+
+    .team-pic-style {
+        width: 100%;
+    
+    }
+
+    /* end of about us responsive styling */
+
+
+
+    /* book hotel responsive styling */
+    .section-sub-header {
+        font-size: 1rem;
+    }
+
+    
+    .booking-hotel-extra-details {
+        font-size: 0.84rem;
+    }
+
+
+    .form-control-no-text {
+        margin-bottom: 8%;
+    }
+
+
+    .details-section-sub-div {
+        margin-bottom: 12%;
+    }    
+    
+    
+    /* end of book hotel responsive styling */
+
+
+
+    /* sign up page responsive styling */
+    .sign-up-form {
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 3%;
+    }
+
+    .other-error-text {
+        font-size: 0.78rem;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+
+    /* end of sign up page responsive styling */
+
+
+
+    /* login page responsive styling */
+    .login-form {
+        margin-left: 8%;
+        margin-right: 8%;
+    }
+
+    .login-other-error-text {
+        color: red;
+        font-family: 'Lora', serif;
+        font-size: 0.78rem;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+    
+    
+
+
+
+
+    /* get room details responsive styling */
+    .selected-room-checkin-dates {
+        margin-bottom: 7%;
+    }
+
+    .selected-room-details-destination-form {
+        padding: 3%;
+    }
+
+    .selected-room-details-destination-column {
+        margin-bottom: 5%;
+    }
+
+    .selected-room-extra-pics-grid {
+        margin-bottom: 5%;
+    }
+
+
+    .book-now-button-first {
+        width: 87%;
+        margin-bottom: 10%;
+    }
+    
+
+    .book-now-button-last {
+        width: 100%;
+        margin-bottom: 10%;
+    }
+
+    .selected-room-details-price-text {
+        font-size: 1rem;
+    }
+
+    .book-now-btn-row {
+        margin-top: 8%;
+    }
+
+    /* end of get room details responsive styling */
+        
+        
+    /* get all rooms responsive styling */
+    .fetch-all-hotels-row {
+        margin-bottom: 12%;
+    }
+
+    .go-to-site-button {
+        width: 100%;
+    }
+
+    .fetch-all-rooms-search-tab-section {
+        margin-bottom: 13%;
+        margin-top: 12%;
+        padding: 0 5.5%;
+    }
+
+    .search-hotel-textbox {
+        height: 43px;
+    }
+
+    /* end of fetch all rooms responsive styling */
+
+
+    /* review section responsive styling */
+    .post-review-section {
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
+
+    /* end of review section responsive styling */
+    
+
+
+    /* faq page responsive styling */
+    .faq-question-answer-section {
+        margin-top: 13%;
+    
+    }
+    
+    
+}

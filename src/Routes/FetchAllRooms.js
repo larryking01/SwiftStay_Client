@@ -144,8 +144,8 @@ const FetchAllRooms = () => {
           <section className='fetch-all-rooms-search-tab-section'>
             <InputGroup>
               <Form.Control type='text' placeholder='search hotel by name, place or price' 
-                className='search-hotel-textbox' onChange={ UpdateSearchHotel } value={ searchHotel }
-                 />
+                className='search-hotel-textbox text-control-focus-style' onChange={ UpdateSearchHotel } value={ searchHotel }
+              />
               <Button variant='custom' className='search-hotel-button' onClick={ ( ) => console.log( searchHotel )}><span><BsSearch /> Search</span></Button>
             </InputGroup>
           </section>

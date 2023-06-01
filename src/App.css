@@ -16,12 +16,24 @@
     --primary-color: #5a50eb; /* #6b75ff #5a50eb*/
     --light-blue-color: #CCCCFF;
     --primary-font: 'Lora', serif;
+    --text-control-border: #0a58ca;
 }
 
 
 * {
     box-sizing: border-box;
 } 
+
+
+
+/* text control focus style */
+.text-control-focus-style:focus {
+    box-shadow: none;
+    border: 2px solid var(--text-control-border);
+}
+
+
+
 
 
 
@@ -217,9 +229,9 @@
 
 .hotel-card-img {
     min-height: 250px;
-    max-height: 250px;
+    max-height: 250px; 
     width: 100%;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease 0s;
 }
 
 
@@ -322,9 +334,11 @@
     height: 55px;  
 }
 
+
 .number-of-guests-textbox {
     height: 55px;
 }
+
 
 .find-hotel-button {
     width: 100%;
@@ -476,6 +490,11 @@
     text-align: center;
     margin-bottom: 5%;
 
+}
+
+.selected-room-detail-grid-pic {
+    width: 100%;
+    aspect-ratio: 3/2;
 }
 
 .book-now-button-first {
@@ -975,6 +994,11 @@
     font-family: var(--primary-font )
 }
 
+.book-hotel-grid-img {
+    width: 100%;
+    aspect-ratio: 3/2;
+}
+
 
 .details-section {      
     border-radius: 2%;
@@ -1171,6 +1195,7 @@
 .contact-us-textbox {
     height: 50px;
     cursor: pointer;
+
 }
 
 
@@ -1354,6 +1379,11 @@
     text-align: center;
 }
 
+.signup-control-focus-style:focus {
+    box-shadow: none;
+    border: 2px solid var(--text-control-border);
+}
+
 .create-account-section {
     margin-top: 5%;
     margin-bottom: 3%;
@@ -1490,6 +1520,16 @@
     cursor: pointer;
 }
 
+.login-email-control:focus {
+    box-shadow: none;
+    border: 2px solid var(--text-control-border);
+}
+
+.login-password-control:focus {
+    box-shadow: none;
+    border: 2px solid var(--text-control-border);
+}
+
 .log-in-brand-logo {
     cursor: pointer;
 }
@@ -1577,6 +1617,7 @@
     right: 2%;
     z-index: 10;
     border: 2px solid #5a50eb;
+    animation: btnMoveUp 2s ease 0s infinite;
 
 }
 
@@ -1584,6 +1625,22 @@
 .scroll-to-top-btn:hover {
     background-color: #5a50eb;
     color: white;
+}
+
+
+@keyframes btnMoveUp {
+    0% { transform: translateY(10%);}
+
+    20% { transform: translateY(20%);}
+
+    40% { transform: translateY(30%);}
+
+    60% { transform: translateY(40%);}
+
+    /* 80% { transform: translateY(50%);}
+
+    100% { transform: translateY(60%);} */
+    
 }
 
 

@@ -163,7 +163,7 @@ const Login = ( ) => {
                             <div className='login-input-group-margin'>
                                 <Form.Text>{ emailErrorExists ? emailErrorMessage : 'Email *'}</Form.Text>
                                 <InputGroup className={ emailErrorExists ? 'login-input-group-error' : 'login-input-group-style' }>
-                                    <Form.Control type='email' placeholder='' onChange={ UpdateLogInUserEmail } value={ logInUserEmail } />
+                                    <Form.Control className='login-email-control' type='email' placeholder='' onChange={ UpdateLogInUserEmail } value={ logInUserEmail } />
                                     <InputGroup.Text>{ <AiOutlineMail /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -174,7 +174,7 @@ const Login = ( ) => {
                             <div className='login-input-group-margin'>
                                 <Form.Text>{ passwordErrorExists ? passwordErrorMessage : 'Password *'}</Form.Text>
                                 <InputGroup className={ passwordErrorExists ? 'login-input-group-error' : 'login-input-group-style' }>
-                                    <Form.Control type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateLogInUserPassword } value={ logInUserPassword } />
+                                    <Form.Control className='login-password-control' type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateLogInUserPassword } value={ logInUserPassword } />
                                     <InputGroup.Text className='login-input-group-text' onClick={ TogglePasswordVisible }>{ passwordVisible ? <BsFillEyeFill /> : <BsFillEyeSlashFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>

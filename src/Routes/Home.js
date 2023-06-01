@@ -147,7 +147,7 @@ const Home = () => {
 
           <Form.Group className='mb-3' controlId='formBasicText'>
             {/* <Form.Label style={{ color: 'blue'}}>Where do you want to stay?</Form.Label> */}
-            <Form.Control type='text' placeholder='Enter a hotel, city, address....' className='destination-textbox' />
+            <Form.Control type='text' placeholder='Enter a hotel, city, address....' className='destination-textbox text-control-focus-style' />
           </Form.Group>
 
           <Row xs={ 1 } md={ 2 }>
@@ -162,7 +162,7 @@ const Home = () => {
 
           <Row xs={ 1 } md={ 2 }>
             <Col className='mb-3'>
-              <Form.Control className='number-of-guests-textbox' type='text' placeholder='1 room, 2 guests' />
+              <Form.Control className='number-of-guests-textbox text-control-focus-style' type='text' placeholder='1 room, 2 guests' />
             </Col>
 
             <Col className='mb-3'>

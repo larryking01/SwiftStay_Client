@@ -41,17 +41,17 @@ const ContactUsHelp = ( ) => {
                 <section className='contact-us-details-section'>
                     <Form.Group className='mb-4'>
                         <Form.Label>Your email address * </Form.Label>
-                        <Form.Control type='email' placeholder='' className='contact-us-textbox' />
+                        <Form.Control type='email' placeholder='' className='contact-us-textbox text-control-focus-style' />
                     </Form.Group>
 
                     <Form.Group className='mb-4'>
                         <Form.Label>Your name *</Form.Label>
-                        <Form.Control type='text' placeholder='' className='contact-us-textbox' />
+                        <Form.Control type='text' placeholder='' className='contact-us-textbox text-control-focus-style' />
                     </Form.Group>
 
                     <Form.Group className='mb-5'>
                         <Form.Label>What can we help you with? *</Form.Label>
-                        <Form.Select aria-label='help subject select' className='contact-us-textbox'>
+                        <Form.Select aria-label='help subject select' className='contact-us-textbox text-control-focus-style'>
                             <option>-- Select subject --</option>
                             <option value='An existing booking'>An existing booking</option>
                             <option value='Searching on our website'>Searching on our website</option>
@@ -62,7 +62,7 @@ const ContactUsHelp = ( ) => {
                     </Form.Group>
 
                     <FloatingLabel controlId='floatingTextarea' label='Description *' className='mb-4'>
-                        <Form.Control as='textarea' placeholder='' className='description-text-area' style={{ height: 150 }} />
+                        <Form.Control as='textarea' placeholder='' className='description-text-area text-control-focus-style' style={{ height: 150 }} />
                     </FloatingLabel>
 
                     <div className='attach-files-div mb-4'>

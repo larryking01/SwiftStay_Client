@@ -228,7 +228,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ firstNameErrorExists ? firstNameErrorMessage : 'First name *'}</Form.Text>
                                 <InputGroup className={ firstNameErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type='text' placeholder='' onChange={ UpdateSignUpFirstName } value={ signUpFirstName } />
+                                    <Form.Control className='signup-control-focus-style' type='text' placeholder='' onChange={ UpdateSignUpFirstName } value={ signUpFirstName } />
                                     <InputGroup.Text>{ <BsFillPersonFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -238,7 +238,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ lastNameErrorExists ? lastNameErrorMessage : 'Last name *'}</Form.Text>
                                 <InputGroup className={ lastNameErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type='text' placeholder='' onChange={ UpdateSignUpLastName } value={ signUpLastName } />
+                                    <Form.Control className='signup-control-focus-style' type='text' placeholder='' onChange={ UpdateSignUpLastName } value={ signUpLastName } />
                                     <InputGroup.Text>{ <BsFillPersonFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -251,7 +251,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ emailErrorExists ? emailErrorMessage : 'Email *'}</Form.Text>
                                 <InputGroup className={ emailErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type='email' placeholder='' onChange={ UpdateSignUpEmail } value={ signUpEmail } />
+                                    <Form.Control className='signup-control-focus-style' type='email' placeholder='' onChange={ UpdateSignUpEmail } value={ signUpEmail } />
                                     <InputGroup.Text>{ <AiOutlineMail /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -261,7 +261,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ passwordErrorExists ? passwordErrorMessage : 'Password *'}</Form.Text>
                                 <InputGroup className={ passwordErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpPassword } value={ signUpPassword } />
+                                    <Form.Control className='signup-control-focus-style' type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpPassword } value={ signUpPassword } />
                                     <InputGroup.Text className='input-group-text' onClick={ TogglePasswordVisible }>{ passwordVisible ? <BsFillEyeFill /> : <BsFillEyeSlashFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -275,7 +275,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ confirmPasswordErrorExists ? confirmPasswordErrorMessage : 'Confirm password *'}</Form.Text>
                                 <InputGroup className={ confirmPasswordErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type={ confirmPasswordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpConfirmPassword }  value={ signUpConfirmPassword } />
+                                    <Form.Control className='signup-control-focus-style' type={ confirmPasswordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpConfirmPassword }  value={ signUpConfirmPassword } />
                                     <InputGroup.Text className='input-group-text' onClick={ ToggleConfirmPasswordVisible }>{ confirmPasswordVisible ? <BsFillEyeFill/> : <BsFillEyeSlashFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>

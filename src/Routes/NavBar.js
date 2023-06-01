@@ -58,12 +58,9 @@ const NavbarComponent = ( ) => {
                     <Navbar.Collapse id='redponsive-navbar-nav'>
                         <Nav className='me-auto'>
                             <Nav.Link onClick={() => navigate('/fetch-all-rooms')} className='nav-link-text'> Hotels </Nav.Link>
-                            <Nav.Link href='#' className='nav-link-text'> Cars </Nav.Link>
-                            <Nav.Link href='#' className='nav-link-text'> Flights </Nav.Link>
                             <Nav.Link onClick={() => navigate('/help-contact-us')} className='nav-link-text'> Contact Us </Nav.Link>
                             <Nav.Link onClick={() => navigate('/help-about-us')} className='nav-link-text'> About Us</Nav.Link>
                             <Nav.Link className='nav-link-text-help' onClick={() => navigate('/help')}> Help </Nav.Link>
-
                         </Nav>
 
                         <Nav className='ms-auto'>

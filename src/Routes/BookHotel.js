@@ -172,31 +172,31 @@ const BookHotel = ( ) => {
                             <section>
                                 <Carousel rows={ 1 } cols={ 1 } loop>
                                     <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_cover_photo_url } width='100%' alt='' />
+                                        <img src={ bookingHotelObject.room_cover_photo_url } className='book-hotel-grid-img mb-3' alt='' />
                                     </Carousel.Item>
 
                                     <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_1 } width='100%' alt='' />
+                                        <img src={ bookingHotelObject.room_extra_photo_url_1 } className='book-hotel-grid-img mb-3' alt='' />
                                     </Carousel.Item>
 
                                     <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_2 } width='100%' alt='' />
+                                        <img src={ bookingHotelObject.room_extra_photo_url_2 } className='book-hotel-grid-img mb-3' alt='' />
                                     </Carousel.Item>
 
                                     <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_3 } width='100%' alt='' />
+                                        <img src={ bookingHotelObject.room_extra_photo_url_3 } className='book-hotel-grid-img mb-3' alt='' />
                                     </Carousel.Item>
 
                                     <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_4 } width='100%' alt='' />
+                                        <img src={ bookingHotelObject.room_extra_photo_url_4 } className='book-hotel-grid-img mb-3' alt='' />
                                     </Carousel.Item>
 
                                     <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_5 } width='100%' alt='' />
+                                        <img src={ bookingHotelObject.room_extra_photo_url_5 } className='book-hotel-grid-img mb-3' alt='' />
                                     </Carousel.Item>
 
                                     <Carousel.Item>
-                                        <img src={ bookingHotelObject.room_extra_photo_url_6 } width='100%' alt='' />
+                                        <img src={ bookingHotelObject.room_extra_photo_url_6 } className='book-hotel-grid-img mb-3' alt='' />
                                     </Carousel.Item>
 
                                 </Carousel>
@@ -235,7 +235,7 @@ const BookHotel = ( ) => {
                                         Object.keys( bookingHotelObject ).length > 0 ?
                                             bookingHotelObject.room_features.map(( feature, index ) => (
                                                 <Col key={ index }>
-                                                    <div className='book-room-features'>
+                                                    <div className='book-room-features mb-3'>
                                                         { feature }
                                                     </div>
                                                 </Col>
@@ -305,19 +305,19 @@ const BookHotel = ( ) => {
                         <Form>
                             <Form.Group>
                                 {/* <Form.Label>First name*</Form.Label> */}
-                                <Form.Control type='text' placeholder='First Name *' className='form-control-no-text' onChange={ UpdateCustomerFirstName } value={ bookingCustomerFirstName } />
+                                <Form.Control type='text' placeholder='First Name *' className='form-control-no-text text-control-focus-style' onChange={ UpdateCustomerFirstName } value={ bookingCustomerFirstName } />
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control type='text' placeholder='Last Name *' className='form-control-no-text' onChange={ UpdateCustomerLastName } value={ bookingCustomerLastName } />
+                                <Form.Control type='text' placeholder='Last Name *' className='form-control-no-text text-control-focus-style' onChange={ UpdateCustomerLastName } value={ bookingCustomerLastName } />
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control type='text' placeholder='Email Address *' className='form-control-no-text' onChange={ UpdateCustomerEmail } value={ bookingCustomerEmail } />
+                                <Form.Control type='text' placeholder='Email Address *' className='form-control-no-text text-control-focus-style' onChange={ UpdateCustomerEmail } value={ bookingCustomerEmail } />
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Control type='text' placeholder='Mobile Number *' className='form-control' onChange={ UpdateCustomerNumber } value={ bookingCustomerNumber } />
+                                <Form.Control type='text' placeholder='Mobile Number *' className='form-control text-control-focus-style' onChange={ UpdateCustomerNumber } value={ bookingCustomerNumber } />
                                 <Form.Text>We'll only contact you in an emergency</Form.Text>
                             </Form.Group>
 
@@ -344,23 +344,23 @@ const BookHotel = ( ) => {
 
 
                                 <Form.Group className='form-control-no-text'>
-                                    <Form.Control type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />
+                                    <Form.Control className='text-control-focus-style' type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />
                                     <Form.Text>Enter your name exactly as it appears on the card.</Form.Text>
                                 </Form.Group>
 
                                 <Form.Group className='form-control-no-text'>
-                                    <Form.Control type='email' placeholder='Booking email *' onChange={ UpdateCustomerPaymentBookingEmail } />
+                                    <Form.Control className='text-control-focus-style' type='email' placeholder='Booking email *' onChange={ UpdateCustomerPaymentBookingEmail } />
                                     <Form.Text>We’ll send your booking confirmation to this email address. Make sure it’s correct.</Form.Text>
                                 </Form.Group>
 
                                 <Form.Group>
-                                    <Form.Control type='text' placeholder='Card number *'  className='form-control-no-text' onChange={  UpdateCustomerPaymentCardNumber } />
+                                    <Form.Control type='text' placeholder='Card number *'  className='form-control-no-text text-control-focus-style' onChange={  UpdateCustomerPaymentCardNumber } />
                                 </Form.Group>
 
-                                <Form.Control type='text' placeholder='Expiry date (MM/YY) *' className='form-control-no-text' onChange={ UpdateCustomerPaymentCardExpiryDate } />
+                                <Form.Control type='text' placeholder='Expiry date (MM/YY) *' className='form-control-no-text text-control-focus-style' onChange={ UpdateCustomerPaymentCardExpiryDate } />
 
                                 <Form.Group className='form-control-no-text'>
-                                    <Form.Control type='text' placeholder='Security code *' onChange={ UpdateCustomerPaymentCardSecurityCode } />
+                                    <Form.Control className='text-control-focus-style' type='text' placeholder='Security code *' onChange={ UpdateCustomerPaymentCardSecurityCode } />
                                     <Form.Text>The 3 digits at the back of the card.</Form.Text>
                                 </Form.Group>
 

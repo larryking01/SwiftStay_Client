@@ -296,7 +296,7 @@ const GetRoomDetails = () => {
         <Form className='selected-room-details-destination-form'>
           <Row xs={ 1 } md={ 5 }>
             <Col className='selected-room-details-destination-column'>
-              <Form.Control type='text' placeholder='Going to' className='selected-room-details-destination' />
+              <Form.Control type='text' placeholder='Going to' className='selected-room-details-destination text-control-focus-style' />
             </Col>
 
             <Col className='selected-room-details-destination-column'>
@@ -308,7 +308,7 @@ const GetRoomDetails = () => {
             </Col>
 
             <Col className='selected-room-details-destination-column'>
-              <Form.Control type='text' placeholder='2 adults, 1 room' className='selected-room-details-category' />
+              <Form.Control type='text' placeholder='2 adults, 1 room' className='selected-room-details-category text-control-focus-style' />
             </Col>
 
             <Col className='selected-room-details-destination-column'>
@@ -332,67 +332,67 @@ const GetRoomDetails = () => {
             }
         ]}>
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_3 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_3 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_4 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_4 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_5 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_5 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_6 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_6 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_7 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_7 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_8 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_8 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_9 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_9 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_3 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_3 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_4 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_4 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_5 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_5 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_6 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_6 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_7 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_7 } alt='' />
           </Carousel.Item>
 
           <Carousel.Item>
-            <img width={ 300 } src={ selectedRoomDetailsObject.room_extra_photo_url_8 } alt='' />
+            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_8 } alt='' />
           </Carousel.Item>
 
         </Carousel>
@@ -544,10 +544,10 @@ const GetRoomDetails = () => {
       <section className='get-room-details-review-section' >
         <h5 className='get-room-details-post-review-header'>Post a review</h5>
           <Form>
-              <Form.Control type='email' placeholder='Your email *' className={ reviewerEmailError === true ? 'review-email-control-error mb-4' : 'review-email-control mb-4' } onChange={ HandleReviewerEmailUpdate } value={ reviewerEmail }/>
+              <Form.Control type='email' placeholder='Your email *' className={ reviewerEmailError === true ? 'review-email-control-error text-control-focus-style mb-4' : 'review-email-control text-control-focus-style mb-4' } onChange={ HandleReviewerEmailUpdate } value={ reviewerEmail }/>
 
               <FloatingLabel style={{ color: 'gray' }} controlId='floatingTextarea' label='Review body *' className='mb-4'>
-                  <Form.Control as='textarea' placeholder='' style={{ height: 150 }} className={ reviewBodyError === true ? 'review-body-text-area-error' : 'review-body-text-area' } onChange={ HandleReviewBodyUpdate } value={ reviewBody } />
+                  <Form.Control as='textarea' placeholder='' style={{ height: 150 }} className={ reviewBodyError === true ? 'review-body-text-area-error text-control-focus-style' : 'review-body-text-area text-control-focus-style' } onChange={ HandleReviewBodyUpdate } value={ reviewBody } />
               </FloatingLabel>
 
               <Row>

@@ -29,7 +29,7 @@ import NavbarComponent from './Routes/NavBar'
 import Reviews from './Routes/AllReviews'
 import Footer from './Routes/Footer'
 import FaIcons from './Routes/FaIcons'
-// import StartDatePicker from './Routes/StartDatePicker'
+import StartDatePicker from './Configuration/StartDatePicker'
 // import EndDatePicker from './Routes/EndDatePicker'
 
 
@@ -50,12 +50,40 @@ const App = () => {
     // handling user state.
     const [ currentUser, setCurrentUser ] = useState( null )
 
+
+    // handling startdatepicker input values.
+    const [ startDateValue, setStartDateValue ] = useState(null)
+
+    // handling enddatepicker input values.
+    const [ endDateValue, setEndDateValue ] = useState(null)
+
+    // handling hotel-booking-info
+    const [ checkIn, setCheckIn ] = useState('')
+    const [ checkOut, setCheckOut ] = useState('')
+    const [ numberOfVisitors, setNumberOfVisitors ] = useState('1')
+
+    
+    const HandleCheckInState = ( event ) => {
+        setCheckIn( event.target.value )
+    }
+
+    const HandleCheckOutState = ( event ) => {
+        setCheckOut( event.target.value )
+    }
+
+    const HandleNumberOfVisitorsState = ( event ) => {
+        setNumberOfVisitors( event.target.value )
+    }
+
+
   
 
   return (
       <>
         <HashRouter>
-            <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+            <UserContext.Provider value={{ currentUser, setCurrentUser, checkIn, HandleCheckInState, 
+                checkOut, HandleCheckOutState, numberOfVisitors, HandleNumberOfVisitorsState, 
+                startDateValue, setStartDateValue, endDateValue, setEndDateValue }}>
                 <Routes>
                     <Route path='/' element={ <Home /> } />
                     <Route path='fetch-all-bookings' element={ <FetchAllBookings /> } />

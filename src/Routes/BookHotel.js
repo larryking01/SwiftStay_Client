@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -16,6 +16,11 @@ import Rating from '@mui/material/Rating'
 import Button from 'react-bootstrap/Button'
 import { IoLocationSharp } from 'react-icons/io5'
 
+import { UserContext } from '../App'
+
+
+
+
 
 
 
@@ -28,6 +33,10 @@ const BookHotel = ( ) => {
     const params = useParams()
 
 
+    // getting check-in and check-out dates via useContext.
+    const { startDateValue, endDateValue, numberOfVisitors } = useContext( UserContext )
+
+
     // making certain component always displays from top on initial render.
     // useEffect(() => {
     //     window.scrollTo({
@@ -38,9 +47,10 @@ const BookHotel = ( ) => {
     // })
     
 
-    // useEffect(() => {
-    //     console.log( params.room_id )
-    // }, [])
+    useEffect(() => {
+        console.log(`start date === ${ startDateValue }`)
+        console.log( `end date === ${ endDateValue }`)
+    }, [])
 
 
     // useEffect to fetch the booking hotel.
@@ -154,7 +164,7 @@ const BookHotel = ( ) => {
                 <Row className='booking-hotel-name-row'>
                     <Col>
                         <h4 className='booking-hotel-name-primary'>{ bookingHotelObject.room_number }</h4> <br />
-                        <h6 className='booking-hotel-extra-details mb-4'>Sign in to book faster and collect 21 stamps with this stay. Then you'll get two reward* nights</h6>
+                        <h6 className='booking-hotel-extra-details mb-4'>Sign in and save up to 20% of the total booking costs with our members only deal.</h6>
                     </Col>
                 </Row>
 
@@ -205,19 +215,19 @@ const BookHotel = ( ) => {
                             <Row>
                                 <Col>
                                     <h5 className='section-sub-header'>Check-in</h5>
-                                    <p className='booking-hotel-extra-details'>Friday, March 24 2023</p>
+                                    <p className='booking-hotel-extra-details'>{ startDateValue }</p>
                                 </Col>
 
                                 <Col>
                                     <h5 className='section-sub-header'>Check-out</h5>
-                                    <p className='booking-hotel-extra-details'>Tuesday, April 18 2023</p>
+                                    <p className='booking-hotel-extra-details'>{ endDateValue }</p>
                                 </Col>
                             </Row>
 
                             <Row>
                                 <Col>
                                     <h5 className='section-sub-header'>Guests</h5>
-                                    <p className='booking-hotel-extra-details'>2 adults</p>
+                                    <p className='booking-hotel-extra-details'>{ numberOfVisitors }</p>
                                 </Col>
 
                                 <Col>

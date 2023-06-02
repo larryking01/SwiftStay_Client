@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { UserContext } from '../App'
+
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
 // import Container from 'react-bootstrap/Container'
@@ -72,6 +74,29 @@ const GetRoomDetails = () => {
   const [ reviewBodyError, setReviewBodyError ] = useState( false )
   const [ postingReview, setPostingReview ] = useState( false )
   const [ reviewFeedback, setReviewFeedback ] = useState('')
+
+
+  // destructuring user booking hotel extra info.
+  const { checkIn, HandleCheckInState, checkOut, HandleCheckOutState, 
+          numberOfVisitors, HandleNumberOfVisitorsState, startDateValue, setStartDateValue, endDateValue, setEndDateValue } = useContext( UserContext )
+
+
+  const HandleSearchSubmit = ( ) => {
+    // console.log(`start date value === ${ startDateValue }`)
+    console.log(`check in === ${ startDateValue }`)
+    console.log(`check out === ${ endDateValue }`)
+    console.log(`number of visitors === ${ numberOfVisitors }`)
+  }
+
+
+
+
+
+
+
+
+
+
 
   // setting up reference.
   const reviewRef = useRef( null )
@@ -294,10 +319,11 @@ const GetRoomDetails = () => {
       <section>
       <section className='selected-room-checkin-dates'>
         <Form className='selected-room-details-destination-form'>
-          <Row xs={ 1 } md={ 5 }>
-            <Col className='selected-room-details-destination-column'>
-              <Form.Control type='text' placeholder='Going to' className='selected-room-details-destination text-control-focus-style' />
-            </Col>
+          <Row xs={ 1 } md={ 4 }>
+            {/* <Col className='selected-room-details-destination-column'>
+              <Form.Control type='text' placeholder='Going to' onChange={ HandleGoingToState } value={ goingTo }
+                className='selected-room-details-destination text-control-focus-style' />
+            </Col> */}
 
             <Col className='selected-room-details-destination-column'>
               <StartDatePicker />
@@ -308,11 +334,15 @@ const GetRoomDetails = () => {
             </Col>
 
             <Col className='selected-room-details-destination-column'>
-              <Form.Control type='text' placeholder='2 adults, 1 room' className='selected-room-details-category text-control-focus-style' />
+              <Form.Control type='text' placeholder='2 adults, 1 room' onChange={ HandleNumberOfVisitorsState } value={ numberOfVisitors }
+              className='selected-room-details-category text-control-focus-style' />
             </Col>
 
             <Col className='selected-room-details-destination-column'>
-              <Button variant='custom' className='selected-room-details-search-hotel-button'>Search</Button>
+              <Button variant='custom' onClick={ HandleSearchSubmit }
+                className='selected-room-details-search-hotel-button'>
+                  Submit
+              </Button>
             </Col>
           </Row>
         </Form>

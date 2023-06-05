@@ -60,7 +60,7 @@ const App = () => {
     // handling hotel-booking-info
     const [ checkIn, setCheckIn ] = useState('')
     const [ checkOut, setCheckOut ] = useState('')
-    const [ numberOfVisitors, setNumberOfVisitors ] = useState('1')
+    const [ numberOfVisitors, setNumberOfVisitors ] = useState('0')
 
     
     const HandleCheckInState = ( event ) => {
@@ -81,9 +81,12 @@ const App = () => {
   return (
       <>
         <HashRouter>
-            <UserContext.Provider value={{ currentUser, setCurrentUser, checkIn, HandleCheckInState, 
-                checkOut, HandleCheckOutState, numberOfVisitors, HandleNumberOfVisitorsState, 
-                startDateValue, setStartDateValue, endDateValue, setEndDateValue }}>
+            <UserContext.Provider value={{ currentUser, setCurrentUser, checkIn, 
+                                           HandleCheckInState, checkOut, HandleCheckOutState, 
+                                           numberOfVisitors, HandleNumberOfVisitorsState, 
+                                           startDateValue, setStartDateValue, endDateValue, 
+                                           setEndDateValue }}
+            >
                 <Routes>
                     <Route path='/' element={ <Home /> } />
                     <Route path='fetch-all-bookings' element={ <FetchAllBookings /> } />

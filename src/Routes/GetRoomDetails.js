@@ -77,8 +77,9 @@ const GetRoomDetails = () => {
 
 
   // destructuring user booking hotel extra info.
-  const { checkIn, HandleCheckInState, checkOut, HandleCheckOutState, 
-          numberOfVisitors, HandleNumberOfVisitorsState, startDateValue, setStartDateValue, endDateValue, setEndDateValue } = useContext( UserContext )
+  const { checkIn, HandleCheckInState, checkOut, 
+          HandleCheckOutState, numberOfVisitors, HandleNumberOfVisitorsState, 
+          startDateValue, setStartDateValue, endDateValue, setEndDateValue } = useContext( UserContext )
 
 
   const HandleSearchSubmit = ( ) => {
@@ -86,6 +87,7 @@ const GetRoomDetails = () => {
     console.log(`check in === ${ startDateValue }`)
     console.log(`check out === ${ endDateValue }`)
     console.log(`number of visitors === ${ numberOfVisitors }`)
+    
   }
 
 
@@ -304,7 +306,7 @@ const GetRoomDetails = () => {
         isLoadingHotelDetails === true ? 
           <section className='fetch-all-hotels-loading-section'>
             <FontAwesomeIcon icon={ faSpinner } size='2x' spinPulse className='mb-4' color='#808080' />
-            <p className='fetching-hotels-text'>fetching details of { params.hotel_name } hotel... please wait</p>
+            <p className='fetching-hotels-text'>fetching details of { params.hotel_name }... please wait</p>
           </section>
 
           :

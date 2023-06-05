@@ -182,7 +182,7 @@ const Home = () => {
 
         <section className='plan-staycation-section'>
             <h3 className='plan-staycation-text'><strong>Plan your next staycation</strong></h3>
-            <hr />
+            
         </section>
 
       <section className='main-hotels-section'>

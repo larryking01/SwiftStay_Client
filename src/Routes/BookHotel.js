@@ -214,12 +214,12 @@ const BookHotel = ( ) => {
 
                             <Row>
                                 <Col>
-                                    <h5 className='section-sub-header'>Check-in</h5>
+                                    <h5 className='section-sub-header'>Check-in <span className='booking-checkin-date-format'>(mm-dd-yyyy)</span></h5>
                                     <p className='booking-hotel-extra-details'>{ startDateValue }</p>
                                 </Col>
 
                                 <Col>
-                                    <h5 className='section-sub-header'>Check-out</h5>
+                                    <h5 className='section-sub-header'>Check-out <span className='booking-checkin-date-format'>(mm-dd-yyyy)</span></h5>
                                     <p className='booking-hotel-extra-details'>{ endDateValue }</p>
                                 </Col>
                             </Row>

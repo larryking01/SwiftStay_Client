@@ -23,7 +23,7 @@ import { FaCcVisa } from 'react-icons/fa'
 import { FaCcMastercard } from 'react-icons/fa'
 import { FaCcPaypal } from 'react-icons/fa'
 import { BsPersonFill } from 'react-icons/bs'
-
+import { BiMinus, BiPlus } from 'react-icons/bi'
 
 import Maps from '../Configuration/Maps'
 
@@ -74,19 +74,23 @@ const GetRoomDetails = () => {
   const [ reviewBodyError, setReviewBodyError ] = useState( false )
   const [ postingReview, setPostingReview ] = useState( false )
   const [ reviewFeedback, setReviewFeedback ] = useState('')
+  const [ showGuestExtraDetails, setShowGuestExtraDetails ] = useState( false )
 
 
   // destructuring user booking hotel extra info.
   const { checkIn, HandleCheckInState, checkOut, 
-          HandleCheckOutState, numberOfVisitors, HandleNumberOfVisitorsState, 
-          startDateValue, setStartDateValue, endDateValue, setEndDateValue } = useContext( UserContext )
+          HandleCheckOutState, numberOfAdultVisitors, setNumberOfAdultVisitors,
+          numberOfChildVisitors, setNumberOfChildVisitors,
+          numberOfRooms, setNumberOfRooms, 
+          startDateValue, setStartDateValue, endDateValue, setEndDateValue,
+           } = useContext( UserContext )
 
 
   const HandleSearchSubmit = ( ) => {
     // console.log(`start date value === ${ startDateValue }`)
     console.log(`check in === ${ startDateValue }`)
     console.log(`check out === ${ endDateValue }`)
-    console.log(`number of visitors === ${ numberOfVisitors }`)
+    // console.log(`number of visitors === ${ numberOfVisitors }`)
     
   }
 
@@ -336,8 +340,132 @@ const GetRoomDetails = () => {
             </Col>
 
             <Col className='selected-room-details-destination-column'>
-              <Form.Control type='text' placeholder='2 adults, 1 room' onChange={ HandleNumberOfVisitorsState } value={ numberOfVisitors }
-              className='selected-room-details-category text-control-focus-style' />
+              <Form.Control type='text' className='selected-room-details-category text-control-focus-style'
+                  placeholder={ numberOfAdultVisitors + ' adult(s). ' + numberOfChildVisitors + ' child(ren). '  + numberOfRooms + ' room(s)'  }
+                  value={ `${ numberOfAdultVisitors } ${ numberOfAdultVisitors === 1 ? ' adult' : ' adults'} * ${ numberOfChildVisitors } ${ numberOfChildVisitors === 1 ? ' child' : ' children'} * ${ numberOfRooms } ${ numberOfRooms === 1 ? ' room' : ' rooms'}`}
+                  onClick={ () => setShowGuestExtraDetails( !showGuestExtraDetails )}
+               />
+
+              {
+                showGuestExtraDetails === true ? 
+                  <Form className='selected-room-details-extra-guest-details-form mt-3'>
+                      <Row className='selected-room-details-extra-guest-details-row mb-2'>
+                        <Col>
+                          <h6>Adults</h6>
+                        </Col>
+
+                        <Col>
+                          <Row className='selected-room-details-extra-guest-info-row'>
+                            <Col>
+                              <BiMinus color='#5a50eb' className='selected-room-details-extra-guest-info-icon'
+                                  onClick={ ( ) => { 
+                                    if( numberOfAdultVisitors === 0 ) {
+                                      setNumberOfAdultVisitors( 0 )
+                                    }
+                                    else {
+                                      setNumberOfAdultVisitors( numberOfAdultVisitors - 1 ) 
+                                    }
+                                  } }
+                              />
+                            </Col>
+
+                            <Col>
+                              { numberOfAdultVisitors }
+                            </Col>
+
+                            <Col>
+                              <BiPlus color='#5a50eb' className='selected-room-details-extra-guest-info-icon'
+                                onClick={ ( ) => setNumberOfAdultVisitors( numberOfAdultVisitors + 1 ) }/>
+                            </Col>
+
+                          </Row>
+                        </Col>
+
+                      </Row>
+
+
+                      <Row className='selected-room-details-extra-guest-details-row mb-2'>
+                        <Col>
+                          <h6>Children</h6>
+                        </Col>
+
+                        <Col>
+                          <Row className='selected-room-details-extra-guest-info-row'>
+                            <Col>
+                              <BiMinus color='#5a50eb' className='selected-room-details-extra-guest-info-icon'
+                                  onClick={() => {
+                                    if( numberOfChildVisitors === 0 ) {
+                                      setNumberOfChildVisitors( 0 )
+                                    }
+                                    else {
+                                      setNumberOfChildVisitors( numberOfChildVisitors - 1 )
+                                    }
+                                  }} />
+                            </Col>
+                            
+                            <Col>
+                              { numberOfChildVisitors }
+                            </Col>
+
+                            <Col>
+                              <BiPlus color='#5a50eb' className='selected-room-details-extra-guest-info-icon'
+                                  onClick={ () => { setNumberOfChildVisitors( numberOfChildVisitors + 1 )}} />
+                            </Col>
+
+
+                          </Row>
+                        </Col>
+
+                      </Row>
+
+
+                      <Row className='selected-room-details-extra-guest-details-row mb-4'>
+                        <Col>
+                          <h6>Rooms</h6>
+                        </Col>
+
+                        <Col>
+                          <Row className='selected-room-details-extra-guest-info-row'>
+                            <Col>
+                              <BiMinus color='#5a50eb' className='selected-room-details-extra-guest-info-icon'
+                                  onClick={() => { 
+                                    if( numberOfRooms === 0 ) {
+                                      setNumberOfRooms( 0 )
+                                    }
+                                    else {
+                                      setNumberOfRooms( numberOfRooms - 1 )
+                                    }
+                                  }} />
+                            </Col>
+                            
+                            <Col>
+                              { numberOfRooms }
+                            </Col>
+
+                            <Col>
+                              <BiPlus color='#5a50eb' className='selected-room-details-extra-guest-info-icon'
+                                onClick={ ( ) => { setNumberOfRooms( numberOfRooms + 1 ) }} />
+                            </Col>
+
+                          </Row>
+                        </Col>
+
+                      </Row>
+
+                      <Row className='selected-room-details-extra-guest-details-row'>
+                          <Button variant='custom' onClick={ () => setShowGuestExtraDetails( false )}
+                            className='selected-room-details-extra-guest-details-done-btn'>Done</Button>
+                      </Row>
+
+
+                  </Form>
+
+                  :
+
+                  null
+
+              }
+
             </Col>
 
             <Col className='selected-room-details-destination-column'>

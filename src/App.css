@@ -562,6 +562,37 @@
     height: 55px;
 }
 
+.selected-room-details-extra-guest-details-form {
+    border: 1px solid lightgrey;
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 12%;
+    border-radius: 4%;
+
+}
+
+.selected-room-details-extra-guest-details-done-btn {
+    border: 1px solid var(--primary-color);
+    width: 90%;
+    margin-left: 10%;
+}
+
+.selected-room-details-extra-guest-details-done-btn:hover {
+    border: 1px solid var(--primary-color);
+
+}
+
+.selected-room-details-extra-guest-info-icon {
+    cursor: pointer;
+}
+
+.selected-room-details-extra-guest-info-row {
+    border: 1px solid lightgrey;
+    border-radius: 5%;
+    padding: 6%;
+}
+
 .selected-room-details-search-hotel-button {
     height: 55px;
     width: 100%;
@@ -1001,6 +1032,11 @@
     border-radius: 2%;
     border: 1px solid lightgray;
     padding: 3%;
+}
+
+.booking-checkin-date-format {
+    color: grey;
+    font-size: 0.8rem;
 }
 
 

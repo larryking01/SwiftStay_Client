@@ -24,13 +24,31 @@ const EndDatePicker = ( ) => {
                 label='Check-out'
                 value={ endDateValue }
                 onChange={ ( newValue ) => {
-                    // const date = new Date( newValue ).toLocaleDateString('fr-FR')
-                    // console.log( date )
-                    // setEndDateValue( date )
-                    const date = newValue._d.toLocaleDateString('fr-FR')
-                    setEndDateValue( date )
-                    console.log( date )
+                    if ( newValue !== null ) {
+                        const date = newValue._d
+                        console.log( `date = ${ date }` )
+      
+                        const day = date.getDate()
+                        let stringDay = day.toString()
+                        if( stringDay.length < 2 ) {
+                          stringDay = '0' + stringDay
+                        }
+      
+                        const month = date.getMonth() + 1
+                        let stringMonth = month.toString()
+                        if( stringMonth.length < 2 ) {
+                          stringMonth = '0' + stringMonth
+                        }
+      
+                        const year = date.getFullYear()
+                        let stringYear = year.toString()
+      
+                        let finalDate = stringMonth + '/' + stringDay + '/' +  stringYear
+                        console.log(`final date = ${ finalDate }`)
+                        setEndDateValue( finalDate )
+                        
                     }
+                          }
                 }
                 renderInput={ ( params ) => <TextField {...params} /> }
                 className='start-date-picker-styling'

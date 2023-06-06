@@ -60,9 +60,11 @@ const App = () => {
     // handling hotel-booking-info
     const [ checkIn, setCheckIn ] = useState('')
     const [ checkOut, setCheckOut ] = useState('')
-    const [ numberOfVisitors, setNumberOfVisitors ] = useState('0')
+    const [ numberOfAdultVisitors, setNumberOfAdultVisitors ] = useState( 1 )
+    const [ numberOfChildVisitors, setNumberOfChildVisitors ] = useState( 1 )
+    const [ numberOfRooms, setNumberOfRooms ] = useState( 1 )
 
-    
+
     const HandleCheckInState = ( event ) => {
         setCheckIn( event.target.value )
     }
@@ -71,9 +73,19 @@ const App = () => {
         setCheckOut( event.target.value )
     }
 
-    const HandleNumberOfVisitorsState = ( event ) => {
-        setNumberOfVisitors( event.target.value )
+    const HandleNumberOfAdultVisitorsState = ( event ) => {
+        setNumberOfAdultVisitors( event.target.value )
     }
+
+    const HandleNumberOfChildVisitorsState = ( event ) => {
+        setNumberOfChildVisitors( event.target.value )
+    }
+
+    const HandleNumberOfRoomsState = ( event ) => {
+        setNumberOfRooms( event.target.value )
+    }
+
+
 
 
   
@@ -82,8 +94,10 @@ const App = () => {
       <>
         <HashRouter>
             <UserContext.Provider value={{ currentUser, setCurrentUser, checkIn, 
-                                           HandleCheckInState, checkOut, HandleCheckOutState, 
-                                           numberOfVisitors, HandleNumberOfVisitorsState, 
+                                           HandleCheckInState, checkOut, HandleCheckOutState,
+                                           numberOfAdultVisitors, setNumberOfAdultVisitors,
+                                           numberOfChildVisitors, setNumberOfChildVisitors,
+                                           numberOfRooms, setNumberOfRooms,
                                            startDateValue, setStartDateValue, endDateValue, 
                                            setEndDateValue }}
             >

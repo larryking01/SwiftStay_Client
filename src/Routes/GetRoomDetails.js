@@ -4,7 +4,6 @@ import { UserContext } from '../App'
 
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
-// import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
@@ -48,7 +47,6 @@ const GetRoomDetails = () => {
   // let local_server = 'http://127.0.0.1:8000'
   let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
 
-
   // for params
   const params = useParams()
   let booking_room_id = params.hotel_id
@@ -56,6 +54,10 @@ const GetRoomDetails = () => {
 
   // navigation
   const navigate = useNavigate()
+
+  // setting up reference.
+  const reviewRef = useRef( null )
+
 
   // for state.
   const [ selectedRoomDetailsObject, setselectedRoomDetailsObject ] = useState({})
@@ -78,35 +80,20 @@ const GetRoomDetails = () => {
 
 
   // destructuring user booking hotel extra info.
-  const { checkIn, HandleCheckInState, checkOut, 
-          HandleCheckOutState, numberOfAdultVisitors, setNumberOfAdultVisitors,
+  const { numberOfAdultVisitors, setNumberOfAdultVisitors,
           numberOfChildVisitors, setNumberOfChildVisitors,
           numberOfRooms, setNumberOfRooms, 
-          startDateValue, setStartDateValue, endDateValue, setEndDateValue,
-           } = useContext( UserContext )
+          startDateValue, endDateValue } = useContext( UserContext )
 
 
   const HandleSearchSubmit = ( ) => {
-    // console.log(`start date value === ${ startDateValue }`)
     console.log(`check in === ${ startDateValue }`)
     console.log(`check out === ${ endDateValue }`)
-    // console.log(`number of visitors === ${ numberOfVisitors }`)
+    console.log(`adults = ${ numberOfAdultVisitors }`)
+    console.log(`children = ${ numberOfChildVisitors }`)
+    console.log(`rooms = ${ numberOfRooms }`)
     
   }
-
-
-
-
-
-
-
-
-
-
-
-  // setting up reference.
-  const reviewRef = useRef( null )
-
 
 
   // making certain component always displays from top on initial render.
@@ -325,12 +312,7 @@ const GetRoomDetails = () => {
       <section>
       <section className='selected-room-checkin-dates'>
         <Form className='selected-room-details-destination-form'>
-          <Row xs={ 1 } md={ 4 }>
-            {/* <Col className='selected-room-details-destination-column'>
-              <Form.Control type='text' placeholder='Going to' onChange={ HandleGoingToState } value={ goingTo }
-                className='selected-room-details-destination text-control-focus-style' />
-            </Col> */}
-
+          <Row xs={ 1 } md={ 3 }>
             <Col className='selected-room-details-destination-column'>
               <StartDatePicker />
             </Col>
@@ -340,7 +322,7 @@ const GetRoomDetails = () => {
             </Col>
 
             <Col className='selected-room-details-destination-column'>
-              <Form.Control type='text' className='selected-room-details-category text-control-focus-style'
+              <Form.Control type='text' className='selected-room-details-category text-control-focus-style specify-cursor'
                   placeholder={ numberOfAdultVisitors + ' adult(s). ' + numberOfChildVisitors + ' child(ren). '  + numberOfRooms + ' room(s)'  }
                   value={ `${ numberOfAdultVisitors } ${ numberOfAdultVisitors === 1 ? ' adult' : ' adults'} * ${ numberOfChildVisitors } ${ numberOfChildVisitors === 1 ? ' child' : ' children'} * ${ numberOfRooms } ${ numberOfRooms === 1 ? ' room' : ' rooms'}`}
                   onClick={ () => setShowGuestExtraDetails( !showGuestExtraDetails )}
@@ -468,12 +450,12 @@ const GetRoomDetails = () => {
 
             </Col>
 
-            <Col className='selected-room-details-destination-column'>
+            {/* <Col className='selected-room-details-destination-column'>
               <Button variant='custom' onClick={ HandleSearchSubmit }
                 className='selected-room-details-search-hotel-button'>
                   Submit
               </Button>
-            </Col>
+            </Col> */}
           </Row>
         </Form>
       </section>

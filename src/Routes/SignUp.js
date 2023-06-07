@@ -6,12 +6,10 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import InputGroup from 'react-bootstrap/InputGroup'
 import skyscanner_1 from '../Media Files/skyscanner_1.jpeg'
-import { BsFacebook, BsApple, BsGoogle, BsFillEyeSlashFill, BsFillEyeFill, 
-         BsFillPersonFill } from 'react-icons/bs'
+import { BsFacebook, BsApple, BsGoogle, BsFillEyeSlashFill, BsFillEyeFill, BsFillPersonFill } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 import { UserContext } from '../App'
 import { firebaseAuth } from '../Configuration/Firebase'
-import { faListCheck } from '@fortawesome/free-solid-svg-icons'
 
 
 

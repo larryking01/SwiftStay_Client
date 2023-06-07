@@ -29,8 +29,6 @@ import NavbarComponent from './Routes/NavBar'
 import Reviews from './Routes/AllReviews'
 import Footer from './Routes/Footer'
 import FaIcons from './Routes/FaIcons'
-import StartDatePicker from './Configuration/StartDatePicker'
-// import EndDatePicker from './Routes/EndDatePicker'
 
 
 

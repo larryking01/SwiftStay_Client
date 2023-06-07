@@ -5,8 +5,6 @@ import about_us_bg2 from '../Media Files/Rooms And Suites/about-us-bg2.jpg'
 import traveler from '../Media Files/traveler.png'
 import upcycling from '../Media Files/upcycling.png'
 import team_1 from '../Media Files/team_1.jpg'
-// import about_us_bg1 from '../Media Files/Rooms And Suites/about-us-bg1.jpg'
-// import about_us_bg3 from '../Media Files/Rooms And Suites/about-us-bg3.jpg'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 

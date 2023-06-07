@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -33,8 +33,12 @@ const BookHotel = ( ) => {
     const params = useParams()
 
 
+    // setting up reference.
+    const confirmReference = useRef( null )
+
+
     // getting check-in and check-out dates via useContext.
-    const { startDateValue, endDateValue, numberOfVisitors } = useContext( UserContext )
+    const { startDateValue, endDateValue, numberOfAdultVisitors, numberOfChildVisitors, numberOfRooms } = useContext( UserContext )
 
 
     // making certain component always displays from top on initial render.
@@ -130,6 +134,17 @@ const BookHotel = ( ) => {
     }
 
 
+    // scrolling confirm booking reference into view.
+    const ScrollConfirmBookingIntoView = ( ) => {
+        setTimeout(() => {
+            confirmReference.current.scrollIntoView({
+                behavior: 'smooth'
+            })
+
+        }, 1000)
+    }
+
+
     const HandleBookHotelAction = ( ) => {
 
         if( bookingCustomerFirstName.length < 1 || bookingCustomerLastName.length < 1 || bookingCustomerEmail.length < 1 || bookingCustomerNumber.length < 1 || customerPaymentCardName.length < 1 || customerPaymentBookingEmail.length < 1 || customerPaymentCardNumber.length < 1 || customerPaymentCardExpiryDate.length < 1 || customerPaymentCardSecurityCode.length < 1  ) {
@@ -148,9 +163,12 @@ const BookHotel = ( ) => {
             console.log(`customer card number: ${ customerPaymentCardNumber }`)
             console.log(`customer card expiry date: ${ customerPaymentCardExpiryDate }`)
             console.log(`customer card security code: ${ customerPaymentCardSecurityCode }`)
+
+            ScrollConfirmBookingIntoView()
             }
 
     }
+
 
 
 
@@ -226,13 +244,25 @@ const BookHotel = ( ) => {
 
                             <Row>
                                 <Col>
-                                    <h5 className='section-sub-header'>Guests</h5>
-                                    <p className='booking-hotel-extra-details'>{ numberOfVisitors }</p>
+                                    <h5 className='section-sub-header'>No. Of Adults</h5>
+                                    <p className='booking-hotel-extra-details'>{ numberOfAdultVisitors }</p>
                                 </Col>
 
                                 <Col>
-                                    <h5 className='section-sub-header'>Stay</h5>
-                                    <p className='booking-hotel-extra-details'>1 night</p>
+                                    <h5 className='section-sub-header'>No. Of Children</h5>
+                                    <p className='booking-hotel-extra-details'>{ numberOfChildVisitors }</p>
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                <Col>
+                                    <h5 className='section-sub-header'>No. Of Rooms Booked</h5>
+                                    <p className='booking-hotel-extra-details'>{ numberOfRooms }</p>
+                                </Col>
+
+                                <Col>
+                                    <h5 className='section-sub-header'>Length Of Stay</h5>
+                                    <p className='booking-hotel-extra-details'>43 nights</p>
                                 </Col>
                                 <hr />
                             </Row>
@@ -388,7 +418,12 @@ const BookHotel = ( ) => {
                     {/* End of payment details column */ }
                     
                 </Row>
+            </section>
 
+
+
+            <section className='booking-details-confirmation-section' ref={ confirmReference } >
+                <h4>Confirm your booking details</h4>
             </section>
 
 

@@ -90,8 +90,11 @@ const BookHotel = ( ) => {
     const [ customerPaymentCardSecurityCode, setCustomerPaymentCardSecurityCode ] = useState('')
     const [ bookingFieldsErrorStatus, setBookingFieldsErrorStatus ] = useState( false )
     const [ bookingFieldsErrorMessage, setBookingFieldsErrorMessage ] = useState('')
-
-
+    const [ paymentMethod, setPaymentMethod ] = useState('')
+    const [ visaPaymentSelected, setVisaPaymentSelected ] = useState( false )
+    const [ masterCardPaymentSelected, setMasterCardPaymentSelected ] = useState( false )
+    const [ payPalPaymentSelected, setPaypalPaymentSelected ] = useState( false )
+    const [ mobileMoneyPaymentSelected, setMobileMoneyPaymentSelected ] = useState( false )
 
 
     // updating state values.
@@ -133,6 +136,37 @@ const BookHotel = ( ) => {
         setCustomerPaymentCardSecurityCode( event.target.value )
     }
 
+    const ResetAllSelectedPaymentMethods = ( ) => {
+        setVisaPaymentSelected( false )
+        setMasterCardPaymentSelected( false )
+        setPaypalPaymentSelected( false )
+        setMobileMoneyPaymentSelected( false )
+    }
+
+    const UpdateCustomerSelectedPaymentMethod = ( event ) => {
+        setPaymentMethod( event.target.value )
+        console.log(`payment method === ${ paymentMethod }`)
+        if ( paymentMethod === 'VISA' ) {
+            ResetAllSelectedPaymentMethods()
+            setVisaPaymentSelected( true )
+        }
+        else if ( paymentMethod === 'MASTERCARD') {
+            ResetAllSelectedPaymentMethods()
+            setMasterCardPaymentSelected( true )
+        }
+        else if ( paymentMethod === 'PAYPAL') {
+            ResetAllSelectedPaymentMethods()
+            setPaypalPaymentSelected( true )
+        }
+        else if( paymentMethod === 'MOBILE MONEY'){
+            ResetAllSelectedPaymentMethods()
+            setMobileMoneyPaymentSelected( true )
+        }
+        else {
+            ResetAllSelectedPaymentMethods()
+        }
+
+    }
 
     // scrolling confirm booking reference into view.
     const ScrollConfirmBookingIntoView = ( ) => {
@@ -152,19 +186,27 @@ const BookHotel = ( ) => {
             setBookingFieldsErrorMessage('One or more fields is(are) empty. All fields are required')
         }
         else {
-            setBookingFieldsErrorStatus( false )
-            console.log(`customer first name: ${ bookingCustomerFirstName }`)
-            console.log(`customer last name: ${ bookingCustomerLastName }`)
-            console.log(`customer email: ${ bookingCustomerEmail }`)
-            console.log(`customer number: ${ bookingCustomerNumber }`)
-    
-            console.log(`customer name on card: ${ customerPaymentCardName }`)
-            console.log(`customer booking email: ${ customerPaymentBookingEmail }`)
-            console.log(`customer card number: ${ customerPaymentCardNumber }`)
-            console.log(`customer card expiry date: ${ customerPaymentCardExpiryDate }`)
-            console.log(`customer card security code: ${ customerPaymentCardSecurityCode }`)
+            if( paymentMethod ===  '' || paymentMethod === '-- Select --') {
+                setBookingFieldsErrorStatus( true )
+                setBookingFieldsErrorMessage('Please select a valid payment method')
+            }
+            else {
+                setBookingFieldsErrorStatus( false )
+                console.log(`customer first name: ${ bookingCustomerFirstName }`)
+                console.log(`customer last name: ${ bookingCustomerLastName }`)
+                console.log(`customer email: ${ bookingCustomerEmail }`)
+                console.log(`customer number: ${ bookingCustomerNumber }`)
+        
+                console.log(`customer name on card: ${ customerPaymentCardName }`)
+                console.log(`customer booking email: ${ customerPaymentBookingEmail }`)
+                console.log(`customer card number: ${ customerPaymentCardNumber }`)
+                console.log(`customer card expiry date: ${ customerPaymentCardExpiryDate }`)
+                console.log(`customer card security code: ${ customerPaymentCardSecurityCode }`)
+                console.log(`customer payment method === ${ paymentMethod }`)
 
-            ScrollConfirmBookingIntoView()
+                ScrollConfirmBookingIntoView()
+            }
+
             }
 
     }
@@ -382,6 +424,24 @@ const BookHotel = ( ) => {
                                     <Form.Text>Your card issuer may charge a fee.</Form.Text>
                                 </Form.Group>
 
+                                <Form.Group className='mb-5'>
+                                    <Form.Text>Select your payment method *</Form.Text>
+                                    <Form.Select aria-label='select payment method' 
+                                        className='form-control text-control-focus-style specify-cursor'
+                                        onChange={ UpdateCustomerSelectedPaymentMethod }
+                                        value={ paymentMethod } >
+                                        <option value='-- Select --'>-- Select --</option>
+                                        <option value='VISA'>VISA</option>
+                                        <option value='MASTERCARD'>MASTERCARD</option>
+                                        <option value='PAYPAL'>PAYPAL</option>
+                                        <option value='MOBILE MONEY'>MOBILE MONEY</option>
+                                    </Form.Select>
+                                </Form.Group>
+
+                                { visaPaymentSelected && <p className='section-sub-header'> Pay With VISA </p> }
+                                { masterCardPaymentSelected && <p className='section-sub-header'> Pay With MASTERCARD </p> }
+                                { payPalPaymentSelected && <p className='section-sub-header'> Pay With PAYPAL </p> }
+                                { mobileMoneyPaymentSelected && <p className='section-sub-header'> PAY with MOBILE MONEY </p> }
 
                                 <Form.Group className='form-control-no-text'>
                                     <Form.Control className='text-control-focus-style' type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />

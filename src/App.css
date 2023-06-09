@@ -1186,7 +1186,16 @@
 
 .booking-hotel-detail-header {
     font-family: var(--primary-font);
-    font-weight: bolder;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+
+.booking-confirmation-div {
+    padding: 4% 4%;
+    background-color:  #F5F5F5; /*#F8F8F8; /*#F0F0F0;  #EDEADE; F9F6EE;  #FAF9F6; #E5E4E2;*/
+    /* border: 1px solid grey; */
+
 }
 
 
@@ -1997,6 +2006,11 @@
     .details-section-sub-div {
         margin-bottom: 12%;
     }    
+
+
+    .confirm-booking-details-btn {
+        margin-bottom: 12%;
+    }
     
     
     /* end of book hotel responsive styling */

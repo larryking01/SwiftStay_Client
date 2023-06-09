@@ -35,6 +35,7 @@ const BookHotel = ( ) => {
 
     // setting up reference.
     const confirmReference = useRef( null )
+    const detailsSectionRef = useRef( null )
 
 
     // getting check-in and check-out dates via useContext.
@@ -96,6 +97,17 @@ const BookHotel = ( ) => {
     const [ mobileMoneyPaymentSelected, setMobileMoneyPaymentSelected ] = useState( false )
     const [ cardExpiryMonth, setCardExpiryMonth ] = useState('')
     const [ cardExpiryYear, setCardExpiryYear ] = useState('')
+
+
+    // scrolling details section ref into view.
+    const ScrollDetailsSectionRefIntoView = ( ) => {
+        setTimeout(() => {
+            detailsSectionRef.current.scrollIntoView({
+                behavior: 'smooth'
+            })
+
+        }, 1000)
+    }
 
 
     // updating state values.
@@ -310,7 +322,7 @@ const BookHotel = ( ) => {
                                 </Carousel>
                             </section>
 
-                            <Row>
+                            <Row md={ 2 } xs={ 1 }>
                                 <Col>
                                     <h5 className='section-sub-header'>Check-in <span className='booking-checkin-date-format'>(mm-dd-yyyy)</span></h5>
                                     <p className='booking-hotel-extra-details'>{ startDateValue }</p>
@@ -322,7 +334,8 @@ const BookHotel = ( ) => {
                                 </Col>
                             </Row>
 
-                            <Row>
+
+                            <Row md={ 2 } xs={ 1 }>
                                 <Col>
                                     <h5 className='section-sub-header'>No. Of Adults</h5>
                                     <p className='booking-hotel-extra-details'>{ numberOfAdultVisitors }</p>
@@ -334,7 +347,9 @@ const BookHotel = ( ) => {
                                 </Col>
                             </Row>
 
-                            <Row>
+
+
+                            <Row md={ 2 } xs={ 1 }>
                                 <Col>
                                     <h5 className='section-sub-header'>No. Of Rooms Booked</h5>
                                     <p className='booking-hotel-extra-details'>{ numberOfRooms }</p>
@@ -347,10 +362,12 @@ const BookHotel = ( ) => {
                                 <hr />
                             </Row>
 
+
+
                             {
                                 <>
                                 <h5 className='section-sub-header'>Summary of features</h5>
-                                <Row md={ 4 }>
+                                <Row md={ 4 } xs={ 1 }>
                                     {
                                         Object.keys( bookingHotelObject ).length > 0 ?
                                             bookingHotelObject.room_features.map(( feature, index ) => (
@@ -370,7 +387,7 @@ const BookHotel = ( ) => {
                             <hr />
 
 
-                            <Row>
+                            <Row md={ 2 } >
                                 <h5 className='section-sub-header'>Pricing</h5>
 
                                 <Col>
@@ -419,7 +436,7 @@ const BookHotel = ( ) => {
 
 
                     {/*Payment details column */ }
-                    <Col className='details-section mb-5'>
+                    <Col className='details-section mb-5' ref={ detailsSectionRef } >
                     <div className='details-section-sub-div'>
                     <h4 className='section-sub-header'>Step 1: Your Details</h4>
                         <Form>
@@ -573,9 +590,9 @@ const BookHotel = ( ) => {
 
 
             <section className='book-hotel-confirmation-section' ref={ confirmReference } >
-                <h4 className='confirm-booking-header'>Confirm your booking details for { params.hotel_name }</h4>
+                <h4 className='confirm-booking-header mb-4'>Confirm your booking details for { params.hotel_name }</h4>
                 <div className='booking-confirmation-div'>
-                     <Row>
+                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Check-in date</h5>
                             <p>06/43/32</p>
@@ -586,9 +603,10 @@ const BookHotel = ( ) => {
                             <p>06/43/32</p>
                         </Col>
                      </Row>
+                     <hr />
 
 
-                     <Row>
+                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Number of adults</h5>
                             <p>4</p>
@@ -599,9 +617,11 @@ const BookHotel = ( ) => {
                             <p>2</p>
                         </Col>
                      </Row>
+                     <hr />
 
 
-                     <Row>
+
+                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Number of rooms booked</h5>
                             <p>4</p>
@@ -612,9 +632,11 @@ const BookHotel = ( ) => {
                             <p>2</p>
                         </Col>
                      </Row>
+                     <hr />
 
 
-                     <Row>
+
+                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Room features</h5>
                             {
@@ -646,7 +668,7 @@ const BookHotel = ( ) => {
                                 </Col>
 
                                 <Col>
-                                    <p>GHC 100.00</p>
+                                    <p>GH<span>&#8373;</span> 100.00</p>
                                 </Col>
                             </Row>
 
@@ -656,7 +678,7 @@ const BookHotel = ( ) => {
                                 </Col>
 
                                 <Col>
-                                    <p>GHC 12.00</p>
+                                    <p>GH<span>&#8373;</span> 12.00</p>
                                 </Col>
                             </Row>
 
@@ -666,7 +688,7 @@ const BookHotel = ( ) => {
                                 </Col>
 
                                 <Col>
-                                    <p>GHC 112.00 * ( 4 nights )</p>
+                                    <p>GH<span>&#8373;</span> 112.00 * ( 4 nights )</p>
                                 </Col>
                             </Row>
 
@@ -676,15 +698,17 @@ const BookHotel = ( ) => {
                                 </Col>
 
                                 <Col>
-                                    <p>GHC 324.00</p>
+                                    <p>GH<span>&#8373;</span> 324.00</p>
                                 </Col>
                             </Row>
                         </Col>
                      </Row>
+                     <hr />
 
 
-                     <Row>
-                        <Col md={ 6 }>
+
+                     <Row className='confirm-booking-details-row mb-4'>
+                        <Col md={ 5 }>
                             <h5 className='booking-hotel-detail-header'>Refund policy</h5>
                             <p>
                                 If you cancel or don't attend your hotel booking, you'll not be 
@@ -692,9 +716,11 @@ const BookHotel = ( ) => {
                             </p>
                         </Col>
                      </Row>
+                     <hr />
 
 
-                     <Row>
+
+                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Your first name</h5>
                             <p>Quan</p>
@@ -705,9 +731,11 @@ const BookHotel = ( ) => {
                             <p>Chi</p>
                         </Col>
                      </Row>
+                     <hr />
 
 
-                     <Row>
+
+                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Your contact email</h5>
                             <p>quan@gmail.com</p>
@@ -718,9 +746,11 @@ const BookHotel = ( ) => {
                             <p>0552531004</p>
                         </Col>
                      </Row>
+                     <hr />
 
 
-                     <Row>
+
+                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Your selected payment method</h5>
                             <p>VISA</p>
@@ -731,9 +761,11 @@ const BookHotel = ( ) => {
                             <p>Quan Chi</p>
                         </Col>
                     </Row>
+                    <hr />
+
                         
 
-                    <Row>
+                    <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Your card number</h5>
                             <p>024454534343</p>
@@ -744,9 +776,11 @@ const BookHotel = ( ) => {
                             <p>07 - July</p>
                         </Col>
                     </Row>
+                    <hr />
 
 
-                    <Row>
+
+                    <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Your card expiration year</h5>
                             <p>2027</p>
@@ -757,25 +791,32 @@ const BookHotel = ( ) => {
                             <p>941</p>
                         </Col>
                     </Row>
+                    <hr />
+
 
                     
-                     <Row>
+                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
                             <h5 className='booking-hotel-detail-header'>Your booking email</h5>
                             <p>quan@gmail.com</p>
                         </Col>
                     </Row>
+                    <hr />
 
 
-                    <Row>
+
+                    <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                         <Col>
-                            <Button variant='custom' className='confirm-booking-details-btn' >I confirm booking details. Complete my booking now</Button>
+                            <Button variant='custom' className='confirm-booking-details-btn'>I confirm booking details. Complete my booking now</Button>
                         </Col>
 
                         <Col>
-                            <Button variant='custom' className='edit-booking-details-btn'>I want to edit my booking information</Button>
+                            <Button variant='custom' className='edit-booking-details-btn' onClick={ ScrollDetailsSectionRefIntoView }>
+                                I want to edit my booking information
+                            </Button>
                         </Col>
                     </Row>
+                    
 
                 </div>
             </section>

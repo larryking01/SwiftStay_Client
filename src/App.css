@@ -1138,6 +1138,62 @@
 }
 
 
+.card-expiry-month-text {
+    color: grey;
+}
+
+.card-expiry-year-text {
+    color: grey;
+}
+
+.book-hotel-confirmation-section {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.confirm-booking-header {
+    font-family: var(--primary-font);
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+
+.confirm-booking-details-btn {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
+
+.confirm-booking-details-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
+
+
+.edit-booking-details-btn {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
+
+.edit-booking-details-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
+
+
+.booking-hotel-detail-header {
+    font-family: var(--primary-font);
+    font-weight: bolder;
+}
+
+
+
+
+
+
 /* end of book hotel page styling */
 
 
@@ -1764,7 +1820,7 @@
 
 
 /* responsive styling */
-@media screen and ( min-width: 300px ) and ( max-width: 480px ) {
+@media screen and ( min-width: 220px ) and ( max-width: 480px ) {
 
     /* home page responsive styling */
     .place-to-stay{
@@ -2021,6 +2077,12 @@
         margin-top: 8%;
     }
 
+    .get-room-details-review-section {
+        margin-left: 6%;
+        margin-right: 6%;
+        margin-top: 10%;
+    }
+    
     /* end of get room details responsive styling */
         
         

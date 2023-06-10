@@ -8,7 +8,7 @@ import '@fontsource/roboto/700.css'
 
 
 // routing.
-import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import Home from './Routes/Home'
 import FetchAllBookings from './Routes/FetchAllBookings'
 import FetchAllRooms from './Routes/FetchAllRooms'

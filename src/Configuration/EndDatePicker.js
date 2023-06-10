@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
@@ -11,8 +11,16 @@ import { UserContext } from '../App'
 
 const EndDatePicker = ( ) => {
 
-
+    // destructuring values from context
     const { endDateValue, setEndDateValue } = useContext( UserContext )
+
+
+    // effect hook to store end date value in local storage
+    useEffect(() => {
+        window.localStorage.setItem( 'endDateValue', JSON.stringify( endDateValue ))
+        console.log(`local storage start date value = ${ endDateValue }`)
+
+    }, [ endDateValue ])
 
 
     return (

@@ -231,7 +231,7 @@ const Home = () => {
           loadingHotels === true ? 
               <div className='loading-hotels-div-style'>
                 <FontAwesomeIcon icon={ faSpinner } size='2x' spinPulse className='mb-4' color='#808080' />
-                <p className='fetching-hotels-text'>fetching available hotels... please wait</p>
+                <p className='fetching-hotels-text'>fetching available hotels.... please wait</p>
               </div>
 
             :

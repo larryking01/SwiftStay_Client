@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import InputGroup from 'react-bootstrap/InputGroup'
-import skyscanner_1 from '../Media Files/skyscanner_1.jpeg'
 import { BsFacebook, BsApple, BsGoogle, BsFillEyeSlashFill, BsFillEyeFill, BsFillPersonFill } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 import { UserContext } from '../App'
@@ -19,6 +18,11 @@ import { firebaseAuth } from '../Configuration/Firebase'
 
 
 const SignUp = ( ) => {
+
+// website brand name.
+// SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
+const brand_name = 'SwiftStay'
+
 
 const navigate = useNavigate()
 
@@ -208,7 +212,8 @@ const CreateNewUser = async ( ) => {
 
         <div className='sign-up-wrapper'>
             <section>
-                <img className='sign-up-brand-logo' src={ skyscanner_1 } alt='' width={ 200 } onClick={() => navigate('/')} />
+                {/* <img className='log-in-brand-logo' onClick={() => navigate('/')} /> */}
+                <h3 className='log-in-brand-logo' onClick={() => navigate('/')}>{ brand_name }</h3>
             </section>
 
             <section className='create-account-section'>

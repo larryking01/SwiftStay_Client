@@ -23,11 +23,23 @@ import EndDatePicker from '../Configuration/EndDatePicker.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-
+// for rooms and suites
 import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp'
 import rooms_and_suites_2 from '../Media Files/Rooms And Suites/rooms_and_suites_2.jpg'
 import rooms_and_suites_3 from '../Media Files/Rooms And Suites/rooms_and_suites_3.jpg'
 import rooms_and_suites_4 from '../Media Files/Rooms And Suites/rooms_and_suites_4.webp'
+
+// for restaurant images.
+import restaurant_image1 from '../Media Files/Restaurants Images/restaurant_image1.jpg'
+import restaurant_image2 from '../Media Files/Restaurants Images/restaurant_image2.webp'
+import restaurant_image3 from '../Media Files/Restaurants Images/restaurant_image3.jpg'
+import restaurant_image4 from '../Media Files/Restaurants Images/restaurant_image4.jpg'
+
+// for meeting room images
+import meeting_room_image1 from '../Media Files/Meeting Room Images/meeting_room_image1.jpg'
+import meeting_room_image2 from '../Media Files/Meeting Room Images/meeting_room_image2.jpg'
+import meeting_room_image3 from '../Media Files/Meeting Room Images/meeting_room_image3.webp'
+import meeting_room_image4 from '../Media Files/Meeting Room Images/meeting_room_image4.jpg'
 
 
 import ScrollToTop from  '../Configuration/ScrollToTop'
@@ -45,6 +57,7 @@ import { UserContext } from '../App'
 const Home = () => {
 
   // local and online server urls
+  //https://hotel-finder-app-server-rest.onrender.com
   // let local_server = 'http://127.0.0.1:8000'
   let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
 
@@ -121,6 +134,34 @@ const Home = () => {
   ]
 
 
+  // array to hold pictures for restaurants.
+  let restaurants_pictures_array = [
+    { src: restaurant_image1 },
+    { src: restaurant_image2 },
+    { src: restaurant_image3 },
+    { src: restaurant_image4 }
+  ]
+
+  
+  // array to hold pictures for meeting room
+  let meeting_room_pictures_array = [
+    { src: meeting_room_image1 },
+    { src: meeting_room_image2 },
+    { src: meeting_room_image3 },
+    { src: meeting_room_image4 }
+  ]
+
+
+  // special deals pictures array.
+  let special_deals_pictures_array = [
+    { src: meeting_room_image1 },
+    { src: rooms_and_suites_2 },
+    { src: restaurant_image3 },
+    { src: meeting_room_image4 }
+  ]
+
+
+
   return (
     <div>
 
@@ -130,7 +171,7 @@ const Home = () => {
         
         <section className='get-away'>
           <h3 className='get-away-text'><strong>Get away for a while</strong></h3>
-          <h6 className='get-away-details-text'>Whether for business, vacation or pleasure, Skyscanner can help you find the best hotel for your needs right here.</h6>
+          <h6 className='get-away-details-text'>Whether for business, vacation or pleasure, SwiftStay can help you find the best hotel for your needs right here.</h6>
         </section>
 
         <section className='place-to-stay'>
@@ -226,7 +267,7 @@ const Home = () => {
                                 </section>
 
                                 <section className='card-room-rate'>
-                                  GH<span>&#8373;</span>{ room.room_rate }
+                                  GH<span>&#8373;</span> { room.room_rate }
                                 </section>
                               </div>
                             </Card.Subtitle>
@@ -294,9 +335,9 @@ const Home = () => {
               <Col className='extra-info-text-col'>
                   <h3 className='extra-info-title'>Rooms & Suites</h3>
                   <div className='extra-info-details'>
-                  <h4>Whether you’re traveling alone or with company,</h4> 
-                  <h4>one of our rooms is definitely tailored for your needs.</h4>
-                  <h4>All rooms are equipped with the necessary amenities, and the decor simply speaks for itself. </h4>
+                  <h4 className='extra-info-details-text'>Whether you’re traveling alone or with company,</h4> 
+                  <h4 className='extra-info-details-text'>one of our rooms is definitely tailored for your needs.</h4>
+                  <h4 className='extra-info-details-text'>All rooms are equipped with the necessary amenities, and the decor simply speaks for itself. </h4>
                   </div>
               </Col>
           </Row>
@@ -305,16 +346,17 @@ const Home = () => {
               <Col className='extra-info-text-col'>
                   <h3 className='extra-info-title'>Restaurants</h3>
                   <div className='extra-info-details'>
-                  <h4>Whether you’re traveling alone or with company,</h4> 
-                  <h4>one of our rooms is definitely tailored for your needs.</h4>
-                  <h4>All rooms are equipped with the necessary amenities, and the decor simply speaks for itself. </h4>
+                    <h4 className='extra-info-details-text'>With Hotelier, we don't only bring you hotels with the best rooms
+                    but we take the entire human experience into consideration and that includes your food!!</h4> 
+                    <h4 className='extra-info-details-text'>Find the best dishes you didn't know you craved: from our local banku and okro stew to continental </h4>
+                    <h4 className='extra-info-details-text'>hot chicken casserole, like your mama makes. Our hotels got you covered!</h4>
                   </div>
               </Col>
 
               <Col>
                   <Carousel>
                     {
-                      rooms_and_suites_pictures_array.map(( picture, index ) => (
+                      restaurants_pictures_array.map(( picture, index ) => (
                         <Carousel.Item key={ index }>
                           <img src={ picture.src } alt='' className='extra-info-img' />
                         </Carousel.Item>
@@ -328,7 +370,7 @@ const Home = () => {
               <Col>
                   <Carousel>
                     {
-                      rooms_and_suites_pictures_array.map(( picture, index ) => (
+                      meeting_room_pictures_array.map(( picture, index ) => (
                         <Carousel.Item key={ index }>
                           <img src={ picture.src } alt='' className='extra-info-img' />
                         </Carousel.Item>
@@ -340,9 +382,10 @@ const Home = () => {
               <Col className='extra-info-text-col'>
                   <h3 className='extra-info-title'>Meetings & Events</h3>
                   <div className='extra-info-details'>
-                  <h4>Whether you’re traveling alone or with company,</h4> 
-                  <h4>one of our rooms is definitely tailored for your needs.</h4>
-                  <h4>All rooms are equipped with the necessary amenities, and the decor simply speaks for itself. </h4>
+                  <h4 className='extra-info-details-text'>Need a setting to host a meeting during your stay in our hotels?</h4> 
+                  <h4 className='extra-info-details-text'>We understand that work can be unpredictable and who knows when businesss comes up, right?!</h4>
+                  <h4 className='extra-info-details-text'>You don't need to panic, our hotels come with executive rooms suited for business meetings of any kind.</h4>
+                  <h4 className='extra-info-details-text'>We're saying, as long as you're booked with us, we've got your back!</h4>
                   </div>
               </Col>
           </Row>
@@ -352,16 +395,16 @@ const Home = () => {
               <Col className='extra-info-text-col'>
                   <h3 className='extra-info-title'>Special Deals</h3>
                   <div className='extra-info-details'>
-                  <h4>Whether you’re traveling alone or with company,</h4> 
-                  <h4>one of our rooms is definitely tailored for your needs.</h4>
-                  <h4>All rooms are equipped with the necessary amenities, and the decor simply speaks for itself. </h4>
+                  <h4 className='extra-info-details-text'>Discover the epitome of luxury and savings with our special deals designed just for you.</h4> 
+                  <h4 className='extra-info-details-text'>Indulge in the perfect blend of comfort,</h4>
+                  <h4 className='extra-info-details-text'>sophistication, and affordability at SwiftStay.</h4>
                   </div>
               </Col>
 
               <Col>
                   <Carousel>
                     {
-                      rooms_and_suites_pictures_array.map(( picture, index ) => (
+                      special_deals_pictures_array.map(( picture, index ) => (
                         <Carousel.Item key={ index }>
                           <img src={ picture.src } alt='' className='extra-info-img' />
                         </Carousel.Item>

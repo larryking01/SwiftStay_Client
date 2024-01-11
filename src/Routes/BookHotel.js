@@ -24,24 +24,46 @@ import { UserContext } from '../App'
 
 
 
-
-
-
 const BookHotel = ( ) => {
+
+    // setting up state.
+    const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
+    const [ bookingCustomerFirstName, setBookingCustomerFirstName ] = useState('')
+    const [ bookingCustomerLastName, setBookingCustomerLastName ] = useState('')
+    const [ bookingCustomerEmail, setBookingCustomerEmail ] = useState('')
+    const [ bookingCustomerNumber, setBookingCustomerNumber ] = useState('')
+    const [ customerPaymentCardName, setPaymentCardName ] = useState('')
+    const [ customerPaymentBookingEmail, setPaymentBookingEmail ] = useState('')
+    const [ customerPaymentCardNumber, setPaymentCardNumber ] = useState('')
+    const [ customerPaymentCardSecurityCode, setCustomerPaymentCardSecurityCode ] = useState('')
+    const [ bookingFieldsErrorStatus, setBookingFieldsErrorStatus ] = useState( false )
+    const [ showBookingConfirmPage, setShowBookingConfirmPage ] = useState( false )
+    const [ bookingFieldsErrorMessage, setBookingFieldsErrorMessage ] = useState('')
+    const [ paymentMethod, setPaymentMethod ] = useState('')
+    const [ visaPaymentSelected, setVisaPaymentSelected ] = useState( false )
+    const [ masterCardPaymentSelected, setMasterCardPaymentSelected ] = useState( false )
+    const [ payPalPaymentSelected, setPaypalPaymentSelected ] = useState( false )
+    const [ mobileMoneyPaymentSelected, setMobileMoneyPaymentSelected ] = useState( false )
+    const [ cardExpiryMonth, setCardExpiryMonth ] = useState('')
+    const [ cardExpiryYear, setCardExpiryYear ] = useState('')
+
 
     // url params
     const params = useParams()
-
 
     // setting up reference.
     const confirmReference = useRef( null )
     const detailsSectionRef = useRef( null )
 
-
     // getting check-in and check-out dates via useContext.
-    const { startDateValue, setStartDateValue, endDateValue, setEndDateValue,
-            numberOfAdultVisitors, numberOfChildVisitors, numberOfRooms } = useContext( UserContext )
-
+    const { startDateValue, 
+            setStartDateValue, 
+            endDateValue, 
+            setEndDateValue,
+            numberOfAdultVisitors, 
+            numberOfChildVisitors, 
+            numberOfRooms 
+           } = useContext( UserContext )
 
     // effect hook to fetch start date value from local storage
     useEffect(() => {
@@ -49,8 +71,7 @@ const BookHotel = ( ) => {
         console.log(`localStorageStartDateValue = ${ localStorageStartDateValue }`)
         setStartDateValue( localStorageStartDateValue )
 
-    }, [ ])
-
+    }, [ startDateValue ,setStartDateValue ])
 
     // effect hook to fetch end date value from local storage
     useEffect(() => {
@@ -58,10 +79,7 @@ const BookHotel = ( ) => {
         console.log(`localStorageEndDateValue = ${ localStorageEndDateValue }`)
         setEndDateValue( localStorageEndDateValue )
 
-    }, [ ])
-
-
-
+    }, [ endDateValue ,setEndDateValue ])
 
     // making certain component always displays from top on initial render.
     // useEffect(() => {
@@ -76,8 +94,7 @@ const BookHotel = ( ) => {
     useEffect(() => {
         console.log(`start date === ${ startDateValue }`)
         console.log( `end date === ${ endDateValue }`)
-    }, [])
-
+    }, [ startDateValue, endDateValue, setStartDateValue, setEndDateValue ])
 
     // useEffect to fetch the booking hotel.
     useEffect(() => {
@@ -96,28 +113,6 @@ const BookHotel = ( ) => {
         fetchBookingHotel()
 
     }, [ ])
-
-
-    
-    // setting up state.
-    const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
-    const [ bookingCustomerFirstName, setBookingCustomerFirstName ] = useState('')
-    const [ bookingCustomerLastName, setBookingCustomerLastName ] = useState('')
-    const [ bookingCustomerEmail, setBookingCustomerEmail ] = useState('')
-    const [ bookingCustomerNumber, setBookingCustomerNumber ] = useState('')
-    const [ customerPaymentCardName, setPaymentCardName ] = useState('')
-    const [ customerPaymentBookingEmail, setPaymentBookingEmail ] = useState('')
-    const [ customerPaymentCardNumber, setPaymentCardNumber ] = useState('')
-    const [ customerPaymentCardSecurityCode, setCustomerPaymentCardSecurityCode ] = useState('')
-    const [ bookingFieldsErrorStatus, setBookingFieldsErrorStatus ] = useState( false )
-    const [ bookingFieldsErrorMessage, setBookingFieldsErrorMessage ] = useState('')
-    const [ paymentMethod, setPaymentMethod ] = useState('')
-    const [ visaPaymentSelected, setVisaPaymentSelected ] = useState( false )
-    const [ masterCardPaymentSelected, setMasterCardPaymentSelected ] = useState( false )
-    const [ payPalPaymentSelected, setPaypalPaymentSelected ] = useState( false )
-    const [ mobileMoneyPaymentSelected, setMobileMoneyPaymentSelected ] = useState( false )
-    const [ cardExpiryMonth, setCardExpiryMonth ] = useState('')
-    const [ cardExpiryYear, setCardExpiryYear ] = useState('')
 
 
     // scrolling details section ref into view.
@@ -238,7 +233,6 @@ const BookHotel = ( ) => {
 
 
     const HandleBookHotelAction = ( ) => {
-
         if( bookingCustomerFirstName.length < 1 || bookingCustomerLastName.length < 1 || 
             bookingCustomerEmail.length < 1 || bookingCustomerNumber.length < 1 || 
             customerPaymentCardName.length < 1 || customerPaymentBookingEmail.length < 1 || 
@@ -275,16 +269,13 @@ const BookHotel = ( ) => {
                 console.log(`card expiry month = ${ cardExpiryMonth }`)
                 console.log(`card expiry year = ${ cardExpiryYear }`)
 
+                setShowBookingConfirmPage( true )
                 ScrollConfirmBookingIntoView()
             }
 
             }
 
     }
-
-
-
-
 
 
     return (
@@ -421,11 +412,11 @@ const BookHotel = ( ) => {
                                 </Col>
 
                                 <Col>
-                                    <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span>100.00</h6>
+                                    <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { bookingHotelObject.room_rate }</h6>
 
-                                    <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span>14.76</h6>
+                                    <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> 14.76</h6>
 
-                                    <h3 className='section-sub-header'>GH<span>&#8373;</span>114.76</h3>
+                                    <h3 className='section-sub-header'>GH<span>&#8373;</span> 9854.76</h3>
                                 </Col>
                             </Row>
                             <hr />
@@ -864,238 +855,241 @@ const BookHotel = ( ) => {
             </section>
 
 
+            {
+                showBookingConfirmPage &&
+                    <section> 
+                        <div className='book-hotel-confirmation-section' ref={ confirmReference } >
+                            <h4 className='confirm-booking-header mb-4'>Confirm your booking details for { params.hotel_name }</h4>
+                            <div className='booking-confirmation-div'>
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Check-in date</h5>
+                                        <p>{ startDateValue }</p>
+                                    </Col>
 
-            <section className='book-hotel-confirmation-section' ref={ confirmReference } >
-                <h4 className='confirm-booking-header mb-4'>Confirm your booking details for { params.hotel_name }</h4>
-                <div className='booking-confirmation-div'>
-                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Check-in date</h5>
-                            <p>06/43/32</p>
-                        </Col>
-
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Check-out date</h5>
-                            <p>06/43/32</p>
-                        </Col>
-                     </Row>
-                     <hr />
-
-
-                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Number of adults</h5>
-                            <p>4</p>
-                        </Col>
-
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Number of children</h5>
-                            <p>2</p>
-                        </Col>
-                     </Row>
-                     <hr />
-
-
-
-                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Number of rooms booked</h5>
-                            <p>4</p>
-                        </Col>
-
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Length of stay</h5>
-                            <p>2</p>
-                        </Col>
-                     </Row>
-                     <hr />
-
-
-
-                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Room features</h5>
-                            {
-                                <>
-                                <Row md={ 3 }>
-                                    {
-                                        Object.keys( bookingHotelObject ).length > 0 ?
-                                            bookingHotelObject.room_features.map(( feature, index ) => (
-                                                <Col key={ index }>
-                                                    <div className='book-room-features mb-3'>
-                                                        { feature }
-                                                    </div>
-                                                </Col>
-                                            ))
-                                        :
-                                            null
-                                    }
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Check-out date</h5>
+                                        <p>{ endDateValue }</p>
+                                    </Col>
                                 </Row>
-                                </>
-                            }
+                                <hr />
 
-                            </Col>
 
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Pricing</h5>
-                            <Row>
-                                <Col>
-                                    <p>1 night</p>
-                                </Col>
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Number of adults</h5>
+                                        <p>{ numberOfAdultVisitors }</p>
+                                    </Col>
 
-                                <Col>
-                                    <p>GH<span>&#8373;</span> 100.00</p>
-                                </Col>
-                            </Row>
-
-                            <Row>
-                                <Col>
-                                    <p>Tax ( 12% )</p>
-                                </Col>
-
-                                <Col>
-                                    <p>GH<span>&#8373;</span> 12.00</p>
-                                </Col>
-                            </Row>
-
-                            <Row>
-                                <Col>
-                                    <p>Total per night</p>
-                                </Col>
-
-                                <Col>
-                                    <p>GH<span>&#8373;</span> 112.00 * ( 4 nights )</p>
-                                </Col>
-                            </Row>
-
-                            <Row>
-                                <Col>
-                                    <p>Total cost of stay</p>
-                                </Col>
-
-                                <Col>
-                                    <p>GH<span>&#8373;</span> 324.00</p>
-                                </Col>
-                            </Row>
-                        </Col>
-                     </Row>
-                     <hr />
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Number of children</h5>
+                                        <p>{ numberOfChildVisitors }</p>
+                                    </Col>
+                                </Row>
+                                <hr />
 
 
 
-                     <Row className='confirm-booking-details-row mb-4'>
-                        <Col md={ 5 }>
-                            <h5 className='booking-hotel-detail-header'>Refund policy</h5>
-                            <p>
-                                If you cancel or don't attend your hotel booking, you'll not be 
-                                refunded any of your original payment.
-                            </p>
-                        </Col>
-                     </Row>
-                     <hr />
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Number of rooms booked</h5>
+                                        <p>{ numberOfRooms }</p>
+                                    </Col>
+
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Length of stay</h5>
+                                        <p>2</p>
+                                    </Col>
+                                </Row>
+                                <hr />
 
 
 
-                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your first name</h5>
-                            <p>Quan</p>
-                        </Col>
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Room features</h5>
+                                        {
+                                            <>
+                                            <Row md={ 3 }>
+                                                {
+                                                    Object.keys( bookingHotelObject ).length > 0 ?
+                                                        bookingHotelObject.room_features.map(( feature, index ) => (
+                                                            <Col key={ index }>
+                                                                <div className='book-room-features mb-3'>
+                                                                    { feature }
+                                                                </div>
+                                                            </Col>
+                                                        ))
+                                                    :
+                                                        null
+                                                }
+                                            </Row>
+                                            </>
+                                        }
 
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your last name</h5>
-                            <p>Chi</p>
-                        </Col>
-                     </Row>
-                     <hr />
+                                        </Col>
 
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Pricing</h5>
+                                        <Row>
+                                            <Col>
+                                                <p>1 night</p>
+                                            </Col>
 
+                                            <Col>
+                                                <p>GH<span>&#8373;</span> { bookingHotelObject.room_rate }</p>
+                                            </Col>
+                                        </Row>
 
-                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your contact email</h5>
-                            <p>quan@gmail.com</p>
-                        </Col>
+                                        <Row>
+                                            <Col>
+                                                <p>Tax ( 12% )</p>
+                                            </Col>
 
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your mobile number</h5>
-                            <p>0552531004</p>
-                        </Col>
-                     </Row>
-                     <hr />
+                                            <Col>
+                                                <p>GH<span>&#8373;</span> 12.00</p>
+                                            </Col>
+                                        </Row>
 
+                                        <Row>
+                                            <Col>
+                                                <p>Total per night</p>
+                                            </Col>
 
+                                            <Col>
+                                                <p>GH<span>&#8373;</span> 112.00 * ( 4 nights )</p>
+                                            </Col>
+                                        </Row>
 
-                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your selected payment method</h5>
-                            <p>VISA</p>
-                        </Col>
+                                        <Row>
+                                            <Col>
+                                                <p>Total cost of stay</p>
+                                            </Col>
 
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your name on card</h5>
-                            <p>Quan Chi</p>
-                        </Col>
-                    </Row>
-                    <hr />
-
-                        
-
-                    <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your card number</h5>
-                            <p>024454534343</p>
-                        </Col>
-
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your card expiration month</h5>
-                            <p>07 - July</p>
-                        </Col>
-                    </Row>
-                    <hr />
-
-
-
-                    <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your card expiration year</h5>
-                            <p>2027</p>
-                        </Col>
-
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your security code</h5>
-                            <p>941</p>
-                        </Col>
-                    </Row>
-                    <hr />
-
-
-                    
-                     <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <h5 className='booking-hotel-detail-header'>Your booking email</h5>
-                            <p>quan@gmail.com</p>
-                        </Col>
-                    </Row>
-                    <hr />
+                                            <Col>
+                                                <p>GH<span>&#8373;</span> 9824.00</p>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                </Row>
+                                <hr />
 
 
 
-                    <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                        <Col>
-                            <Button variant='custom' className='confirm-booking-details-btn'>I confirm booking details. Complete my booking now</Button>
-                        </Col>
+                                <Row className='confirm-booking-details-row mb-4'>
+                                    <Col md={ 5 }>
+                                        <h5 className='booking-hotel-detail-header'>Refund policy</h5>
+                                        <p>
+                                            If you cancel or don't attend your hotel booking, you'll not be 
+                                            refunded any of your original payment.
+                                        </p>
+                                    </Col>
+                                </Row>
+                                <hr />
 
-                        <Col>
-                            <Button variant='custom' className='edit-booking-details-btn' onClick={ ScrollDetailsSectionRefIntoView }>
-                                I want to edit my booking information
-                            </Button>
-                        </Col>
-                    </Row>
-                    
 
-                </div>
-            </section>
+
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your first name</h5>
+                                        <p>{ bookingCustomerFirstName }</p>
+                                    </Col>
+
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your last name</h5>
+                                        <p>{ bookingCustomerLastName }</p>
+                                    </Col>
+                                </Row>
+                                <hr />
+
+
+
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your contact email</h5>
+                                        <p>{ bookingCustomerEmail }</p>
+                                    </Col>
+
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your mobile number</h5>
+                                        <p>{ bookingCustomerNumber }</p>
+                                    </Col>
+                                </Row>
+                                <hr />
+
+
+
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your selected payment method</h5>
+                                        <p>{ paymentMethod }</p>
+                                    </Col>
+
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your name on card</h5>
+                                        <p>{ customerPaymentCardName }</p>
+                                    </Col>
+                                </Row>
+                                <hr />
+
+                                    
+
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your card number</h5>
+                                        <p>{ customerPaymentCardNumber }</p>
+                                    </Col>
+
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your card expiration month</h5>
+                                        <p>{ cardExpiryMonth }</p>
+                                    </Col>
+                                </Row>
+                                <hr />
+
+
+
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your card expiration year</h5>
+                                        <p>{ cardExpiryYear }</p>
+                                    </Col>
+
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your security code</h5>
+                                        <p>{ customerPaymentCardSecurityCode }</p>
+                                    </Col>
+                                </Row>
+                                <hr />
+
+
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <h5 className='booking-hotel-detail-header'>Your booking email</h5>
+                                        <p>{ customerPaymentBookingEmail }</p>
+                                    </Col>
+                                </Row>
+                                <hr />
+
+
+                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
+                                    <Col>
+                                        <Button variant='custom' className='confirm-booking-details-btn'>I confirm booking details. Complete my booking now</Button>
+                                    </Col>
+
+                                    <Col>
+                                        <Button variant='custom' className='edit-booking-details-btn' onClick={ ScrollDetailsSectionRefIntoView }>
+                                            I want to edit my booking information
+                                        </Button>
+                                    </Col>
+                                </Row>
+                                
+
+                            </div>
+                        </div>
+                    </section>
+            }
+
 
 
             <section className='footer-gap'>

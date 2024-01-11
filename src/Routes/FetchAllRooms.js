@@ -35,7 +35,7 @@ const FetchAllRooms = () => {
   
   // local and online server urls
   // let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
+  let online_server = 'http://127.0.0.1:8000'
 
 
 
@@ -139,8 +139,10 @@ const FetchAllRooms = () => {
 
         <div>
             <section className='find-perfect-hotel-section'>
-              <h3 className='find-perfect-hotel-text'>Find the perfect hotel on Skyscanner.com</h3>
-              <p className='from-budget-text'>From budget hotels to luxury rooms and everything in between </p>
+              <h3 className='find-perfect-hotel-text'>Find the perfect hotel on SwiftStay</h3>
+              <p className='from-budget-text'>From budget hotels to luxury rooms and everything in between, 
+                your dream escape is just a reservation away! 
+              </p>
             </section>
 
           
@@ -279,7 +281,6 @@ const FetchAllRooms = () => {
           </Row>
 
         </section>
-
 
         </div>
 

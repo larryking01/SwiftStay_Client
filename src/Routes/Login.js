@@ -1,12 +1,11 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import skyscanner_1 from '../Media Files/skyscanner_1.jpeg'
 import InputGroup from 'react-bootstrap/InputGroup'
-import { BsFacebook, BsApple, BsGoogle, BsFillPersonFill, BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
+import { BsFacebook, BsApple, BsGoogle, BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 
 import { firebaseAuth } from '../Configuration/Firebase'
@@ -136,15 +135,17 @@ const Login = ( ) => {
     // })
 
 
-
-
+    // website brand name.
+    // SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
+    const brand_name = 'SwiftStay'
 
 
     return (
 
         <div className='log-in-wrapper'>
             <section>
-                <img className='log-in-brand-logo' src={ skyscanner_1 } alt='' width={ 200 } onClick={() => navigate('/')} />
+                {/* <img className='log-in-brand-logo' onClick={() => navigate('/')} /> */}
+                <h3 className='log-in-brand-logo' onClick={() => navigate('/')}>{ brand_name }</h3>
             </section>
 
             <section className='login-account-section'>

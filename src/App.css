@@ -55,6 +55,14 @@
 
 
 /* navbar styling */
+.navbar-brand {
+    font-style: italic;
+    font-size: 1.7rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+
 .nav-link-text {
     font-family: 'Lora', serif;
     
@@ -207,6 +215,7 @@
     cursor: pointer;
     /* transition: transform 0.3s ease; */
     margin-bottom: 10%;
+    height: 94%;
 
 } 
 
@@ -257,9 +266,14 @@
     font-weight: bolder;
     font-family: 'Lora', serif;
     font-size: 1.2rem;
-    color: #212529;
+    color: var(--primary-color); /*#212529; */
     margin-bottom: 20%;
     
+}
+
+
+.location-detail {
+    font-family: 'Lora', serif;
 }
 
 
@@ -272,7 +286,8 @@
 
 .card-room-rate {
     padding-bottom: 3%;
-
+    font-weight: bolder;
+    font-family: 'Lora', serif;
 }
 
 
@@ -464,13 +479,17 @@
 
 
 .extra-info-text-col {
-    padding: 4%;
+    padding: 2% 4% 0% 4%;
 
 }
 
 
 .extra-info-details {
     font-family: 'Cormorant Garamond', serif;
+}
+
+.extra-info-details-text {
+    font-size: 1.4rem;
 }
 
 
@@ -1651,6 +1670,11 @@
 
 .log-in-brand-logo {
     cursor: pointer;
+    font-style: italic;
+    font-size: 1.7rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-top: 5%;
 }
 
 .login-btn {
@@ -1707,18 +1731,8 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
 .footer-gap {
-    margin-bottom: 30%;
+    margin-bottom: 15%;
 }
 
 

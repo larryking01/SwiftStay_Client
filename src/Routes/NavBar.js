@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
-import { IoPersonOutline } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
-import skyscanner_1 from '../Media Files/skyscanner_1.jpeg'
 import Button from 'react-bootstrap/Button'
 import { firebaseAuth } from '../Configuration/Firebase'
 import { UserContext } from '../App'
@@ -16,6 +14,9 @@ import { UserContext } from '../App'
 
 const NavbarComponent = ( ) => {
 
+    // website brand name.
+    // SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
+    const brand_name = 'SwiftStay'
 
     // for navigation.
     const navigate = useNavigate()
@@ -52,7 +53,8 @@ const NavbarComponent = ( ) => {
             <Navbar collapseOnSelect bg='light' variant='light' expand='lg'>
                 <Container>
                     <Navbar.Brand onClick={() => navigate('/')} className='navbar-brand'>
-                        <img src={ skyscanner_1 } alt='' width={ 120 } />
+                        {/* <img src={ skyscanner_1 } alt='' width={ 120 } /> */}
+                        <h3 className='navbar-brand'>{ brand_name }</h3>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
                     <Navbar.Collapse id='redponsive-navbar-nav'>

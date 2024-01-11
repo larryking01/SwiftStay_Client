@@ -10,12 +10,6 @@ import Col from 'react-bootstrap/Col'
 
 
 
-
-
-
-
-
-
 const FrequentlyAskedQuestionsHelp = ( ) => {
 
     const navigate = useNavigate()

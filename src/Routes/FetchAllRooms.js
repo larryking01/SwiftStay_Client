@@ -35,7 +35,7 @@ const FetchAllRooms = () => {
   
   // local and online server urls
   // let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'http://127.0.0.1:8000'
+  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
 
 
 
@@ -186,7 +186,7 @@ const FetchAllRooms = () => {
                               <h3 className='fetch-all-hotels-title'>{ rooms.room_number }</h3>
                               <p> <IoLocationSharp /> <span>{ rooms.room_location }</span></p>
                               <Rating name='read-only' value={ rooms.room_rating } readOnly /> <p></p>
-                              <p className='room-rate-text'>GH<span>&#8373;</span>{ rooms.room_rate }</p>
+                              <p className='room-rate-text'>GH<span>&#8373;</span> { rooms.room_rate }</p>
                               <Button variant='custom' className='go-to-site-button'>More details</Button>
                             </Col>
 

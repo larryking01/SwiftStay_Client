@@ -179,7 +179,7 @@ const Home = () => {
         </section>
 
         <section className='intro-background'>
-          <img src={ background_4 } alt='background' className='intro-background-img' />
+          <img src={ background_4 } alt='' className='intro-background-img' />
 
         <section className='intro-form'>
           <Row>
@@ -187,7 +187,6 @@ const Home = () => {
           </Row>
 
           <Form.Group className='mb-3' controlId='formBasicText'>
-            {/* <Form.Label style={{ color: 'blue'}}>Where do you want to stay?</Form.Label> */}
             <Form.Control type='text' placeholder='Enter a hotel, city, address....' className='destination-textbox text-control-focus-style' />
           </Form.Group>
 

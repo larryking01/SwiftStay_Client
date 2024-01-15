@@ -57,6 +57,7 @@ const GetRoomDetails = () => {
 
   // setting up reference.
   const reviewRef = useRef( null )
+  const dateDurationRef = useRef( null )
 
 
   // for state.
@@ -77,6 +78,7 @@ const GetRoomDetails = () => {
   const [ postingReview, setPostingReview ] = useState( false )
   const [ reviewFeedback, setReviewFeedback ] = useState('')
   const [ showGuestExtraDetails, setShowGuestExtraDetails ] = useState( false )
+  const [ bookingDatesNull, setBookingDatesNull ] = useState( false )
 
 
   // destructuring user booking hotel extra info.
@@ -280,6 +282,22 @@ const GetRoomDetails = () => {
   }
 
 
+  // handle book room operation.
+  const HandleBookHotelRoom = ( ) => {
+    if( startDateValue === null || endDateValue === null ) {
+      alert('you need to enter start date value and end date value')
+      setBookingDatesNull( true )
+      dateDurationRef.current.scrollIntoView({
+        behavior: 'smooth'
+      })
+    }
+    else {
+      setBookingDatesNull( false )
+      navigate(`/book-hotel/${ hotel_name }/${ booking_room_id }`)
+    }
+  }
+
+
 
 
   return (
@@ -312,7 +330,8 @@ const GetRoomDetails = () => {
 
           :
 
-      <section>
+      <section ref={ dateDurationRef }>
+      {/* <p className='check-in-dates-null-error-text'>Please input both check-in and check-out dates</p> */}
       <section className='selected-room-checkin-dates'>
         <Form className='selected-room-details-destination-form'>
           <Row xs={ 1 } md={ 3 }>
@@ -545,7 +564,7 @@ const GetRoomDetails = () => {
       </section>
 
       <section className='book-now-section'>
-        <Button variant='custom' className='book-now-button-first' onClick={ () => navigate(`/book-hotel/${ hotel_name }/${ booking_room_id }`) }>Book Now</Button>
+        <Button variant='custom' className='book-now-button-first' onClick={ HandleBookHotelRoom }>Book Now</Button>
       </section>
 
 
@@ -646,7 +665,7 @@ const GetRoomDetails = () => {
         <Maps />
 
         <div className='book-now-btn-row'>
-          <Button variant='custom' className='book-now-button-last' onClick={ () => navigate(`/book-hotel/${ hotel_name }/${ booking_room_id }`) }>Book Hotel Now</Button>
+          <Button variant='custom' className='book-now-button-last' onClick={ HandleBookHotelRoom }>Book Hotel Now</Button>
         </div>
       </section>
 

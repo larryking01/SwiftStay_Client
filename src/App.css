@@ -62,6 +62,10 @@
     font-weight: bold;
 }
 
+.navbar-brand:hover {
+    color:#3124ec
+}
+
 
 .nav-link-text {
     font-family: 'Lora', serif;
@@ -496,6 +500,7 @@
 .extra-info-img {
     width: 100%;
     aspect-ratio: 5/3;
+    border-radius: 10%;
     /* max-height: 320px; */
 }
 
@@ -1428,7 +1433,7 @@
 
 .team-pic-style {
     width: 80%;
-
+    border-radius: 30%;
 }
 
 
@@ -1440,11 +1445,14 @@
 .team-member-name {
     font-family: 'Lora', serif;
     color: var(--primary-color);
+    margin-left: 20%;
+    margin-top: 2%;
 }
 
 .team-member-position {
     font-family: 'Lora', serif;
     font-size: 1.1rem;
+    font-weight: bold;
 }
 
 
@@ -1747,7 +1755,7 @@
     color: #5a50eb;
     position: fixed;
     bottom: 5%;
-    right: 2%;
+    right: 4%;
     z-index: 10;
     border: 2px solid #5a50eb;
     animation: btnMoveUp 2s ease 0s infinite;
@@ -1980,7 +1988,7 @@
 
 
     .about-us-mission-row {
-        background-image: linear-gradient(to top, white, blue);
+        background-image: linear-gradient(to bottom, blue, white);
         padding: 5%;
         text-align: center;
         color: white
@@ -2071,6 +2079,11 @@
     /* get room details responsive styling */
     .selected-room-checkin-dates {
         margin-bottom: 7%;
+    }
+
+    .check-in-dates-null-error-text {
+        padding-left: 6%;
+        color: red;
     }
 
     .selected-room-details-destination-form {

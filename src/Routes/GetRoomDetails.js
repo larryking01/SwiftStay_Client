@@ -25,6 +25,8 @@ import { BsPersonFill } from 'react-icons/bs'
 import { BiMinus, BiPlus } from 'react-icons/bi'
 
 import Maps from '../Configuration/Maps'
+// import Maps2 from '../Configuration/Maps'
+
 
 // font awesome icons.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -663,6 +665,7 @@ const GetRoomDetails = () => {
       <section className='selected-room-details-sub-section'>
         <h3 className='selected-room-details-sub-header'>Our Location</h3>
         <Maps />
+        {/* <Maps2 /> */}
 
         <div className='book-now-btn-row'>
           <Button variant='custom' className='book-now-button-last' onClick={ HandleBookHotelRoom }>Book Hotel Now</Button>

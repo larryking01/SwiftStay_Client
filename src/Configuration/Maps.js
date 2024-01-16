@@ -24,7 +24,7 @@ const Maps = () => {
     return (
 
         <LoadScript googleMapsApiKey='AIzaSyD9PYNRBguf86JNhplo75DhSibdbjcQhPE'>
-            <GoogleMap center={ maps_center } zoom={ 9 } mapContainerStyle={ maps_styling }>
+            <GoogleMap center={ maps_center } zoom={ 14 } mapContainerStyle={ maps_styling }>
                 <Marker position={ { lat: 5.607005, lng: -0.171879 } } title='Accra Marriott Hotel' />
             </GoogleMap>
         </LoadScript>

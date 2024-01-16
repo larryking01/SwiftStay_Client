@@ -12,23 +12,21 @@ const maps_styling = {
 
 // default maps center.
 const maps_center = {
-    lat: 48.218967,
-    lng: 11.623746
+    lat: 5.607005,
+    lng: -0.171879
 }
 
 
 
 const Maps = () => {
 
-
+    
     return (
 
-        <LoadScript googleMapsApiKey='AIzaSyCxbWaMfg5IJP3b0i21cEeTVk5J_a_5w5A'>
+        <LoadScript googleMapsApiKey='AIzaSyD9PYNRBguf86JNhplo75DhSibdbjcQhPE'>
             <GoogleMap center={ maps_center } zoom={ 9 } mapContainerStyle={ maps_styling }>
-                <Marker position={ maps_center } title='Santiago Bernabeu Stadium' />
-                <Marker position={ { lat: 48.218967, lng: 11.623746 } } title='Alianz Arena Stadium' />
+                <Marker position={ { lat: 5.607005, lng: -0.171879 } } title='Accra Marriott Hotel' />
             </GoogleMap>
-
         </LoadScript>
 
     )

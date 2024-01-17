@@ -62,7 +62,8 @@ const BookHotel = ( ) => {
             setEndDateValue,
             numberOfAdultVisitors, 
             numberOfChildVisitors, 
-            numberOfRooms 
+            numberOfRooms,
+            customerLengthOfStay 
            } = useContext( UserContext )
 
     // effect hook to fetch start date value from local storage
@@ -297,7 +298,7 @@ const BookHotel = ( ) => {
                     <Col className='mb-5'>
                         <div className='booking-hotel-summary-div'>
                             <h4 className='booking-hotel-features'> Hotel Features </h4> 
-                            <h4> <Rating value={ bookingHotelObject.room_rating } readOnly name='read-only' /> </h4>
+                            <h4> <Rating value={ 4 } readOnly name='read-only' /> </h4>
                             <p className='booking-hotel-extra-details'> <IoLocationSharp /> { bookingHotelObject.room_location }</p>
                             <hr />
 
@@ -369,7 +370,7 @@ const BookHotel = ( ) => {
 
                                 <Col>
                                     <h5 className='section-sub-header'>Length Of Stay</h5>
-                                    <p className='booking-hotel-extra-details'>43 nights</p>
+                                    <p className='booking-hotel-extra-details'>{ customerLengthOfStay } nights</p>
                                 </Col>
                                 <hr />
                             </Row>

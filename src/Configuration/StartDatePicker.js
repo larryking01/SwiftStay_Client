@@ -13,7 +13,7 @@ import { UserContext } from '../App'
 const StartDatePicker = () => {
 
   // destructuring values from context
-  const { startDateValue, setStartDateValue } = useContext( UserContext )
+  const { startDateValue, setStartDateValue, setStartDateMilliseconds, } = useContext( UserContext )
 
 
   // effect hook to store start date value in local storage
@@ -37,6 +37,7 @@ const StartDatePicker = () => {
             onChange={ ( newValue ) => {
               if ( newValue !== null ) {
                   const date = newValue._d
+                  setStartDateMilliseconds( date )
                   console.log( `date = ${ date }` )
 
                   const day = date.getDate()

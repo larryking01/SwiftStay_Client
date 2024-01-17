@@ -12,7 +12,7 @@ import { UserContext } from '../App'
 const EndDatePicker = ( ) => {
 
     // destructuring values from context
-    const { endDateValue, setEndDateValue } = useContext( UserContext )
+    const { endDateValue, setEndDateValue, setEndDateMilliseconds } = useContext( UserContext )
 
 
     // effect hook to store end date value in local storage
@@ -31,6 +31,7 @@ const EndDatePicker = ( ) => {
                 onChange={ ( newValue ) => {
                     if ( newValue !== null ) {
                         const date = newValue._d
+                        setEndDateMilliseconds( date )
                         console.log( `date = ${ date }` )
       
                         const day = date.getDate()

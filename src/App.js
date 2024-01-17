@@ -55,6 +55,10 @@ const App = () => {
     // handling enddatepicker input values.
     const [ endDateValue, setEndDateValue ] = useState(null)
 
+    const [ startDateMilliseconds, setStartDateMilliseconds ] = useState( 0 )
+    const [ endDateMilliseconds, setEndDateMilliseconds ] = useState( 0 )
+    const [ customerLengthOfStay, setCustomerLengthOfStay ] = useState( 0 )
+
     // handling hotel-booking-info
     const [ checkIn, setCheckIn ] = useState('')
     const [ checkOut, setCheckOut ] = useState('')
@@ -97,7 +101,10 @@ const App = () => {
                                            numberOfChildVisitors, setNumberOfChildVisitors,
                                            numberOfRooms, setNumberOfRooms,
                                            startDateValue, setStartDateValue, endDateValue, 
-                                           setEndDateValue }}
+                                           setEndDateValue, startDateMilliseconds, 
+                                           setStartDateMilliseconds, endDateMilliseconds, 
+                                           setEndDateMilliseconds, customerLengthOfStay,
+                                           setCustomerLengthOfStay }}
             >
                 <Routes>
                     <Route path='/' element={ <Home /> } />

@@ -1,41 +1,40 @@
-import React from 'react';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import { useMemo } from "react";
 
-const libraries = ['places'];
-const mapContainerStyle = {
-  width: '100vw',
-  height: '100vh',
-};
-const center = {
-  lat: 7.2905715, // default latitude
-  lng: 80.6337262, // default longitude
-};
 
-const Maps2 = () => {
-  const { isLoaded, loadError } = useLoadScript({
+
+const Maps2 = ({ selectedRoomLatitude, selectedRoomLongitude }) => {
+
+  let map_center = { lat: selectedRoomLatitude, lng: selectedRoomLongitude }
+
+  const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyD9PYNRBguf86JNhplo75DhSibdbjcQhPE',
-    libraries,
   });
 
-  if (loadError) {
-    return <div>Error loading maps</div>;
-  }
-
-  if (!isLoaded) {
-    return <div>Loading maps</div>;
-  }
+  const center = useMemo(() => ( map_center ), []);
 
   return (
-    <div>
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={18}
-        center={center}
-      >
-        <Marker position={center} />
-      </GoogleMap>
+    <div className="map-parent">
+      { !isLoaded ? 
+        (
+          <h1>Loading...</h1>
+         ) 
+        : 
+        (
+          <GoogleMap
+            mapContainerClassName="map-container"
+            center={ center }
+            zoom={ 17 }
+          >
+            <Marker 
+                position={ map_center }
+            />
+          </GoogleMap>
+      )}
     </div>
   );
 };
+
+
 
 export default Maps2;

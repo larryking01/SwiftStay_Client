@@ -68,7 +68,7 @@ const Home = () => {
   const [ loadingHotels, setIsLoadingHotels ] = useState( true )
   const [ fetchError, setFetchError ] = useState( false )
   const [ fetchErrorMessage, setFetchErrorMessage ] = useState( null )
-
+  
   // for navigation.
   const navigate = useNavigate()
 

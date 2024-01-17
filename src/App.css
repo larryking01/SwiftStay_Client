@@ -552,10 +552,16 @@
 }
 
 .book-now-button-last {
-    width: 90%;
+    /* width: 80%;
+    background-color: var(--primary-color); 
+    color: white;
+    height: 55px; */
+    width: 30%;
     background-color: var(--primary-color); 
     color: white;
     height: 55px;
+    margin-right: 5%;
+
 }
 
 .book-now-button-last:hover {
@@ -803,6 +809,18 @@
 .review-feedback-text {
     font-family: 'Lora', serif;
 }
+
+
+/* google maps styling */
+.map-parent {
+    width: 80vw;
+    height: 88vh;
+  }
+  
+.map-container {
+    width: 100%;
+    height: 100%;
+  }
 
 
 /* .css-try {
@@ -2081,10 +2099,9 @@
         margin-bottom: 7%;
     }
 
-    .check-in-dates-null-error-text {
-        padding-left: 6%;
+    /* .start-date-end-date-null-message {
         color: red;
-    }
+    } */
 
     .selected-room-details-destination-form {
         padding: 3%;
@@ -2106,7 +2123,7 @@
     
 
     .book-now-button-last {
-        width: 100%;
+        width: 85%;
         margin-bottom: 10%;
     }
 

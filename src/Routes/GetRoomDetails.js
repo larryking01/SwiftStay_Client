@@ -189,27 +189,10 @@ const GetRoomDetails = () => {
     { icon: <MdEmojiFoodBeverage size={ 30 } />, feature: 'Breakfast', description: 'Breakfast available.', visaIcon: '', masterCardIcon: '', paypalIcon: ''},
     { icon: <IoMdInformationCircle size={ 30 } />, feature: 'Important information from the hotel', description: 'Please note that parking is available offsite at a discounted rate. When booking 6 rooms or more, different policies and additional supplements will apply.', visaIcon: '', masterCardIcon: '', paypalIcon: ''},
     { icon: <MdPayment size={ 30 } />, feature: 'Accepted payment methods', description: 'The hotel accepts the following payment methods:', visaIcon: <FaCcVisa size={ 30 } />, masterCardIcon: <FaCcMastercard size={ 30 } />, paypalIcon: <FaCcPaypal size={ 30 } /> }
-    // { icon: <MdOutlinePets size={ 30 } />, feature: 'Pets', description: 'Pets are not allowed.'},
-    // { icon: <MdOutlinePets size={ 30 } />, feature: 'Pets', description: 'Breakfast available.'},
-    // { icon: <MdOutlinePets size={ 30 } />, feature: 'Pets', description: 'Pets are not allowed.'}
 
   ]
 
 
-  // reviews array.
-  // const ReviewsArray = [
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Quan', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Loretta Williams', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Ruth Ansah', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Nana Adwoa', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Joseph Dwamena', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Marian Amoah', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Kelvin Asante Debrah', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Deborah Terkper', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Aku Shika', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-  //   { reviewerImage: rooms_and_suites_1, reviewerName: 'Richmond Ghanney Theophilus', reviewDate: '07/05/2023', reviewTime: '16:30', reviewBody: 'WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of Edinburgh and offers free WiFi. Just 0.5 miles from Edinburgh Waverley Rail Station, this 4-star Ten Hill Place, WorldHotels Distinctive is owned by the Royal College of Surgeons of' },
-
-  // ]
 
 
   // updating reviewer email state
@@ -309,7 +292,6 @@ const GetRoomDetails = () => {
     }
     else {
       setBookingDatesNull( false )
-
       let durationOfStay = CalculateLengthOfStay( startDateMilliseconds, endDateMilliseconds )
       console.log(`duration of stay = ${ durationOfStay }`)
       if( durationOfStay < 0 ) {
@@ -317,9 +299,12 @@ const GetRoomDetails = () => {
       }
       else {
          setCustomerLengthOfStay( durationOfStay )
+         window.localStorage.setItem('length_of_stay', durationOfStay.toString())
+         window.localStorage.setItem('number_of_adult_visitors', numberOfAdultVisitors.toString())
+         window.localStorage.setItem('number_of_child_visitors', numberOfChildVisitors.toString())
+         window.localStorage.setItem('number_of_booked_rooms', numberOfRooms.toString())
          navigate(`/book-hotel/${ hotel_name }/${ booking_room_id }`)
     }
-
 
     }
   }

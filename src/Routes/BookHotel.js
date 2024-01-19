@@ -47,6 +47,13 @@ const BookHotel = ( ) => {
     const [ cardExpiryMonth, setCardExpiryMonth ] = useState('')
     const [ cardExpiryYear, setCardExpiryYear ] = useState('')
 
+    // pricing.
+    const [ basicCost, setBasicCost ] = useState( 0 )
+    const [ vatRate, setVatRate ] = useState( 0 )
+    const [ nhilRate, setNhilRate ] = useState( 0 )
+    const [ covidLevy, setCovidLevy ] = useState( 0 )
+    const [ totalCost, setTotalCost ] = useState( 0 )
+
 
     // url params
     const params = useParams()
@@ -66,36 +73,6 @@ const BookHotel = ( ) => {
             customerLengthOfStay 
            } = useContext( UserContext )
 
-    // effect hook to fetch start date value from local storage
-    useEffect(() => {
-        let localStorageStartDateValue = JSON.parse( window.localStorage.getItem( 'startDateValue' ) )
-        console.log(`localStorageStartDateValue = ${ localStorageStartDateValue }`)
-        setStartDateValue( localStorageStartDateValue )
-
-    }, [ startDateValue ,setStartDateValue ])
-
-    // effect hook to fetch end date value from local storage
-    useEffect(() => {
-        let localStorageEndDateValue = JSON.parse( window.localStorage.getItem( 'endDateValue' ) )
-        console.log(`localStorageEndDateValue = ${ localStorageEndDateValue }`)
-        setEndDateValue( localStorageEndDateValue )
-
-    }, [ endDateValue ,setEndDateValue ])
-
-    // making certain component always displays from top on initial render.
-    // useEffect(() => {
-    //     window.scrollTo({
-    //         top: 0,
-    //         left: 0,
-    //         behavior: 'smooth'
-    //     })
-    // })
-    
-
-    useEffect(() => {
-        console.log(`start date === ${ startDateValue }`)
-        console.log( `end date === ${ endDateValue }`)
-    }, [ startDateValue, endDateValue, setStartDateValue, setEndDateValue ])
 
     // useEffect to fetch the booking hotel.
     useEffect(() => {
@@ -107,6 +84,7 @@ const BookHotel = ( ) => {
             if( response.ok ) {
                 let data = await response.json()
                 setBookingHotelObject({ ...data })
+                console.log('fetching hotel details done')
                 console.log( bookingHotelObject )
             }
         }
@@ -114,6 +92,68 @@ const BookHotel = ( ) => {
         fetchBookingHotel()
 
     }, [ ])
+
+
+    // effect hook to fetch start date value from local storage
+    useEffect(() => {
+        let localStorageStartDateValue = JSON.parse( window.localStorage.getItem( 'startDateValue' ) )
+        console.log(`localStorageStartDateValue = ${ localStorageStartDateValue }`)
+        setStartDateValue( localStorageStartDateValue )
+
+    }, [ startDateValue, setStartDateValue ])
+
+
+    // effect hook to fetch end date value from local storage
+    useEffect(() => {
+        let localStorageEndDateValue = JSON.parse( window.localStorage.getItem( 'endDateValue' ) )
+        console.log(`localStorageEndDateValue = ${ localStorageEndDateValue }`)
+        setEndDateValue( localStorageEndDateValue )
+
+    }, [ endDateValue ,setEndDateValue ])
+
+
+    // making certain component always displays from top on initial render.
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+    })
+    
+
+    useEffect(() => {
+        console.log(`start date === ${ startDateValue }`)
+        console.log( `end date === ${ endDateValue }`)
+    }, [ startDateValue, endDateValue, setStartDateValue, setEndDateValue ])
+
+
+    // use effect hook to update values of pricing calculators.
+    useEffect(( ) => {
+        if( bookingHotelObject ) {
+            setBasicCost( bookingHotelObject.room_rate )
+            console.log( `basic cost is ${ basicCost }`)
+            setVatRate( ( 0.125 * basicCost ).toFixed( 2 ) )
+            console.log(`vat rate is ${ vatRate }`)
+            setNhilRate( ( 0.025 * basicCost ).toFixed( 2 ))
+            console.log(`nhil rate is ${ nhilRate }`)
+            setCovidLevy( ( 0.01 * basicCost ).toFixed( 2 ) )
+            console.log(`covid levy is ${ covidLevy }`)
+        }
+
+    }, [ bookingHotelObject, setBasicCost ])
+
+
+    // effect to calculate total cost.
+    useEffect(() => {
+        if( bookingHotelObject ) {
+            let total_cost = basicCost + vatRate + nhilRate + covidLevy
+            // total_cost = total_cost.toFixed( 2 )
+            setTotalCost( total_cost )
+        }
+
+    }, [ basicCost, vatRate + nhilRate + covidLevy ])
+
 
 
     // scrolling details section ref into view.
@@ -351,12 +391,12 @@ const BookHotel = ( ) => {
                             <Row md={ 2 } xs={ 1 }>
                                 <Col>
                                     <h5 className='section-sub-header'>No. Of Adults</h5>
-                                    <p className='booking-hotel-extra-details'>{ numberOfAdultVisitors }</p>
+                                    <p className='booking-hotel-extra-details'>{ window.localStorage.getItem('number_of_adult_visitors') }</p>
                                 </Col>
 
                                 <Col>
                                     <h5 className='section-sub-header'>No. Of Children</h5>
-                                    <p className='booking-hotel-extra-details'>{ numberOfChildVisitors }</p>
+                                    <p className='booking-hotel-extra-details'>{ window.localStorage.getItem('number_of_child_visitors') }</p>
                                 </Col>
                             </Row>
 
@@ -365,12 +405,12 @@ const BookHotel = ( ) => {
                             <Row md={ 2 } xs={ 1 }>
                                 <Col>
                                     <h5 className='section-sub-header'>No. Of Rooms Booked</h5>
-                                    <p className='booking-hotel-extra-details'>{ numberOfRooms }</p>
+                                    <p className='booking-hotel-extra-details'>{ window.localStorage.getItem('number_of_booked_rooms') }</p>
                                 </Col>
 
                                 <Col>
                                     <h5 className='section-sub-header'>Length Of Stay</h5>
-                                    <p className='booking-hotel-extra-details'>{ customerLengthOfStay } nights</p>
+                                    <p className='booking-hotel-extra-details'>{ window.localStorage.getItem('length_of_stay') } nights</p>
                                 </Col>
                                 <hr />
                             </Row>
@@ -399,27 +439,37 @@ const BookHotel = ( ) => {
                             
                             <hr />
 
-
-                            <Row md={ 2 } >
+                            <>
                                 <h5 className='section-sub-header'>Pricing</h5>
+                                <Row md={ 2 } >
+                                    <Col>
+                                        <h6 className='booking-hotel-extra-details'>1 night ( GH<span>&#8373;</span> { bookingHotelObject.room_rate } ) * { window.localStorage.getItem('length_of_stay') } nights</h6>
 
-                                <Col>
-                                    <h6 className='booking-hotel-extra-details'>1 night</h6>
+                                        <h6 className='booking-hotel-extra-details'>VAT (12.5%)</h6>
 
-                                    <h6 className='booking-hotel-extra-details'>Taxes and fees</h6>
+                                        <h6 className='booking-hotel-extra-details'>NHIL (2.5%)</h6>
 
-                                    <h3 className='section-sub-header'>Total</h3>
+                                        <h6 className='booking-hotel-extra-details'>COVID LEVY (1%)</h6>
 
-                                </Col>
+                                        <h3 className='section-sub-header'>Total Cost</h3>
 
-                                <Col>
-                                    <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { bookingHotelObject.room_rate }</h6>
+                                    </Col>
 
-                                    <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> 14.76</h6>
 
-                                    <h3 className='section-sub-header'>GH<span>&#8373;</span> 9854.76</h3>
-                                </Col>
-                            </Row>
+                                    <Col>
+                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { basicCost } </h6>
+
+                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { vatRate }</h6>
+
+                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { nhilRate }</h6>
+
+                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { covidLevy }</h6>
+
+                                        <h3 className='section-sub-header'>GH<span>&#8373;</span> { totalCost } </h3>
+                                    </Col>
+
+                                </Row>
+                            </>
                             <hr />
 
 

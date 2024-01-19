@@ -262,14 +262,16 @@ const Reviews = ( ) => {
 
 
                 <section className='selected-room-details-sub-section'>
-                    <Row>
-                        <Col md={ 7 }>
-                            <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Total Review(s)</h3>
+                    <Row className='reviews-header-row'>
+
+                        <Col md={ 6 } xs={ 6 }>
+                            <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Review(s)</h3>
                         </Col>
 
-                        <Col md={ 5 }>
-                            <Button variant='custom' className='post-review-btn' onClick={ ScrollReviewFormToView }>Post a review</Button>
+                        <Col md={ 6 } xs={ 6 }>
+                            <Button variant='custom' className='post-review-btn' onClick={ ScrollReviewFormToView }>Post review</Button>
                         </Col>
+
                     </Row>
 
 
@@ -315,7 +317,7 @@ const Reviews = ( ) => {
 
                         <Row>
                             <Col>
-                                <Button variant='custom' className='post-review-btn' onClick={ HandlePostReview }>Post review</Button>
+                                <Button variant='custom' className='post-review-btn-submit' onClick={ HandlePostReview }>Post review</Button>
                             </Col>
 
                             <Col md={ 7 }>

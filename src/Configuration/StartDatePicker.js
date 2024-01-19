@@ -38,7 +38,7 @@ const StartDatePicker = () => {
               if ( newValue !== null ) {
                   const date = newValue._d
                   setStartDateMilliseconds( date )
-                  console.log( `date = ${ date }` )
+                  console.log( `newValue._d = ${ date }` )
 
                   const day = date.getDate()
                   let stringDay = day.toString()

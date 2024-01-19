@@ -1810,7 +1810,7 @@
     padding-left: 6%;
     padding-right: 6%;
     margin-top: 3%;
-    padding-bottom: 3%;
+    padding-bottom: 1%;
 }
 
 
@@ -1844,6 +1844,7 @@
 .post-review-btn {
     background-color: var(--primary-color);
     color: white;
+    width: 100%;
 }
 
 
@@ -1851,6 +1852,20 @@
     background-color: var(--primary-color);
     color: white;
 }
+
+
+.post-review-btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+}
+
+
+.post-review-btn-submit:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
 
 
 
@@ -1864,6 +1879,8 @@
 }
 
 /* end of reviews page styling */
+
+
 
 
 
@@ -2037,6 +2054,10 @@
         font-size: 0.84rem;
     }
 
+    .booking-hotel-price {
+        font-weight: bold;
+    }
+
 
     .form-control-no-text {
         margin-bottom: 8%;
@@ -2170,6 +2191,21 @@
     .post-review-section {
         margin-left: 6%;
         margin-right: 6%;
+    }
+
+    .selected-room-details-sub-header {
+        margin-bottom: 10%;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .post-review-btn {
+        /* width: 100%; */
+        margin-left: 7%;
+    }
+
+    .reviews-header-row {
+        margin-bottom: 20%;
     }
 
 

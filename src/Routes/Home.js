@@ -76,14 +76,14 @@ const Home = () => {
   const { user } = useContext( UserContext )
 
   // making certain component always displays from top on initial render.
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     left: 0,
-  //     behavior: 'smooth'
-  //   })
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
 
-  // })
+  })
 
 
 
@@ -266,7 +266,7 @@ const Home = () => {
                                 </section>
 
                                 <section className='card-room-rate'>
-                                  GH<span>&#8373;</span> { room.room_rate }
+                                  GH<span>&#8373;</span> { room.room_rate } per night
                                 </section>
                               </div>
                             </Card.Subtitle>

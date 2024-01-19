@@ -18,7 +18,7 @@ const EndDatePicker = ( ) => {
     // effect hook to store end date value in local storage
     useEffect(() => {
         window.localStorage.setItem( 'endDateValue', JSON.stringify( endDateValue ))
-        console.log(`local storage start date value == ${ endDateValue }`)
+        console.log(`local storage end date value == ${ endDateValue }`)
 
     }, [ endDateValue ])
 

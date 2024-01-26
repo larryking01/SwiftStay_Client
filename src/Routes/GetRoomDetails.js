@@ -45,9 +45,9 @@ import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites
 
 const GetRoomDetails = () => {
 
-  // local and online server urls
-  // let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
+  // server url
+  const { server_url } = useContext( UserContext )
+
 
   // for params
   const params = useParams()
@@ -119,7 +119,7 @@ const GetRoomDetails = () => {
   useEffect(() => {
     // async function to fetch data.
     const FetchData = async () => {
-      let response = await fetch(`${ online_server }/get/room-details/${ params.hotel_name }/${ params.hotel_id }`, {
+      let response = await fetch(`${ server_url }/get/room-details/${ params.hotel_name }/${ params.hotel_id }`, {
         method: 'GET'
       })
       
@@ -153,7 +153,7 @@ const GetRoomDetails = () => {
     // effect hook to fetch all reviews.
     useEffect(() => {
       const FetchAllReviews = async ( ) => {
-          let response = await fetch(`${ online_server }/get/fetch-reviews/${ params.hotel_name }/${ params.hotel_id }`)
+          let response = await fetch(`${ server_url }/get/fetch-reviews/${ params.hotel_name }/${ params.hotel_id }`)
           
           if( response.status === 200 ) {
               let data =  await response.json()
@@ -231,7 +231,7 @@ const GetRoomDetails = () => {
       else {
           // actually posting the review.
           setPostingReview( true )
-          let response = await fetch(`${ online_server }/post/post-review/${ params.hotel_name }/${ params.hotel_id }`, {
+          let response = await fetch(`${ server_url }/post/post-review/${ params.hotel_name }/${ params.hotel_id }`, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'

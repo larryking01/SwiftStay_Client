@@ -54,6 +54,14 @@ const BookHotel = ( ) => {
     const [ covidLevy, setCovidLevy ] = useState( 0 )
     const [ totalCost, setTotalCost ] = useState( 0 )
 
+    const [ basicCostString, setBasicCostString ] = useState('0')
+    const [ vatRateString, setVatRateString ] = useState('0')
+    const [ nhilRateString, setNhilRateString ] = useState( '0' )
+    const [ covidLevyString, setCovidLevyString ] = useState( '0' )
+    const [ totalCostString, setTotalCostString ] = useState( '0' )
+
+    const [ lengthOfStay, setLengthOfStay ] = useState( 1 )
+
 
     // url params
     const params = useParams()
@@ -63,7 +71,8 @@ const BookHotel = ( ) => {
     const detailsSectionRef = useRef( null )
 
     // getting check-in and check-out dates via useContext.
-    const { startDateValue, 
+    const { server_url,
+            startDateValue, 
             setStartDateValue, 
             endDateValue, 
             setEndDateValue,
@@ -74,10 +83,20 @@ const BookHotel = ( ) => {
            } = useContext( UserContext )
 
 
+    // making certain component always displays from top on initial render.
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+    })
+
+    
     // useEffect to fetch the booking hotel.
     useEffect(() => {
         const fetchBookingHotel = async () => {
-            let response = await fetch(`https://hotel-finder-app-server-rest.onrender.com/get/room-details/${ params.hotel_name }/${ params.room_id }`, {
+            let response = await fetch(`${ server_url }/get/room-details/${ params.hotel_name }/${ params.room_id }`, {
                 method: 'GET'
             })
             
@@ -85,13 +104,68 @@ const BookHotel = ( ) => {
                 let data = await response.json()
                 setBookingHotelObject({ ...data })
                 console.log('fetching hotel details done')
-                console.log( bookingHotelObject )
+                setTimeout(() => { console.log( bookingHotelObject )}, 4000)
             }
         }
-
         fetchBookingHotel()
-
     }, [ ])
+
+
+    // getting the customer length of stay
+    useEffect(() => {
+        let length_of_stay = window.localStorage.getItem('length_of_stay')
+        length_of_stay = parseInt( length_of_stay )
+        setLengthOfStay( length_of_stay )
+        console.log(`start date === ${ startDateValue }`)
+        console.log( `end date === ${ endDateValue }`)
+        console.log(`customer length of stay === ${ lengthOfStay }`)
+        
+    }, 
+    [ startDateValue, endDateValue, setStartDateValue, setEndDateValue, lengthOfStay ])
+
+
+    // use effect hook to update values of pricing calculators.
+    useEffect(( ) => {
+        if( Object.keys( bookingHotelObject ).length > 3 ) {
+            let vt, nh, cd, tc 
+            setBasicCost( bookingHotelObject.room_rate * lengthOfStay )
+            setBasicCostString( basicCost.toFixed( 2 ))
+            console.log( `basic cost is ${ basicCost }`)
+            console.log( `basic cost string is ${ basicCostString }`)
+
+
+            vt = ( 0.125 * basicCost )
+            setVatRate( vt )
+            setVatRateString( vatRate.toFixed(2))
+            console.log(`vat rate is ${ vatRate }`)
+            console.log(`vat rate string is ${ vatRateString }`)
+
+
+            nh = ( 0.025 * basicCost )
+            setNhilRate( nh )
+            setNhilRateString( nhilRate.toFixed(2))
+            console.log(`nhil rate is ${ nhilRate }`)
+            console.log(`nhil rate string is ${ nhilRateString }`)
+
+
+            cd = ( 0.01 * basicCost )
+            setCovidLevy( cd )
+            setCovidLevyString( covidLevy.toFixed(2))
+            console.log(`covid levy is ${ covidLevy }`)
+            console.log(`covid levy string is ${ covidLevyString }`)
+
+
+            tc = basicCost + vt + nh + cd 
+            setTotalCost( tc )
+            setTotalCostString( tc.toFixed(2))
+            console.log(`total cost is ${ totalCost }`)
+            console.log(`total cost string is ${ totalCostString }`)
+
+
+        }}, 
+        [ bookingHotelObject, basicCost, vatRate, nhilRate, covidLevy, totalCost,
+          basicCostString, vatRateString, nhilRateString, covidLevyString, totalCostString ])
+
 
 
     // effect hook to fetch start date value from local storage
@@ -111,48 +185,7 @@ const BookHotel = ( ) => {
 
     }, [ endDateValue ,setEndDateValue ])
 
-
-    // making certain component always displays from top on initial render.
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        })
-    })
     
-
-    useEffect(() => {
-        console.log(`start date === ${ startDateValue }`)
-        console.log( `end date === ${ endDateValue }`)
-    }, [ startDateValue, endDateValue, setStartDateValue, setEndDateValue ])
-
-
-    // use effect hook to update values of pricing calculators.
-    useEffect(( ) => {
-        if( bookingHotelObject ) {
-            setBasicCost( bookingHotelObject.room_rate )
-            console.log( `basic cost is ${ basicCost }`)
-            setVatRate( ( 0.125 * basicCost ).toFixed( 2 ) )
-            console.log(`vat rate is ${ vatRate }`)
-            setNhilRate( ( 0.025 * basicCost ).toFixed( 2 ))
-            console.log(`nhil rate is ${ nhilRate }`)
-            setCovidLevy( ( 0.01 * basicCost ).toFixed( 2 ) )
-            console.log(`covid levy is ${ covidLevy }`)
-        }
-
-    }, [ bookingHotelObject, setBasicCost ])
-
-
-    // effect to calculate total cost.
-    useEffect(() => {
-        if( bookingHotelObject ) {
-            let total_cost = basicCost + vatRate + nhilRate + covidLevy
-            // total_cost = total_cost.toFixed( 2 )
-            setTotalCost( total_cost )
-        }
-
-    }, [ basicCost, vatRate + nhilRate + covidLevy ])
 
 
 
@@ -410,7 +443,7 @@ const BookHotel = ( ) => {
 
                                 <Col>
                                     <h5 className='section-sub-header'>Length Of Stay</h5>
-                                    <p className='booking-hotel-extra-details'>{ window.localStorage.getItem('length_of_stay') } nights</p>
+                                    <p className='booking-hotel-extra-details'>{ lengthOfStay } nights</p>
                                 </Col>
                                 <hr />
                             </Row>
@@ -423,7 +456,7 @@ const BookHotel = ( ) => {
                                 <Row md={ 4 } xs={ 1 }>
                                     {
                                         Object.keys( bookingHotelObject ).length > 0 ?
-                                            bookingHotelObject.room_features.map(( feature, index ) => (
+                                            bookingHotelObject.room_features?.map(( feature, index ) => (
                                                 <Col key={ index }>
                                                     <div className='book-room-features mb-3'>
                                                         { feature }
@@ -457,15 +490,15 @@ const BookHotel = ( ) => {
 
 
                                     <Col>
-                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { basicCost } </h6>
+                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { basicCostString } </h6>
 
-                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { vatRate }</h6>
+                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { vatRateString }</h6>
 
-                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { nhilRate }</h6>
+                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { nhilRateString }</h6>
 
-                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { covidLevy }</h6>
+                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { covidLevyString }</h6>
 
-                                        <h3 className='section-sub-header'>GH<span>&#8373;</span> { totalCost } </h3>
+                                        <h3 className='section-sub-header'>GH<span>&#8373;</span> { totalCostString } </h3>
                                     </Col>
 
                                 </Row>

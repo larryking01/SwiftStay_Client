@@ -1,12 +1,19 @@
 import React, { useEffect } from 'react'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
-import about_us_bg2 from '../Media Files/Rooms And Suites/about-us-bg2.jpg'
-import traveler from '../Media Files/traveler.png'
-import upcycling from '../Media Files/upcycling.png'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
+// import about_us_bg2 from '../Media Files/Rooms And Suites/about-us-bg2.jpg'
+import traveler from '../Media Files/traveler.png'
+import upcycling from '../Media Files/upcycling.png'
+import larry from '../Media Files/Team Members Images/larry.webp'
+// import larry2 from '../Media Files/Team Members Images/larry2.jpg'
+import priscilla from '../Media Files/Team Members Images/priscilla.webp'
+import nat from '../Media Files/Team Members Images/nat.avif'
+import marian from '../Media Files/Team Members Images/marian.jpg'
+import aku_shika from '../Media Files/Team Members Images/aku-shika.jpg'
 
 
 
@@ -29,31 +36,31 @@ const AboutHelp = ( ) => {
         {
             name: 'Larry N. N. Williams', 
             position: 'President & CEO', 
-            img_src:'https://cms.afrotech.com/wp-content/uploads/2021/07/DavidRawlinson-1200x675.jpg', 
+            img_src: larry, 
             about: 'It is our pleasure to introduce the driving force behind SwiftStay, our esteemed CEO, Larry Nii Nai Williams. With a vision that transcends boundaries and a passion for redefining the way we experience travel, Larry leads our team towards new horizons in the world of hospitality. A seasoned leader with a profound understanding of the travel industry, Larry brings a wealth of experience to StaySwift. His journey is marked by a relentless commitment to innovation, customer satisfaction, and a deep appreciation for the transformative power of travel.'
         },
         {
             name: 'Oswell Aku Shika', 
             position: 'Chief Financial Officer', 
-            img_src:'https://i.insider.com/603fb765b46d720018b04963?width=700', 
+            img_src: aku_shika, 
             about: "It is with great pleasure that we introduce the financial maestro behind the scenes at SwiftStay, our esteemed Chief Financial Officer, Oswell Naa Aku-Shika. With a keen eye for financial strategy and a commitment to fiscal excellence, Oswell plays a pivotal role in shaping the financial landscape of our organization.A seasoned professional with a proven track record in finance, Oswell brings a wealth of experience to StaySwift."
         },
         {
             name: 'Priscilla M. Bonsu', 
             position: 'Chief Marketing Officer', 
-            img_src:'https://media.zenfs.com/en/thegrio_yahoo_articles_946/b46fbcd0daa4e23d505ace1d4313cd5b', 
+            img_src: priscilla, 
             about: "It is our pleasure to introduce the creative visionary driving the heartbeat of our brand, StaySwift's Chief Marketing Officer, Priscilla Mensah Bonsu. With a passion for storytelling and a knack for building meaningful connections, Priscilla is the architect behind the vibrant tapestry of our brand identity.A seasoned marketing expert with a wealth of experience, Priscilla brings a dynamic and innovative approach to StaySwift." 
         },
         {
             name: 'Nathaniel Amoah Bimpong', 
             position: 'Chief Product Officer', 
-            img_src:'https://img.freepik.com/premium-photo/motivation-vision-mindset-with-business-black-man-ceo-manager-boss-standing-arms-crossed-office-portrait-glasses-mission-with-mature-male-employee-leaning-against-window_590464-115378.jpg?w=2000', 
+            img_src: nat, 
             about: 'We are thrilled to introduce the driving force behind the innovation and user-centric design at StaySwift, our Chief Product Officer, Nathaniel Amoah Bimpong. With a passion for crafting seamless and delightful user experiences, Nathaniel is the architect of the features and functionalities that make navigating StaySwift a joy for our users. A refined product strategist with a proven track record, Nathaniel brings a wealth of expertise to StaySwift.'
         },
         {
             name: 'Marian Boye-Amoah', 
             position: 'Chief UI/UX Officer', 
-            img_src:'https://img.freepik.com/free-photo/friendly-ceo-desk_23-2147626294.jpg', 
+            img_src: marian, 
             about:'It is with great excitement that we introduce the mastermind behind the visual allure and user-centric design principles at SwiftStay, our Chief UI/UX Officer, Marian Boye-Amoah. With a deep passion for creating immersive and intuitive digital experiences, Marian is the artistic visionary responsible for the seamless and delightful journeys you embark upon when using our platform. A refined expert in the field of User Interface (UI) and User Experience (UX) design, Marian brings a wealth of creative expertise to SwiftStay.'
         }
 
@@ -148,11 +155,11 @@ const AboutHelp = ( ) => {
                         <Row md={ 2 } xs={ 1 } sm={ 1 } className='about-us-row-generic-style our-team-row' key={ index }>
                             <Col>
                                 <img src={ team_member.img_src } alt='' className='team-pic-style' />
-                                <h4 className='team-member-name'>{ team_member.name }</h4>
+                                {/* <h4 className='team-member-name'>{ team_member.name }</h4> */}
                             </Col>
 
                             <Col>
-                                {/* <h3 className='team-member-name'>{ team_member.name }</h3> */}
+                                <h3 className='team-member-name'>{ team_member.name }</h3>
                                 <h5 className='team-member-position'>{ team_member.position }</h5>
                                 <p>{ team_member.about }</p>
                             </Col>

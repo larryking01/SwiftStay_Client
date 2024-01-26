@@ -12,23 +12,25 @@ import { HashRouter, Routes, Route } from 'react-router-dom'
 import Home from './Routes/Home'
 import FetchAllBookings from './Routes/FetchAllBookings'
 import FetchAllRooms from './Routes/FetchAllRooms'
-import FetchAllStaff from './Routes/FetchAllStaff'
 import GetRoomDetails from './Routes/GetRoomDetails'
 import BookHotel from './Routes/BookHotel'
 import Help from './Routes/Help'
-import BookingsHelp from './Routes/BookingsHelp'
-import PricesHelp from './Routes/PricesHelp'
 import ContactUsHelp from './Routes/ContactUsHelp'
-import SearchingHelp from './Routes/SearchingHelp'
 import AboutHelp from './Routes/AboutHelp'
-import Maps from './Configuration/Maps'
 import FrequentlyAskedQuestionsHelp from './Routes/FrequentlyAskedQuestionsHelp'
 import Login from './Routes/Login'
 import SignUp from './Routes/SignUp'
 import NavbarComponent from './Routes/NavBar'
 import Reviews from './Routes/AllReviews'
-import Footer from './Routes/Footer'
-import FaIcons from './Routes/FaIcons'
+// import Footer from './Routes/Footer'
+// import FaIcons from './Routes/FaIcons'
+// import BookingsHelp from './Routes/BookingsHelp'
+// import PricesHelp from './Routes/PricesHelp'
+// import FetchAllStaff from './Routes/FetchAllStaff'
+// import SearchingHelp from './Routes/SearchingHelp'
+// import Maps from './Configuration/Maps'
+
+
 
 
 
@@ -38,11 +40,13 @@ const UserContext = createContext( null )
 
 
 
-
-
-
 const App = () => {
 
+
+    // online and local server urls.
+    const server_url = 'https://hotel-finder-app-server-rest.onrender.com'
+    // const online_server_url = 'https://hotel-finder-app-server-rest.onrender.com'
+    // const local_server_url = 'http://localhost:8000'
 
 
     // handling user state.
@@ -75,27 +79,25 @@ const App = () => {
         setCheckOut( event.target.value )
     }
 
-    const HandleNumberOfAdultVisitorsState = ( event ) => {
-        setNumberOfAdultVisitors( event.target.value )
-    }
+    // const HandleNumberOfAdultVisitorsState = ( event ) => {
+    //     setNumberOfAdultVisitors( event.target.value )
+    // }
 
-    const HandleNumberOfChildVisitorsState = ( event ) => {
-        setNumberOfChildVisitors( event.target.value )
-    }
+    // const HandleNumberOfChildVisitorsState = ( event ) => {
+    //     setNumberOfChildVisitors( event.target.value )
+    // }
 
-    const HandleNumberOfRoomsState = ( event ) => {
-        setNumberOfRooms( event.target.value )
-    }
-
-
-
+    // const HandleNumberOfRoomsState = ( event ) => {
+    //     setNumberOfRooms( event.target.value )
+    // }
 
   
 
   return (
       <>
         <HashRouter>
-            <UserContext.Provider value={{ currentUser, setCurrentUser, checkIn, 
+            <UserContext.Provider value={{ server_url,
+                                           currentUser, setCurrentUser, checkIn, 
                                            HandleCheckInState, checkOut, HandleCheckOutState,
                                            numberOfAdultVisitors, setNumberOfAdultVisitors,
                                            numberOfChildVisitors, setNumberOfChildVisitors,
@@ -110,14 +112,9 @@ const App = () => {
                     <Route path='/' element={ <Home /> } />
                     <Route path='fetch-all-bookings' element={ <FetchAllBookings /> } />
                     <Route path='fetch-all-rooms' element={ <FetchAllRooms /> } />
-                    <Route path='fetch-all-staff' element={ <FetchAllStaff /> } />
                     <Route path='get-room-details/:hotel_name/:hotel_id' element={ <GetRoomDetails /> } />
                     <Route path='book-hotel/:hotel_name/:room_id' element={ <BookHotel /> } />
-                    <Route path='maps' element={ <Maps /> } />
                     <Route path='help' element={ <Help /> } />
-                    <Route path='help-bookings' element={ <BookingsHelp /> } />
-                    <Route path='help-prices' element={ <PricesHelp /> } />
-                    <Route path='help-searching' element={ <SearchingHelp /> } />
                     <Route path='help-contact-us' element={ <ContactUsHelp /> } />
                     <Route path='help-about-us' element={ <AboutHelp /> } />
                     <Route path='frequently-asked-questions' element={ <FrequentlyAskedQuestionsHelp /> } />
@@ -125,8 +122,14 @@ const App = () => {
                     <Route path='sign-up' element={ <SignUp /> } />
                     <Route path='all-reviews/:hotel_name/:hotel_id' element={ <Reviews /> } />
                     <Route path='nav-bar' element={ <NavbarComponent /> } />
-                    <Route path='footer' element={ <Footer /> } />
-                    <Route path='icons' element={ <FaIcons /> } />
+                    {/* <Route path='footer' element={ <Footer /> } /> */}
+                    {/* <Route path='icons' element={ <FaIcons /> } /> */}
+                    {/* <Route path='help-bookings' element={ <BookingsHelp /> } /> */}
+                    {/* <Route path='help-prices' element={ <PricesHelp /> } /> */}
+                    {/* <Route path='help-searching' element={ <SearchingHelp /> } /> */}
+                    {/* <Route path='fetch-all-staff' element={ <FetchAllStaff /> } /> */}
+                    {/* <Route path='maps' element={ <Maps /> } /> */}
+
                 </Routes>
             </UserContext.Provider>
         </HashRouter>

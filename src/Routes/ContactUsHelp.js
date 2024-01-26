@@ -71,9 +71,6 @@ const ContactUsHelp = ( ) => {
 
                     <Button variant='custom' className='contact-us-btn'> Submit </Button>
 
-
-
-
                 </section>
 
             </section>
@@ -82,9 +79,6 @@ const ContactUsHelp = ( ) => {
             </section>
 
             <Footer />
-
-
-
         </div>
     )
 

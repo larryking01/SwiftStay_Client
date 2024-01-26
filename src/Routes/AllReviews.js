@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
@@ -15,14 +15,14 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
 
+import { UserContext } from '../App'
 
 
 
 const Reviews = ( ) => {
 
-  // local and online server urls
- //  let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
+    // server url
+    const { server_url } = useContext( UserContext )
 
     // setting up params.
     const params = useParams()
@@ -57,7 +57,7 @@ const Reviews = ( ) => {
   useEffect(() => {
     // async function to fetch data.
     const FetchData = async () => {
-      let response = await fetch(`${ online_server }/get/room-details/${ params.hotel_name }/${ params.hotel_id }`, {
+      let response = await fetch(`${ server_url }/get/room-details/${ params.hotel_name }/${ params.hotel_id }`, {
         method: 'GET'
       })
       
@@ -92,7 +92,7 @@ const Reviews = ( ) => {
     // effect hook to fetch all reviews.
     useEffect(() => {
         const FetchAllReviews = async ( ) => {
-            let response = await fetch(`${ online_server }/get/fetch-reviews/${ params.hotel_name }/${ params.hotel_id }`)
+            let response = await fetch(`${ server_url }/get/fetch-reviews/${ params.hotel_name }/${ params.hotel_id }`)
             
             if( response.status === 200 ) {
                 let data =  await response.json()
@@ -166,7 +166,7 @@ const Reviews = ( ) => {
         else {
             // actually posting the review.
             setPostingReview( true )
-            let response = await fetch(`${ online_server }/post/post-review/${ params.hotel_name }/${ params.hotel_id }`, {
+            let response = await fetch(`${ server_url }/post/post-review/${ params.hotel_name }/${ params.hotel_id }`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -202,10 +202,6 @@ const Reviews = ( ) => {
         }
 
     }
-
-
-
-
 
     
 

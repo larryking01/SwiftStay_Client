@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom'
 import NavbarComponent from './NavBar'
@@ -26,6 +26,7 @@ import trending_movenpick_cover from '../Media Files/trending_movenpick_cover.jp
 import trending_mensvic_cover from '../Media Files/trending_mensvic_hotel.jpg'
 
 
+import { UserContext } from '../App'
 
 
 
@@ -33,9 +34,8 @@ import trending_mensvic_cover from '../Media Files/trending_mensvic_hotel.jpg'
 const FetchAllRooms = () => {
 
   
-  // local and online server urls
-  // let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
+  // server url
+  const { server_url } = useContext( UserContext )
 
 
 
@@ -73,7 +73,7 @@ const FetchAllRooms = () => {
     const FetchAllRooms = async () => {
 
       // setIsLoadingAllHotels( true )
-      let response = await fetch(`${ online_server }/get/fetch-all-rooms`, {
+      let response = await fetch(`${ server_url }/get/fetch-all-rooms`, {
         method: 'GET'
       })
 
@@ -82,8 +82,6 @@ const FetchAllRooms = () => {
         setAllRoomsArray( data )
         setIsLoadingAllHotels( false )
         console.log( data )
-        // console.log('all rooms array === ')
-        // console.log( allRoomsArray )
       }
       
       else {

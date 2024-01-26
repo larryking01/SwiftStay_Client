@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
@@ -7,7 +7,10 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import background_4 from '../Media Files/background_4.jpg'
+// import background_1 from '../Media Files/Homepage Background/background_1.jpg'
+import background_2 from '../Media Files/Homepage Background/background_2.jpg'
+// import background_3 from '../Media Files/Homepage Background/background_3.jpg'
+// import background_4 from '../Media Files/Homepage Background/background_4.jpg'
 import trip_dotcom from '../Media Files/trip.com_logo.png'
 import booking_dotcom from '../Media Files/booking.com_logo.png'
 import hyatt_dotcom from '../Media Files/hyatt.com_logo.jpg'
@@ -56,12 +59,11 @@ import { UserContext } from '../App'
 
 const Home = () => {
 
-  // local and online server urls
-  //https://hotel-finder-app-server-rest.onrender.com
-  // let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
+  // server url
+  const { server_url } = useContext( UserContext )
 
-  
+  // initializing hotels section ref
+  const all_hotels_section_ref = useRef( null )
 
   // setting up state.
   const [ roomsArray, setRoomsArray ] = useState([ ])
@@ -94,7 +96,7 @@ const Home = () => {
     const fetchHotels = async () => {
 
       // setIsLoadingHotels( true )
-      let response = await fetch(`${ online_server }/get/fetch-all-rooms`, {
+      let response = await fetch(`${ server_url }/get/fetch-all-rooms`, {
         method: 'GET'
       })
 
@@ -161,6 +163,14 @@ const Home = () => {
   ]
 
 
+  // function to scroll all hotels section into view.
+  const ScrollAllHotelsIntoView = ( ) => {
+    all_hotels_section_ref.current.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+
+
 
   return (
     <div>
@@ -175,20 +185,20 @@ const Home = () => {
         </section>
 
         <section className='place-to-stay'>
-          <h3><strong className='save-big-text'>Find your place to stay { user } </strong></h3>
+          <h3><strong className='save-big-text'>Discover your favourite <span className='save-big-text-line2'>place with us</span></strong></h3>
         </section>
 
         <section className='intro-background'>
-          <img src={ background_4 } alt='' className='intro-background-img' />
+          <img src={ background_2 } alt='' className='intro-background-img' />
 
         <section className='intro-form'>
           <Row>
             <h6 className='intro-form-catch-phrase'>Easy to book, hard to say goodbye to</h6>
           </Row>
 
-          <Form.Group className='mb-3' controlId='formBasicText'>
+          {/* <Form.Group className='mb-3' controlId='formBasicText'>
             <Form.Control type='text' placeholder='Enter a hotel, city, address....' className='destination-textbox text-control-focus-style' />
-          </Form.Group>
+          </Form.Group> */}
 
           <Row xs={ 1 } md={ 2 }>
             <Col className='mb-3'>
@@ -200,18 +210,20 @@ const Home = () => {
             </Col>
           </Row>
 
-          <Row xs={ 1 } md={ 2 }>
-            <Col className='mb-3'>
+          <Row xs={ 12 } md={ 12 }>
+            {/* <Col className='mb-3'>
               <Form.Control className='number-of-guests-textbox text-control-focus-style' type='text' placeholder='1 room, 2 guests' />
-            </Col>
+            </Col> */}
 
             <Col className='mb-3'>
-              <Button variant='custom' className='find-hotel-button'>Find your hotel</Button>
+              <Button variant='custom' className='find-hotel-button' onClick={ ScrollAllHotelsIntoView }>
+                Find your hotel
+              </Button>
             </Col>
           </Row>
         </section>
 
-        </section> 
+        </section>  
 
 
         <section className='world-of-hotels-section'>
@@ -243,7 +255,7 @@ const Home = () => {
               :
 
           <>
-            <Row xs={ 1 } md={ 4 } className='main-hotels-section-row'>
+            <Row xs={ 1 } md={ 4 } className='main-hotels-section-row' ref={ all_hotels_section_ref }>
                 {
                   roomsArray.map(( room, index ) => (
                     <Col key={ index }>

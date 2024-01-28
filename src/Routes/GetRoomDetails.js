@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { UserContext } from '../App'
-
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
@@ -11,8 +7,6 @@ import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Carousel from 'react-grid-carousel'
 import Rating from '@mui/material/Rating'
-import StartDatePicker from '../Configuration/StartDatePicker'
-import EndDatePicker from '../Configuration/EndDatePicker'
 import { IoLocationSharp } from 'react-icons/io5'
 import { MdOutlinePets } from 'react-icons/md'
 import { MdEmojiFoodBeverage } from 'react-icons/md'
@@ -24,19 +18,19 @@ import { FaCcPaypal } from 'react-icons/fa'
 import { BsPersonFill } from 'react-icons/bs'
 import { BiMinus, BiPlus } from 'react-icons/bi'
 
-// import Maps from '../Configuration/Maps'
-import Maps2 from '../Configuration/Maps2'
-
-
 // font awesome icons.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-
-import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp'
-
-
-
+// modules
+import { UserContext } from '../App'
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
+import StartDatePicker from '../Configuration/StartDatePicker'
+import EndDatePicker from '../Configuration/EndDatePicker'
+// import Maps from '../Configuration/Maps'
+import Maps2 from '../Configuration/Maps2'
+// import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp'
 
 
 
@@ -95,14 +89,14 @@ const GetRoomDetails = () => {
 
 
 
-  const HandleSearchSubmit = ( ) => {
-    console.log(`check in === ${ startDateValue }`)
-    console.log(`check out === ${ endDateValue }`)
-    console.log(`adults = ${ numberOfAdultVisitors }`)
-    console.log(`children = ${ numberOfChildVisitors }`)
-    console.log(`rooms = ${ numberOfRooms }`)
+  // const HandleSearchSubmit = ( ) => {
+  //   console.log(`check in === ${ startDateValue }`)
+  //   console.log(`check out === ${ endDateValue }`)
+  //   console.log(`adults = ${ numberOfAdultVisitors }`)
+  //   console.log(`children = ${ numberOfChildVisitors }`)
+  //   console.log(`rooms = ${ numberOfRooms }`)
     
-  }
+  // }
 
 
   // making certain component always displays from top on initial render.
@@ -124,11 +118,11 @@ const GetRoomDetails = () => {
       })
       
       if ( response.status === 200 ) {
-        console.log( `selected room success response is ${ response.status }` )
+        // console.log( `selected room success response is ${ response.status }` )
         let data = await response.json()
         setselectedRoomDetailsObject({ ...data }) 
-        console.log('selected room data is')
-        console.log( data )
+        // console.log('selected room data is')
+        // console.log( data )
         setTimeout(() => {
           setIsLoadingHotelDetails( false )
         }, 1000 )
@@ -136,7 +130,7 @@ const GetRoomDetails = () => {
       }
 
       else {
-        console.log( `failure status is ${response.status} ` )
+        // console.log( `failure status is ${response.status} ` )
         setIsLoadingHotelDetails( false )
         setFetchError( false )
         setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
@@ -161,18 +155,18 @@ const GetRoomDetails = () => {
               setTimeout(() => {
                   setIsLoadingReviews( false )
               }, 1000 )
-              console.log('all reviews fetched')
-              console.log( data )
+              // console.log('all reviews fetched')
+              // console.log( data )
           }
           else if ( response.status === 404 ) {
               setTimeout(() => {
                   setIsLoadingReviews( false )
               }, 1000 )
-              console.log('no reviews for this hotel yet')
+              // console.log('no reviews for this hotel yet')
           }
           else {
               setIsLoadingReviews( false )
-              console.log('failed to fetch reviews......')
+              // console.log('failed to fetch reviews......')
               setReviewsErrorMessage('failed to fetch reviews....')
           }
       }
@@ -245,7 +239,7 @@ const GetRoomDetails = () => {
           })
 
           if ( response.status === 200 ) {
-              console.log('review posted')
+              // console.log('review posted')
               setReviewerEmail('')
               setReviewBody('')
               setPostingReview( false )
@@ -256,7 +250,7 @@ const GetRoomDetails = () => {
           }
           else {
               setPostingReview( false )
-              console.log('failed to post review')
+              // console.log('failed to post review')
               setReviewFeedback('failed to post your review due to an error...')
               setTimeout(() => {
                   setReviewFeedback('')
@@ -271,11 +265,11 @@ const GetRoomDetails = () => {
 
   // calculate length of stay
   const CalculateLengthOfStay = ( checkInDate, checkOutDate ) => {
-    console.log(`start date millisecs = ${ checkInDate.getTime() }`)
-    console.log(`end date millisecs = ${ checkOutDate.getTime() }`)
+    // console.log(`start date millisecs = ${ checkInDate.getTime() }`)
+    // console.log(`end date millisecs = ${ checkOutDate.getTime() }`)
     let lengthOfStay = checkOutDate.getTime() - checkInDate.getTime()
     lengthOfStay = Math.floor( lengthOfStay / ( 1000 * 60 * 60 * 24 )) 
-    console.log( `length of stay = ${ lengthOfStay }`)
+    // console.log( `length of stay = ${ lengthOfStay }`)
 
     return lengthOfStay
 }
@@ -293,7 +287,7 @@ const GetRoomDetails = () => {
     else {
       setBookingDatesNull( false )
       let durationOfStay = CalculateLengthOfStay( startDateMilliseconds, endDateMilliseconds )
-      console.log(`duration of stay = ${ durationOfStay }`)
+      // console.log(`duration of stay = ${ durationOfStay }`)
       if( durationOfStay < 0 ) {
         alert('Check-out date must be later than Check-in date')
       }

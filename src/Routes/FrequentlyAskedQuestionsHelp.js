@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
 import { BsArrowDownSquare, BsArrowUpSquare } from 'react-icons/bs'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+
+// modules
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
 
 
 
@@ -32,10 +34,6 @@ const FrequentlyAskedQuestionsHelp = ( ) => {
     const [ showFAQAns6, setShowFAQAns6 ] = useState( false )
     const [ showFAQAns7, setShowFAQAns7 ] = useState( false )
     const [ showFAQAns8, setShowFAQAns8 ] = useState( false )
-
-
-
-
 
 
     const question_answer_array = [

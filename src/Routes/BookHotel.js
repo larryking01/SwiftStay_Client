@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
 import { FaCcAmex } from 'react-icons/fa'
 import { SiVisa } from 'react-icons/si'
 import { SiMastercard } from 'react-icons/si'
@@ -16,7 +14,10 @@ import Rating from '@mui/material/Rating'
 import Button from 'react-bootstrap/Button'
 import { IoLocationSharp } from 'react-icons/io5'
 
+// modules
 import { UserContext } from '../App'
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
 
 
 
@@ -103,8 +104,8 @@ const BookHotel = ( ) => {
             if( response.ok ) {
                 let data = await response.json()
                 setBookingHotelObject({ ...data })
-                console.log('fetching hotel details done')
-                setTimeout(() => { console.log( bookingHotelObject )}, 4000)
+                // console.log('fetching hotel details done')
+                // setTimeout(() => { console.log( bookingHotelObject )}, 4000)
             }
         }
         fetchBookingHotel()
@@ -116,9 +117,9 @@ const BookHotel = ( ) => {
         let length_of_stay = window.localStorage.getItem('length_of_stay')
         length_of_stay = parseInt( length_of_stay )
         setLengthOfStay( length_of_stay )
-        console.log(`start date === ${ startDateValue }`)
-        console.log( `end date === ${ endDateValue }`)
-        console.log(`customer length of stay === ${ lengthOfStay }`)
+        // console.log(`start date === ${ startDateValue }`)
+        // console.log( `end date === ${ endDateValue }`)
+        // console.log(`customer length of stay === ${ lengthOfStay }`)
         
     }, 
     [ startDateValue, endDateValue, setStartDateValue, setEndDateValue, lengthOfStay ])
@@ -130,36 +131,36 @@ const BookHotel = ( ) => {
             let vt, nh, cd, tc 
             setBasicCost( bookingHotelObject.room_rate * lengthOfStay )
             setBasicCostString( basicCost.toFixed( 2 ))
-            console.log( `basic cost is ${ basicCost }`)
-            console.log( `basic cost string is ${ basicCostString }`)
+            // console.log( `basic cost is ${ basicCost }`)
+            // console.log( `basic cost string is ${ basicCostString }`)
 
 
             vt = ( 0.125 * basicCost )
             setVatRate( vt )
             setVatRateString( vatRate.toFixed(2))
-            console.log(`vat rate is ${ vatRate }`)
-            console.log(`vat rate string is ${ vatRateString }`)
+            // console.log(`vat rate is ${ vatRate }`)
+            // console.log(`vat rate string is ${ vatRateString }`)
 
 
             nh = ( 0.025 * basicCost )
             setNhilRate( nh )
             setNhilRateString( nhilRate.toFixed(2))
-            console.log(`nhil rate is ${ nhilRate }`)
-            console.log(`nhil rate string is ${ nhilRateString }`)
+            // console.log(`nhil rate is ${ nhilRate }`)
+            // console.log(`nhil rate string is ${ nhilRateString }`)
 
 
             cd = ( 0.01 * basicCost )
             setCovidLevy( cd )
             setCovidLevyString( covidLevy.toFixed(2))
-            console.log(`covid levy is ${ covidLevy }`)
-            console.log(`covid levy string is ${ covidLevyString }`)
+            // console.log(`covid levy is ${ covidLevy }`)
+            // console.log(`covid levy string is ${ covidLevyString }`)
 
 
             tc = basicCost + vt + nh + cd 
             setTotalCost( tc )
             setTotalCostString( tc.toFixed(2))
-            console.log(`total cost is ${ totalCost }`)
-            console.log(`total cost string is ${ totalCostString }`)
+            // console.log(`total cost is ${ totalCost }`)
+            // console.log(`total cost string is ${ totalCostString }`)
 
 
         }}, 
@@ -171,7 +172,7 @@ const BookHotel = ( ) => {
     // effect hook to fetch start date value from local storage
     useEffect(() => {
         let localStorageStartDateValue = JSON.parse( window.localStorage.getItem( 'startDateValue' ) )
-        console.log(`localStorageStartDateValue = ${ localStorageStartDateValue }`)
+        // console.log(`localStorageStartDateValue = ${ localStorageStartDateValue }`)
         setStartDateValue( localStorageStartDateValue )
 
     }, [ startDateValue, setStartDateValue ])
@@ -180,7 +181,7 @@ const BookHotel = ( ) => {
     // effect hook to fetch end date value from local storage
     useEffect(() => {
         let localStorageEndDateValue = JSON.parse( window.localStorage.getItem( 'endDateValue' ) )
-        console.log(`localStorageEndDateValue = ${ localStorageEndDateValue }`)
+        // console.log(`localStorageEndDateValue = ${ localStorageEndDateValue }`)
         setEndDateValue( localStorageEndDateValue )
 
     }, [ endDateValue ,setEndDateValue ])
@@ -271,7 +272,7 @@ const BookHotel = ( ) => {
 
     // effect hook to log value of selected payment immediately
     useEffect(() => {
-        console.log(`payment method === ${ paymentMethod }`)
+        // console.log(`payment method === ${ paymentMethod }`)
 
         if ( paymentMethod === 'VISA' ) {
             ResetAllSelectedPaymentMethods()
@@ -330,18 +331,18 @@ const BookHotel = ( ) => {
             }
             else {
                 setBookingFieldsErrorStatus( false )
-                console.log(`customer first name: ${ bookingCustomerFirstName }`)
-                console.log(`customer last name: ${ bookingCustomerLastName }`)
-                console.log(`customer email: ${ bookingCustomerEmail }`)
-                console.log(`customer number: ${ bookingCustomerNumber }`)
+                // console.log(`customer first name: ${ bookingCustomerFirstName }`)
+                // console.log(`customer last name: ${ bookingCustomerLastName }`)
+                // console.log(`customer email: ${ bookingCustomerEmail }`)
+                // console.log(`customer number: ${ bookingCustomerNumber }`)
         
-                console.log(`customer name on card: ${ customerPaymentCardName }`)
-                console.log(`customer booking email: ${ customerPaymentBookingEmail }`)
-                console.log(`customer card number: ${ customerPaymentCardNumber }`)
-                console.log(`customer card security code: ${ customerPaymentCardSecurityCode }`)
-                console.log(`customer payment method === ${ paymentMethod }`)
-                console.log(`card expiry month = ${ cardExpiryMonth }`)
-                console.log(`card expiry year = ${ cardExpiryYear }`)
+                // console.log(`customer name on card: ${ customerPaymentCardName }`)
+                // console.log(`customer booking email: ${ customerPaymentBookingEmail }`)
+                // console.log(`customer card number: ${ customerPaymentCardNumber }`)
+                // console.log(`customer card security code: ${ customerPaymentCardSecurityCode }`)
+                // console.log(`customer payment method === ${ paymentMethod }`)
+                // console.log(`card expiry month = ${ cardExpiryMonth }`)
+                // console.log(`card expiry year = ${ cardExpiryYear }`)
 
                 setShowBookingConfirmPage( true )
                 ScrollConfirmBookingIntoView()

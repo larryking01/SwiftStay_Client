@@ -3,6 +3,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import TextField from '@mui/material/TextField'
+
+// modules
 import { UserContext } from '../App'
 
 
@@ -18,7 +20,7 @@ const EndDatePicker = ( ) => {
     // effect hook to store end date value in local storage
     useEffect(() => {
         window.localStorage.setItem( 'endDateValue', JSON.stringify( endDateValue ))
-        console.log(`local storage end date value == ${ endDateValue }`)
+        // console.log(`local storage end date value == ${ endDateValue }`)
 
     }, [ endDateValue ])
 
@@ -32,7 +34,7 @@ const EndDatePicker = ( ) => {
                     if ( newValue !== null ) {
                         const date = newValue._d
                         setEndDateMilliseconds( date )
-                        console.log( `date = ${ date }` )
+                        // console.log( `date = ${ date }` )
       
                         const day = date.getDate()
                         let stringDay = day.toString()
@@ -50,7 +52,7 @@ const EndDatePicker = ( ) => {
                         let stringYear = year.toString()
       
                         let finalDate = stringMonth + '/' + stringDay + '/' +  stringYear
-                        console.log(`final date = ${ finalDate }`)
+                        // console.log(`final date = ${ finalDate }`)
                         setEndDateValue( finalDate )
                         
                     }

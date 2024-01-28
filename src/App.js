@@ -1,5 +1,6 @@
+// dev dependencies
 import React, { createContext, useState } from 'react'
-
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
@@ -7,8 +8,7 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
 
-// routing.
-import { HashRouter, Routes, Route } from 'react-router-dom'
+// modules.
 import Home from './Routes/Home'
 import FetchAllBookings from './Routes/FetchAllBookings'
 import FetchAllRooms from './Routes/FetchAllRooms'
@@ -22,16 +22,6 @@ import Login from './Routes/Login'
 import SignUp from './Routes/SignUp'
 import NavbarComponent from './Routes/NavBar'
 import Reviews from './Routes/AllReviews'
-// import Footer from './Routes/Footer'
-// import FaIcons from './Routes/FaIcons'
-// import BookingsHelp from './Routes/BookingsHelp'
-// import PricesHelp from './Routes/PricesHelp'
-// import FetchAllStaff from './Routes/FetchAllStaff'
-// import SearchingHelp from './Routes/SearchingHelp'
-// import Maps from './Configuration/Maps'
-
-
-
 
 
 
@@ -59,8 +49,8 @@ const App = () => {
     // handling enddatepicker input values.
     const [ endDateValue, setEndDateValue ] = useState(null)
 
-    const [ startDateMilliseconds, setStartDateMilliseconds ] = useState( 0 )
-    const [ endDateMilliseconds, setEndDateMilliseconds ] = useState( 0 )
+    const [ startDateMilliseconds, setStartDateMilliseconds ] = useState( new Date() )
+    const [ endDateMilliseconds, setEndDateMilliseconds ] = useState( new Date() )
     const [ customerLengthOfStay, setCustomerLengthOfStay ] = useState( 0 )
 
     // handling hotel-booking-info
@@ -91,7 +81,6 @@ const App = () => {
     //     setNumberOfRooms( event.target.value )
     // }
 
-  
 
   return (
       <>
@@ -122,14 +111,6 @@ const App = () => {
                     <Route path='sign-up' element={ <SignUp /> } />
                     <Route path='all-reviews/:hotel_name/:hotel_id' element={ <Reviews /> } />
                     <Route path='nav-bar' element={ <NavbarComponent /> } />
-                    {/* <Route path='footer' element={ <Footer /> } /> */}
-                    {/* <Route path='icons' element={ <FaIcons /> } /> */}
-                    {/* <Route path='help-bookings' element={ <BookingsHelp /> } /> */}
-                    {/* <Route path='help-prices' element={ <PricesHelp /> } /> */}
-                    {/* <Route path='help-searching' element={ <SearchingHelp /> } /> */}
-                    {/* <Route path='fetch-all-staff' element={ <FetchAllStaff /> } /> */}
-                    {/* <Route path='maps' element={ <Maps /> } /> */}
-
                 </Routes>
             </UserContext.Provider>
         </HashRouter>

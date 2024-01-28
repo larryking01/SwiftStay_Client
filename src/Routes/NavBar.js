@@ -2,11 +2,10 @@ import React, { useContext, useEffect } from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
+
+// modules
 import { firebaseAuth } from '../Configuration/Firebase'
 import { UserContext } from '../App'
-
-
-
 
 
 
@@ -26,8 +25,8 @@ const NavbarComponent = ( ) => {
 
     // effect to show current user.
     useEffect(() => {
-        console.log('from navbar, current user is')
-        console.log( currentUser )
+        // console.log('from navbar, current user is')
+        // console.log( currentUser )
 
     }, [ currentUser ])
 
@@ -37,11 +36,11 @@ const NavbarComponent = ( ) => {
         let existingUser = firebaseAuth.currentUser
         if( existingUser ) {
             await firebaseAuth.signOut()
-            console.log('user signed out')
+            // console.log('user signed out')
             setCurrentUser( null ) 
         } 
         else {
-            console.log('no current user is logged in')
+            // console.log('no current user is logged in')
         }
     
     }

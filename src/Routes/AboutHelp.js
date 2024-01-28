@@ -3,9 +3,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 
+// modules
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
-// import about_us_bg2 from '../Media Files/Rooms And Suites/about-us-bg2.jpg'
 import traveler from '../Media Files/traveler.png'
 import upcycling from '../Media Files/upcycling.png'
 import larry from '../Media Files/Team Members Images/larry.webp'

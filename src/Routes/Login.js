@@ -8,6 +8,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import { BsFacebook, BsApple, BsGoogle, BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 
+// modules
 import { firebaseAuth } from '../Configuration/Firebase'
 import { UserContext } from '../App'
 

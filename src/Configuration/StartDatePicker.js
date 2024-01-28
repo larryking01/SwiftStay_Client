@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
@@ -13,13 +13,13 @@ import { UserContext } from '../App'
 const StartDatePicker = () => {
 
   // destructuring values from context
-  const { startDateValue, setStartDateValue, setStartDateMilliseconds, } = useContext( UserContext )
+  const { startDateValue, setStartDateValue, setStartDateMilliseconds } = useContext( UserContext )
 
 
   // effect hook to store start date value in local storage
   useEffect(() => {
     window.localStorage.setItem( 'startDateValue', JSON.stringify( startDateValue ) )
-    console.log(`local storage start date value = ${ startDateValue }`)
+    // console.log(`local storage start date value = ${ startDateValue }`)
 
   }, [ startDateValue ])
 
@@ -38,7 +38,7 @@ const StartDatePicker = () => {
               if ( newValue !== null ) {
                   const date = newValue._d
                   setStartDateMilliseconds( date )
-                  console.log( `newValue._d = ${ date }` )
+                  // console.log( `newValue._d = ${ date }` )
 
                   const day = date.getDate()
                   let stringDay = day.toString()
@@ -56,7 +56,7 @@ const StartDatePicker = () => {
                   let stringYear = year.toString()
 
                   let finalDate = stringMonth + '/' + stringDay + '/' +  stringYear
-                  console.log(`final date = ${ finalDate }`)
+                  // console.log(`final date = ${ finalDate }`)
                   setStartDateValue( finalDate )
                   
               }

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
@@ -19,6 +17,9 @@ import Form from 'react-bootstrap/Form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
+// modules
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
 
 import trending_accra_marriott_cover from '../Media Files/trending_accra_marriott_cover.jpg'
 import trending_kempinski_cover from '../Media Files/trending_kempinski_cover.jpg'
@@ -95,7 +96,7 @@ const FetchAllRooms = () => {
 
     FetchAllRooms()
 
-  }, [ ])
+  }, [ server_url ])
 
 
 

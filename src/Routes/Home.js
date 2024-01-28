@@ -1,16 +1,21 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-// import background_1 from '../Media Files/Homepage Background/background_1.jpg'
+// import Form from 'react-bootstrap/Form'
+
+// font awesome icons.
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
+// modules
+import NavbarComponent from './NavBar'
+import ScrollToTop from  '../Configuration/ScrollToTop'
+import { UserContext } from '../App'
+import Footer from './Footer'
 import background_2 from '../Media Files/Homepage Background/background_2.jpg'
-// import background_3 from '../Media Files/Homepage Background/background_3.jpg'
-// import background_4 from '../Media Files/Homepage Background/background_4.jpg'
 import trip_dotcom from '../Media Files/trip.com_logo.png'
 import booking_dotcom from '../Media Files/booking.com_logo.png'
 import hyatt_dotcom from '../Media Files/hyatt.com_logo.jpg'
@@ -22,9 +27,6 @@ import Rating from '@mui/material/Rating'
 import StartDatePicker from '../Configuration/StartDatePicker.js'
 import EndDatePicker from '../Configuration/EndDatePicker.js'
 
-// font awesome icons.
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 // for rooms and suites
 import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp'
@@ -43,11 +45,6 @@ import meeting_room_image1 from '../Media Files/Meeting Room Images/meeting_room
 import meeting_room_image2 from '../Media Files/Meeting Room Images/meeting_room_image2.jpg'
 import meeting_room_image3 from '../Media Files/Meeting Room Images/meeting_room_image3.webp'
 import meeting_room_image4 from '../Media Files/Meeting Room Images/meeting_room_image4.jpg'
-
-
-import ScrollToTop from  '../Configuration/ScrollToTop'
-import { UserContext } from '../App'
-
 
 
 
@@ -75,7 +72,7 @@ const Home = () => {
   const navigate = useNavigate()
 
   // retrieving user info from context.
-  const { user } = useContext( UserContext )
+  // const { user } = useContext( UserContext )
 
   // making certain component always displays from top on initial render.
   useEffect(() => {
@@ -91,7 +88,6 @@ const Home = () => {
 
   // fetching all rooms
   useEffect(() => {
-    console.log( `type of rooms array == ${ typeof roomsArray }`)
 
     const fetchHotels = async () => {
 
@@ -104,25 +100,58 @@ const Home = () => {
         let data = await response.json()
         setRoomsArray( data )
         setIsLoadingHotels( false )
-        console.log( `success status is ${response.status} ` )
-        console.log( fetchError )
-        console.log( `rooms Array === ${ roomsArray }` )
+        // console.log( `success status is ${response.status} ` )
+        // console.log( fetchError )
+        // console.log( `rooms Array === ${ roomsArray }` )
 
       }
       else {
-        console.log( `failure status is ${response.status} ` )
+        // console.log( `failure status is ${response.status} ` )
         setIsLoadingHotels( false )
         setFetchError( true )
         setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
-        console.log( fetchError )
-        console.log('failed to load hotels due to error')
+        // console.log( fetchError )
+        // console.log('failed to load hotels due to error')
       }
       
     }
 
       fetchHotels()
 
-  }, [ ])
+  }, [ server_url ])
+
+// fetching all rooms with use memo.
+  // useMemo(() => {
+  //   const fetchHotels = async () => {
+
+  //     // setIsLoadingHotels( true )
+  //     let response = await fetch(`${ server_url }/get/fetch-all-rooms`, {
+  //       method: 'GET'
+  //     })
+
+  //     if ( response.status === 200 ) {
+  //       let data = await response.json()
+  //       setRoomsArray( data )
+  //       setIsLoadingHotels( false )
+  //       // console.log( `success status is ${response.status} ` )
+  //       // console.log( fetchError )
+  //       // console.log( `rooms Array === ${ roomsArray }` )
+
+  //     }
+  //     else {
+  //       // console.log( `failure status is ${response.status} ` )
+  //       setIsLoadingHotels( false )
+  //       setFetchError( true )
+  //       setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
+  //       // console.log( fetchError )
+  //       // console.log('failed to load hotels due to error')
+  //     }
+      
+  //   }
+
+  //     fetchHotels()
+
+  // }, [ roomsArray, server_url ])
 
 
 
@@ -242,7 +271,7 @@ const Home = () => {
           loadingHotels === true ? 
               <div className='loading-hotels-div-style'>
                 <FontAwesomeIcon icon={ faSpinner } size='2x' spinPulse className='mb-4' color='#808080' />
-                <p className='fetching-hotels-text'>fetching available hotels.... please wait a flash</p>
+                <p className='fetching-hotels-text'>fetching available hotels.... please wait</p>
               </div>
 
             :

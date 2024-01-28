@@ -1,21 +1,22 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel  from 'react-bootstrap/FloatingLabel'
 import { BsPersonFill } from 'react-icons/bs'
-
 // font awesome icons.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
-
+// modules
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
 import { UserContext } from '../App'
+
+
 
 
 
@@ -65,8 +66,8 @@ const Reviews = ( ) => {
         console.log( `selected room success response is ${ response.status }` )
         let data = await response.json()
         setselectedRoomDetailsObject({ ...data }) 
-        console.log('selected room data is')
-        console.log( data )
+        // console.log('selected room data is')
+        // console.log( data )
         setTimeout(() => {
           setIsLoadingHotelDetails( false )
         }, 1000 )
@@ -74,7 +75,7 @@ const Reviews = ( ) => {
       }
 
       else {
-        console.log( `failure status is ${response.status} ` )
+        // console.log( `failure status is ${response.status} ` )
         setIsLoadingHotelDetails( false )
         setFetchError( false )
         setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
@@ -84,7 +85,7 @@ const Reviews = ( ) => {
 
     FetchData()
 
-  }, [ ])
+  }, [ params.hotel_id, params.hotel_name, server_url ])
     
 
 
@@ -100,18 +101,18 @@ const Reviews = ( ) => {
                 setTimeout(() => {
                     setIsLoadingReviews( false )
                 }, 1000 )
-                console.log('all reviews fetched')
-                console.log( data )
+                // console.log('all reviews fetched')
+                // console.log( data )
             }
             else if ( response.status === 404 ) {
                 setTimeout(() => {
                     setIsLoadingReviews( false )
                 }, 1000 )
-                console.log('no reviews for this hotel yet')
+                // console.log('no reviews for this hotel yet')
             }
             else {
                 setIsLoadingReviews( false )
-                console.log('failed to fetch reviews......')
+                // console.log('failed to fetch reviews......')
                 setReviewsErrorMessage('failed to fetch reviews....')
             }
         }
@@ -191,7 +192,7 @@ const Reviews = ( ) => {
             }
             else {
                 setPostingReview( false )
-                console.log('failed to post review')
+                // console.log('failed to post review')
                 setReviewFeedback('failed to post your review due to an error...')
                 setTimeout(() => {
                     setReviewFeedback('')

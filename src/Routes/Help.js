@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
+import { useNavigate } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-// import booking_svg from '../Media Files/booking_svg.png'
-// import money_svg from '../Media Files/money.png'
-// import search_svg from '../Media Files/search.png'
+
+// modules
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
 import about_svg from '../Media Files/about.png'
 import contact_us_svg from '../Media Files/contact-us.png'
 import question_svg from  '../Media Files/question.png'
+// import booking_svg from '../Media Files/booking_svg.png'
+// import money_svg from '../Media Files/money.png'
+// import search_svg from '../Media Files/search.png'
 
 
 
@@ -42,7 +44,6 @@ const Help = ( ) => {
 
     // navigation.
     const navigate = useNavigate()
-    const location = useLocation()
 
 
     return (

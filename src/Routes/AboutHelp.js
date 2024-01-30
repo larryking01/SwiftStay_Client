@@ -29,7 +29,7 @@ const AboutHelp = ( ) => {
             left: 0,
             behavior: 'smooth'
         })
-        })
+    }, [ ])
       
 
     let teams_array = [

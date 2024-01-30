@@ -23,7 +23,7 @@ const FrequentlyAskedQuestionsHelp = ( ) => {
           left: 0,
           behavior: 'smooth'
         })
-      })
+      }, [ ])
   
 
     const [ showFAQAns1, setShowFAQAns1 ] = useState( false )

@@ -30,7 +30,7 @@ const Help = ( ) => {
         left: 0,
         behavior: 'smooth'
          })
-    })
+    }, [ ])
   
     let categoryArray = [
         { helpCategory: 'Contact Us', categoryImage: contact_us_svg, navigate: '/help-contact-us' },

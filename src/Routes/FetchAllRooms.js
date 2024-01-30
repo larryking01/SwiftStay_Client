@@ -64,7 +64,7 @@ const FetchAllRooms = () => {
       left: 0,
       behavior: 'smooth'
     })
-  })
+  }, [ ])
   
 
 

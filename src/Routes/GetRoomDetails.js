@@ -106,7 +106,7 @@ const GetRoomDetails = () => {
       left: 0,
       behavior: 'smooth'
     })
-  })
+  }, [ ])
 
 
   // use effect hook to fetch details of selected room.
@@ -713,9 +713,22 @@ const GetRoomDetails = () => {
             ))
         }
 
+      {
+        allReviewsArray.length > 0 ?
+          <Button variant='custom' className='see-all-reviews-btn' onClick={ () => navigate(`/all-reviews/${ params.hotel_name }/${ params.hotel_id }`)} > 
+            See all { allReviewsArray.length } review(s) 
+          </Button>
+          :
+          <h5>No reviews submitted yet. Be the first to submit one right below..</h5>
+
+      }
+
+
+      {/* 
       <Button variant='custom' className='see-all-reviews-btn' onClick={ () => navigate(`/all-reviews/${ params.hotel_name }/${ params.hotel_id }`)} > 
-          See all { allReviewsArray.length } reviews 
-      </Button>
+          See all { allReviewsArray.length } review(s) 
+      </Button> 
+      */}
       </section>
 
 

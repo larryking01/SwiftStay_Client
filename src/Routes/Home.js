@@ -82,7 +82,7 @@ const Home = () => {
       behavior: 'smooth'
     })
 
-  })
+  }, [ ])
 
 
 
@@ -154,6 +154,16 @@ const Home = () => {
   // }, [ roomsArray, server_url ])
 
 
+  // array to hold all catchy phrases.
+  let catchPhrasesArray = [
+    'Check-in to comfort, check-out with memories. Your next unforgettable stay awaits,',
+    'Step into luxury, book your stay today – where comfort meets elegance, and every stay is a dream come true!',
+    'Two words, endless comfort. Embrace the extraordinary at SwiftStay, where every reservation is a journey of delight.',
+    'A world of luxury awaits behind our double doors. Secure your stay and indulge our elegance.',
+    'Welcome to a symphony of comfort and style. Your key to an unforgettable stay is just a click away – book now at SwiftStay.'
+  ]
+
+
 
   // array to hold pictures for rooms and suites.
   let rooms_and_suites_pictures_array = [
@@ -219,6 +229,7 @@ const Home = () => {
 
         <section className='intro-background'>
           <img src={ background_2 } alt='' className='intro-background-img' />
+          <h3 className='welcome-phrase'> { catchPhrasesArray[ 2 ] } </h3>
 
         <section className='intro-form'>
           <Row>

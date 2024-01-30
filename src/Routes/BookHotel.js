@@ -91,7 +91,7 @@ const BookHotel = ( ) => {
             left: 0,
             behavior: 'smooth'
         })
-    })
+    }, [ ])
 
     
     // useEffect to fetch the booking hotel.

@@ -26,7 +26,7 @@ const ContactUsHelp = ( ) => {
           left: 0,
           behavior: 'smooth'
         })
-    })
+    }, [ ])
       
     return (
         <div>

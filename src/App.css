@@ -1,6 +1,8 @@
 /* google fonts */
 /* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
 
 /* card title */
@@ -215,6 +217,18 @@
     font-size: 1.2rem;
 }
 
+.welcome-phrase {
+    position: relative;
+    bottom: 34rem;
+    z-index: 10;
+    color: white;
+    opacity: 1;
+    padding: 0% 10% 0% 10%;
+    text-align: center;
+    font-family: 'Courgette', cursive;
+}
+
+
 .cover-page-card-style {
     cursor: pointer;
     /* transition: transform 0.3s ease; */
@@ -309,7 +323,7 @@
     width: 100%;
     height: 80vh;
     margin-bottom: 5%;
-
+    filter: brightness(60%);
 }
 
 
@@ -425,6 +439,7 @@
 }
 
 .world-of-hotels-section {
+    margin-top: -4rem;
     text-align: center;
 }
 
@@ -1932,10 +1947,21 @@
         padding-right: 1%;
     }
 
+    .welcome-phrase {
+        position: relative;
+        bottom: 23rem;
+        z-index: 10;
+        color: white;
+        opacity: 1;
+        padding: 0% 10% 0% 10%;
+        text-align: center;
+        font-family: 'Courgette', cursive;
+    }
+
 
     .intro-form {
         position: relative;
-        bottom: 200px;
+        bottom: 360px;
         right: 10px;
         width: 80%;
         height: 75%;
@@ -1948,11 +1974,11 @@
 
     .world-of-hotels-section {
         position: relative;
-        bottom: 150px;
+        bottom: 260px;
     }
 
     .plan-staycation-section {
-        margin-top: -40%;
+        margin-top: -80%;
     }
 
     .plan-staycation-text {

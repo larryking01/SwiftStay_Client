@@ -612,7 +612,7 @@ const GetRoomDetails = () => {
                     { feature.icon }
                   </Col>
 
-                  <Col md={ 4 }>
+                  <Col md={ 4 } className='hotel-feature-header'>
                     { feature.feature }
                   </Col>
 

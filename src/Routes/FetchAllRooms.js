@@ -136,7 +136,7 @@ const FetchAllRooms = () => {
     <>
       <NavbarComponent />
 
-        <div>
+        <div className='hide-overflow'>
             <section className='find-perfect-hotel-section'>
               <h3 className='find-perfect-hotel-text'>Find the perfect hotel on SwiftStay</h3>
               <p className='from-budget-text'>From budget hotels to luxury rooms and everything in between, 
@@ -256,9 +256,11 @@ const FetchAllRooms = () => {
 
             <Col>
               <h3 className='genius-travel-text'>Discover the genius way to travel</h3>
-              <p className='genius-meta-text'>Booking.com's loyalty program is simple.</p>
+              <p className='genius-meta-text'>SwiftStay's loyalty program is simple.</p>
               <p className='genius-meta-text'>The more you book with us, the more travel rewards you'll get. Sign in or create an account</p>
-              <Button variant='custom' className='genius-started-btn'>Get started</Button>
+              <Button variant='custom' className='genius-started-btn' onClick={ ( ) => navigate('/login') }>
+                Get started
+              </Button>
             </Col>
           </Row>
 

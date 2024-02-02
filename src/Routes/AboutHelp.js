@@ -40,19 +40,19 @@ const AboutHelp = ( ) => {
             about: 'It is our pleasure to introduce the driving force behind SwiftStay, our esteemed CEO, Larry Nii Nai Williams. With a vision that transcends boundaries and a passion for redefining the way we experience travel, Larry leads our team towards new horizons in the world of hospitality. A seasoned leader with a profound understanding of the travel industry, Larry brings a wealth of experience to StaySwift. His journey is marked by a relentless commitment to innovation, customer satisfaction, and a deep appreciation for the transformative power of travel.'
         },
         {
-            name: 'Oswell Aku Shika', 
+            name: 'Priscilla M. Bonsu', 
             position: 'Chief Financial Officer', 
             img_src: aku_shika, 
             about: "It is with great pleasure that we introduce the financial maestro behind the scenes at SwiftStay, our esteemed Chief Financial Officer, Oswell Naa Aku-Shika. With a keen eye for financial strategy and a commitment to fiscal excellence, Oswell plays a pivotal role in shaping the financial landscape of our organization.A seasoned professional with a proven track record in finance, Oswell brings a wealth of experience to StaySwift."
         },
         {
-            name: 'Priscilla M. Bonsu', 
+            name: 'Oswell N. Aku-Shika', 
             position: 'Chief Marketing Officer', 
             img_src: priscilla, 
             about: "It is our pleasure to introduce the creative visionary driving the heartbeat of our brand, StaySwift's Chief Marketing Officer, Priscilla Mensah Bonsu. With a passion for storytelling and a knack for building meaningful connections, Priscilla is the architect behind the vibrant tapestry of our brand identity.A seasoned marketing expert with a wealth of experience, Priscilla brings a dynamic and innovative approach to StaySwift." 
         },
         {
-            name: 'Nathaniel Amoah Bimpong', 
+            name: 'Nathaniel A. Bimpong', 
             position: 'Chief Product Officer', 
             img_src: nat, 
             about: 'We are thrilled to introduce the driving force behind the innovation and user-centric design at StaySwift, our Chief Product Officer, Nathaniel Amoah Bimpong. With a passion for crafting seamless and delightful user experiences, Nathaniel is the architect of the features and functionalities that make navigating StaySwift a joy for our users. A refined product strategist with a proven track record, Nathaniel brings a wealth of expertise to StaySwift.'
@@ -71,7 +71,7 @@ const AboutHelp = ( ) => {
 
 
     return (
-        <div>
+        <div className='hide-overflow'>
             <NavbarComponent />
 
             <section>

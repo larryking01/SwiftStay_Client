@@ -282,7 +282,7 @@ const Home = () => {
 
 
   return (
-    <div>
+    <div className='hide-overflow'>
 
       <NavbarComponent />
 
@@ -446,7 +446,7 @@ const Home = () => {
               <Col className='extra-info-text-col'>
                   <h3 className='extra-info-title'>Restaurants</h3>
                   <div className='extra-info-details'>
-                    <h4 className='extra-info-details-text'>With Hotelier, we don't only bring you hotels with the best rooms
+                    <h4 className='extra-info-details-text'>With SwiftStay, we don't only bring you hotels with the best rooms
                     but we take the entire human experience into consideration and that includes your food!!</h4> 
                     <h4 className='extra-info-details-text'>Find the best dishes you didn't know you craved: from our local banku and okro stew to continental </h4>
                     <h4 className='extra-info-details-text'>hot chicken casserole, like your mama makes. Our hotels got you covered!</h4>

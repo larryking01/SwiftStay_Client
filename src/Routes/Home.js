@@ -16,6 +16,7 @@ import ScrollToTop from  '../Configuration/ScrollToTop'
 import { UserContext } from '../App'
 import Footer from './Footer'
 import background_2 from '../Media Files/Homepage Background/background_2.jpg'
+import background_1 from '../Media Files/Homepage Background/background_1.jpg'
 import trip_dotcom from '../Media Files/trip.com_logo.png'
 import booking_dotcom from '../Media Files/booking.com_logo.png'
 import hyatt_dotcom from '../Media Files/hyatt.com_logo.jpg'
@@ -294,7 +295,7 @@ const Home = () => {
         </section>
 
         <section className='place-to-stay'>
-          <h3><strong className='save-big-text'>Discover your favourite <span className='save-big-text-line2'>place with us</span></strong></h3>
+          <h3 className='save-big-text'><strong>Discover your favourite place with us</strong></h3>
         </section>
 
         <section className='intro-background'>

@@ -82,7 +82,8 @@ const GetRoomDetails = () => {
           numberOfChildVisitors, setNumberOfChildVisitors,
           numberOfRooms, setNumberOfRooms, 
           startDateValue, endDateValue, startDateMilliseconds, 
-          endDateMilliseconds, setCustomerLengthOfStay
+          endDateMilliseconds, setCustomerLengthOfStay,
+          
          } = useContext( UserContext )
 
 
@@ -270,7 +271,6 @@ const GetRoomDetails = () => {
     let lengthOfStay = checkOutDate.getTime() - checkInDate.getTime()
     lengthOfStay = Math.floor( lengthOfStay / ( 1000 * 60 * 60 * 24 )) 
     // console.log( `length of stay = ${ lengthOfStay }`)
-
     return lengthOfStay
 }
 
@@ -278,8 +278,8 @@ const GetRoomDetails = () => {
   // handle book room operation.
   const HandleBookHotelRoom = ( ) => {
     if( startDateValue === null || endDateValue === null ) {
-      alert('You need to enter your check-in and check-out dates to book hotel...')
       setBookingDatesNull( true )
+      alert('You have to enter both check-in and check-out dates to book hotel...')
       dateDurationRef.current.scrollIntoView({
         behavior: 'smooth'
       })
@@ -290,6 +290,10 @@ const GetRoomDetails = () => {
       // console.log(`duration of stay = ${ durationOfStay }`)
       if( durationOfStay < 0 ) {
         alert('Check-out date must be later than Check-in date')
+        dateDurationRef.current.scrollIntoView({
+          behavior: 'smooth'
+        })
+  
       }
       else {
          setCustomerLengthOfStay( durationOfStay )
@@ -313,8 +317,17 @@ const GetRoomDetails = () => {
 
       <section className='selected-room-details-section'>
         <h3 className='selected-room-name'> { params.hotel_name } </h3>
-        <Rating name='read-only' value={ 4 } readOnly /> <h5>{ allReviewsArray.length } Review(s)</h5>
+        <Rating name='read-only' value={ 4 } readOnly /> 
         <p> <IoLocationSharp /> { selectedRoomDetailsObject.room_location }</p>
+        {
+          allReviewsArray.length > 0 ? 
+              allReviewsArray.length === 1 ?
+              <h5>{ allReviewsArray.length } review </h5>
+              :
+              <h5> { allReviewsArray.length } Reviews </h5>
+          :
+          <h5>No reviews yet</h5>
+        }
       </section>
 
 
@@ -337,9 +350,15 @@ const GetRoomDetails = () => {
           :
 
       <section ref={ dateDurationRef }>
-      {/* <p className='start-date-end-date-null-message'>
-        Please input both check-in and check-out dates
-      </p> */}
+      {
+        bookingDatesNull === true ?
+          <p className='start-date-end-date-null-message'>
+            Check-in and Check-out dates are both required.
+          </p>
+          :
+          null
+      }
+
       <section className='selected-room-checkin-dates'>
         <Form className='selected-room-details-destination-form'>
           <Row xs={ 1 } md={ 3 }>

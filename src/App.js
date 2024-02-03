@@ -69,18 +69,6 @@ const App = () => {
         setCheckOut( event.target.value )
     }
 
-    // const HandleNumberOfAdultVisitorsState = ( event ) => {
-    //     setNumberOfAdultVisitors( event.target.value )
-    // }
-
-    // const HandleNumberOfChildVisitorsState = ( event ) => {
-    //     setNumberOfChildVisitors( event.target.value )
-    // }
-
-    // const HandleNumberOfRoomsState = ( event ) => {
-    //     setNumberOfRooms( event.target.value )
-    // }
-
 
   return (
       <>

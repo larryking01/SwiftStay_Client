@@ -27,6 +27,7 @@ import Footer from './Footer'
 
 const BookHotel = ( ) => {
 
+    
     // setting up state.
     const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
     const [ bookingCustomerFirstName, setBookingCustomerFirstName ] = useState('')
@@ -367,10 +368,9 @@ const BookHotel = ( ) => {
 
 
                 <Row xs={ 1 } md={ 2 }>
-
                     {/* Hotel details column */ }
-                    <Col className='mb-5'>
-                        <div className='booking-hotel-summary-div'>
+                    <Col className='booking-hotel-summary-div mb-5'>
+                        <div className=''>
                             <h4 className='booking-hotel-features'> Hotel Features </h4> 
                             <h4> <Rating value={ 4 } readOnly name='read-only' /> </h4>
                             <p className='booking-hotel-extra-details'> <IoLocationSharp /> { bookingHotelObject.room_location }</p>
@@ -474,10 +474,10 @@ const BookHotel = ( ) => {
                             <hr />
 
                             <>
-                                <h5 className='section-sub-header'>Pricing</h5>
-                                <Row md={ 2 } >
-                                    <Col>
-                                        <h6 className='booking-hotel-extra-details'>1 night ( GH<span>&#8373;</span> { bookingHotelObject.room_rate } ) * { window.localStorage.getItem('length_of_stay') } nights</h6>
+                                <h5 className='section-sub-header'>Pricing (GH<span>&#8373;</span>)</h5>
+                                <Row md={ 2 }>
+                                    <Col xs={ 7 }>
+                                        <h6 className='booking-hotel-extra-details'><span>&#8373;</span> { bookingHotelObject.room_rate } * { window.localStorage.getItem('length_of_stay') } nights</h6>
 
                                         <h6 className='booking-hotel-extra-details'>VAT (12.5%)</h6>
 
@@ -485,21 +485,21 @@ const BookHotel = ( ) => {
 
                                         <h6 className='booking-hotel-extra-details'>COVID LEVY (1%)</h6>
 
-                                        <h3 className='section-sub-header'>Total Cost</h3>
+                                        <h3 className='section-sub-header total-cost'>Total Cost</h3>
 
                                     </Col>
 
 
                                     <Col>
-                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { basicCostString } </h6>
+                                        <h6 className='booking-hotel-extra-details pricing'><span>&#8373;</span> { basicCostString } </h6>
 
-                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { vatRateString }</h6>
+                                        <h6 className='booking-hotel-extra-details pricing'><span>&#8373;</span> { vatRateString }</h6>
 
-                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { nhilRateString }</h6>
+                                        <h6 className='booking-hotel-extra-details pricing'><span>&#8373;</span> { nhilRateString }</h6>
 
-                                        <h6 className='booking-hotel-extra-details'>GH<span>&#8373;</span> { covidLevyString }</h6>
+                                        <h6 className='booking-hotel-extra-details pricing'><span>&#8373;</span> { covidLevyString }</h6>
 
-                                        <h3 className='section-sub-header'>GH<span>&#8373;</span> { totalCostString } </h3>
+                                        <h3 className='section-sub-header total-cost '><span>&#8373;</span> { totalCostString } </h3>
                                     </Col>
 
                                 </Row>
@@ -519,7 +519,7 @@ const BookHotel = ( ) => {
                             <Row>
                                 <section>
                                     <h3 className='section-sub-header'>Instant confirmation</h3>
-                                    <p className='booking-hotel-extra-details'>Your booking will be confirmed instantly by Logo. You'll get a confirmation email right after.</p>
+                                    <p className='booking-hotel-extra-details'>Your booking will be confirmed instantly by Email. You'll get a confirmation email right after.</p>
                                 </section>
                             </Row>
 
@@ -533,8 +533,8 @@ const BookHotel = ( ) => {
 
 
                     {/*Payment details column */ }
-                    <Col className='details-section mb-5' ref={ detailsSectionRef } >
-                    <div className='details-section-sub-div'>
+                    <Col className='booking-hotel-summary-div mb-5' ref={ detailsSectionRef } >
+                    <div className=''>
                     <h4 className='section-sub-header'>Step 1: Your Details</h4>
                         <Form>
                             <Form.Group>
@@ -590,8 +590,9 @@ const BookHotel = ( ) => {
                                     </Form.Select>
                                 </Form.Group>
 
+                                <section>
                                 { visaPaymentSelected && 
-                                    <section>
+                                    <div>
                                         <p className='section-sub-header'> Complete Payment With { paymentMethod } </p>
                                         <Form.Group className='form-control-no-text'>
                                             <Form.Control className='text-control-focus-style' type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />
@@ -667,16 +668,20 @@ const BookHotel = ( ) => {
         
                                         <p><Form.Text>Card information is fully encrypted and protected. <BsShieldCheck size={ 15 } /> </Form.Text></p>
         
-                                        <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
-                                        <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p>
-                                    </section>
-
+                                    </div>
                                     }
 
+                                    {/* <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
+                                    <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p> */}
+                                    
+                                    </section>
 
 
+
+
+                                <section>
                                 { masterCardPaymentSelected && 
-                                    <section>
+                                    <div>
                                         <p className='section-sub-header'> Complete Payment With { paymentMethod } </p>
                                         <Form.Group className='form-control-no-text'>
                                             <Form.Control className='text-control-focus-style' type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />
@@ -752,11 +757,12 @@ const BookHotel = ( ) => {
         
                                         <p><Form.Text>Card information is fully encrypted and protected. <BsShieldCheck size={ 15 } /> </Form.Text></p>
         
-                                        <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
-                                        <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p>
-                                    </section>
-
+                                    </div>
                                     }
+                                    {/* <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
+                                    <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p> */}
+                                    
+                                </section>
 
 
 
@@ -837,11 +843,11 @@ const BookHotel = ( ) => {
         
                                         <p><Form.Text>Card information is fully encrypted and protected. <BsShieldCheck size={ 15 } /> </Form.Text></p>
         
-                                        <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
-                                        <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p>
+                                        {/* <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
+                                        <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p> */}
                                     </section>
 
-                                    }
+                                }
 
 
 
@@ -922,13 +928,16 @@ const BookHotel = ( ) => {
         
                                         <p><Form.Text>Card information is fully encrypted and protected. <BsShieldCheck size={ 15 } /> </Form.Text></p>
         
-                                        <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
-                                        <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p>
+                                        {/* <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
+                                        <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p> */}
                                     </section>
 
-                                    }
+                                }
 
                             </Form>
+
+                            <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
+                            <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p>
 
                         </div>
                         <hr />

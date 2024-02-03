@@ -316,7 +316,7 @@
 
 .save-big-text {
     color: var(--primary-color);
-    font-size: 1.1em;
+    font-size: 1.6em;
     margin-left: 4%;
     font-family: 'Lora', serif;
     margin-top: 2%;
@@ -555,6 +555,12 @@
     width: 100%;
     aspect-ratio: 3/2;
 }
+
+.start-date-end-date-null-message {
+    color: red;
+    margin-left: 5rem;
+}
+
 
 .book-now-button-first {
     width: 30%;
@@ -1149,10 +1155,20 @@
 }
 
 
+.pricing {
+    font-weight: bold;
+}
+
+.total-cost {
+    color: var(--primary-color)
+}
+
+
 .booking-hotel-extra-details {
     font-family: var(--primary-font);
     font-size: 0.95rem;
-    font-weight: bold;
+    /* font-weight: bold; */
+    padding-bottom: 3%;
 }
 
 .accepted-cards-div {
@@ -2096,10 +2112,28 @@
         font-size: 1rem;
     }
 
+    .booking-hotel-summary-div {
+        border: 1px solid lightgray;
+        /* border-radius: 1%; */
+        padding: 3%;
+    }
+
+
+    .details-section {     
+        border: 1px solid lightgray; 
+        border-radius: 2%;
+        padding: 3%;
+    }
+
+
+    
+    
+
     
     .booking-hotel-extra-details {
         font-size: 0.84rem;
-        font-weight: bold;
+        /* font-weight: bold; */
+        padding-bottom: 5%;
     }
 
     .booking-hotel-price {
@@ -2168,9 +2202,10 @@
         margin-bottom: 7%;
     }
 
-    /* .start-date-end-date-null-message {
+    .start-date-end-date-null-message {
+        margin-left: 1rem;
         color: red;
-    } */
+    }
 
     .selected-room-details-destination-form {
         padding: 3%;
@@ -2211,6 +2246,9 @@
     }
     
     /* end of get room details responsive styling */
+
+
+
         
         
     /* get all rooms responsive styling */

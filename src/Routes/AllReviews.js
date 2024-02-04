@@ -209,14 +209,12 @@ const Reviews = ( ) => {
     return (
 
         <div>
-
             <NavbarComponent />
 
-            <div>
+            <div className='hide-overflow'>
                 <section className='reviewed-hotel-info-section'>
                     <h3 className='reviewed-hotel-name'>{ params.hotel_name } Reviews</h3>
                 </section>
-
 
                 {
 
@@ -239,19 +237,30 @@ const Reviews = ( ) => {
                 <section className='main-content-wrapper'>
 
                 <section className='selected-room-extra-pics-grid'>
-
-                    <Row>
+                    <Row xs={ 1 } md={ 3 }>
                         <Col>
-                            <img width={ 380 } src={ selectedRoomDetailsObject.room_cover_photo_url } alt='' />
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_cover_photo_url } alt='' />
                         </Col>
 
                         <Col>
-                            <img width={ 380 } src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
                         </Col>
 
                         <Col>
-                            <img width={ 380 } src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
                         </Col>
+
+                        {/* <Col>
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
+                        </Col>
+
+                        <Col>
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_cover_photo_url } alt='' />
+                        </Col>
+
+                        <Col>
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
+                        </Col> */}
 
                     </Row>
 
@@ -262,7 +271,16 @@ const Reviews = ( ) => {
                     <Row className='reviews-header-row'>
 
                         <Col md={ 6 } xs={ 6 }>
-                            <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Review(s)</h3>
+                            {
+                                allReviewsArray.length > 0 ?
+                                    allReviewsArray.length === 1 ?
+                                        <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Review </h3>
+                                        :
+                                        <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Reviews </h3>
+                                :
+                                <h3 className='selected-room-details-sub-header'>No reviews yet </h3>
+
+                            }
                         </Col>
 
                         <Col md={ 6 } xs={ 6 }>

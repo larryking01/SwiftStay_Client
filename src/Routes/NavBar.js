@@ -84,24 +84,18 @@ const NavbarComponent = ( ) => {
                                         <Button variant='custom' className='navbar-signup-btn' onClick={() => navigate('/sign-up')}> Register </Button>
                                     </Nav.Link>
 
-                                    <Nav.Link className='nav-link-button'>                                    
+                                    {/* <Nav.Link className='nav-link-button'>                                    
                                         <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button>
-                                    </Nav.Link>
+                                    </Nav.Link> */}
 
                                 </>
                             }
 
                                 {/* <Nav.Link className='nav-link-text-help' onClick={() => navigate('/help')}> Help </Nav.Link> */}
-
-
                         </Nav>
-
-
                     </Navbar.Collapse>
                 </Container>
-
             </Navbar>
-
         </>
     )
 

@@ -27,7 +27,7 @@ import Footer from './Footer'
 
 const BookHotel = ( ) => {
 
-    
+
     // setting up state.
     const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
     const [ bookingCustomerFirstName, setBookingCustomerFirstName ] = useState('')
@@ -992,7 +992,7 @@ const BookHotel = ( ) => {
 
                                     <Col>
                                         <h5 className='booking-hotel-detail-header'>Length of stay</h5>
-                                        <p>2</p>
+                                        <p>{ lengthOfStay } nights</p>
                                     </Col>
                                 </Row>
                                 <hr />
@@ -1027,43 +1027,56 @@ const BookHotel = ( ) => {
                                         <h5 className='booking-hotel-detail-header'>Pricing</h5>
                                         <Row>
                                             <Col>
-                                                <p>1 night</p>
-                                            </Col>
+                                                <p>GH<span>&#8373;</span> { bookingHotelObject.room_rate } * { lengthOfStay} nights</p>                   
+                                             </Col>
 
                                             <Col>
-                                                <p>GH<span>&#8373;</span> { bookingHotelObject.room_rate }</p>
+                                                <p>GH<span>&#8373;</span> { basicCostString }</p>
                                             </Col>
                                         </Row>
 
                                         <Row>
                                             <Col>
-                                                <p>Tax ( 12% )</p>
+                                                <p>VAT ( 12.5% )</p>
                                             </Col>
 
                                             <Col>
-                                                <p>GH<span>&#8373;</span> 12.00</p>
+                                                <p>GH<span>&#8373;</span>{ vatRateString } </p>
                                             </Col>
                                         </Row>
 
                                         <Row>
                                             <Col>
-                                                <p>Total per night</p>
+                                                <p>NHIL ( 2.5% )</p>
                                             </Col>
 
                                             <Col>
-                                                <p>GH<span>&#8373;</span> 112.00 * ( 4 nights )</p>
+                                                <p>GH<span>&#8373;</span>{ nhilRateString } </p>
                                             </Col>
                                         </Row>
 
                                         <Row>
                                             <Col>
-                                                <p>Total cost of stay</p>
+                                                <p>COVID LEVY ( 1% )</p>
                                             </Col>
 
                                             <Col>
-                                                <p>GH<span>&#8373;</span> 9824.00</p>
+                                                <p>GH<span>&#8373;</span> { covidLevyString }</p>
                                             </Col>
                                         </Row>
+
+                                        <Row>
+                                            <Col>
+                                                <p className='total-cost'>SUM TOTAL</p>
+                                            </Col>
+
+                                            <Col>
+                                                <p className='total-cost'>GH<span>&#8373;</span> { totalCostString }</p>
+                                            </Col>
+                                        </Row>
+
+
+
                                     </Col>
                                 </Row>
                                 <hr />

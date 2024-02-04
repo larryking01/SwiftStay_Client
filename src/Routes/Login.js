@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -127,13 +127,13 @@ const Login = ( ) => {
 
 
     // making certain component always displays from top on initial render.
-    // useEffect(() => {
-    //     window.scrollTo({
-    //         top: 0,
-    //         left: 0,
-    //         behavior: 'smooth'
-    //     })
-    // })
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+    }, [ ])
 
 
     // website brand name.
@@ -188,7 +188,7 @@ const Login = ( ) => {
 
 
                     <section>
-                        <Row className='mb-5'>
+                        {/* <Row className='mb-5'>
                             <p className='continue-with-text'>Or continue with</p>
 
                             <Col className='alt-sign-in-icon'>
@@ -202,7 +202,7 @@ const Login = ( ) => {
                             <Col className='alt-sign-in-icon'>
                                 <BsFacebook size={ 19 } />
                             </Col>
-                        </Row>
+                        </Row> */}
 
                         <Row>
                             <p className='create-account-text'>Don't have an account? <span className='sign-up-span' onClick={() => navigate('/sign-up')}>Create One</span></p>

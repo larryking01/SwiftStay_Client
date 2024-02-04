@@ -789,12 +789,15 @@
 }
 
 .see-all-reviews-btn {
+    background-color: var(--primary-color);
+    color: white;
     border: 1px solid var(--primary-color);
 }
 
 .see-all-reviews-btn:hover {
     background-color: var(--primary-color);
     color: white;
+
 }
 
 
@@ -821,6 +824,11 @@
 
 
 .get-room-details-post-review-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.get-room-details-post-review-btn:hover {
     background-color: var(--primary-color);
     color: white;
 }
@@ -1914,8 +1922,6 @@
 }
 
 
-
-
 .review-body-text-area-error {
     border: 1px solid red;
 }
@@ -1924,6 +1930,14 @@
 .review-feedback-text {
     font-family: 'Lora', serif;
 }
+
+
+.all-reviews-images-styling {
+    width: 100%;
+    aspect-ratio: 3/2;
+    margin-bottom: 2%;
+}
+
 
 /* end of reviews page styling */
 

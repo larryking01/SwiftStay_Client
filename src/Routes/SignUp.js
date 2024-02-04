@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -200,13 +200,14 @@ const CreateNewUser = async ( ) => {
 
 
 // making certain component always displays from top on initial render.
-    // useEffect(() => {
-    // window.scrollTo({
-    //     top: 0,
-    //     left: 0,
-    //     behavior: 'smooth'
-    //     })
-    // })
+    useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+        })
+
+    }, [ ])
 
 
 
@@ -298,10 +299,10 @@ const CreateNewUser = async ( ) => {
                     <section>
                         <Row>
                             <p className='sign-up-already-account-text'>Already have an account? <span className='sign-in-span' onClick={ () => navigate('/login')}>Sign in</span></p>
-                            <p className='sign-up-continue-with-text'>Or continue with</p>
+                            {/* <p className='sign-up-continue-with-text'>Or continue with</p> */}
                         </Row>
 
-                        <Row className='mb-5'>
+                        {/* <Row className='mb-5'>
                             <Col>
                                 <BsGoogle className='alt-sign-up-icon' size={ 19 } />
                             </Col>
@@ -313,7 +314,7 @@ const CreateNewUser = async ( ) => {
                             <Col>
                                 <BsFacebook className='alt-sign-up-icon' size={ 19 } />
                             </Col>
-                        </Row>
+                        </Row> */}
 
                         <Row className='mb-3'>
                             <p className='sign-up-tnc-text'>By signing up, I agree to the <span className='tnc-span'>Terms and Conditions</span> and <span className='tnc-span'>Privacy Statement</span></p>

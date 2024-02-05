@@ -81,6 +81,7 @@
     background-color: white;
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
+    margin-left: 2%;
 
 }
 
@@ -107,9 +108,13 @@
 }
 
 
-
 .navbar-brand {
     cursor: pointer;
+}
+
+
+.user-name-display {
+    margin-left: -2%;
 }
 
 /* end of navbar styling */

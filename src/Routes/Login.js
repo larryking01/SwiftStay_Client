@@ -100,7 +100,7 @@ const Login = ( ) => {
                         }
                         setCurrentUser( user )
                         console.log('user signed in')
-                        navigate( -1 )
+                        navigate('/')
                     }
                 }
                 else {

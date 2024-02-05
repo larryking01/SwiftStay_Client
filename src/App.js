@@ -32,7 +32,6 @@ const UserContext = createContext( null )
 
 const App = () => {
 
-
     // online and local server urls.
     const server_url = 'https://hotel-finder-app-server-rest.onrender.com'
     // const online_server_url = 'https://hotel-finder-app-server-rest.onrender.com'
@@ -41,7 +40,6 @@ const App = () => {
 
     // handling user state.
     const [ currentUser, setCurrentUser ] = useState( null )
-
 
     // handling startdatepicker input values.
     const [ startDateValue, setStartDateValue ] = useState(null)

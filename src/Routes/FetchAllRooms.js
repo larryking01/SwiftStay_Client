@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
@@ -19,6 +17,9 @@ import Form from 'react-bootstrap/Form'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
+// modules
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
 
 import trending_accra_marriott_cover from '../Media Files/trending_accra_marriott_cover.jpg'
 import trending_kempinski_cover from '../Media Files/trending_kempinski_cover.jpg'
@@ -26,13 +27,16 @@ import trending_movenpick_cover from '../Media Files/trending_movenpick_cover.jp
 import trending_mensvic_cover from '../Media Files/trending_mensvic_hotel.jpg'
 
 
+import { UserContext } from '../App'
+
+
+
 
 const FetchAllRooms = () => {
 
   
-  // local and online server urls
-  // let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
+  // server url
+  const { server_url } = useContext( UserContext )
 
 
 
@@ -60,7 +64,7 @@ const FetchAllRooms = () => {
       left: 0,
       behavior: 'smooth'
     })
-  })
+  }, [ ])
   
 
 
@@ -70,7 +74,7 @@ const FetchAllRooms = () => {
     const FetchAllRooms = async () => {
 
       // setIsLoadingAllHotels( true )
-      let response = await fetch(`${ online_server }/get/fetch-all-rooms`, {
+      let response = await fetch(`${ server_url }/get/fetch-all-rooms`, {
         method: 'GET'
       })
 
@@ -79,8 +83,6 @@ const FetchAllRooms = () => {
         setAllRoomsArray( data )
         setIsLoadingAllHotels( false )
         console.log( data )
-        // console.log('all rooms array === ')
-        // console.log( allRoomsArray )
       }
       
       else {
@@ -94,7 +96,7 @@ const FetchAllRooms = () => {
 
     FetchAllRooms()
 
-  }, [ ])
+  }, [ server_url ])
 
 
 
@@ -134,18 +136,20 @@ const FetchAllRooms = () => {
     <>
       <NavbarComponent />
 
-        <div>
+        <div className='hide-overflow'>
             <section className='find-perfect-hotel-section'>
-              <h3 className='find-perfect-hotel-text'>Find the perfect hotel on Skyscanner.com</h3>
-              <p className='from-budget-text'>From budget hotels to luxury rooms and everything in between </p>
+              <h3 className='find-perfect-hotel-text'>Find the perfect hotel on SwiftStay</h3>
+              <p className='from-budget-text'>From budget hotels to luxury rooms and everything in between, 
+                your dream escape is just a reservation away! 
+              </p>
             </section>
 
           
           <section className='fetch-all-rooms-search-tab-section'>
             <InputGroup>
               <Form.Control type='text' placeholder='search hotel by name, place or price' 
-                className='search-hotel-textbox' onChange={ UpdateSearchHotel } value={ searchHotel }
-                 />
+                className='search-hotel-textbox text-control-focus-style' onChange={ UpdateSearchHotel } value={ searchHotel }
+              />
               <Button variant='custom' className='search-hotel-button' onClick={ ( ) => console.log( searchHotel )}><span><BsSearch /> Search</span></Button>
             </InputGroup>
           </section>
@@ -181,7 +185,7 @@ const FetchAllRooms = () => {
                               <h3 className='fetch-all-hotels-title'>{ rooms.room_number }</h3>
                               <p> <IoLocationSharp /> <span>{ rooms.room_location }</span></p>
                               <Rating name='read-only' value={ rooms.room_rating } readOnly /> <p></p>
-                              <p className='room-rate-text'>GH<span>&#8373;</span>{ rooms.room_rate }</p>
+                              <p className='room-rate-text'>GH<span>&#8373;</span> { rooms.room_rate }</p>
                               <Button variant='custom' className='go-to-site-button'>More details</Button>
                             </Col>
 
@@ -252,9 +256,11 @@ const FetchAllRooms = () => {
 
             <Col>
               <h3 className='genius-travel-text'>Discover the genius way to travel</h3>
-              <p className='genius-meta-text'>Booking.com's loyalty program is simple.</p>
+              <p className='genius-meta-text'>SwiftStay's loyalty program is simple.</p>
               <p className='genius-meta-text'>The more you book with us, the more travel rewards you'll get. Sign in or create an account</p>
-              <Button variant='custom' className='genius-started-btn'>Get started</Button>
+              <Button variant='custom' className='genius-started-btn' onClick={ ( ) => navigate('/login') }>
+                Get started
+              </Button>
             </Col>
           </Row>
 
@@ -276,7 +282,6 @@ const FetchAllRooms = () => {
           </Row>
 
         </section>
-
 
         </div>
 

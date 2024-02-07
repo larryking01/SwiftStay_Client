@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
-import about_us_bg2 from '../Media Files/Rooms And Suites/about-us-bg2.jpg'
-import traveler from '../Media Files/traveler.png'
-import upcycling from '../Media Files/upcycling.png'
-import team_1 from '../Media Files/team_1.jpg'
-// import about_us_bg1 from '../Media Files/Rooms And Suites/about-us-bg1.jpg'
-// import about_us_bg3 from '../Media Files/Rooms And Suites/about-us-bg3.jpg'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 
-
-
-
+// modules
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
+import traveler from '../Media Files/traveler.png'
+import upcycling from '../Media Files/upcycling.png'
+import larry from '../Media Files/Team Members Images/larry.webp'
+// import larry2 from '../Media Files/Team Members Images/larry2.jpg'
+import priscilla from '../Media Files/Team Members Images/priscilla.webp'
+import nat from '../Media Files/Team Members Images/nat.avif'
+import marian from '../Media Files/Team Members Images/marian.jpg'
+import aku_shika from '../Media Files/Team Members Images/aku-shika.jpg'
 
 
 
@@ -29,24 +29,39 @@ const AboutHelp = ( ) => {
             left: 0,
             behavior: 'smooth'
         })
-        })
+    }, [ ])
       
 
     let teams_array = [
         {
-            name: 'Larry N. N. Williams', position: 'President & CEO', img_src: team_1, about: 'Matt Goldberg is President and CEO of Tripadvisor, Inc., the largest travel guidance platform in the world. Matt has more than 20 years’ leadership experience across a diversity of sectors, including travel, digital media, e-commerce, and data, where he’s helped drive innovation and expansion across various businesses. Previously, Matt was Executive Vice President, North America and Global Operations for The Trade Desk, a data-driven global media buying and advertising platform. Before joining The Trade Desk, Matt served as Global Head of M&A and Strategic Alliances and Head of India for News Corp, as well as Senior Vice President, Global Market Development and Head of Corporate Development for Qurate, formerly known as QVC. Prior to that, Matt was CEO of Lonely Planet, a travel guide publisher. Matt currently serves on the Board of Directors of Blue Ocean Acquisition Corp (NASDAQ: BOCNU), and is active in philanthropy and nonprofit leadership, including The Burning Man Project and Lumina Foundation. Matt was also the founding director of'
+            name: 'Larry N. N. Williams', 
+            position: 'President & CEO', 
+            img_src: larry, 
+            about: 'It is our pleasure to introduce the driving force behind SwiftStay, our esteemed CEO, Larry Nii Nai Williams. With a vision that transcends boundaries and a passion for redefining the way we experience travel, Larry leads our team towards new horizons in the world of hospitality. A seasoned leader with a profound understanding of the travel industry, Larry brings a wealth of experience to StaySwift. His journey is marked by a relentless commitment to innovation, customer satisfaction, and a deep appreciation for the transformative power of travel.'
         },
         {
-            name: 'Oswell Aku Shika', position: 'Chief Financial Officer', img_src: team_1, about: 'Matt Goldberg is President and CEO of Tripadvisor, Inc., the largest travel guidance platform in the world. Matt has more than 20 years’ leadership experience across a diversity of sectors, including travel, digital media, e-commerce, and data, where he’s helped drive innovation and expansion across various businesses. Previously, Matt was Executive Vice President, North America and Global Operations for The Trade Desk, a data-driven global media buying and advertising platform. Before joining The Trade Desk, Matt served as Global Head of M&A and Strategic Alliances and Head of India for News Corp, as well as Senior Vice President, Global Market Development and Head of Corporate Development for Qurate, formerly known as QVC. Prior to that, Matt was CEO of Lonely Planet, a travel guide publisher. Matt currently serves on the Board of Directors of Blue Ocean Acquisition Corp (NASDAQ: BOCNU), and is active in philanthropy and nonprofit leadership, including The Burning Man Project and Lumina Foundation. Matt was also the founding director of'
+            name: 'Priscilla M. Bonsu', 
+            position: 'Chief Financial Officer', 
+            img_src: aku_shika, 
+            about: "It is with great pleasure that we introduce the financial maestro behind the scenes at SwiftStay, our esteemed Chief Financial Officer, Oswell Naa Aku-Shika. With a keen eye for financial strategy and a commitment to fiscal excellence, Oswell plays a pivotal role in shaping the financial landscape of our organization.A seasoned professional with a proven track record in finance, Oswell brings a wealth of experience to StaySwift."
         },
         {
-            name: 'Priscilla M. Bonsu', position: 'Chief Marketing Officer', img_src: team_1, about: 'Matt Goldberg is President and CEO of Tripadvisor, Inc., the largest travel guidance platform in the world. Matt has more than 20 years’ leadership experience across a diversity of sectors, including travel, digital media, e-commerce, and data, where he’s helped drive innovation and expansion across various businesses. Previously, Matt was Executive Vice President, North America and Global Operations for The Trade Desk, a data-driven global media buying and advertising platform. Before joining The Trade Desk, Matt served as Global Head of M&A and Strategic Alliances and Head of India for News Corp, as well as Senior Vice President, Global Market Development and Head of Corporate Development for Qurate, formerly known as QVC. Prior to that, Matt was CEO of Lonely Planet, a travel guide publisher. Matt currently serves on the Board of Directors of Blue Ocean Acquisition Corp (NASDAQ: BOCNU), and is active in philanthropy and nonprofit leadership, including The Burning Man Project and Lumina Foundation. Matt was also the founding director of'
+            name: 'Oswell N. Aku-Shika', 
+            position: 'Chief Marketing Officer', 
+            img_src: priscilla, 
+            about: "It is our pleasure to introduce the creative visionary driving the heartbeat of our brand, StaySwift's Chief Marketing Officer, Priscilla Mensah Bonsu. With a passion for storytelling and a knack for building meaningful connections, Priscilla is the architect behind the vibrant tapestry of our brand identity.A seasoned marketing expert with a wealth of experience, Priscilla brings a dynamic and innovative approach to StaySwift." 
         },
         {
-            name: 'Joseph Dwamena', position: 'Chief Product Officer', img_src: team_1, about: 'Matt Goldberg is President and CEO of Tripadvisor, Inc., the largest travel guidance platform in the world. Matt has more than 20 years’ leadership experience across a diversity of sectors, including travel, digital media, e-commerce, and data, where he’s helped drive innovation and expansion across various businesses. Previously, Matt was Executive Vice President, North America and Global Operations for The Trade Desk, a data-driven global media buying and advertising platform. Before joining The Trade Desk, Matt served as Global Head of M&A and Strategic Alliances and Head of India for News Corp, as well as Senior Vice President, Global Market Development and Head of Corporate Development for Qurate, formerly known as QVC. Prior to that, Matt was CEO of Lonely Planet, a travel guide publisher. Matt currently serves on the Board of Directors of Blue Ocean Acquisition Corp (NASDAQ: BOCNU), and is active in philanthropy and nonprofit leadership, including The Burning Man Project and Lumina Foundation. Matt was also the founding director of'
+            name: 'Nathaniel A. Bimpong', 
+            position: 'Chief Product Officer', 
+            img_src: nat, 
+            about: 'We are thrilled to introduce the driving force behind the innovation and user-centric design at StaySwift, our Chief Product Officer, Nathaniel Amoah Bimpong. With a passion for crafting seamless and delightful user experiences, Nathaniel is the architect of the features and functionalities that make navigating StaySwift a joy for our users. A refined product strategist with a proven track record, Nathaniel brings a wealth of expertise to StaySwift.'
         },
         {
-            name: 'Henry A. Bernard', position: 'Chief Commercial Officer', img_src: team_1, about: 'Matt Goldberg is President and CEO of Tripadvisor, Inc., the largest travel guidance platform in the world. Matt has more than 20 years’ leadership experience across a diversity of sectors, including travel, digital media, e-commerce, and data, where he’s helped drive innovation and expansion across various businesses. Previously, Matt was Executive Vice President, North America and Global Operations for The Trade Desk, a data-driven global media buying and advertising platform. Before joining The Trade Desk, Matt served as Global Head of M&A and Strategic Alliances and Head of India for News Corp, as well as Senior Vice President, Global Market Development and Head of Corporate Development for Qurate, formerly known as QVC. Prior to that, Matt was CEO of Lonely Planet, a travel guide publisher. Matt currently serves on the Board of Directors of Blue Ocean Acquisition Corp (NASDAQ: BOCNU), and is active in philanthropy and nonprofit leadership, including The Burning Man Project and Lumina Foundation. Matt was also the founding director of'
+            name: 'Marian Boye-Amoah', 
+            position: 'Chief UI/UX Officer', 
+            img_src: marian, 
+            about:'It is with great excitement that we introduce the mastermind behind the visual allure and user-centric design principles at SwiftStay, our Chief UI/UX Officer, Marian Boye-Amoah. With a deep passion for creating immersive and intuitive digital experiences, Marian is the artistic visionary responsible for the seamless and delightful journeys you embark upon when using our platform. A refined expert in the field of User Interface (UI) and User Experience (UX) design, Marian brings a wealth of creative expertise to SwiftStay.'
         }
 
     ]
@@ -56,16 +71,13 @@ const AboutHelp = ( ) => {
 
 
     return (
-        <div>
+        <div className='hide-overflow'>
             <NavbarComponent />
 
-            <section className='about-us-main-section'>
-                <img src={ about_us_bg2 } alt='' className='about-us-main-background' />
-                <h3 className='img-text'>We're the accommodation company that puts you first.</h3>
-            </section>
-
-            <section className='about-us-header-section'>
-                <h3 className='main-header-text'>About Skyscanner</h3>
+            <section>
+                <Row className='about-us-mission-row'>
+                    <h3 className='about-us-mission-text'>It’s our mission to lead the global transformation to modern and sustainable accommodation</h3>
+                </Row>
             </section>
 
 
@@ -89,9 +101,6 @@ const AboutHelp = ( ) => {
                 </Row>
 
 
-                <Row className='about-us-mission-row'>
-                    <h3 className='about-us-mission-text'>It’s our mission to lead the global transformation to modern and sustainable travel</h3>
-                </Row>
 
 
                 <Row md={ 2 } xs={ 1 } sm={ 1 } className='about-us-row-generic-style'>
@@ -142,11 +151,11 @@ const AboutHelp = ( ) => {
                 </section>
 
                 {  
-                
                     teams_array.map(( team_member, index ) => (
                         <Row md={ 2 } xs={ 1 } sm={ 1 } className='about-us-row-generic-style our-team-row' key={ index }>
                             <Col>
                                 <img src={ team_member.img_src } alt='' className='team-pic-style' />
+                                {/* <h4 className='team-member-name'>{ team_member.name }</h4> */}
                             </Col>
 
                             <Col>

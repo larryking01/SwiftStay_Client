@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
+import { useNavigate } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import booking_svg from '../Media Files/booking_svg.png'
-import money_svg from '../Media Files/money.png'
-import search_svg from '../Media Files/search.png'
-import travelling_svg from '../Media Files/globe.png'
+
+// modules
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
 import about_svg from '../Media Files/about.png'
 import contact_us_svg from '../Media Files/contact-us.png'
 import question_svg from  '../Media Files/question.png'
+// import booking_svg from '../Media Files/booking_svg.png'
+// import money_svg from '../Media Files/money.png'
+// import search_svg from '../Media Files/search.png'
 
 
 
@@ -29,23 +30,20 @@ const Help = ( ) => {
         left: 0,
         behavior: 'smooth'
          })
-    })
+    }, [ ])
   
     let categoryArray = [
         { helpCategory: 'Contact Us', categoryImage: contact_us_svg, navigate: '/help-contact-us' },
         { helpCategory: 'About', categoryImage: about_svg, navigate: '/help-about-us' },
         { helpCategory: 'Frequently asked questions', categoryImage: question_svg, navigate: '/frequently-asked-questions' },
-        { helpCategory: 'Bookings', categoryImage: booking_svg, navigate: '/help-bookings' },
-        { helpCategory: 'Rewards', categoryImage: money_svg, navigate: '/help-prices' },
-        { helpCategory: 'Searching', categoryImage: search_svg, navigate: '/help-searching' }
-
+        // { helpCategory: 'Bookings', categoryImage: booking_svg, navigate: '/help-bookings' },
+        // { helpCategory: 'Rewards', categoryImage: money_svg, navigate: '/help-prices' },
+        // { helpCategory: 'Searching', categoryImage: search_svg, navigate: '/help-searching' }
 
     ]
 
     // navigation.
     const navigate = useNavigate()
-    const location = useLocation()
-
 
 
     return (

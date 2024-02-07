@@ -88,11 +88,6 @@ const Footer = () => {
                 </Col>
             </Row>
 
-
-
-            
-
-
         </footer>
         
     )

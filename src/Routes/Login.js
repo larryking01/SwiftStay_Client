@@ -1,14 +1,14 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import skyscanner_1 from '../Media Files/skyscanner_1.jpeg'
 import InputGroup from 'react-bootstrap/InputGroup'
-import { BsFacebook, BsApple, BsGoogle, BsFillPersonFill, BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
+import { BsFacebook, BsApple, BsGoogle, BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 
+// modules
 import { firebaseAuth } from '../Configuration/Firebase'
 import { UserContext } from '../App'
 
@@ -127,24 +127,26 @@ const Login = ( ) => {
 
 
     // making certain component always displays from top on initial render.
-    // useEffect(() => {
-    //     window.scrollTo({
-    //         top: 0,
-    //         left: 0,
-    //         behavior: 'smooth'
-    //     })
-    // })
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+    }, [ ])
 
 
-
-
+    // website brand name.
+    // SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
+    const brand_name = 'SwiftStay'
 
 
     return (
 
         <div className='log-in-wrapper'>
             <section>
-                <img className='log-in-brand-logo' src={ skyscanner_1 } alt='' width={ 200 } onClick={() => navigate('/')} />
+                {/* <img className='log-in-brand-logo' onClick={() => navigate('/')} /> */}
+                <h3 className='log-in-brand-logo' onClick={() => navigate('/')}>{ brand_name }</h3>
             </section>
 
             <section className='login-account-section'>
@@ -163,7 +165,7 @@ const Login = ( ) => {
                             <div className='login-input-group-margin'>
                                 <Form.Text>{ emailErrorExists ? emailErrorMessage : 'Email *'}</Form.Text>
                                 <InputGroup className={ emailErrorExists ? 'login-input-group-error' : 'login-input-group-style' }>
-                                    <Form.Control type='email' placeholder='' onChange={ UpdateLogInUserEmail } value={ logInUserEmail } />
+                                    <Form.Control className='login-email-control' type='email' placeholder='' onChange={ UpdateLogInUserEmail } value={ logInUserEmail } />
                                     <InputGroup.Text>{ <AiOutlineMail /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -174,7 +176,7 @@ const Login = ( ) => {
                             <div className='login-input-group-margin'>
                                 <Form.Text>{ passwordErrorExists ? passwordErrorMessage : 'Password *'}</Form.Text>
                                 <InputGroup className={ passwordErrorExists ? 'login-input-group-error' : 'login-input-group-style' }>
-                                    <Form.Control type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateLogInUserPassword } value={ logInUserPassword } />
+                                    <Form.Control className='login-password-control' type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateLogInUserPassword } value={ logInUserPassword } />
                                     <InputGroup.Text className='login-input-group-text' onClick={ TogglePasswordVisible }>{ passwordVisible ? <BsFillEyeFill /> : <BsFillEyeSlashFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -186,7 +188,7 @@ const Login = ( ) => {
 
 
                     <section>
-                        <Row className='mb-5'>
+                        {/* <Row className='mb-5'>
                             <p className='continue-with-text'>Or continue with</p>
 
                             <Col className='alt-sign-in-icon'>
@@ -200,7 +202,7 @@ const Login = ( ) => {
                             <Col className='alt-sign-in-icon'>
                                 <BsFacebook size={ 19 } />
                             </Col>
-                        </Row>
+                        </Row> */}
 
                         <Row>
                             <p className='create-account-text'>Don't have an account? <span className='sign-up-span' onClick={() => navigate('/sign-up')}>Create One</span></p>

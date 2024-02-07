@@ -16,7 +16,6 @@ import ScrollToTop from  '../Configuration/ScrollToTop'
 import { UserContext } from '../App'
 import Footer from './Footer'
 import background_2 from '../Media Files/Homepage Background/background_2.jpg'
-import background_1 from '../Media Files/Homepage Background/background_1.jpg'
 import trip_dotcom from '../Media Files/trip.com_logo.png'
 import booking_dotcom from '../Media Files/booking.com_logo.png'
 import hyatt_dotcom from '../Media Files/hyatt.com_logo.jpg'
@@ -105,7 +104,7 @@ const Home = () => {
     },
     { 
       _id: '63fcb2ce31251dbf79c2caac', 
-      room_number: 'Accra Marriott Hotel Airport, Accra',
+      room_number: 'Accra Marriott Hotel, Accra',
       room_cover_photo_url: marriott_cover_photo,
       room_rate: 7315,
       room_rating: 5
@@ -283,7 +282,7 @@ const Home = () => {
 
 
   return (
-    <div className='hide-overflow'>
+    <div>
 
       <NavbarComponent />
 
@@ -295,7 +294,7 @@ const Home = () => {
         </section>
 
         <section className='place-to-stay'>
-          <h3 className='save-big-text'><strong>Discover your favourite place with us</strong></h3>
+          <h3><strong className='save-big-text'>Discover your favourite <span className='save-big-text-line2'>place with us</span></strong></h3>
         </section>
 
         <section className='intro-background'>
@@ -345,50 +344,71 @@ const Home = () => {
 
         <section className='plan-staycation-section'>
             <h3 className='plan-staycation-text'><strong>Plan your next staycation</strong></h3>
+            
         </section>
 
       <section className='main-hotels-section'>
-        <Row xs={ 1 } md={ 4 } className='main-hotels-section-row' ref={ all_hotels_section_ref }>
-            {
-              AllHotelsArray.map(( room, index ) => (
-                <Col key={ index }>
-                  <Card className='cover-page-card-style' onClick={() => navigate(`/get-room-details/${ room.room_number }/${ room._id }`)}>
-                    <Card.Img src={ room.room_cover_photo_url } alt='' className='hotel-card-img' />
-                    <Card.Body>
-                        <Card.Title className='card-title'>
-                          <section className='mb-3'>{ room.room_number }</section>
+        {
+          // loadingHotels === true ? 
+          //     <div className='loading-hotels-div-style'>
+          //       <FontAwesomeIcon icon={ faSpinner } size='2x' spinPulse className='mb-4' color='#808080' />
+          //       <p className='fetching-hotels-text'>fetching available hotels.... please wait</p>
+          //     </div>
 
-                          <section>
-                            <Rating name="read-only" value={ room.room_rating } readOnly />
-                          </section>
+          //   :
 
-                        </Card.Title>
-                        
-                        <Card.Subtitle className='card-subtitle'>
-                          <div>
-                            <section className='card-room-location'>
-                              <IoLocationSharp /> <h6 className='location-detail'>Accra</h6>
-                            </section>
+          //   fetchError === true ?
+          //       <section className='fetch-hotels-error-section'>
+          //         <h5 className='fetch-hotels-error-text'> { fetchErrorMessage } </h5>
+          //       </section>
 
-                            <section className='card-room-rate'>
-                              GH<span>&#8373;</span> { room.room_rate } per night
-                            </section>
-                          </div>
-                        </Card.Subtitle>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))
+          //     :
 
-            }
-        </Row>
+          <>
+            <Row xs={ 1 } md={ 4 } className='main-hotels-section-row' ref={ all_hotels_section_ref }>
+                {
+                  AllHotelsArray.map(( room, index ) => (
+                    <Col key={ index }>
+                      <Card className='cover-page-card-style' onClick={() => navigate(`/get-room-details/${ room.room_number }/${ room._id }`)}>
+                        <Card.Img src={ room.room_cover_photo_url } alt='' className='hotel-card-img' />
+                        <Card.Body>
+                            <Card.Title className='card-title'>
+                              <section className='mb-3'>{ room.room_number }</section>
+
+                              <section>
+                                <Rating name="read-only" value={ room.room_rating } readOnly />
+                              </section>
+
+                            </Card.Title>
+                            
+                            <Card.Subtitle className='card-subtitle'>
+                              <div>
+                                <section className='card-room-location'>
+                                  <IoLocationSharp /> <h6 className='location-detail'>Accra</h6>
+                                </section>
+
+                                <section className='card-room-rate'>
+                                  GH<span>&#8373;</span> { room.room_rate } per night
+                                </section>
+                              </div>
+                            </Card.Subtitle>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  ))
+
+                }
+            </Row>
 
 
-        <Row xs={ 1 } >
-            <div className='view-all-hotels-text-div' onClick={() => navigate('fetch-all-rooms')}>
-              <Button variant='custom' className='view-all-hotels-btn'>View all hotels <BsArrowRight size={ 20 } /> </Button>
-            </div>
-        </Row>
+            <Row xs={ 1 } >
+                <div className='view-all-hotels-text-div' onClick={() => navigate('fetch-all-rooms')}>
+                    <Button variant='custom' className='view-all-hotels-btn'>View all hotels <BsArrowRight size={ 20 } /> </Button>
+                </div>
+            </Row>
+          </>
+
+          }
 
       </section>
       </main>
@@ -447,7 +467,7 @@ const Home = () => {
               <Col className='extra-info-text-col'>
                   <h3 className='extra-info-title'>Restaurants</h3>
                   <div className='extra-info-details'>
-                    <h4 className='extra-info-details-text'>With SwiftStay, we don't only bring you hotels with the best rooms
+                    <h4 className='extra-info-details-text'>With Hotelier, we don't only bring you hotels with the best rooms
                     but we take the entire human experience into consideration and that includes your food!!</h4> 
                     <h4 className='extra-info-details-text'>Find the best dishes you didn't know you craved: from our local banku and okro stew to continental </h4>
                     <h4 className='extra-info-details-text'>hot chicken casserole, like your mama makes. Our hotels got you covered!</h4>

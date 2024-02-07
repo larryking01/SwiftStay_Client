@@ -1,18 +1,20 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel  from 'react-bootstrap/FloatingLabel'
 import { BsPersonFill } from 'react-icons/bs'
-
 // font awesome icons.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
+
+// modules
+import NavbarComponent from './NavBar'
+import Footer from './Footer'
+import { UserContext } from '../App'
 
 
 
@@ -20,9 +22,8 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 const Reviews = ( ) => {
 
-  // local and online server urls
- //  let local_server = 'http://127.0.0.1:8000'
-  let online_server = 'https://hotel-finder-app-server-rest.onrender.com'
+    // server url
+    const { server_url } = useContext( UserContext )
 
     // setting up params.
     const params = useParams()
@@ -57,7 +58,7 @@ const Reviews = ( ) => {
   useEffect(() => {
     // async function to fetch data.
     const FetchData = async () => {
-      let response = await fetch(`${ online_server }/get/room-details/${ params.hotel_name }/${ params.hotel_id }`, {
+      let response = await fetch(`${ server_url }/get/room-details/${ params.hotel_name }/${ params.hotel_id }`, {
         method: 'GET'
       })
       
@@ -65,8 +66,8 @@ const Reviews = ( ) => {
         console.log( `selected room success response is ${ response.status }` )
         let data = await response.json()
         setselectedRoomDetailsObject({ ...data }) 
-        console.log('selected room data is')
-        console.log( data )
+        // console.log('selected room data is')
+        // console.log( data )
         setTimeout(() => {
           setIsLoadingHotelDetails( false )
         }, 1000 )
@@ -74,7 +75,7 @@ const Reviews = ( ) => {
       }
 
       else {
-        console.log( `failure status is ${response.status} ` )
+        // console.log( `failure status is ${response.status} ` )
         setIsLoadingHotelDetails( false )
         setFetchError( false )
         setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
@@ -84,7 +85,7 @@ const Reviews = ( ) => {
 
     FetchData()
 
-  }, [ ])
+  }, [ params.hotel_id, params.hotel_name, server_url ])
     
 
 
@@ -92,7 +93,7 @@ const Reviews = ( ) => {
     // effect hook to fetch all reviews.
     useEffect(() => {
         const FetchAllReviews = async ( ) => {
-            let response = await fetch(`${ online_server }/get/fetch-reviews/${ params.hotel_name }/${ params.hotel_id }`)
+            let response = await fetch(`${ server_url }/get/fetch-reviews/${ params.hotel_name }/${ params.hotel_id }`)
             
             if( response.status === 200 ) {
                 let data =  await response.json()
@@ -100,18 +101,18 @@ const Reviews = ( ) => {
                 setTimeout(() => {
                     setIsLoadingReviews( false )
                 }, 1000 )
-                console.log('all reviews fetched')
-                console.log( data )
+                // console.log('all reviews fetched')
+                // console.log( data )
             }
             else if ( response.status === 404 ) {
                 setTimeout(() => {
                     setIsLoadingReviews( false )
                 }, 1000 )
-                console.log('no reviews for this hotel yet')
+                // console.log('no reviews for this hotel yet')
             }
             else {
                 setIsLoadingReviews( false )
-                console.log('failed to fetch reviews......')
+                // console.log('failed to fetch reviews......')
                 setReviewsErrorMessage('failed to fetch reviews....')
             }
         }
@@ -166,7 +167,7 @@ const Reviews = ( ) => {
         else {
             // actually posting the review.
             setPostingReview( true )
-            let response = await fetch(`${ online_server }/post/post-review/${ params.hotel_name }/${ params.hotel_id }`, {
+            let response = await fetch(`${ server_url }/post/post-review/${ params.hotel_name }/${ params.hotel_id }`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -191,7 +192,7 @@ const Reviews = ( ) => {
             }
             else {
                 setPostingReview( false )
-                console.log('failed to post review')
+                // console.log('failed to post review')
                 setReviewFeedback('failed to post your review due to an error...')
                 setTimeout(() => {
                     setReviewFeedback('')
@@ -203,23 +204,17 @@ const Reviews = ( ) => {
 
     }
 
-
-
-
-
     
 
     return (
 
         <div>
-
             <NavbarComponent />
 
-            <div>
+            <div className='hide-overflow'>
                 <section className='reviewed-hotel-info-section'>
                     <h3 className='reviewed-hotel-name'>{ params.hotel_name } Reviews</h3>
                 </section>
-
 
                 {
 
@@ -242,19 +237,30 @@ const Reviews = ( ) => {
                 <section className='main-content-wrapper'>
 
                 <section className='selected-room-extra-pics-grid'>
-
-                    <Row>
+                    <Row xs={ 1 } md={ 3 }>
                         <Col>
-                            <img width={ 380 } src={ selectedRoomDetailsObject.room_cover_photo_url } alt='' />
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_cover_photo_url } alt='' />
                         </Col>
 
                         <Col>
-                            <img width={ 380 } src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
                         </Col>
 
                         <Col>
-                            <img width={ 380 } src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
                         </Col>
+
+                        {/* <Col>
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
+                        </Col>
+
+                        <Col>
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_cover_photo_url } alt='' />
+                        </Col>
+
+                        <Col>
+                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
+                        </Col> */}
 
                     </Row>
 
@@ -262,14 +268,25 @@ const Reviews = ( ) => {
 
 
                 <section className='selected-room-details-sub-section'>
-                    <Row>
-                        <Col md={ 7 }>
-                            <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Total Review(s)</h3>
+                    <Row className='reviews-header-row'>
+
+                        <Col md={ 6 } xs={ 6 }>
+                            {
+                                allReviewsArray.length > 0 ?
+                                    allReviewsArray.length === 1 ?
+                                        <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Review </h3>
+                                        :
+                                        <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Reviews </h3>
+                                :
+                                <h3 className='selected-room-details-sub-header'>No reviews yet </h3>
+
+                            }
                         </Col>
 
-                        <Col md={ 5 }>
-                            <Button variant='custom' className='post-review-btn' onClick={ ScrollReviewFormToView }>Post a review</Button>
+                        <Col md={ 6 } xs={ 6 }>
+                            <Button variant='custom' className='post-review-btn' onClick={ ScrollReviewFormToView }>Post review</Button>
                         </Col>
+
                     </Row>
 
 
@@ -315,7 +332,7 @@ const Reviews = ( ) => {
 
                         <Row>
                             <Col>
-                                <Button variant='custom' className='post-review-btn' onClick={ HandlePostReview }>Post review</Button>
+                                <Button variant='custom' className='post-review-btn-submit' onClick={ HandlePostReview }>Post review</Button>
                             </Col>
 
                             <Col md={ 7 }>

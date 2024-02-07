@@ -1,17 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import InputGroup from 'react-bootstrap/InputGroup'
-import skyscanner_1 from '../Media Files/skyscanner_1.jpeg'
-import { BsFacebook, BsApple, BsGoogle, BsFillEyeSlashFill, BsFillEyeFill, 
-         BsFillPersonFill } from 'react-icons/bs'
+import { BsFacebook, BsApple, BsGoogle, BsFillEyeSlashFill, BsFillEyeFill, BsFillPersonFill } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
+
+// modules
 import { UserContext } from '../App'
 import { firebaseAuth } from '../Configuration/Firebase'
-import { faListCheck } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -21,6 +20,11 @@ import { faListCheck } from '@fortawesome/free-solid-svg-icons'
 
 
 const SignUp = ( ) => {
+
+// website brand name.
+// SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
+const brand_name = 'SwiftStay'
+
 
 const navigate = useNavigate()
 
@@ -196,13 +200,14 @@ const CreateNewUser = async ( ) => {
 
 
 // making certain component always displays from top on initial render.
-    // useEffect(() => {
-    // window.scrollTo({
-    //     top: 0,
-    //     left: 0,
-    //     behavior: 'smooth'
-    //     })
-    // })
+    useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+        })
+
+    }, [ ])
 
 
 
@@ -210,7 +215,8 @@ const CreateNewUser = async ( ) => {
 
         <div className='sign-up-wrapper'>
             <section>
-                <img className='sign-up-brand-logo' src={ skyscanner_1 } alt='' width={ 200 } onClick={() => navigate('/')} />
+                {/* <img className='log-in-brand-logo' onClick={() => navigate('/')} /> */}
+                <h3 className='log-in-brand-logo' onClick={() => navigate('/')}>{ brand_name }</h3>
             </section>
 
             <section className='create-account-section'>
@@ -228,7 +234,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ firstNameErrorExists ? firstNameErrorMessage : 'First name *'}</Form.Text>
                                 <InputGroup className={ firstNameErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type='text' placeholder='' onChange={ UpdateSignUpFirstName } value={ signUpFirstName } />
+                                    <Form.Control className='signup-control-focus-style' type='text' placeholder='' onChange={ UpdateSignUpFirstName } value={ signUpFirstName } />
                                     <InputGroup.Text>{ <BsFillPersonFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -238,7 +244,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ lastNameErrorExists ? lastNameErrorMessage : 'Last name *'}</Form.Text>
                                 <InputGroup className={ lastNameErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type='text' placeholder='' onChange={ UpdateSignUpLastName } value={ signUpLastName } />
+                                    <Form.Control className='signup-control-focus-style' type='text' placeholder='' onChange={ UpdateSignUpLastName } value={ signUpLastName } />
                                     <InputGroup.Text>{ <BsFillPersonFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -251,7 +257,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ emailErrorExists ? emailErrorMessage : 'Email *'}</Form.Text>
                                 <InputGroup className={ emailErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type='email' placeholder='' onChange={ UpdateSignUpEmail } value={ signUpEmail } />
+                                    <Form.Control className='signup-control-focus-style' type='email' placeholder='' onChange={ UpdateSignUpEmail } value={ signUpEmail } />
                                     <InputGroup.Text>{ <AiOutlineMail /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -261,7 +267,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ passwordErrorExists ? passwordErrorMessage : 'Password *'}</Form.Text>
                                 <InputGroup className={ passwordErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpPassword } value={ signUpPassword } />
+                                    <Form.Control className='signup-control-focus-style' type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpPassword } value={ signUpPassword } />
                                     <InputGroup.Text className='input-group-text' onClick={ TogglePasswordVisible }>{ passwordVisible ? <BsFillEyeFill /> : <BsFillEyeSlashFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -275,7 +281,7 @@ const CreateNewUser = async ( ) => {
                             <div className='input-group-margin'>
                                 <Form.Text>{ confirmPasswordErrorExists ? confirmPasswordErrorMessage : 'Confirm password *'}</Form.Text>
                                 <InputGroup className={ confirmPasswordErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control type={ confirmPasswordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpConfirmPassword }  value={ signUpConfirmPassword } />
+                                    <Form.Control className='signup-control-focus-style' type={ confirmPasswordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpConfirmPassword }  value={ signUpConfirmPassword } />
                                     <InputGroup.Text className='input-group-text' onClick={ ToggleConfirmPasswordVisible }>{ confirmPasswordVisible ? <BsFillEyeFill/> : <BsFillEyeSlashFill /> }</InputGroup.Text>
                                 </InputGroup>
                             </div>
@@ -293,10 +299,10 @@ const CreateNewUser = async ( ) => {
                     <section>
                         <Row>
                             <p className='sign-up-already-account-text'>Already have an account? <span className='sign-in-span' onClick={ () => navigate('/login')}>Sign in</span></p>
-                            <p className='sign-up-continue-with-text'>Or continue with</p>
+                            {/* <p className='sign-up-continue-with-text'>Or continue with</p> */}
                         </Row>
 
-                        <Row className='mb-5'>
+                        {/* <Row className='mb-5'>
                             <Col>
                                 <BsGoogle className='alt-sign-up-icon' size={ 19 } />
                             </Col>
@@ -308,7 +314,7 @@ const CreateNewUser = async ( ) => {
                             <Col>
                                 <BsFacebook className='alt-sign-up-icon' size={ 19 } />
                             </Col>
-                        </Row>
+                        </Row> */}
 
                         <Row className='mb-3'>
                             <p className='sign-up-tnc-text'>By signing up, I agree to the <span className='tnc-span'>Terms and Conditions</span> and <span className='tnc-span'>Privacy Statement</span></p>

@@ -7,8 +7,8 @@ import Button from 'react-bootstrap/Button'
 // import Form from 'react-bootstrap/Form'
 
 // font awesome icons.
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 // modules
 import NavbarComponent from './NavBar'
@@ -16,7 +16,7 @@ import ScrollToTop from  '../Configuration/ScrollToTop'
 import { UserContext } from '../App'
 import Footer from './Footer'
 import background_2 from '../Media Files/Homepage Background/background_2.jpg'
-import background_1 from '../Media Files/Homepage Background/background_1.jpg'
+// import background_1 from '../Media Files/Homepage Background/background_1.jpg'
 import trip_dotcom from '../Media Files/trip.com_logo.png'
 import booking_dotcom from '../Media Files/booking.com_logo.png'
 import hyatt_dotcom from '../Media Files/hyatt.com_logo.jpg'

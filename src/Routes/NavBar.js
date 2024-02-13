@@ -25,8 +25,7 @@ const NavbarComponent = ( ) => {
 
     // effect to show current user.
     useEffect(() => {
-        // console.log('from navbar, current user is')
-        // console.log( currentUser )
+        console.log(`from navbar, current user is ${ currentUser?.email }`)
 
     }, [ currentUser ])
 
@@ -73,7 +72,7 @@ const NavbarComponent = ( ) => {
                                         <NavDropdown.Item eventKey='4.2'>Booking history</NavDropdown.Item>
                                     </NavDropdown> */}
                                     <h5 className='user-name-display'> { currentUser.displayName } </h5>
-                                    <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button>
+                                    {/* <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button> */}
                                 </>
                                 :
                                 <>
@@ -88,7 +87,6 @@ const NavbarComponent = ( ) => {
                                     {/* <Nav.Link className='nav-link-button'>                                    
                                         <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button>
                                     </Nav.Link> */}
-
                                 </>
                             }
 

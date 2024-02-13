@@ -75,18 +75,17 @@ const Login = ( ) => {
                     setEmailErrorExists( true )
                     setEmailErrorMessage('This field cannot be empty *')
                 } 
-                else {  setEmailErrorExists( false )}
+                else { setEmailErrorExists( false ) }
 
                 if( logInUserPassword.length < 1 ) {
                     setPasswordErrorExists( true )
                     setPasswordErrorMessage('This field cannot be empty *')
                 } 
-                else {  setPasswordErrorExists( false )}
+                else { setPasswordErrorExists( false ) }
 
             }
 
             else {
-
                 let existingUser = firebaseAuth.currentUser
                 if( !existingUser ) {
                     let userCredentials = await firebaseAuth.signInWithEmailAndPassword( logInUserEmail, logInUserPassword )
@@ -104,6 +103,7 @@ const Login = ( ) => {
                     }
                 }
                 else {
+                    console.log( `existing user is ${ existingUser.email }`)
                     throw new Error('a user is already logged in')
                 }
         }

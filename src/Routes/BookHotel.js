@@ -3,21 +3,23 @@ import { useParams } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
-import { FaCcAmex } from 'react-icons/fa'
-import { SiVisa } from 'react-icons/si'
-import { SiMastercard } from 'react-icons/si'
-import { FaCcDiscover } from 'react-icons/fa'
-import { BsPaypal } from 'react-icons/bs'
-import { BsShieldCheck } from 'react-icons/bs'
+// import { FaCcAmex } from 'react-icons/fa'
+// import { SiVisa } from 'react-icons/si'
+// import { SiMastercard } from 'react-icons/si'
+// import { FaCcDiscover } from 'react-icons/fa'
+// import { BsPaypal } from 'react-icons/bs'
+// import { BsShieldCheck } from 'react-icons/bs'
 import Carousel from 'react-grid-carousel'
 import Rating from '@mui/material/Rating'
 import Button from 'react-bootstrap/Button'
 import { IoLocationSharp } from 'react-icons/io5'
+import { PaystackButton } from 'react-paystack'
 
 // modules
 import { UserContext } from '../App'
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
+import ScrollToTop from  '../Configuration/ScrollToTop'
 
 
 
@@ -26,7 +28,6 @@ import Footer from './Footer'
 
 
 const BookHotel = ( ) => {
-
 
     // setting up state.
     const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
@@ -42,10 +43,10 @@ const BookHotel = ( ) => {
     const [ showBookingConfirmPage, setShowBookingConfirmPage ] = useState( false )
     const [ bookingFieldsErrorMessage, setBookingFieldsErrorMessage ] = useState('')
     const [ paymentMethod, setPaymentMethod ] = useState('')
-    const [ visaPaymentSelected, setVisaPaymentSelected ] = useState( false )
-    const [ masterCardPaymentSelected, setMasterCardPaymentSelected ] = useState( false )
-    const [ payPalPaymentSelected, setPaypalPaymentSelected ] = useState( false )
-    const [ mobileMoneyPaymentSelected, setMobileMoneyPaymentSelected ] = useState( false )
+    // const [ visaPaymentSelected, setVisaPaymentSelected ] = useState( false )
+    // const [ masterCardPaymentSelected, setMasterCardPaymentSelected ] = useState( false )
+    // const [ payPalPaymentSelected, setPaypalPaymentSelected ] = useState( false )
+    // const [ mobileMoneyPaymentSelected, setMobileMoneyPaymentSelected ] = useState( false )
     const [ cardExpiryMonth, setCardExpiryMonth ] = useState('')
     const [ cardExpiryYear, setCardExpiryYear ] = useState('')
 
@@ -63,6 +64,20 @@ const BookHotel = ( ) => {
     const [ totalCostString, setTotalCostString ] = useState( '0' )
 
     const [ lengthOfStay, setLengthOfStay ] = useState( 1 )
+
+
+    const [ paymentsProductArray, setPaymentsProductArray ] = useState([ ])
+
+    // setting up paystack.
+    const componentProps = {
+        publicKey: 'pk_test_fd4de2b58225749549a32606adf7fdff02668525',
+        currency: 'GHS',
+        amount: totalCost * 100,
+        email: bookingCustomerEmail,
+        text: 'I confirm booking details. Complete my booking now',
+        onSuccess: () => { alert('payment successful') },
+        onClose: () => { alert('payment failed') }
+    }
 
 
     // url params
@@ -105,8 +120,10 @@ const BookHotel = ( ) => {
             if( response.ok ) {
                 let data = await response.json()
                 setBookingHotelObject({ ...data })
+                console.log(`booking hotel data = ${ data }`)
                 // console.log('fetching hotel details done')
-                // setTimeout(() => { console.log( bookingHotelObject )}, 4000)
+                setPaymentsProductArray( bookingHotelObject )
+                setTimeout(() => { console.log( paymentsProductArray )}, 4000)
             }
         }
         fetchBookingHotel()
@@ -221,40 +238,40 @@ const BookHotel = ( ) => {
 
 
     // payment details
-    const UpdateCustomerPaymentCardName = ( event ) => {
-        setPaymentCardName( event.target.value )
-    }
+    // const UpdateCustomerPaymentCardName = ( event ) => {
+    //     setPaymentCardName( event.target.value )
+    // }
 
-    const UpdateCustomerPaymentBookingEmail = ( event ) => {
-        setPaymentBookingEmail( event.target.value )
-    }
+    // const UpdateCustomerPaymentBookingEmail = ( event ) => {
+    //     setPaymentBookingEmail( event.target.value )
+    // }
 
-    const UpdateCustomerPaymentCardNumber = ( event ) => {
-        setPaymentCardNumber( event.target.value )
-    }
-
-
-    const UpdateCustomerPaymentCardSecurityCode = ( event ) => {
-        setCustomerPaymentCardSecurityCode( event.target.value )
-    }
-
-    const ResetAllSelectedPaymentMethods = ( ) => {
-        setVisaPaymentSelected( false )
-        setMasterCardPaymentSelected( false )
-        setPaypalPaymentSelected( false )
-        setMobileMoneyPaymentSelected( false )
-    }
+    // const UpdateCustomerPaymentCardNumber = ( event ) => {
+    //     setPaymentCardNumber( event.target.value )
+    // }
 
 
-    const UpdateCustomerSelectedPaymentMethod = ( event ) => {
-        ResetPaymentRelatedInputs()
-        setPaymentMethod( event.target.value )
-    }
+    // const UpdateCustomerPaymentCardSecurityCode = ( event ) => {
+    //     setCustomerPaymentCardSecurityCode( event.target.value )
+    // }
+
+    // const ResetAllSelectedPaymentMethods = ( ) => {
+    //     setVisaPaymentSelected( false )
+    //     setMasterCardPaymentSelected( false )
+    //     setPaypalPaymentSelected( false )
+    //     setMobileMoneyPaymentSelected( false )
+    // }
 
 
-    const UpdateCardExpiryMonth = ( event ) => {
-        setCardExpiryMonth( event.target.value )
-    }
+    // const UpdateCustomerSelectedPaymentMethod = ( event ) => {
+    //     ResetPaymentRelatedInputs()
+    //     setPaymentMethod( event.target.value )
+    // }
+
+
+    // const UpdateCardExpiryMonth = ( event ) => {
+    //     setCardExpiryMonth( event.target.value )
+    // }
 
     const ResetPaymentRelatedInputs = ( ) => {
      setPaymentCardName('')
@@ -265,36 +282,36 @@ const BookHotel = ( ) => {
     }
 
 
-    const UpdateCardExpiryYear = ( event ) => {
-        setCardExpiryYear( event.target.value )
-    }
+    // const UpdateCardExpiryYear = ( event ) => {
+    //     setCardExpiryYear( event.target.value )
+    // }
 
 
 
     // effect hook to log value of selected payment immediately
-    useEffect(() => {
-        // console.log(`payment method === ${ paymentMethod }`)
+    // useEffect(() => {
+    //     // console.log(`payment method === ${ paymentMethod }`)
 
-        if ( paymentMethod === 'VISA' ) {
-            ResetAllSelectedPaymentMethods()
-            setVisaPaymentSelected( true )
-        }
-        else if ( paymentMethod === 'MASTERCARD') {
-            ResetAllSelectedPaymentMethods()
-            setMasterCardPaymentSelected( true )
-        }
-        else if ( paymentMethod === 'PAYPAL') {
-            ResetAllSelectedPaymentMethods()
-            setPaypalPaymentSelected( true )
-        }
-        else if( paymentMethod === 'MOBILE MONEY'){
-            ResetAllSelectedPaymentMethods()
-            setMobileMoneyPaymentSelected( true )
-        }
-        else {
-            ResetAllSelectedPaymentMethods()
-        }
-    }, [ paymentMethod ])
+    //     if ( paymentMethod === 'VISA' ) {
+    //         ResetAllSelectedPaymentMethods()
+    //         setVisaPaymentSelected( true )
+    //     }
+    //     else if ( paymentMethod === 'MASTERCARD') {
+    //         ResetAllSelectedPaymentMethods()
+    //         setMasterCardPaymentSelected( true )
+    //     }
+    //     else if ( paymentMethod === 'PAYPAL') {
+    //         ResetAllSelectedPaymentMethods()
+    //         setPaypalPaymentSelected( true )
+    //     }
+    //     else if( paymentMethod === 'MOBILE MONEY'){
+    //         ResetAllSelectedPaymentMethods()
+    //         setMobileMoneyPaymentSelected( true )
+    //     }
+    //     else {
+    //         ResetAllSelectedPaymentMethods()
+    //     }
+    // }, [ paymentMethod ])
 
 
     // scrolling confirm booking reference into view.
@@ -308,29 +325,27 @@ const BookHotel = ( ) => {
     }
 
 
-    const HandleBookHotelAction = ( ) => {
+    const HandleBookHotelAction = async ( ) => {
         if( bookingCustomerFirstName.length < 1 || bookingCustomerLastName.length < 1 || 
-            bookingCustomerEmail.length < 1 || bookingCustomerNumber.length < 1 || 
-            customerPaymentCardName.length < 1 || customerPaymentBookingEmail.length < 1 || 
-            customerPaymentCardNumber.length < 1 || customerPaymentCardSecurityCode.length < 1  )
+            bookingCustomerEmail.length < 1 || bookingCustomerNumber.length < 1 )
         {
             setBookingFieldsErrorStatus( true )
             setBookingFieldsErrorMessage('One or more fields is(are) empty. All fields are required')
         }
-        else if ( cardExpiryMonth === '' || cardExpiryMonth === '-- Select --') {
-            setBookingFieldsErrorStatus( true )
-            setBookingFieldsErrorMessage('Card expiry date is required')
-        }
-        else if ( cardExpiryYear === '' || cardExpiryYear === '-- Select --') {
-            setBookingFieldsErrorStatus( true )
-            setBookingFieldsErrorMessage('Card expiry year is required')
-        }
+        // else if ( cardExpiryMonth === '' || cardExpiryMonth === '-- Select --') {
+        //     setBookingFieldsErrorStatus( true )
+        //     setBookingFieldsErrorMessage('Card expiry date is required')
+        // }
+        // else if ( cardExpiryYear === '' || cardExpiryYear === '-- Select --') {
+        //     setBookingFieldsErrorStatus( true )
+        //     setBookingFieldsErrorMessage('Card expiry year is required')
+        // }
         else {
-            if( paymentMethod ===  '' || paymentMethod === '-- Select --') {
-                setBookingFieldsErrorStatus( true )
-                setBookingFieldsErrorMessage('Please select a valid payment method')
-            }
-            else {
+            // if( paymentMethod ===  '' || paymentMethod === '-- Select --') {
+            //     setBookingFieldsErrorStatus( true )
+            //     setBookingFieldsErrorMessage('Please select a valid payment method')
+            // }
+            // else {
                 setBookingFieldsErrorStatus( false )
                 // console.log(`customer first name: ${ bookingCustomerFirstName }`)
                 // console.log(`customer last name: ${ bookingCustomerLastName }`)
@@ -347,7 +362,8 @@ const BookHotel = ( ) => {
 
                 setShowBookingConfirmPage( true )
                 ScrollConfirmBookingIntoView()
-            }
+
+            // }
 
             }
 
@@ -535,7 +551,7 @@ const BookHotel = ( ) => {
                     {/*Payment details column */ }
                     <Col className='booking-hotel-summary-div mb-5' ref={ detailsSectionRef } >
                     <div className=''>
-                    <h4 className='section-sub-header'>Step 1: Your Details</h4>
+                    <h4 className='section-sub-header'>Step 1: Your Payment Details</h4>
                         <Form>
                             <Form.Group>
                                 {/* <Form.Label>First name*</Form.Label> */}
@@ -561,385 +577,9 @@ const BookHotel = ( ) => {
                         <hr />
 
 
-                        <div className='details-section-sub-div'>
-                            <h4 className='section-sub-header'>Step 2: Payment Details</h4>
-                            <Form>
-                                <Form.Group className='form-control-no-text'>
-                                    <Form.Text className='card-types-accepted-header'>Card types accepted:</Form.Text>
-                                    <div className='accepted-cards-div'>
-                                        <SiVisa className='accepted-card-style' size={ 25 } /> 
-                                        <SiMastercard className='accepted-card-style' size={ 25 } /> 
-                                        <FaCcAmex className='accepted-card-style' size={ 25 }/> 
-                                        <FaCcDiscover className='accepted-card-style' size={ 25 }/> 
-                                        <BsPaypal className='accepted-card-style' size={ 25 }/> 
-                                    </div>
-                                    <Form.Text>Your card issuer may charge a fee.</Form.Text>
-                                </Form.Group>
+                        <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
+                        <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p>
 
-                                <Form.Group className='mb-5'>
-                                    <Form.Text>Select payment method to proceed with your booking*</Form.Text>
-                                    <Form.Select aria-label='select payment method' 
-                                        className='form-control text-control-focus-style specify-cursor'
-                                        onChange={ UpdateCustomerSelectedPaymentMethod }
-                                        value={ paymentMethod } >
-                                        <option value='-- Select --'>-- Select --</option>
-                                        <option value='VISA'>VISA</option>
-                                        <option value='MASTERCARD'>MASTERCARD</option>
-                                        <option value='PAYPAL'>PAYPAL</option>
-                                        <option value='MOBILE MONEY'>MOBILE MONEY</option>
-                                    </Form.Select>
-                                </Form.Group>
-
-                                <section>
-                                { visaPaymentSelected && 
-                                    <div>
-                                        <p className='section-sub-header'> Complete Payment With { paymentMethod } </p>
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />
-                                            <Form.Text>Enter your name exactly as it appears on the card.</Form.Text>
-                                        </Form.Group>
-        
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='email' placeholder='Booking email *' onChange={ UpdateCustomerPaymentBookingEmail } />
-                                            <Form.Text>We’ll send your booking confirmation to this email address. Make sure it’s correct.</Form.Text>
-                                        </Form.Group>
-        
-                                        <Form.Group>
-                                            <Form.Control type='text' placeholder='Card number *'  className='form-control-no-text text-control-focus-style' onChange={  UpdateCustomerPaymentCardNumber } />
-                                        </Form.Group>
-
-                                        <Row className='form-control-no-text'>
-                                            <Form.Text>Expiration Date *</Form.Text>
-                                            <Col>
-                                                <Form.Select aria-label='card expiry month' 
-                                                    className='form-control text-control-focus-style specify-cursor'
-                                                    onChange={ UpdateCardExpiryMonth }
-                                                    value={ cardExpiryMonth }
-                                                    >
-                                                    <option value='-- Select --' className='card-expiry-month-text'>-- Expiry Month --</option>
-                                                    <option value='01 - January'>01 - January</option>
-                                                    <option value='02 - February'>02 - February</option>
-                                                    <option value='03 - March'>03 - March</option>
-                                                    <option value='04 - April'>04 - April</option>
-                                                    <option value='05 - May'>05 - May</option>
-                                                    <option value='06 - June'>06 - June</option>
-                                                    <option value='07 - July'>07 - July</option>
-                                                    <option value='08 - August'>08 - August</option>
-                                                    <option value='09 - September'>09 - September</option>
-                                                    <option value='10 - October'>10 - October</option>
-                                                    <option value='11 - November'>11 - November</option>
-                                                    <option value='12 - December'>12 - December</option>
-                                                </Form.Select>
-                                            </Col>
-
-                                            <Col>
-                                            <Form.Select aria-label='card expiry month' 
-                                                    className='form-control text-control-focus-style specify-cursor'
-                                                    onChange={ UpdateCardExpiryYear }
-                                                    value={ cardExpiryYear }
-                                                    >
-                                                    <option value='-- Select --' className='card-expiry-year-text'>-- Expiry Year --</option>
-                                                    <option value='2023'>2023</option>
-                                                    <option value='2024'>2024</option>
-                                                    <option value='2025'>2025</option>
-                                                    <option value='2026'>2026</option>
-                                                    <option value='2027'>2027</option>
-                                                    <option value='2028'>2028</option>
-                                                    <option value='2029'>2029</option>
-                                                    <option value='2030'>2030</option>
-                                                    <option value='2031'>2031</option>
-                                                    <option value='2032'>2032</option>
-                                                    <option value='2033'>2033</option>
-                                                    <option value='2034'>2034</option>
-                                                    <option value='2035'>2035</option>
-                                                    <option value='2036'>2036</option>
-                                                    <option value='2037'>2037</option>
-                                                    <option value='2038'>2038</option>
-                                                    <option value='2039'>2039</option>
-                                                    <option value='2040'>2040</option>
-                                                </Form.Select>
-                                            </Col>
-                                        </Row>
-        
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='text' placeholder='Security code *' onChange={ UpdateCustomerPaymentCardSecurityCode } />
-                                            <Form.Text>The 3 digits at the back of the card.</Form.Text>
-                                        </Form.Group>
-        
-                                        <p><Form.Text>Card information is fully encrypted and protected. <BsShieldCheck size={ 15 } /> </Form.Text></p>
-        
-                                    </div>
-                                    }
-
-                                    {/* <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
-                                    <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p> */}
-                                    
-                                    </section>
-
-
-
-
-                                <section>
-                                { masterCardPaymentSelected && 
-                                    <div>
-                                        <p className='section-sub-header'> Complete Payment With { paymentMethod } </p>
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />
-                                            <Form.Text>Enter your name exactly as it appears on the card.</Form.Text>
-                                        </Form.Group>
-        
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='email' placeholder='Booking email *' onChange={ UpdateCustomerPaymentBookingEmail } />
-                                            <Form.Text>We’ll send your booking confirmation to this email address. Make sure it’s correct.</Form.Text>
-                                        </Form.Group>
-        
-                                        <Form.Group>
-                                            <Form.Control type='text' placeholder='Card number *'  className='form-control-no-text text-control-focus-style' onChange={  UpdateCustomerPaymentCardNumber } />
-                                        </Form.Group>
-
-                                        <Row className='form-control-no-text'>
-                                            <Form.Text>Expiration Date *</Form.Text>
-                                            <Col>
-                                                <Form.Select aria-label='card expiry month' 
-                                                    className='form-control text-control-focus-style specify-cursor'
-                                                    onChange={ UpdateCardExpiryMonth }
-                                                    value={ cardExpiryMonth }
-                                                    >
-                                                    <option value='-- Select --' className='card-expiry-month-text'>-- Expiry Month --</option>
-                                                    <option value='01 - January'>01 - January</option>
-                                                    <option value='02 - February'>02 - February</option>
-                                                    <option value='03 - March'>03 - March</option>
-                                                    <option value='04 - April'>04 - April</option>
-                                                    <option value='05 - May'>05 - May</option>
-                                                    <option value='06 - June'>06 - June</option>
-                                                    <option value='07 - July'>07 - July</option>
-                                                    <option value='08 - August'>08 - August</option>
-                                                    <option value='09 - September'>09 - September</option>
-                                                    <option value='10 - October'>10 - October</option>
-                                                    <option value='11 - November'>11 - November</option>
-                                                    <option value='12 - December'>12 - December</option>
-                                                </Form.Select>
-                                            </Col>
-
-                                            <Col>
-                                            <Form.Select aria-label='card expiry month' 
-                                                    className='form-control text-control-focus-style specify-cursor'
-                                                    onChange={ UpdateCardExpiryYear }
-                                                    value={ cardExpiryYear }
-                                                    >
-                                                    <option value='-- Select --' className='card-expiry-year-text'>-- Expiry Year --</option>
-                                                    <option value='2023'>2023</option>
-                                                    <option value='2024'>2024</option>
-                                                    <option value='2025'>2025</option>
-                                                    <option value='2026'>2026</option>
-                                                    <option value='2027'>2027</option>
-                                                    <option value='2028'>2028</option>
-                                                    <option value='2029'>2029</option>
-                                                    <option value='2030'>2030</option>
-                                                    <option value='2031'>2031</option>
-                                                    <option value='2032'>2032</option>
-                                                    <option value='2033'>2033</option>
-                                                    <option value='2034'>2034</option>
-                                                    <option value='2035'>2035</option>
-                                                    <option value='2036'>2036</option>
-                                                    <option value='2037'>2037</option>
-                                                    <option value='2038'>2038</option>
-                                                    <option value='2039'>2039</option>
-                                                    <option value='2040'>2040</option>
-                                                </Form.Select>
-                                            </Col>
-                                        </Row>
-        
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='text' placeholder='Security code *' onChange={ UpdateCustomerPaymentCardSecurityCode } />
-                                            <Form.Text>The 3 digits at the back of the card.</Form.Text>
-                                        </Form.Group>
-        
-                                        <p><Form.Text>Card information is fully encrypted and protected. <BsShieldCheck size={ 15 } /> </Form.Text></p>
-        
-                                    </div>
-                                    }
-                                    {/* <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
-                                    <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p> */}
-                                    
-                                </section>
-
-
-
-                                { payPalPaymentSelected && 
-                                    <section>
-                                        <p className='section-sub-header'> Complete Payment With { paymentMethod } </p>
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />
-                                            <Form.Text>Enter your name exactly as it appears on the card.</Form.Text>
-                                        </Form.Group>
-        
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='email' placeholder='Booking email *' onChange={ UpdateCustomerPaymentBookingEmail } />
-                                            <Form.Text>We’ll send your booking confirmation to this email address. Make sure it’s correct.</Form.Text>
-                                        </Form.Group>
-        
-                                        <Form.Group>
-                                            <Form.Control type='text' placeholder='Card number *'  className='form-control-no-text text-control-focus-style' onChange={  UpdateCustomerPaymentCardNumber } />
-                                        </Form.Group>
-
-                                        <Row className='form-control-no-text'>
-                                            <Form.Text>Expiration Date *</Form.Text>
-                                            <Col>
-                                                <Form.Select aria-label='card expiry month' 
-                                                    className='form-control text-control-focus-style specify-cursor'
-                                                    onChange={ UpdateCardExpiryMonth }
-                                                    value={ cardExpiryMonth }
-                                                    >
-                                                    <option value='-- Select --' className='card-expiry-month-text'>-- Expiry Month --</option>
-                                                    <option value='01 - January'>01 - January</option>
-                                                    <option value='02 - February'>02 - February</option>
-                                                    <option value='03 - March'>03 - March</option>
-                                                    <option value='04 - April'>04 - April</option>
-                                                    <option value='05 - May'>05 - May</option>
-                                                    <option value='06 - June'>06 - June</option>
-                                                    <option value='07 - July'>07 - July</option>
-                                                    <option value='08 - August'>08 - August</option>
-                                                    <option value='09 - September'>09 - September</option>
-                                                    <option value='10 - October'>10 - October</option>
-                                                    <option value='11 - November'>11 - November</option>
-                                                    <option value='12 - December'>12 - December</option>
-                                                </Form.Select>
-                                            </Col>
-
-                                            <Col>
-                                            <Form.Select aria-label='card expiry month' 
-                                                    className='form-control text-control-focus-style specify-cursor'
-                                                    onChange={ UpdateCardExpiryYear }
-                                                    value={ cardExpiryYear }
-                                                    >
-                                                    <option value='-- Select --' className='card-expiry-year-text'>-- Expiry Year --</option>
-                                                    <option value='2023'>2023</option>
-                                                    <option value='2024'>2024</option>
-                                                    <option value='2025'>2025</option>
-                                                    <option value='2026'>2026</option>
-                                                    <option value='2027'>2027</option>
-                                                    <option value='2028'>2028</option>
-                                                    <option value='2029'>2029</option>
-                                                    <option value='2030'>2030</option>
-                                                    <option value='2031'>2031</option>
-                                                    <option value='2032'>2032</option>
-                                                    <option value='2033'>2033</option>
-                                                    <option value='2034'>2034</option>
-                                                    <option value='2035'>2035</option>
-                                                    <option value='2036'>2036</option>
-                                                    <option value='2037'>2037</option>
-                                                    <option value='2038'>2038</option>
-                                                    <option value='2039'>2039</option>
-                                                    <option value='2040'>2040</option>
-                                                </Form.Select>
-                                            </Col>
-                                        </Row>
-        
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='text' placeholder='Security code *' onChange={ UpdateCustomerPaymentCardSecurityCode } />
-                                            <Form.Text>The 3 digits at the back of the card.</Form.Text>
-                                        </Form.Group>
-        
-                                        <p><Form.Text>Card information is fully encrypted and protected. <BsShieldCheck size={ 15 } /> </Form.Text></p>
-        
-                                        {/* <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
-                                        <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p> */}
-                                    </section>
-
-                                }
-
-
-
-                                { mobileMoneyPaymentSelected && 
-                                    <section>
-                                        <p className='section-sub-header'> Complete Payment With { paymentMethod } </p>
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='text' placeholder='Name on card *' onChange={ UpdateCustomerPaymentCardName }  />
-                                            <Form.Text>Enter your name exactly as it appears on the card.</Form.Text>
-                                        </Form.Group>
-        
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='email' placeholder='Booking email *' onChange={ UpdateCustomerPaymentBookingEmail } />
-                                            <Form.Text>We’ll send your booking confirmation to this email address. Make sure it’s correct.</Form.Text>
-                                        </Form.Group>
-        
-                                        <Form.Group>
-                                            <Form.Control type='text' placeholder='Card number *'  className='form-control-no-text text-control-focus-style' onChange={  UpdateCustomerPaymentCardNumber } />
-                                        </Form.Group>
-
-                                        <Row className='form-control-no-text'>
-                                            <Form.Text>Expiration Date *</Form.Text>
-                                            <Col>
-                                                <Form.Select aria-label='card expiry month' 
-                                                    className='form-control text-control-focus-style specify-cursor'
-                                                    onChange={ UpdateCardExpiryMonth }
-                                                    value={ cardExpiryMonth }
-                                                    >
-                                                    <option value='-- Select --' className='card-expiry-month-text'>-- Expiry Month --</option>
-                                                    <option value='01 - January'>01 - January</option>
-                                                    <option value='02 - February'>02 - February</option>
-                                                    <option value='03 - March'>03 - March</option>
-                                                    <option value='04 - April'>04 - April</option>
-                                                    <option value='05 - May'>05 - May</option>
-                                                    <option value='06 - June'>06 - June</option>
-                                                    <option value='07 - July'>07 - July</option>
-                                                    <option value='08 - August'>08 - August</option>
-                                                    <option value='09 - September'>09 - September</option>
-                                                    <option value='10 - October'>10 - October</option>
-                                                    <option value='11 - November'>11 - November</option>
-                                                    <option value='12 - December'>12 - December</option>
-                                                </Form.Select>
-                                            </Col>
-
-                                            <Col>
-                                            <Form.Select aria-label='card expiry month' 
-                                                    className='form-control text-control-focus-style specify-cursor'
-                                                    onChange={ UpdateCardExpiryYear }
-                                                    value={ cardExpiryYear }
-                                                    >
-                                                    <option value='-- Select --' className='card-expiry-year-text'>-- Expiry Year --</option>
-                                                    <option value='2023'>2023</option>
-                                                    <option value='2024'>2024</option>
-                                                    <option value='2025'>2025</option>
-                                                    <option value='2026'>2026</option>
-                                                    <option value='2027'>2027</option>
-                                                    <option value='2028'>2028</option>
-                                                    <option value='2029'>2029</option>
-                                                    <option value='2030'>2030</option>
-                                                    <option value='2031'>2031</option>
-                                                    <option value='2032'>2032</option>
-                                                    <option value='2033'>2033</option>
-                                                    <option value='2034'>2034</option>
-                                                    <option value='2035'>2035</option>
-                                                    <option value='2036'>2036</option>
-                                                    <option value='2037'>2037</option>
-                                                    <option value='2038'>2038</option>
-                                                    <option value='2039'>2039</option>
-                                                    <option value='2040'>2040</option>
-                                                </Form.Select>
-                                            </Col>
-                                        </Row>
-        
-                                        <Form.Group className='form-control-no-text'>
-                                            <Form.Control className='text-control-focus-style' type='text' placeholder='Security code *' onChange={ UpdateCustomerPaymentCardSecurityCode } />
-                                            <Form.Text>The 3 digits at the back of the card.</Form.Text>
-                                        </Form.Group>
-        
-                                        <p><Form.Text>Card information is fully encrypted and protected. <BsShieldCheck size={ 15 } /> </Form.Text></p>
-        
-                                        {/* <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
-                                        <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p> */}
-                                    </section>
-
-                                }
-
-                            </Form>
-
-                            <Button variant='custom' className='book-button' onClick={ HandleBookHotelAction }>Book</Button>
-                            <p><Form.Text className='booking-fields-error-message'>{ bookingFieldsErrorStatus === true ? bookingFieldsErrorMessage : null }</Form.Text></p>
-
-                        </div>
                         <hr />
                     </Col>
 
@@ -1181,7 +821,8 @@ const BookHotel = ( ) => {
 
                                 <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                                     <Col>
-                                        <Button variant='custom' className='confirm-booking-details-btn'>I confirm booking details. Complete my booking now</Button>
+                                        {/* <Button variant='custom' className='confirm-booking-details-btn'>I confirm booking details. Complete my booking now</Button> */}
+                                        <PaystackButton { ...componentProps } className='paystack-btn'/>
                                     </Col>
 
                                     <Col>
@@ -1203,6 +844,7 @@ const BookHotel = ( ) => {
             </section>
 
             <Footer />
+            <ScrollToTop />
         </div>
     )
 }

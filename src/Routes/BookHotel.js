@@ -14,6 +14,8 @@ import Rating from '@mui/material/Rating'
 import Button from 'react-bootstrap/Button'
 import { IoLocationSharp } from 'react-icons/io5'
 import { PaystackButton } from 'react-paystack'
+import emailjs from '@emailjs/browser'
+
 
 // modules
 import { UserContext } from '../App'
@@ -29,26 +31,31 @@ import ScrollToTop from  '../Configuration/ScrollToTop'
 
 const BookHotel = ( ) => {
 
+    // url params
+    const params = useParams()
+
+    // getting props via useContext.
+    const { server_url,
+        startDateValue, 
+        setStartDateValue, 
+        endDateValue, 
+        setEndDateValue,
+        numberOfAdultVisitors, 
+        numberOfChildVisitors, 
+        numberOfRooms,
+        customerLengthOfStay 
+        } = useContext( UserContext )
+
+
     // setting up state.
     const [ bookingHotelObject, setBookingHotelObject ] = useState({ })
     const [ bookingCustomerFirstName, setBookingCustomerFirstName ] = useState('')
     const [ bookingCustomerLastName, setBookingCustomerLastName ] = useState('')
     const [ bookingCustomerEmail, setBookingCustomerEmail ] = useState('')
     const [ bookingCustomerNumber, setBookingCustomerNumber ] = useState('')
-    const [ customerPaymentCardName, setPaymentCardName ] = useState('')
-    const [ customerPaymentBookingEmail, setPaymentBookingEmail ] = useState('')
-    const [ customerPaymentCardNumber, setPaymentCardNumber ] = useState('')
-    const [ customerPaymentCardSecurityCode, setCustomerPaymentCardSecurityCode ] = useState('')
     const [ bookingFieldsErrorStatus, setBookingFieldsErrorStatus ] = useState( false )
     const [ showBookingConfirmPage, setShowBookingConfirmPage ] = useState( false )
     const [ bookingFieldsErrorMessage, setBookingFieldsErrorMessage ] = useState('')
-    const [ paymentMethod, setPaymentMethod ] = useState('')
-    // const [ visaPaymentSelected, setVisaPaymentSelected ] = useState( false )
-    // const [ masterCardPaymentSelected, setMasterCardPaymentSelected ] = useState( false )
-    // const [ payPalPaymentSelected, setPaypalPaymentSelected ] = useState( false )
-    // const [ mobileMoneyPaymentSelected, setMobileMoneyPaymentSelected ] = useState( false )
-    const [ cardExpiryMonth, setCardExpiryMonth ] = useState('')
-    const [ cardExpiryYear, setCardExpiryYear ] = useState('')
 
     // pricing.
     const [ basicCost, setBasicCost ] = useState( 0 )
@@ -56,48 +63,16 @@ const BookHotel = ( ) => {
     const [ nhilRate, setNhilRate ] = useState( 0 )
     const [ covidLevy, setCovidLevy ] = useState( 0 )
     const [ totalCost, setTotalCost ] = useState( 0 )
-
     const [ basicCostString, setBasicCostString ] = useState('0')
     const [ vatRateString, setVatRateString ] = useState('0')
     const [ nhilRateString, setNhilRateString ] = useState( '0' )
     const [ covidLevyString, setCovidLevyString ] = useState( '0' )
     const [ totalCostString, setTotalCostString ] = useState( '0' )
-
     const [ lengthOfStay, setLengthOfStay ] = useState( 1 )
-
-
-    const [ paymentsProductArray, setPaymentsProductArray ] = useState([ ])
-
-    // setting up paystack.
-    const componentProps = {
-        publicKey: 'pk_test_fd4de2b58225749549a32606adf7fdff02668525',
-        currency: 'GHS',
-        amount: totalCost * 100,
-        email: bookingCustomerEmail,
-        text: 'I confirm booking details. Complete my booking now',
-        onSuccess: () => { alert('payment successful') },
-        onClose: () => { alert('payment failed') }
-    }
-
-
-    // url params
-    const params = useParams()
 
     // setting up reference.
     const confirmReference = useRef( null )
     const detailsSectionRef = useRef( null )
-
-    // getting check-in and check-out dates via useContext.
-    const { server_url,
-            startDateValue, 
-            setStartDateValue, 
-            endDateValue, 
-            setEndDateValue,
-            numberOfAdultVisitors, 
-            numberOfChildVisitors, 
-            numberOfRooms,
-            customerLengthOfStay 
-           } = useContext( UserContext )
 
 
     // making certain component always displays from top on initial render.
@@ -120,10 +95,8 @@ const BookHotel = ( ) => {
             if( response.ok ) {
                 let data = await response.json()
                 setBookingHotelObject({ ...data })
-                console.log(`booking hotel data = ${ data }`)
+                // console.log(`booking hotel data = ${ data }`)
                 // console.log('fetching hotel details done')
-                setPaymentsProductArray( bookingHotelObject )
-                setTimeout(() => { console.log( paymentsProductArray )}, 4000)
             }
         }
         fetchBookingHotel()
@@ -152,13 +125,11 @@ const BookHotel = ( ) => {
             // console.log( `basic cost is ${ basicCost }`)
             // console.log( `basic cost string is ${ basicCostString }`)
 
-
             vt = ( 0.125 * basicCost )
             setVatRate( vt )
             setVatRateString( vatRate.toFixed(2))
             // console.log(`vat rate is ${ vatRate }`)
             // console.log(`vat rate string is ${ vatRateString }`)
-
 
             nh = ( 0.025 * basicCost )
             setNhilRate( nh )
@@ -166,20 +137,17 @@ const BookHotel = ( ) => {
             // console.log(`nhil rate is ${ nhilRate }`)
             // console.log(`nhil rate string is ${ nhilRateString }`)
 
-
             cd = ( 0.01 * basicCost )
             setCovidLevy( cd )
             setCovidLevyString( covidLevy.toFixed(2))
             // console.log(`covid levy is ${ covidLevy }`)
             // console.log(`covid levy string is ${ covidLevyString }`)
 
-
             tc = basicCost + vt + nh + cd 
             setTotalCost( tc )
             setTotalCostString( tc.toFixed(2))
             // console.log(`total cost is ${ totalCost }`)
             // console.log(`total cost string is ${ totalCostString }`)
-
 
         }}, 
         [ bookingHotelObject, basicCost, vatRate, nhilRate, covidLevy, totalCost,
@@ -203,9 +171,39 @@ const BookHotel = ( ) => {
         setEndDateValue( localStorageEndDateValue )
 
     }, [ endDateValue ,setEndDateValue ])
-
+        
     
+    //emailjs dynamic variables object.
+    let email_js_public_key = '0QP1tSD0brFOQUw2d'
+    let email_js_service_id = 'service_4njhe19'
+    let email_js_template_id = 'template_3la1zxf'
+    let email_js_dynamic_variables = {
+        recipient: bookingCustomerEmail,
+        to_name: bookingCustomerFirstName,
+        from_name: 'SwiftStay',
+        message: `You have successfully booked ${ bookingHotelObject.room_number } at ${ totalCost } for ${ customerLengthOfStay } nights!. We hope you enjoy your stay!!`,
+        booked_hotel_image: bookingHotelObject.room_cover_photo_url
+    }
 
+
+    // setting up paystack.
+    const componentProps = {
+        publicKey: 'pk_test_fd4de2b58225749549a32606adf7fdff02668525',
+        currency: 'GHS',
+        amount: totalCost * 100,
+        email: bookingCustomerEmail,
+        text: 'I confirm booking details. Complete my booking now',
+        onSuccess: () => { 
+            try {
+                alert(`Payment successful!. Confirmation email sent to ${ bookingCustomerEmail }`)
+                emailjs.send( email_js_service_id, email_js_template_id, email_js_dynamic_variables, email_js_public_key )
+            }
+            catch( error ) {
+                console.log(`email js error: ${ error }`)
+            }
+         },
+        onClose: () => { alert('payment failed') }
+    }
 
 
     // scrolling details section ref into view.
@@ -237,83 +235,6 @@ const BookHotel = ( ) => {
     }
 
 
-    // payment details
-    // const UpdateCustomerPaymentCardName = ( event ) => {
-    //     setPaymentCardName( event.target.value )
-    // }
-
-    // const UpdateCustomerPaymentBookingEmail = ( event ) => {
-    //     setPaymentBookingEmail( event.target.value )
-    // }
-
-    // const UpdateCustomerPaymentCardNumber = ( event ) => {
-    //     setPaymentCardNumber( event.target.value )
-    // }
-
-
-    // const UpdateCustomerPaymentCardSecurityCode = ( event ) => {
-    //     setCustomerPaymentCardSecurityCode( event.target.value )
-    // }
-
-    // const ResetAllSelectedPaymentMethods = ( ) => {
-    //     setVisaPaymentSelected( false )
-    //     setMasterCardPaymentSelected( false )
-    //     setPaypalPaymentSelected( false )
-    //     setMobileMoneyPaymentSelected( false )
-    // }
-
-
-    // const UpdateCustomerSelectedPaymentMethod = ( event ) => {
-    //     ResetPaymentRelatedInputs()
-    //     setPaymentMethod( event.target.value )
-    // }
-
-
-    // const UpdateCardExpiryMonth = ( event ) => {
-    //     setCardExpiryMonth( event.target.value )
-    // }
-
-    const ResetPaymentRelatedInputs = ( ) => {
-     setPaymentCardName('')
-     setPaymentBookingEmail('')
-     setPaymentCardNumber('')
-     setCustomerPaymentCardSecurityCode('')
-
-    }
-
-
-    // const UpdateCardExpiryYear = ( event ) => {
-    //     setCardExpiryYear( event.target.value )
-    // }
-
-
-
-    // effect hook to log value of selected payment immediately
-    // useEffect(() => {
-    //     // console.log(`payment method === ${ paymentMethod }`)
-
-    //     if ( paymentMethod === 'VISA' ) {
-    //         ResetAllSelectedPaymentMethods()
-    //         setVisaPaymentSelected( true )
-    //     }
-    //     else if ( paymentMethod === 'MASTERCARD') {
-    //         ResetAllSelectedPaymentMethods()
-    //         setMasterCardPaymentSelected( true )
-    //     }
-    //     else if ( paymentMethod === 'PAYPAL') {
-    //         ResetAllSelectedPaymentMethods()
-    //         setPaypalPaymentSelected( true )
-    //     }
-    //     else if( paymentMethod === 'MOBILE MONEY'){
-    //         ResetAllSelectedPaymentMethods()
-    //         setMobileMoneyPaymentSelected( true )
-    //     }
-    //     else {
-    //         ResetAllSelectedPaymentMethods()
-    //     }
-    // }, [ paymentMethod ])
-
-
     // scrolling confirm booking reference into view.
     const ScrollConfirmBookingIntoView = ( ) => {
         setTimeout(() => {
@@ -325,48 +246,25 @@ const BookHotel = ( ) => {
     }
 
 
+    // handling book hotel action.
     const HandleBookHotelAction = async ( ) => {
+        let regex = /^(?:(?:[^<>()[\].,;:\s@\"]+(?:\.[^<>()[\].,;:\s@\"]+)*)|(\".+\"))@(?:(?:\[(?:[0-9]{1,3}\.){3}[0-9]{1,3}\])|(?:(?:[a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}))$/
+
         if( bookingCustomerFirstName.length < 1 || bookingCustomerLastName.length < 1 || 
             bookingCustomerEmail.length < 1 || bookingCustomerNumber.length < 1 )
         {
             setBookingFieldsErrorStatus( true )
             setBookingFieldsErrorMessage('One or more fields is(are) empty. All fields are required')
         }
-        // else if ( cardExpiryMonth === '' || cardExpiryMonth === '-- Select --') {
-        //     setBookingFieldsErrorStatus( true )
-        //     setBookingFieldsErrorMessage('Card expiry date is required')
-        // }
-        // else if ( cardExpiryYear === '' || cardExpiryYear === '-- Select --') {
-        //     setBookingFieldsErrorStatus( true )
-        //     setBookingFieldsErrorMessage('Card expiry year is required')
-        // }
+        else if ( !bookingCustomerEmail.match( regex )) {
+            setBookingFieldsErrorStatus( true )
+            setBookingFieldsErrorMessage('Your email is invalid, please enter a valid email...')
+        }
         else {
-            // if( paymentMethod ===  '' || paymentMethod === '-- Select --') {
-            //     setBookingFieldsErrorStatus( true )
-            //     setBookingFieldsErrorMessage('Please select a valid payment method')
-            // }
-            // else {
-                setBookingFieldsErrorStatus( false )
-                // console.log(`customer first name: ${ bookingCustomerFirstName }`)
-                // console.log(`customer last name: ${ bookingCustomerLastName }`)
-                // console.log(`customer email: ${ bookingCustomerEmail }`)
-                // console.log(`customer number: ${ bookingCustomerNumber }`)
-        
-                // console.log(`customer name on card: ${ customerPaymentCardName }`)
-                // console.log(`customer booking email: ${ customerPaymentBookingEmail }`)
-                // console.log(`customer card number: ${ customerPaymentCardNumber }`)
-                // console.log(`customer card security code: ${ customerPaymentCardSecurityCode }`)
-                // console.log(`customer payment method === ${ paymentMethod }`)
-                // console.log(`card expiry month = ${ cardExpiryMonth }`)
-                // console.log(`card expiry year = ${ cardExpiryYear }`)
-
-                setShowBookingConfirmPage( true )
-                ScrollConfirmBookingIntoView()
-
-            // }
-
+            setBookingFieldsErrorStatus( false )
+            setShowBookingConfirmPage( true )
+            ScrollConfirmBookingIntoView()
             }
-
     }
 
 
@@ -562,8 +460,9 @@ const BookHotel = ( ) => {
                                 <Form.Control type='text' placeholder='Last Name *' className='form-control-no-text text-control-focus-style' onChange={ UpdateCustomerLastName } value={ bookingCustomerLastName } />
                             </Form.Group>
 
-                            <Form.Group>
-                                <Form.Control type='text' placeholder='Email Address *' className='form-control-no-text text-control-focus-style' onChange={ UpdateCustomerEmail } value={ bookingCustomerEmail } />
+                            <Form.Group className='mb-3'>
+                                <Form.Control type='email' placeholder='Email Address *' className='form-control text-control-focus-style' onChange={ UpdateCustomerEmail } value={ bookingCustomerEmail } />
+                                <Form.Text>We'll send your booking confirmation to this email</Form.Text>
                             </Form.Group>
 
                             <Form.Group>
@@ -715,8 +614,6 @@ const BookHotel = ( ) => {
                                             </Col>
                                         </Row>
 
-
-
                                     </Col>
                                 </Row>
                                 <hr />
@@ -733,7 +630,6 @@ const BookHotel = ( ) => {
                                     </Col>
                                 </Row>
                                 <hr />
-
 
 
                                 <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
@@ -768,60 +664,6 @@ const BookHotel = ( ) => {
 
                                 <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
                                     <Col>
-                                        <h5 className='booking-hotel-detail-header'>Your selected payment method</h5>
-                                        <p>{ paymentMethod }</p>
-                                    </Col>
-
-                                    <Col>
-                                        <h5 className='booking-hotel-detail-header'>Your name on card</h5>
-                                        <p>{ customerPaymentCardName }</p>
-                                    </Col>
-                                </Row>
-                                <hr />
-
-                                    
-
-                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                                    <Col>
-                                        <h5 className='booking-hotel-detail-header'>Your card number</h5>
-                                        <p>{ customerPaymentCardNumber }</p>
-                                    </Col>
-
-                                    <Col>
-                                        <h5 className='booking-hotel-detail-header'>Your card expiration month</h5>
-                                        <p>{ cardExpiryMonth }</p>
-                                    </Col>
-                                </Row>
-                                <hr />
-
-
-
-                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                                    <Col>
-                                        <h5 className='booking-hotel-detail-header'>Your card expiration year</h5>
-                                        <p>{ cardExpiryYear }</p>
-                                    </Col>
-
-                                    <Col>
-                                        <h5 className='booking-hotel-detail-header'>Your security code</h5>
-                                        <p>{ customerPaymentCardSecurityCode }</p>
-                                    </Col>
-                                </Row>
-                                <hr />
-
-
-                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                                    <Col>
-                                        <h5 className='booking-hotel-detail-header'>Your booking email</h5>
-                                        <p>{ customerPaymentBookingEmail }</p>
-                                    </Col>
-                                </Row>
-                                <hr />
-
-
-                                <Row className='confirm-booking-details-row mb-4' md={ 2 } xs={ 1 }>
-                                    <Col>
-                                        {/* <Button variant='custom' className='confirm-booking-details-btn'>I confirm booking details. Complete my booking now</Button> */}
                                         <PaystackButton { ...componentProps } className='paystack-btn'/>
                                     </Col>
 
@@ -837,8 +679,6 @@ const BookHotel = ( ) => {
                         </div>
                     </section>
             }
-
-
 
             <section className='footer-gap'>
             </section>

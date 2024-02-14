@@ -1276,6 +1276,7 @@
     background-color: var(--primary-color);
     color: white;
     cursor: pointer;
+    padding: 1.5%;
 }
 
 .edit-booking-details-btn:hover {
@@ -1306,7 +1307,7 @@
     cursor: pointer;
     border: none;
     border-radius: 0.3rem;
-    padding: 1%;
+    padding: 1.5%;
 }
 
 
@@ -2180,6 +2181,10 @@
 
     .confirm-booking-details-btn {
         margin-bottom: 12%;
+    }
+
+    .paystack-btn {
+        margin-bottom: 9%;
     }
     
     

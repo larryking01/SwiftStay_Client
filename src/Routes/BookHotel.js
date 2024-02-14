@@ -190,7 +190,7 @@ const BookHotel = ( ) => {
     const componentProps = {
         publicKey: 'pk_test_fd4de2b58225749549a32606adf7fdff02668525',
         currency: 'GHS',
-        amount: totalCost * 100,
+        amount: Math.floor( totalCost * 100 ) ,
         email: bookingCustomerEmail,
         text: 'I confirm booking details. Complete my booking now',
         onSuccess: () => { 
@@ -261,6 +261,7 @@ const BookHotel = ( ) => {
             setBookingFieldsErrorMessage('Your email is invalid, please enter a valid email...')
         }
         else {
+            console.log( totalCost * 100 )
             setBookingFieldsErrorStatus( false )
             setShowBookingConfirmPage( true )
             ScrollConfirmBookingIntoView()

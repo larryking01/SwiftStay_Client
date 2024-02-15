@@ -75,7 +75,7 @@ const ContactUsHelp = ( ) => {
         }
         else {
             setSubmitComplaintError('')
-            alert('Your complaint has been submitted successfully')
+            alert('Your complaint has been submitted successfully. Thank you for reaching out to us and bringing the issue to our attention. Your feedback is highly valuable to us!')
         }
     }
 

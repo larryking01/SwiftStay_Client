@@ -137,7 +137,8 @@
     font-size: 1.5rem;
     font-family: 'Lora', serif;
     padding-bottom: 2%;
-    color: var(--primary-color)
+    color: var(--primary-color);
+    font-style: italic;
 }
 
 
@@ -183,6 +184,10 @@
     font-family: 'Lora', serif;
 }
 
+.newsletter-subscribe-error {
+    color: red;
+    font-style: italic;
+}
 
 .rights-reserved-text {
     font-family: 'Lora', serif;
@@ -1425,6 +1430,12 @@
     height: 50px;
     cursor: pointer;
 
+}
+
+
+.submit-complaint-error-text {
+    font-style: italic;
+    color: red;
 }
 
 

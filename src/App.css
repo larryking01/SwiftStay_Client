@@ -372,7 +372,7 @@
 .intro-form {
     position:absolute;
     top: 72%;
-    width: 70%;
+    width: 75%;
     height: 34%;
     background-color: white;
     margin-left: 14%;;
@@ -2030,8 +2030,8 @@
     .intro-form {
         position: relative;
         bottom: 360px;
-        right: 10px;
-        width: 80%;
+        right: 14px;
+        width: 85%;
         height: 75%;
         background-color: white;
         padding-left: 3%;

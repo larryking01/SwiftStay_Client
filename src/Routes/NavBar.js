@@ -25,8 +25,7 @@ const NavbarComponent = ( ) => {
 
     // effect to show current user.
     useEffect(() => {
-        // console.log('from navbar, current user is')
-        // console.log( currentUser )
+        console.log(`from navbar, current user is ${ currentUser?.email }`)
 
     }, [ currentUser ])
 
@@ -68,11 +67,12 @@ const NavbarComponent = ( ) => {
                             {
                                 currentUser ? 
                                 <>
-                                    <NavDropdown title={ currentUser.displayName } id='nav-dropdown'>
+                                    {/* <NavDropdown title={ currentUser.displayName } id='nav-dropdown'>
                                         <NavDropdown.Item eventKey='4.1'>View profile</NavDropdown.Item>
                                         <NavDropdown.Item eventKey='4.2'>Booking history</NavDropdown.Item>
-                                    </NavDropdown>
-                                    <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button>
+                                    </NavDropdown> */}
+                                    <h5 className='user-name-display'> { currentUser.displayName } </h5>
+                                    {/* <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button> */}
                                 </>
                                 :
                                 <>
@@ -83,11 +83,10 @@ const NavbarComponent = ( ) => {
                                     <Nav.Link className='nav-link-button'>                                    
                                         <Button variant='custom' className='navbar-signup-btn' onClick={() => navigate('/sign-up')}> Register </Button>
                                     </Nav.Link>
-
+                                    
                                     {/* <Nav.Link className='nav-link-button'>                                    
                                         <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button>
                                     </Nav.Link> */}
-
                                 </>
                             }
 

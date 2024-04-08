@@ -81,6 +81,7 @@
     background-color: white;
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
+    margin-left: 2%;
 
 }
 
@@ -107,9 +108,13 @@
 }
 
 
-
 .navbar-brand {
     cursor: pointer;
+}
+
+
+.user-name-display {
+    margin-left: -2%;
 }
 
 /* end of navbar styling */
@@ -132,7 +137,8 @@
     font-size: 1.5rem;
     font-family: 'Lora', serif;
     padding-bottom: 2%;
-    color: var(--primary-color)
+    color: var(--primary-color);
+    font-style: italic;
 }
 
 
@@ -178,6 +184,10 @@
     font-family: 'Lora', serif;
 }
 
+.newsletter-subscribe-error {
+    color: red;
+    font-style: italic;
+}
 
 .rights-reserved-text {
     font-family: 'Lora', serif;
@@ -362,7 +372,7 @@
 .intro-form {
     position:absolute;
     top: 72%;
-    width: 70%;
+    width: 75%;
     height: 34%;
     background-color: white;
     margin-left: 14%;;
@@ -1271,6 +1281,7 @@
     background-color: var(--primary-color);
     color: white;
     cursor: pointer;
+    padding: 1.5%;
 }
 
 .edit-booking-details-btn:hover {
@@ -1295,6 +1306,14 @@
 }
 
 
+.paystack-btn {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 1.5%;
+}
 
 
 
@@ -1411,6 +1430,12 @@
     height: 50px;
     cursor: pointer;
 
+}
+
+
+.submit-complaint-error-text {
+    font-style: italic;
+    color: red;
 }
 
 
@@ -1992,7 +2017,7 @@
 
     .welcome-phrase {
         position: relative;
-        bottom: 23rem;
+        bottom: 30rem;
         z-index: 10;
         color: white;
         opacity: 1;
@@ -2005,8 +2030,9 @@
     .intro-form {
         position: relative;
         bottom: 360px;
-        right: 10px;
-        width: 80%;
+        /* right: 13px; */
+        left: -21px;
+        width: 85%;
         height: 75%;
         background-color: white;
         padding-left: 3%;
@@ -2167,6 +2193,10 @@
 
     .confirm-booking-details-btn {
         margin-bottom: 12%;
+    }
+
+    .paystack-btn {
+        margin-bottom: 9%;
     }
     
     

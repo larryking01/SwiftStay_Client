@@ -167,7 +167,7 @@ const CreateNewUser = async ( ) => {
                 userProfile.updateProfile( user )
                 setCurrentUser( user )
                 console.log('user created.') 
-                navigate( -1 )
+                navigate('/')
             }
         } 
         else {

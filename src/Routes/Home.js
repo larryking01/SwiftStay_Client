@@ -300,7 +300,7 @@ const Home = () => {
 
         <section className='intro-background'>
           <img src={ background_2 } alt='' className='intro-background-img' />
-          <h3 className='welcome-phrase'> { catchPhrasesArray[ 2 ] } </h3>
+          <h3 className='welcome-phrase'> { catchPhrasesArray[ 1 ] } </h3>
 
         <section className='intro-form'>
           <Row>

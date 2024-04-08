@@ -2165,10 +2165,6 @@
         padding: 3%;
     }
 
-
-    
-    
-
     
     .booking-hotel-extra-details {
         font-size: 0.84rem;
@@ -2197,9 +2193,17 @@
 
     .paystack-btn {
         margin-bottom: 9%;
+    }    
+
+
+    .book-room-features {
+        background-color: var(--light-blue-color);
+        padding: 7% 14%;
+        text-align: center;
+        border-radius: 5%;
+        /* display: inline-block; */
     }
-    
-    
+
     /* end of book hotel responsive styling */
 
 

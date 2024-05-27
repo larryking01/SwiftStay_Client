@@ -544,7 +544,7 @@ const BookHotel = ( ) => {
                                         <h5 className='booking-hotel-detail-header'>Room features</h5>
                                         {
                                             <>
-                                            <Row md={ 3 }>
+                                            <Row md={ 3 } xs={ 3 }>
                                                 {
                                                     Object.keys( bookingHotelObject ).length > 0 ?
                                                         bookingHotelObject.room_features.map(( feature, index ) => (

@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form'
 // import { FaCcDiscover } from 'react-icons/fa'
 // import { BsPaypal } from 'react-icons/bs'
 // import { BsShieldCheck } from 'react-icons/bs'
-import Carousel from 'react-grid-carousel'
+// import Carousel from 'react-grid-carousel'
 import Rating from '@mui/material/Rating'
 import Button from 'react-bootstrap/Button'
 import { IoLocationSharp } from 'react-icons/io5'
@@ -291,7 +291,7 @@ const BookHotel = ( ) => {
                             <p className='booking-hotel-extra-details'> <IoLocationSharp /> { bookingHotelObject.room_location }</p>
                             <hr />
 
-                            <section>
+                            {/* <section>
                                 <Carousel rows={ 1 } cols={ 1 } loop>
                                     <Carousel.Item>
                                         <img src={ bookingHotelObject.room_cover_photo_url } className='book-hotel-grid-img mb-3' alt='' />
@@ -323,7 +323,7 @@ const BookHotel = ( ) => {
 
                                 </Carousel>
                             </section>
-
+ */}
                             <Row md={ 2 } xs={ 1 }>
                                 <Col>
                                     <h5 className='section-sub-header'>Check-in <span className='booking-checkin-date-format'>(mm-dd-yyyy)</span></h5>

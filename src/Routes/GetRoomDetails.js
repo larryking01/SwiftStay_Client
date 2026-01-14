@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import Carousel from 'react-grid-carousel'
+// import Carousel from 'react-grid-carousel'
 import Rating from '@mui/material/Rating'
 import { IoLocationSharp } from 'react-icons/io5'
 import { MdOutlinePets } from 'react-icons/md'
@@ -510,7 +510,7 @@ const GetRoomDetails = () => {
       </section>
 
 
-      <section className='selected-room-extra-pics-grid'>
+      {/* <section className='selected-room-extra-pics-grid'>
         <Carousel cols={ 4 } rows={ 2 } gap={ 7 } loop 
           responsiveLayout={[
             {
@@ -588,7 +588,7 @@ const GetRoomDetails = () => {
 
         </Carousel>
 
-      </section>
+      </section> */}
 
       <section className='book-now-section'>
         <Button variant='custom' className='book-now-button-first' onClick={ HandleBookHotelRoom }>Book Now</Button>

@@ -153,7 +153,7 @@ const Home = () => {
       behavior: 'smooth'
     })
 
-  }, [ ])
+  }, [])
 
 
 

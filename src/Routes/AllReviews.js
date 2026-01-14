@@ -1,344 +1,361 @@
-import React, { useEffect, useState, useRef, useContext } from 'react'
-import { useParams } from 'react-router-dom'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import FloatingLabel  from 'react-bootstrap/FloatingLabel'
-import { BsPersonFill } from 'react-icons/bs'
+import React, { useEffect, useState, useRef, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { BsPersonFill } from 'react-icons/bs';
 // font awesome icons.
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import NavbarComponent from './NavBar'
-import Footer from './Footer'
-import { UserContext } from '../App'
+import NavbarComponent from './NavBar';
+import Footer from './Footer';
+import { UserContext } from '../App';
 
+const Reviews = () => {
+  const { server_url } = useContext(UserContext);
 
+  const params = useParams();
 
+  // handling state.
+  const [allReviewsArray, setAllReviewsArray] = useState([]);
+  const [selectedRoomDetailsObject, setselectedRoomDetailsObject] = useState(
+    {}
+  );
+  const [fetchError, setFetchError] = useState(false);
+  const [fetchErrorMessage, setFetchErrorMessage] = useState(null);
+  const [isLoadingHotelDetails, setIsLoadingHotelDetails] = useState(true);
 
+  const [isLoadingReviews, setIsLoadingReviews] = useState(true);
+  const [reviewsError, setReviewsError] = useState(false);
+  const [reviewsErrorMessage, setReviewsErrorMessage] = useState(null);
 
-const Reviews = ( ) => {
+  const [reviewerEmail, setReviewerEmail] = useState('');
+  const [reviewBody, setReviewBody] = useState('');
+  const [reviewerEmailError, setReviewerEmailError] = useState(false);
+  const [reviewBodyError, setReviewBodyError] = useState(false);
 
-    const { server_url } = useContext( UserContext )
+  // review feedback state.
+  const [postingReview, setPostingReview] = useState(false);
+  const [reviewFeedback, setReviewFeedback] = useState('');
 
-    const params = useParams()
-
-    // handling state.
-    const [ allReviewsArray, setAllReviewsArray ] = useState([ ])
-    const [ selectedRoomDetailsObject, setselectedRoomDetailsObject ] = useState({})
-    const [ fetchError, setFetchError ] = useState( false )
-    const [ fetchErrorMessage, setFetchErrorMessage ] = useState( null )
-    const [ isLoadingHotelDetails, setIsLoadingHotelDetails ] = useState( true )
-
-    const [ isLoadingReviews, setIsLoadingReviews ] = useState( true )
-    const [ reviewsError, setReviewsError ] = useState( false )
-    const [ reviewsErrorMessage, setReviewsErrorMessage ] = useState( null )
-
-    const [ reviewerEmail, setReviewerEmail ] = useState('')
-    const [ reviewBody, setReviewBody ] = useState('')
-    const [ reviewerEmailError, setReviewerEmailError ] = useState( false )
-    const [ reviewBodyError, setReviewBodyError ] = useState( false )
-
-
-    // review feedback state.
-    const [ postingReview, setPostingReview ] = useState( false )
-    const [ reviewFeedback, setReviewFeedback ] = useState('')
-
-
-    // setting up reference.
-    const reviewRef = useRef( null )
-
+  // setting up reference.
+  const reviewRef = useRef(null);
 
   // use effect hook to fetch details of selected room.
   useEffect(() => {
     // async function to fetch data.
     const FetchData = async () => {
-      let response = await fetch(`${ server_url }/get/room-details/${ params.hotel_name }/${ params.hotel_id }`, {
-        method: 'GET'
-      })
-      
-      if ( response.status === 200 ) {
-        console.log( `selected room success response is ${ response.status }` )
-        let data = await response.json()
-        setselectedRoomDetailsObject({ ...data }) 
+      let response = await fetch(
+        `${server_url}/get/room-details/${params.hotel_name}/${params.hotel_id}`,
+        {
+          method: 'GET',
+        }
+      );
+
+      if (response.status === 200) {
+        console.log(`selected room success response is ${response.status}`);
+        let data = await response.json();
+        setselectedRoomDetailsObject({ ...data });
         setTimeout(() => {
-          setIsLoadingHotelDetails( false )
-        }, 1000 )
+          setIsLoadingHotelDetails(false);
+        }, 1000);
+      } else {
+        setIsLoadingHotelDetails(false);
+        setFetchError(false);
+        setFetchErrorMessage(
+          'Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.'
+        );
+      }
+    };
 
+    FetchData();
+  }, [params.hotel_id, params.hotel_name, server_url]);
+
+  // effect hook to fetch all reviews.
+  useEffect(() => {
+    const FetchAllReviews = async () => {
+      let response = await fetch(
+        `${server_url}/get/fetch-reviews/${params.hotel_name}/${params.hotel_id}`
+      );
+
+      if (response.status === 200) {
+        let data = await response.json();
+        setAllReviewsArray(data);
+        setTimeout(() => {
+          setIsLoadingReviews(false);
+        }, 1000);
+      } else if (response.status === 404) {
+        setTimeout(() => {
+          setIsLoadingReviews(false);
+        }, 1000);
+      } else {
+        setIsLoadingReviews(false);
+        setReviewsErrorMessage('failed to fetch reviews....');
+      }
+    };
+
+    FetchAllReviews();
+  }, []);
+
+  // update reviewer email state
+  const HandleReviewerEmailUpdate = (event) => {
+    setReviewerEmailError(false);
+    setReviewerEmail(event.target.value);
+  };
+
+  // update review body state
+  const HandleReviewBodyUpdate = (event) => {
+    setReviewBodyError(false);
+    setReviewBody(event.target.value);
+  };
+
+  // scroll review form into view.
+  const ScrollReviewFormToView = () => {
+    reviewRef.current.scrollIntoView({
+      behavior: 'smooth',
+    });
+  };
+
+  // handling post review
+  const HandlePostReview = async () => {
+    if (reviewerEmail.length < 1 || reviewBody.length < 1) {
+      if (reviewerEmail.length < 1) {
+        setReviewerEmailError(true);
+      } else {
+        setReviewerEmailError(false);
       }
 
-      else {
-        setIsLoadingHotelDetails( false )
-        setFetchError( false )
-        setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
+      if (reviewBody.length < 1) {
+        setReviewBodyError(true);
+      } else {
+        setReviewBodyError(false);
       }
-
-    }
-
-    FetchData()
-
-  }, [ params.hotel_id, params.hotel_name, server_url ])
-    
-
-
-
-    // effect hook to fetch all reviews.
-    useEffect(() => {
-        const FetchAllReviews = async ( ) => {
-            let response = await fetch(`${ server_url }/get/fetch-reviews/${ params.hotel_name }/${ params.hotel_id }`)
-            
-            if( response.status === 200 ) {
-                let data =  await response.json()
-                setAllReviewsArray( data )
-                setTimeout(() => {
-                    setIsLoadingReviews( false )
-                }, 1000 )
-            }
-            else if ( response.status === 404 ) {
-                setTimeout(() => {
-                    setIsLoadingReviews( false )
-                }, 1000 )
-            }
-            else {
-                setIsLoadingReviews( false )
-                setReviewsErrorMessage('failed to fetch reviews....')
-            }
+    } else {
+      setPostingReview(true);
+      let response = await fetch(
+        `${server_url}/post/post-review/${params.hotel_name}/${params.hotel_id}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_email: reviewerEmail,
+            review_body: reviewBody,
+            reviewed_hotel_name: params.hotel_name,
+            reviewed_hotel_id: params.hotel_id,
+          }),
         }
+      );
 
-        FetchAllReviews()
-
-    }, [ ])
-    
-
-
-    // update reviewer email state
-    const HandleReviewerEmailUpdate = ( event ) => {
-        setReviewerEmailError( false )
-        setReviewerEmail( event.target.value )
+      if (response.status === 200) {
+        console.log('review posted');
+        setReviewerEmail('');
+        setReviewBody('');
+        setPostingReview(false);
+        setReviewFeedback('your review has been posted successfully...');
+        setTimeout(() => {
+          setReviewFeedback('');
+        }, 5000);
+      } else {
+        setPostingReview(false);
+        setReviewFeedback('failed to post your review due to an error...');
+        setTimeout(() => {
+          setReviewFeedback('');
+        }, 5000);
+      }
     }
+  };
 
+  return (
+    <div>
+      <NavbarComponent />
 
-    // update review body state
-    const HandleReviewBodyUpdate = ( event ) => {
-        setReviewBodyError( false )
-        setReviewBody( event.target.value )
-    }
+      <div className="hide-overflow">
+        <section className="reviewed-hotel-info-section">
+          <h3 className="reviewed-hotel-name">{params.hotel_name} Reviews</h3>
+        </section>
 
+        {isLoadingHotelDetails === true ? (
+          <section className="fetch-all-hotels-loading-section">
+            <FontAwesomeIcon
+              icon={faSpinner}
+              size="2x"
+              spinPulse
+              className="mb-4"
+              color="#808080"
+            />
+            <p className="fetching-hotels-text">
+              fetching reviews on {params.hotel_name} hotel... please wait
+            </p>
+          </section>
+        ) : fetchError === true ? (
+          <section className="fetch-all-hotels-fetch-error-section">
+            <h5 className="fetch-hotels-error-text"> {fetchErrorMessage} </h5>
+          </section>
+        ) : (
+          <section className="main-content-wrapper">
+            <section className="selected-room-extra-pics-grid">
+              <Row xs={1} md={3}>
+                <Col>
+                  <img
+                    className="all-reviews-images-styling"
+                    src={selectedRoomDetailsObject.room_cover_photo_url}
+                    alt=""
+                  />
+                </Col>
 
-    // scroll review form into view.
-    const ScrollReviewFormToView = ( ) => {
-        reviewRef.current.scrollIntoView({
-            behavior: 'smooth'
-        })
-    }
+                <Col>
+                  <img
+                    className="all-reviews-images-styling"
+                    src={selectedRoomDetailsObject.room_extra_photo_url_1}
+                    alt=""
+                  />
+                </Col>
 
-
-    // handling post review
-    const HandlePostReview = async ( ) => {
-
-        if ( reviewerEmail.length < 1 || reviewBody.length < 1 ) {
-            if( reviewerEmail.length < 1 ) {
-                setReviewerEmailError( true )
-            }
-            else {
-                setReviewerEmailError( false )
-            }
-
-            if( reviewBody.length < 1 ) {
-                setReviewBodyError( true )
-            }
-            else {
-                setReviewBodyError( false )
-            }
-        }
-
-        else {
-            setPostingReview( true )
-            let response = await fetch(`${ server_url }/post/post-review/${ params.hotel_name }/${ params.hotel_id }`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    user_email: reviewerEmail,
-                    review_body: reviewBody,
-                    reviewed_hotel_name: params.hotel_name,
-                    reviewed_hotel_id: params.hotel_id
-                })
-            })
-
-            if ( response.status === 200 ) {
-                console.log('review posted')
-                setReviewerEmail('')
-                setReviewBody('')
-                setPostingReview( false )
-                setReviewFeedback('your review has been posted successfully...')
-                setTimeout(() => {
-                    setReviewFeedback('')
-                }, 5000)
-            }
-            else {
-                setPostingReview( false )
-                setReviewFeedback('failed to post your review due to an error...')
-                setTimeout(() => {
-                    setReviewFeedback('')
-                }, 5000)
-
-            }
-        }
-    }
-
-    
-
-    return (
-
-        <div>
-            <NavbarComponent />
-
-            <div className='hide-overflow'>
-                <section className='reviewed-hotel-info-section'>
-                    <h3 className='reviewed-hotel-name'>{ params.hotel_name } Reviews</h3>
-                </section>
-
-                {
-
-                isLoadingHotelDetails === true ? 
-                <section className='fetch-all-hotels-loading-section'>
-                <FontAwesomeIcon icon={ faSpinner } size='2x' spinPulse className='mb-4' color='#808080' />
-                <p className='fetching-hotels-text'>fetching reviews on { params.hotel_name } hotel... please wait</p>
-                </section>
-
-                :
-
-                fetchError === true ?
-                <section className='fetch-all-hotels-fetch-error-section'>
-                <h5 className='fetch-hotels-error-text'> { fetchErrorMessage } </h5>
-                </section>
-
-                :
-
-
-                <section className='main-content-wrapper'>
-
-                <section className='selected-room-extra-pics-grid'>
-                    <Row xs={ 1 } md={ 3 }>
-                        <Col>
-                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_cover_photo_url } alt='' />
-                        </Col>
-
-                        <Col>
-                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
-                        </Col>
-
-                        <Col>
-                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
-                        </Col>
-
-                    </Row>
-
-                </section>
-
-
-                <section className='selected-room-details-sub-section'>
-                    <Row className='reviews-header-row'>
-
-                        <Col md={ 6 } xs={ 6 }>
-                            {
-                                allReviewsArray.length > 0 ?
-                                    allReviewsArray.length === 1 ?
-                                        <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Review </h3>
-                                        :
-                                        <h3 className='selected-room-details-sub-header'>{ allReviewsArray.length } Reviews </h3>
-                                :
-                                <h3 className='selected-room-details-sub-header'>No reviews yet </h3>
-
-                            }
-                        </Col>
-
-                        <Col md={ 6 } xs={ 6 }>
-                            <Button variant='custom' className='post-review-btn' onClick={ ScrollReviewFormToView }>Post review</Button>
-                        </Col>
-
-                    </Row>
-
-
-                    {
-                        allReviewsArray.map(( review, index ) => (
-                            <div className='posted-reviews-wrapper-div' key={ index }>
-
-                                <section className='reviewer-info'>
-                                    <div>
-                                        <BsPersonFill size={ 30 } />
-                                    </div>
-                        
-                                    <div className='reviewer-info-name-date'>
-                                        <h5 className='reviewer-name'> { review.user_email } </h5>
-                                        <p className='review-date'>Wrote a review { review.review_date } @ { review.review_time } </p>
-                                    </div>
-                                </section>
-
-                                <section className='review-body'>
-                                    <Row>
-                                        <p className='review-body-text'>{ review.review_body }</p>
-                                    </Row>
-                                    <hr />
-                                </section>
-
-                            </div>
-                
-                        ))
-
-                    }
-
-                </section>
-
-
-                <section className='post-review-section' ref={ reviewRef }>
-                    <h5 className='post-review-header'>Post a review</h5>
-                    <Form>
-                        <Form.Control type='email' placeholder='Your email *' className={ reviewerEmailError === true ? 'review-email-control-error mb-4' : 'review-email-control mb-4' } onChange={ HandleReviewerEmailUpdate } value={ reviewerEmail } />
-
-                        <FloatingLabel style={{ color: 'gray' }} controlId='floatingTextarea' label='Review body *' className='mb-4'>
-                            <Form.Control as='textarea' placeholder='' className={ reviewBodyError === true ? 'review-body-text-area-error' : 'review-body-text-area' } style={{ height: 150 }} onChange={ HandleReviewBodyUpdate } value={ reviewBody } />
-                        </FloatingLabel>
-
-                        <Row>
-                            <Col>
-                                <Button variant='custom' className='post-review-btn-submit' onClick={ HandlePostReview }>Post review</Button>
-                            </Col>
-
-                            <Col md={ 7 }>
-                                <p className='posting-review-icon mt-4'>{ postingReview === true ? <FontAwesomeIcon icon={ faSpinner } spinPulse size='2x' className='mb-2' /> : null }</p>
-                                <p className='review-feedback-text'>{ reviewFeedback.length > 1 ? reviewFeedback : '' }</p>
-                            </Col>
-                        </Row>
-
-                    </Form>
-
-                </section>
-
-                </section>
-
-                }
-
-            </div>
-            
-
-
-
-
-            <section className='footer-gap'>
+                <Col>
+                  <img
+                    className="all-reviews-images-styling"
+                    src={selectedRoomDetailsObject.room_extra_photo_url_2}
+                    alt=""
+                  />
+                </Col>
+              </Row>
             </section>
 
-            <Footer />
+            <section className="selected-room-details-sub-section">
+              <Row className="reviews-header-row">
+                <Col md={6} xs={6}>
+                  {allReviewsArray.length > 0 ? (
+                    allReviewsArray.length === 1 ? (
+                      <h3 className="selected-room-details-sub-header">
+                        {allReviewsArray.length} Review{' '}
+                      </h3>
+                    ) : (
+                      <h3 className="selected-room-details-sub-header">
+                        {allReviewsArray.length} Reviews{' '}
+                      </h3>
+                    )
+                  ) : (
+                    <h3 className="selected-room-details-sub-header">
+                      No reviews yet{' '}
+                    </h3>
+                  )}
+                </Col>
 
-        </div>
-    )
+                <Col md={6} xs={6}>
+                  <Button
+                    variant="custom"
+                    className="post-review-btn"
+                    onClick={ScrollReviewFormToView}
+                  >
+                    Post review
+                  </Button>
+                </Col>
+              </Row>
 
-}
+              {allReviewsArray.map((review, index) => (
+                <div className="posted-reviews-wrapper-div" key={index}>
+                  <section className="reviewer-info">
+                    <div>
+                      <BsPersonFill size={30} />
+                    </div>
 
+                    <div className="reviewer-info-name-date">
+                      <h5 className="reviewer-name"> {review.user_email} </h5>
+                      <p className="review-date">
+                        Wrote a review {review.review_date} @{' '}
+                        {review.review_time}{' '}
+                      </p>
+                    </div>
+                  </section>
 
+                  <section className="review-body">
+                    <Row>
+                      <p className="review-body-text">{review.review_body}</p>
+                    </Row>
+                    <hr />
+                  </section>
+                </div>
+              ))}
+            </section>
 
+            <section className="post-review-section" ref={reviewRef}>
+              <h5 className="post-review-header">Post a review</h5>
+              <Form>
+                <Form.Control
+                  type="email"
+                  placeholder="Your email *"
+                  className={
+                    reviewerEmailError === true
+                      ? 'review-email-control-error mb-4'
+                      : 'review-email-control mb-4'
+                  }
+                  onChange={HandleReviewerEmailUpdate}
+                  value={reviewerEmail}
+                />
 
-export default Reviews
+                <FloatingLabel
+                  style={{ color: 'gray' }}
+                  controlId="floatingTextarea"
+                  label="Review body *"
+                  className="mb-4"
+                >
+                  <Form.Control
+                    as="textarea"
+                    placeholder=""
+                    className={
+                      reviewBodyError === true
+                        ? 'review-body-text-area-error'
+                        : 'review-body-text-area'
+                    }
+                    style={{ height: 150 }}
+                    onChange={HandleReviewBodyUpdate}
+                    value={reviewBody}
+                  />
+                </FloatingLabel>
+
+                <Row>
+                  <Col>
+                    <Button
+                      variant="custom"
+                      className="post-review-btn-submit"
+                      onClick={HandlePostReview}
+                    >
+                      Post review
+                    </Button>
+                  </Col>
+
+                  <Col md={7}>
+                    <p className="posting-review-icon mt-4">
+                      {postingReview === true ? (
+                        <FontAwesomeIcon
+                          icon={faSpinner}
+                          spinPulse
+                          size="2x"
+                          className="mb-2"
+                        />
+                      ) : null}
+                    </p>
+                    <p className="review-feedback-text">
+                      {reviewFeedback.length > 1 ? reviewFeedback : ''}
+                    </p>
+                  </Col>
+                </Row>
+              </Form>
+            </section>
+          </section>
+        )}
+      </div>
+
+      <section className="footer-gap"></section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Reviews;

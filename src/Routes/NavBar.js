@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react'
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { useContext, useEffect } from 'react'
+import { Navbar, Container, Nav } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
@@ -17,31 +17,17 @@ const NavbarComponent = ( ) => {
     // SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
     const brand_name = 'SwiftStay'
 
-    // for navigation.
     const navigate = useNavigate()
 
     const { currentUser, setCurrentUser } = useContext( UserContext )
-
-
-    // effect to show current user.
-    useEffect(() => {
-        console.log(`from navbar, current user is ${ currentUser?.email }`)
-
-    }, [ currentUser ])
-
 
     // function sign out user.
     const SignOutUser = async ( ) => {
         let existingUser = firebaseAuth.currentUser
         if( existingUser ) {
             await firebaseAuth.signOut()
-            // console.log('user signed out')
             setCurrentUser( null ) 
         } 
-        else {
-            // console.log('no current user is logged in')
-        }
-    
     }
     
     
@@ -51,7 +37,6 @@ const NavbarComponent = ( ) => {
             <Navbar collapseOnSelect bg='light' variant='light' expand='lg'>
                 <Container>
                     <Navbar.Brand onClick={() => navigate('/')} className='navbar-brand'>
-                        {/* <img src={ skyscanner_1 } alt='' width={ 120 } /> */}
                         <h3 className='navbar-brand'>{ brand_name }</h3>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls='responsive-navbar-nav' />
@@ -67,12 +52,7 @@ const NavbarComponent = ( ) => {
                             {
                                 currentUser ? 
                                 <>
-                                    {/* <NavDropdown title={ currentUser.displayName } id='nav-dropdown'>
-                                        <NavDropdown.Item eventKey='4.1'>View profile</NavDropdown.Item>
-                                        <NavDropdown.Item eventKey='4.2'>Booking history</NavDropdown.Item>
-                                    </NavDropdown> */}
                                     <h5 className='user-name-display'> { currentUser.displayName } </h5>
-                                    {/* <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button> */}
                                 </>
                                 :
                                 <>
@@ -83,14 +63,8 @@ const NavbarComponent = ( ) => {
                                     <Nav.Link className='nav-link-button'>                                    
                                         <Button variant='custom' className='navbar-signup-btn' onClick={() => navigate('/sign-up')}> Register </Button>
                                     </Nav.Link>
-                                    
-                                    {/* <Nav.Link className='nav-link-button'>                                    
-                                        <Button variant='custom' className='navbar-login-btn' onClick={ SignOutUser }> Sign out </Button>
-                                    </Nav.Link> */}
                                 </>
                             }
-
-                                {/* <Nav.Link className='nav-link-text-help' onClick={() => navigate('/help')}> Help </Nav.Link> */}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
@@ -35,12 +35,7 @@ import { UserContext } from '../App'
 const FetchAllRooms = () => {
 
   
-  // server url
   const { server_url } = useContext( UserContext )
-
-
-
-  // navigation.
   const navigate = useNavigate()
 
   // handling state.
@@ -50,14 +45,13 @@ const FetchAllRooms = () => {
   const [ fetchErrorMessage, setFetchErrorMessage ] = useState( null )
   const [ isLoadingAllHotels, setIsLoadingAllHotels ] = useState( true )
 
-  // state for pagination.
   const [firstItemIndex, setFirstItemIndex] = useState(0);
   const [currentItems, setCurrentItems] = useState([ ])
   const [pageCount, setPageCount] = useState(0) 
   const itemsPerPage = 4;
 
 
-  // making certain component always displays from top on initial render.
+  // component always displays from top on initial render.
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -68,12 +62,10 @@ const FetchAllRooms = () => {
   
 
 
-  // use effect to fetch all rooms.
+  // fetch all rooms.
   useEffect(() => {
     
     const FetchAllRooms = async () => {
-
-      // setIsLoadingAllHotels( true )
       let response = await fetch(`${ server_url }/get/fetch-all-rooms`, {
         method: 'GET'
       })

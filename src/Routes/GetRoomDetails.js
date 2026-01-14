@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
-// import Carousel from 'react-grid-carousel'
 import Rating from '@mui/material/Rating'
 import { IoLocationSharp } from 'react-icons/io5'
 import { MdOutlinePets } from 'react-icons/md'
@@ -39,19 +38,14 @@ import Maps2 from '../Configuration/Maps2'
 
 const GetRoomDetails = () => {
 
-  // server url
   const { server_url } = useContext( UserContext )
 
-
-  // for params
   const params = useParams()
   let booking_room_id = params.hotel_id
   let hotel_name = params.hotel_name
 
-  // navigation
   const navigate = useNavigate()
 
-  // setting up reference.
   const reviewRef = useRef( null )
   const dateDurationRef = useRef( null )
 
@@ -61,8 +55,6 @@ const GetRoomDetails = () => {
   const [ fetchError, setFetchError ] = useState( false )
   const [ fetchErrorMessage, setFetchErrorMessage ] = useState( null )
   const [ isLoadingHotelDetails, setIsLoadingHotelDetails ] = useState( true )
-
-  // handling reviews state.
   const [ allReviewsArray, setAllReviewsArray ] = useState([ ])
   const [ isLoadingReviews, setIsLoadingReviews ] = useState( true )
   const [ reviewsError, setReviewsError ] = useState( false )
@@ -90,17 +82,9 @@ const GetRoomDetails = () => {
 
 
 
-  // const HandleSearchSubmit = ( ) => {
-  //   console.log(`check in === ${ startDateValue }`)
-  //   console.log(`check out === ${ endDateValue }`)
-  //   console.log(`adults = ${ numberOfAdultVisitors }`)
-  //   console.log(`children = ${ numberOfChildVisitors }`)
-  //   console.log(`rooms = ${ numberOfRooms }`)
-    
-  // }
 
 
-  // making certain component always displays from top on initial render.
+  // component always displays from top on initial render.
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -110,7 +94,7 @@ const GetRoomDetails = () => {
   }, [ ])
 
 
-  // use effect hook to fetch details of selected room.
+  // fetch details of selected room.
   useEffect(() => {
     // async function to fetch data.
     const FetchData = async () => {
@@ -119,7 +103,6 @@ const GetRoomDetails = () => {
       })
       
       if ( response.status === 200 ) {
-        // console.log( `selected room success response is ${ response.status }` )
         let data = await response.json()
         setselectedRoomDetailsObject({ ...data }) 
         console.log('selected room data is')
@@ -131,7 +114,6 @@ const GetRoomDetails = () => {
       }
 
       else {
-        // console.log( `failure status is ${response.status} ` )
         setIsLoadingHotelDetails( false )
         setFetchError( false )
         setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
@@ -156,18 +138,14 @@ const GetRoomDetails = () => {
               setTimeout(() => {
                   setIsLoadingReviews( false )
               }, 1000 )
-              // console.log('all reviews fetched')
-              // console.log( data )
           }
           else if ( response.status === 404 ) {
               setTimeout(() => {
                   setIsLoadingReviews( false )
               }, 1000 )
-              // console.log('no reviews for this hotel yet')
           }
           else {
               setIsLoadingReviews( false )
-              // console.log('failed to fetch reviews......')
               setReviewsErrorMessage('failed to fetch reviews....')
           }
       }
@@ -240,7 +218,6 @@ const GetRoomDetails = () => {
           })
 
           if ( response.status === 200 ) {
-              // console.log('review posted')
               setReviewerEmail('')
               setReviewBody('')
               setPostingReview( false )
@@ -251,7 +228,6 @@ const GetRoomDetails = () => {
           }
           else {
               setPostingReview( false )
-              // console.log('failed to post review')
               setReviewFeedback('failed to post your review due to an error...')
               setTimeout(() => {
                   setReviewFeedback('')
@@ -266,11 +242,8 @@ const GetRoomDetails = () => {
 
   // calculate length of stay
   const CalculateLengthOfStay = ( checkInDate, checkOutDate ) => {
-    // console.log(`start date millisecs = ${ checkInDate.getTime() }`)
-    // console.log(`end date millisecs = ${ checkOutDate.getTime() }`)
     let lengthOfStay = checkOutDate.getTime() - checkInDate.getTime()
     lengthOfStay = Math.floor( lengthOfStay / ( 1000 * 60 * 60 * 24 )) 
-    // console.log( `length of stay = ${ lengthOfStay }`)
     return lengthOfStay
 }
 
@@ -287,7 +260,6 @@ const GetRoomDetails = () => {
     else {
       setBookingDatesNull( false )
       let durationOfStay = CalculateLengthOfStay( startDateMilliseconds, endDateMilliseconds )
-      // console.log(`duration of stay = ${ durationOfStay }`)
       if( durationOfStay < 0 ) {
         alert('Check-out date must be later than Check-in date')
         dateDurationRef.current.scrollIntoView({
@@ -499,12 +471,6 @@ const GetRoomDetails = () => {
 
             </Col>
 
-            {/* <Col className='selected-room-details-destination-column'>
-              <Button variant='custom' onClick={ HandleSearchSubmit }
-                className='selected-room-details-search-hotel-button'>
-                  Submit
-              </Button>
-            </Col> */}
           </Row>
         </Form>
       </section>
@@ -741,13 +707,6 @@ const GetRoomDetails = () => {
           <p>No reviews submitted yet. Be the first to submit one right below..</p>
 
       }
-
-
-      {/* 
-      <Button variant='custom' className='see-all-reviews-btn' onClick={ () => navigate(`/all-reviews/${ params.hotel_name }/${ params.hotel_id }`)} > 
-          See all { allReviewsArray.length } review(s) 
-      </Button> 
-      */}
       </section>
 
 
@@ -782,15 +741,7 @@ const GetRoomDetails = () => {
 
       </div>
 
-      {/* <section className='css-try'>
-
-      </section> */}
-    
-
-
-
       <section className='footer-gap'>
-
       </section>
 
       <Footer />

@@ -10,8 +10,6 @@ import { BsPersonFill } from 'react-icons/bs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-
-// modules
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
 import { UserContext } from '../App'
@@ -22,10 +20,8 @@ import { UserContext } from '../App'
 
 const Reviews = ( ) => {
 
-    // server url
     const { server_url } = useContext( UserContext )
 
-    // setting up params.
     const params = useParams()
 
     // handling state.
@@ -66,8 +62,6 @@ const Reviews = ( ) => {
         console.log( `selected room success response is ${ response.status }` )
         let data = await response.json()
         setselectedRoomDetailsObject({ ...data }) 
-        // console.log('selected room data is')
-        // console.log( data )
         setTimeout(() => {
           setIsLoadingHotelDetails( false )
         }, 1000 )
@@ -75,7 +69,6 @@ const Reviews = ( ) => {
       }
 
       else {
-        // console.log( `failure status is ${response.status} ` )
         setIsLoadingHotelDetails( false )
         setFetchError( false )
         setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
@@ -101,18 +94,14 @@ const Reviews = ( ) => {
                 setTimeout(() => {
                     setIsLoadingReviews( false )
                 }, 1000 )
-                // console.log('all reviews fetched')
-                // console.log( data )
             }
             else if ( response.status === 404 ) {
                 setTimeout(() => {
                     setIsLoadingReviews( false )
                 }, 1000 )
-                // console.log('no reviews for this hotel yet')
             }
             else {
                 setIsLoadingReviews( false )
-                // console.log('failed to fetch reviews......')
                 setReviewsErrorMessage('failed to fetch reviews....')
             }
         }
@@ -123,21 +112,21 @@ const Reviews = ( ) => {
     
 
 
-    // updating reviewer email state
+    // update reviewer email state
     const HandleReviewerEmailUpdate = ( event ) => {
         setReviewerEmailError( false )
         setReviewerEmail( event.target.value )
     }
 
 
-    // updating review body state
+    // update review body state
     const HandleReviewBodyUpdate = ( event ) => {
         setReviewBodyError( false )
         setReviewBody( event.target.value )
     }
 
 
-    // scrolling review form into view.
+    // scroll review form into view.
     const ScrollReviewFormToView = ( ) => {
         reviewRef.current.scrollIntoView({
             behavior: 'smooth'
@@ -165,7 +154,6 @@ const Reviews = ( ) => {
         }
 
         else {
-            // actually posting the review.
             setPostingReview( true )
             let response = await fetch(`${ server_url }/post/post-review/${ params.hotel_name }/${ params.hotel_id }`, {
                 method: 'POST',
@@ -192,16 +180,13 @@ const Reviews = ( ) => {
             }
             else {
                 setPostingReview( false )
-                // console.log('failed to post review')
                 setReviewFeedback('failed to post your review due to an error...')
                 setTimeout(() => {
                     setReviewFeedback('')
                 }, 5000)
 
             }
-
         }
-
     }
 
     
@@ -249,18 +234,6 @@ const Reviews = ( ) => {
                         <Col>
                             <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
                         </Col>
-
-                        {/* <Col>
-                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
-                        </Col>
-
-                        <Col>
-                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_cover_photo_url } alt='' />
-                        </Col>
-
-                        <Col>
-                            <img className='all-reviews-images-styling' src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
-                        </Col> */}
 
                     </Row>
 

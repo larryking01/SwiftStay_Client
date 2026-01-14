@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Button from 'react-bootstrap/Button'
 
-// modules
 import Footer from './Footer'
 import NavbarComponent from './NavBar'
 
@@ -19,7 +18,7 @@ import NavbarComponent from './NavBar'
 const ContactUsHelp = ( ) => {
 
     
-    // making certain component always displays from top on initial render.
+    // component always displays from top on initial render.
     useEffect(() => {
         window.scrollTo({
           top: 0,
@@ -126,10 +125,6 @@ const ContactUsHelp = ( ) => {
                     </FloatingLabel>
 
                     <p className='submit-complaint-error-text'>{ submitComplaintError }</p>
-
-                    {/* <div className='attach-files-div mb-4'>
-                        <p>Attach file or drop files here</p>
-                    </div> */}
 
                     <Button variant='custom' className='contact-us-btn' onClick={ HandleComplaintSubmit }> Submit </Button>
 

@@ -1,5 +1,4 @@
-// dev dependencies
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import '@fontsource/roboto/300.css'
@@ -8,7 +7,6 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 
 
-// modules.
 import Home from './Routes/Home'
 import FetchAllBookings from './Routes/FetchAllBookings'
 import FetchAllRooms from './Routes/FetchAllRooms'
@@ -34,26 +32,15 @@ const UserContext = createContext( null )
 
 const App = () => {
 
-    // online and local server urls.
     const server_url = 'https://hotel-finder-app-server-rest.onrender.com'
-    // const online_server_url = 'https://hotel-finder-app-server-rest.onrender.com'
-    // const local_server_url = 'http://localhost:8000'
 
-
-    // handling user state.
+    // managing state
     const [ currentUser, setCurrentUser ] = useState( null )
-
-    // handling startdatepicker input values.
     const [ startDateValue, setStartDateValue ] = useState(null)
-
-    // handling enddatepicker input values.
     const [ endDateValue, setEndDateValue ] = useState(null)
-
     const [ startDateMilliseconds, setStartDateMilliseconds ] = useState( new Date() )
     const [ endDateMilliseconds, setEndDateMilliseconds ] = useState( new Date() )
     const [ customerLengthOfStay, setCustomerLengthOfStay ] = useState( 0 )
-
-    // handling hotel-booking-info
     const [ checkIn, setCheckIn ] = useState('')
     const [ checkOut, setCheckOut ] = useState('')
     const [ numberOfAdultVisitors, setNumberOfAdultVisitors ] = useState( 1 )
@@ -108,7 +95,6 @@ const App = () => {
   )
   
 }
-
 
 
 

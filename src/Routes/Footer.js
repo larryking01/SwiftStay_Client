@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
@@ -54,7 +54,6 @@ const Footer = () => {
                 setNewsletterSubscribeError('')
                 alert(`Thank you for subscribing to our newsletter. A confirmation email has been sent to ${ email }`)
                 emailjs.send( email_js_service_id, email_js_template_id, email_js_dynamic_variables, email_js_public_key)
-                // console.log( email )
                 setEmail('')
             }
             catch( error ) {
@@ -104,10 +103,6 @@ const Footer = () => {
 
                 <Col md={ 4 }>
                     <h4 className='footer-header'> Newsletter Signup </h4>
-                    {/* <Form.Control type='email' placeholder='email' className='newsletter-textbox' />
-                    <Button variant='custom' className='newsletter-button' >Subscribe</Button> 
-                    <p>Subscribe to get all the latest updates</p> */}    
-
                     <InputGroup>
                         <Form.Control type='email' placeholder='email@example.com' className='newsletter-textbox'
                                       aria-label='email' aria-describedby='basic-addon-2' 

@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import InputGroup from 'react-bootstrap/InputGroup'
-import { BsFacebook, BsApple, BsGoogle, BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
+import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 
 // modules
@@ -23,7 +23,6 @@ const Login = ( ) => {
 
     const navigate = useNavigate()
 
-    // destructuring user context.
     const { currentUser, setCurrentUser } = useContext( UserContext )
 
 
@@ -58,17 +57,15 @@ const Login = ( ) => {
     }
 
 
-    // function to log user in.
+    // log user in.
     const SignInUser = async ( ) => {
 
         try {
-            // resetting all error states
             setEmailErrorExists( false )
             setPasswordErrorExists( false )
             setOtherError( null )
 
 
-            // ensuring form does not submit if any required field is empty. ( step 1 )
             if ( logInUserEmail.length < 1 || logInUserPassword.length < 1 ) {
 
                 if( logInUserEmail.length < 1 ) {
@@ -126,7 +123,7 @@ const Login = ( ) => {
 
 
 
-    // making certain component always displays from top on initial render.
+    // component always displays from top on initial render.
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -145,7 +142,6 @@ const Login = ( ) => {
 
         <div className='log-in-wrapper'>
             <section>
-                {/* <img className='log-in-brand-logo' onClick={() => navigate('/')} /> */}
                 <h3 className='log-in-brand-logo' onClick={() => navigate('/')}>{ brand_name }</h3>
             </section>
 
@@ -188,35 +184,12 @@ const Login = ( ) => {
 
 
                     <section>
-                        {/* <Row className='mb-5'>
-                            <p className='continue-with-text'>Or continue with</p>
-
-                            <Col className='alt-sign-in-icon'>
-                                <BsGoogle size={ 19 } />
-                            </Col>
-
-                            <Col className='alt-sign-in-icon'>
-                                <BsApple size={ 19 } />
-                            </Col>
-
-                            <Col className='alt-sign-in-icon'>
-                                <BsFacebook size={ 19 } />
-                            </Col>
-                        </Row> */}
-
                         <Row>
                             <p className='create-account-text'>Don't have an account? <span className='sign-up-span' onClick={() => navigate('/sign-up')}>Create One</span></p>
                             <p className='forgot-password-text'>Forgot password?</p>
                             <p className='login-tnc-text'>By signing in, I agree to the <span className='login-tnc-span'>Terms and Conditions</span> and <span className='login-tnc-span'>Privacy Statement</span></p>
                         </Row>
-
-
                     </section>
-
-
-
-
-
                 </Form>
 
 

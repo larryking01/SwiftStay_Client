@@ -1,14 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import InputGroup from 'react-bootstrap/InputGroup'
-import { BsFacebook, BsApple, BsGoogle, BsFillEyeSlashFill, BsFillEyeFill, BsFillPersonFill } from 'react-icons/bs'
+import { BsFillEyeSlashFill, BsFillEyeFill, BsFillPersonFill } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 
-// modules
 import { UserContext } from '../App'
 import { firebaseAuth } from '../Configuration/Firebase'
 
@@ -102,7 +101,6 @@ const ToggleConfirmPasswordVisible = ( ) => {
 const CreateNewUser = async ( ) => {
 
     try {            
-        // resetting all error states
         setFirstNameErrorExists( false )
         setLastNameErrorExists( false )
         setEmailErrorExists( false )
@@ -110,7 +108,6 @@ const CreateNewUser = async ( ) => {
         setConfirmPasswordErrorExists( false )
         setOtherError( null )
 
-        // ensuring form does not submit if any required field is empty. ( step 1 )
         if ( signUpEmail.length < 1 || signUpFirstName.length < 1 || signUpLastName.length < 1 || signUpPassword.length < 1 || signUpConfirmPassword.length < 1 ) {
 
             if( signUpFirstName.length < 1 ) {
@@ -144,14 +141,12 @@ const CreateNewUser = async ( ) => {
             else { setConfirmPasswordErrorExists( false )}
 
         }
-        // making sure of matching passwords ( step 2 )
         else if ( signUpPassword !== signUpConfirmPassword ) {
             setPasswordErrorExists( true )
             setConfirmPasswordErrorExists( true )
             setPasswordErrorMessage('Passwords do not match')
             setConfirmPasswordErrorMessage('Passwords do not match')
         }
-        // actually creating a new user if checks are passed ( step 3 )
         else if ( signUpPassword === signUpConfirmPassword ) {
             console.log('checks passed')
             let existingUser = firebaseAuth.currentUser
@@ -175,11 +170,6 @@ const CreateNewUser = async ( ) => {
         }
 
     }
-
-    else {
-        // do nothing
-    }
-
 }
     catch( error ) {
         switch( error.code ) {
@@ -199,7 +189,7 @@ const CreateNewUser = async ( ) => {
 
 
 
-// making certain component always displays from top on initial render.
+// component always displays from top on initial render.
     useEffect(() => {
     window.scrollTo({
         top: 0,
@@ -215,7 +205,6 @@ const CreateNewUser = async ( ) => {
 
         <div className='sign-up-wrapper'>
             <section>
-                {/* <img className='log-in-brand-logo' onClick={() => navigate('/')} /> */}
                 <h3 className='log-in-brand-logo' onClick={() => navigate('/')}>{ brand_name }</h3>
             </section>
 
@@ -299,31 +288,13 @@ const CreateNewUser = async ( ) => {
                     <section>
                         <Row>
                             <p className='sign-up-already-account-text'>Already have an account? <span className='sign-in-span' onClick={ () => navigate('/login')}>Sign in</span></p>
-                            {/* <p className='sign-up-continue-with-text'>Or continue with</p> */}
                         </Row>
-
-                        {/* <Row className='mb-5'>
-                            <Col>
-                                <BsGoogle className='alt-sign-up-icon' size={ 19 } />
-                            </Col>
-
-                            <Col>
-                                <BsApple className='alt-sign-up-icon' size={ 19 } />
-                            </Col>
-
-                            <Col>
-                                <BsFacebook className='alt-sign-up-icon' size={ 19 } />
-                            </Col>
-                        </Row> */}
 
                         <Row className='mb-3'>
                             <p className='sign-up-tnc-text'>By signing up, I agree to the <span className='tnc-span'>Terms and Conditions</span> and <span className='tnc-span'>Privacy Statement</span></p>
                         </Row>
-
                     </section>
-
                 </Form>
-
             </section>
         </div>
     )

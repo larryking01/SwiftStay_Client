@@ -1,16 +1,9 @@
-import React, { useEffect, useState, useContext, useRef } from 'react'
+import { useEffect, useState, useContext, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-// import Form from 'react-bootstrap/Form'
-
-// font awesome icons.
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-
-// modules
 import NavbarComponent from './NavBar'
 import ScrollToTop from  '../Configuration/ScrollToTop'
 import { UserContext } from '../App'
@@ -127,25 +120,18 @@ const Home = () => {
 
   ]
 
-  // server url
   const { server_url } = useContext( UserContext )
 
-  // initializing hotels section ref
   const all_hotels_section_ref = useRef( null )
 
-  // setting up state.
   const [ roomsArray, setRoomsArray ] = useState([ ])
   const [ loadingHotels, setIsLoadingHotels ] = useState( true )
   const [ fetchError, setFetchError ] = useState( false )
   const [ fetchErrorMessage, setFetchErrorMessage ] = useState( null )
   
-  // for navigation.
   const navigate = useNavigate()
 
-  // retrieving user info from context.
-  // const { user } = useContext( UserContext )
-
-  // making certain component always displays from top on initial render.
+  // component always displays from top on initial render.
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -156,13 +142,9 @@ const Home = () => {
   }, [])
 
 
-
-  // fetching all rooms
   useEffect(() => {
-
     const fetchHotels = async () => {
 
-      // setIsLoadingHotels( true )
       let response = await fetch(`${ server_url }/get/fetch-all-rooms`, {
         method: 'GET'
       })
@@ -171,18 +153,11 @@ const Home = () => {
         let data = await response.json()
         setRoomsArray( data )
         setIsLoadingHotels( false )
-        // console.log( `success status is ${response.status} ` )
-        // console.log( fetchError )
-        // console.log( `rooms Array === ${ roomsArray }` )
-
       }
       else {
-        // console.log( `failure status is ${response.status} ` )
         setIsLoadingHotels( false )
         setFetchError( true )
         setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
-        // console.log( fetchError )
-        // console.log('failed to load hotels due to error')
       }
       
     }
@@ -190,39 +165,6 @@ const Home = () => {
     fetchHotels()
 
   }, [ server_url ])
-
-// fetching all rooms with use memo.
-  // useMemo(() => {
-  //   const fetchHotels = async () => {
-
-  //     // setIsLoadingHotels( true )
-  //     let response = await fetch(`${ server_url }/get/fetch-all-rooms`, {
-  //       method: 'GET'
-  //     })
-
-  //     if ( response.status === 200 ) {
-  //       let data = await response.json()
-  //       setRoomsArray( data )
-  //       setIsLoadingHotels( false )
-  //       // console.log( `success status is ${response.status} ` )
-  //       // console.log( fetchError )
-  //       // console.log( `rooms Array === ${ roomsArray }` )
-
-  //     }
-  //     else {
-  //       // console.log( `failure status is ${response.status} ` )
-  //       setIsLoadingHotels( false )
-  //       setFetchError( true )
-  //       setFetchErrorMessage('Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.')
-  //       // console.log( fetchError )
-  //       // console.log('failed to load hotels due to error')
-  //     }
-      
-  //   }
-
-  //     fetchHotels()
-
-  // }, [ roomsArray, server_url ])
 
 
   // array to hold all catchy phrases.
@@ -273,7 +215,7 @@ const Home = () => {
   ]
 
 
-  // function to scroll all hotels section into view.
+  // scroll all hotels section into view.
   const ScrollAllHotelsIntoView = ( ) => {
     all_hotels_section_ref.current.scrollIntoView({
       behavior: 'smooth'
@@ -412,10 +354,6 @@ const Home = () => {
           <Col>
             <img src={ hyatt_dotcom } alt='' className='best-prices-img' />
           </Col>
-
-          {/* <Col>
-            <img src={ }
-          </Col> */}
         </Row>
       </section>
 

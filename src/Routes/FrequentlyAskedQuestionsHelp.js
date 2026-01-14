@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BsArrowDownSquare, BsArrowUpSquare } from 'react-icons/bs'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-// modules
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
 
@@ -15,8 +14,8 @@ import Footer from './Footer'
 const FrequentlyAskedQuestionsHelp = ( ) => {
 
     const navigate = useNavigate()
-
-    // making certain component always displays from top on initial render.
+    
+    // component always displays from top on initial render.
     useEffect(() => {
         window.scrollTo({
           top: 0,

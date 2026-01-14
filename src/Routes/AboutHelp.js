@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-
-// modules
 import NavbarComponent from './NavBar'
 import Footer from './Footer'
 import traveler from '../Media Files/traveler.png'
 import upcycling from '../Media Files/upcycling.png'
 import larry from '../Media Files/Team Members Images/larry.webp'
-// import larry2 from '../Media Files/Team Members Images/larry2.jpg'
 import priscilla from '../Media Files/Team Members Images/priscilla.webp'
 import nat from '../Media Files/Team Members Images/nat.avif'
 import marian from '../Media Files/Team Members Images/marian.jpg'
@@ -22,7 +19,7 @@ import aku_shika from '../Media Files/Team Members Images/aku-shika.jpg'
 
 const AboutHelp = ( ) => {
 
-    // making certain component always displays from top on initial render.
+    //component always displays from top on initial render.
     useEffect(() => {
         window.scrollTo({
             top: 0,

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -26,10 +26,9 @@ import trending_kempinski_cover from '../Media Files/trending_kempinski_cover.jp
 import trending_movenpick_cover from '../Media Files/trending_movenpick_cover.jpg';
 import trending_mensvic_cover from '../Media Files/trending_mensvic_hotel.jpg';
 
-import { UserContext } from '../App';
 
 const FetchAllRooms = () => {
-  const { server_url } = useContext(UserContext);
+  const server_url = process.env.REACT_APP_SERVER_URL;
   const navigate = useNavigate();
 
   // handling state.

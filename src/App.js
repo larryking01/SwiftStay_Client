@@ -56,7 +56,6 @@ const App = () => {
       <HashRouter>
         <UserContext.Provider
           value={{
-            server_url,
             currentUser,
             setCurrentUser,
             checkIn,

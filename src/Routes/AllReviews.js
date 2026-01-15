@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,16 +6,19 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { BsPersonFill } from 'react-icons/bs';
-// font awesome icons.
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import NavbarComponent from './NavBar';
 import Footer from './Footer';
-import { UserContext } from '../App';
+
+
+
+
 
 const Reviews = () => {
-  const { server_url } = useContext(UserContext);
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const params = useParams();
 
@@ -44,9 +47,8 @@ const Reviews = () => {
   // setting up reference.
   const reviewRef = useRef(null);
 
-  // use effect hook to fetch details of selected room.
+  // fetch details of selected room.
   useEffect(() => {
-    // async function to fetch data.
     const FetchData = async () => {
       let response = await fetch(
         `${server_url}/get/room-details/${params.hotel_name}/${params.hotel_id}`,

@@ -1,116 +1,38 @@
-import { useEffect, useState, useContext, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { BsArrowRight } from 'react-icons/bs';
+import { IoLocationSharp } from 'react-icons/io5';
+import Carousel from 'react-bootstrap/Carousel';
+
 import NavbarComponent from './NavBar';
 import ScrollToTop from '../Configuration/ScrollToTop';
-import { UserContext } from '../App';
 import Footer from './Footer';
 import background_2 from '../Media Files/Homepage Background/background_2.jpg';
-// import background_1 from '../Media Files/Homepage Background/background_1.jpg'
 import trip_dotcom from '../Media Files/trip.com_logo.png';
 import booking_dotcom from '../Media Files/booking.com_logo.png';
 import hyatt_dotcom from '../Media Files/hyatt.com_logo.jpg';
 import hotels_dotcom from '../Media Files/hotels.com_logo.jpg';
-import { BsArrowRight } from 'react-icons/bs';
-import { IoLocationSharp } from 'react-icons/io5';
-import Carousel from 'react-bootstrap/Carousel';
 import Rating from '@mui/material/Rating';
 import StartDatePicker from '../Configuration/StartDatePicker.js';
 import EndDatePicker from '../Configuration/EndDatePicker.js';
 
-// hotel cover photos
-import movenpick_cover_photo from '../Media Files/Hotel Cover Pages/movempick_cover_photo.jpg';
-import kempinski_cover_photo from '../Media Files/Hotel Cover Pages/kempinski_hotel_cover.jpg';
-import la_villa_boutique_cover_photo from '../Media Files/Hotel Cover Pages/la_villa_hotel_cover.jpg';
-import villa_monticello_cover_photo from '../Media Files/Hotel Cover Pages/villa_monticello_hotel_cover.jpg';
-import marriott_cover_photo from '../Media Files/Hotel Cover Pages/marriott_hotel_cover.jpg';
-import number_one_cover_photo from '../Media Files/Hotel Cover Pages/oxford_street_hotel_cover.jpg';
-import holiday_inn_cover_photo from '../Media Files/Hotel Cover Pages/holiday_inn_hotel_cover.jpg';
-import labadi_beach_cover_photo from '../Media Files/Hotel Cover Pages/labadi_beach_hotel_cover.webp';
+import AllHotelsArray from '../data/hotelsData.js';
+import rooms_and_suites_pictures_array from '../data/roomsAndSuitesData.js';
+import restaurants_pictures_array from '../data/restaurantsData.js';
+import catchPhrasesArray from '../data/catchPhrasesData.js';
+import meeting_room_pictures_array from '../data/meetingRoomData.js';
 
-// for rooms and suites
-import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp';
-import rooms_and_suites_2 from '../Media Files/Rooms And Suites/rooms_and_suites_2.jpg';
-import rooms_and_suites_3 from '../Media Files/Rooms And Suites/rooms_and_suites_3.jpg';
-import rooms_and_suites_4 from '../Media Files/Rooms And Suites/rooms_and_suites_4.webp';
 
-// for restaurant images.
-import restaurant_image1 from '../Media Files/Restaurants Images/restaurant_image1.jpg';
-import restaurant_image2 from '../Media Files/Restaurants Images/restaurant_image2.webp';
-import restaurant_image3 from '../Media Files/Restaurants Images/restaurant_image3.jpg';
-import restaurant_image4 from '../Media Files/Restaurants Images/restaurant_image4.jpg';
 
-// for meeting room images
-import meeting_room_image1 from '../Media Files/Meeting Room Images/meeting_room_image1.jpg';
-import meeting_room_image2 from '../Media Files/Meeting Room Images/meeting_room_image2.jpg';
-import meeting_room_image3 from '../Media Files/Meeting Room Images/meeting_room_image3.webp';
-import meeting_room_image4 from '../Media Files/Meeting Room Images/meeting_room_image4.jpg';
+
 
 const Home = () => {
-  // all hotels details array local
-  let AllHotelsArray = [
-    {
-      _id: '63b5934412ae5b2e87f8570c',
-      room_number: 'Movenpick Ambassador Hotel, Accra',
-      room_cover_photo_url: movenpick_cover_photo,
-      room_rate: 5348,
-      room_rating: 4,
-    },
-    {
-      _id: '63b33e0f76cb62893faa578e',
-      room_number: 'Kempinski Hotel Gold Coast City, Accra',
-      room_cover_photo_url: kempinski_cover_photo,
-      room_rate: 5085,
-      room_rating: 4,
-    },
-    {
-      _id: '63b5935912ae5b2e87f8570e',
-      room_number: 'La Villa Boutique Hotel, Accra',
-      room_cover_photo_url: la_villa_boutique_cover_photo,
-      room_rate: 3320,
-      room_rating: 3,
-    },
-    {
-      _id: '640729815f7b99d9a9cc8c1b',
-      room_number: 'Holiday Inn Airport Hotel, Accra',
-      room_cover_photo_url: holiday_inn_cover_photo,
-      room_rate: 2954,
-      room_rating: 4,
-    },
-    {
-      _id: '63b5936f12ae5b2e87f85710',
-      room_number: 'Villa Monticello Boutique Hotel, Accra',
-      room_cover_photo_url: villa_monticello_cover_photo,
-      room_rate: 3526,
-      room_rating: 3,
-    },
-    {
-      _id: '63fcb2ce31251dbf79c2caac',
-      room_number: 'Accra Marriott Hotel Airport, Accra',
-      room_cover_photo_url: marriott_cover_photo,
-      room_rate: 7315,
-      room_rating: 5,
-    },
-    {
-      _id: '64072c225f7b99d9a9cc8c1f',
-      room_number: 'Number One Oxford Street Hotel & Suites, Osu',
-      room_cover_photo_url: number_one_cover_photo,
-      room_rate: 3753,
-      room_rating: 4,
-    },
-    {
-      _id: '64072d315f7b99d9a9cc8c23',
-      room_number: 'Labadi Beach Hotel & Resort, Accra',
-      room_cover_photo_url: labadi_beach_cover_photo,
-      room_rate: 4116,
-      room_rating: 4,
-    },
-  ];
 
-  const { server_url } = useContext(UserContext);
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const all_hotels_section_ref = useRef(null);
 
@@ -152,45 +74,16 @@ const Home = () => {
     fetchHotels();
   }, [server_url]);
 
-  // array to hold all catchy phrases.
-  let catchPhrasesArray = [
-    'Check-in to comfort, check-out with memories. Your next unforgettable stay awaits,',
-    'Step into luxury, book your stay today – where comfort meets elegance, and every stay is a dream come true!',
-    "Two words, 'endless comfort !'. Embrace the extraordinary at SwiftStay, where every reservation is a journey of delight.",
-    'A world of luxury awaits behind our double doors. Secure your stay and indulge our elegance.',
-    'Welcome to a symphony of comfort and style. Your key to an unforgettable stay is just a click away – book now at SwiftStay.',
-  ];
 
-  // array to hold pictures for rooms and suites.
-  let rooms_and_suites_pictures_array = [
-    { src: rooms_and_suites_1 },
-    { src: rooms_and_suites_2 },
-    { src: rooms_and_suites_3 },
-    { src: rooms_and_suites_4 },
-  ];
 
-  // array to hold pictures for restaurants.
-  let restaurants_pictures_array = [
-    { src: restaurant_image1 },
-    { src: restaurant_image2 },
-    { src: restaurant_image3 },
-    { src: restaurant_image4 },
-  ];
 
-  // array to hold pictures for meeting room
-  let meeting_room_pictures_array = [
-    { src: meeting_room_image1 },
-    { src: meeting_room_image2 },
-    { src: meeting_room_image3 },
-    { src: meeting_room_image4 },
-  ];
 
   // special deals pictures array.
   let special_deals_pictures_array = [
-    { src: meeting_room_image1 },
-    { src: rooms_and_suites_2 },
-    { src: restaurant_image3 },
-    { src: meeting_room_image4 },
+    { src: meeting_room_pictures_array[0].src },
+    { src: rooms_and_suites_pictures_array[1].src },
+    { src: restaurants_pictures_array[2].src },
+    { src: meeting_room_pictures_array[3].src },
   ];
 
   // scroll all hotels section into view.

@@ -16,8 +16,6 @@ import { FaCcMastercard } from 'react-icons/fa';
 import { FaCcPaypal } from 'react-icons/fa';
 import { BsPersonFill } from 'react-icons/bs';
 import { BiMinus, BiPlus } from 'react-icons/bi';
-
-// font awesome icons.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,12 +25,15 @@ import NavbarComponent from './NavBar';
 import Footer from './Footer';
 import StartDatePicker from '../Configuration/StartDatePicker';
 import EndDatePicker from '../Configuration/EndDatePicker';
-// import Maps from '../Configuration/Maps'
 import Maps2 from '../Configuration/Maps2';
-// import rooms_and_suites_1 from '../Media Files/Rooms And Suites/rooms_and_suites_1.webp'
+
+
+
+
+
 
 const GetRoomDetails = () => {
-  const { server_url } = useContext(UserContext);
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const params = useParams();
   let booking_room_id = params.hotel_id;

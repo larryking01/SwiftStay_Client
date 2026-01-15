@@ -16,9 +16,9 @@ import ScrollToTop from '../Configuration/ScrollToTop';
 
 const BookHotel = () => {
   const params = useParams();
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   const {
-    server_url,
     startDateValue,
     setStartDateValue,
     endDateValue,

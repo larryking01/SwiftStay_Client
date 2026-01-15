@@ -13,9 +13,16 @@ const maps_center = {
   lng: -0.171879,
 };
 
+
+
+
+
 const Maps = () => {
+
+  const googleMapsAPIKEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
   return (
-    <LoadScript googleMapsApiKey="AIzaSyD9PYNRBguf86JNhplo75DhSibdbjcQhPE">
+    <LoadScript googleMapsApiKey={ googleMapsAPIKEY }>
       <GoogleMap
         center={maps_center}
         zoom={14}

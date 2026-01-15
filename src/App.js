@@ -22,11 +22,11 @@ import Reviews from './Routes/AllReviews';
 import PaymentSuccess from './Routes/PaymentSuccess';
 import PaymentCanceled from './Routes/PaymentCanceled';
 
-// context variable to handle user state.
+// handle user state.
 const UserContext = createContext(null);
 
 const App = () => {
-  const server_url = 'https://hotel-finder-app-server-rest.onrender.com';
+  const server_url = process.env.REACT_APP_SERVER_URL;
 
   // managing state
   const [currentUser, setCurrentUser] = useState(null);

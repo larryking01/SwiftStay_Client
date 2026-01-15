@@ -2,12 +2,12 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDX7KBsp8rj8oBiZ_pTQcXMPcQUl86a-rA',
-  authDomain: 'hotel-finder-app-f7c2d.firebaseapp.com',
-  projectId: 'hotel-finder-app-f7c2d',
-  storageBucket: 'hotel-finder-app-f7c2d.appspot.com',
-  messagingSenderId: '570987603740',
-  appId: '1:570987603740:web:990871ea6db16c43527cd9',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // initializing firebase app

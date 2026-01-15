@@ -1,11 +1,19 @@
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import { useMemo } from 'react';
 
+
+
+
+
+
+
+
 const Maps2 = ({ selectedRoomLatitude, selectedRoomLongitude }) => {
   let map_center = { lat: selectedRoomLatitude, lng: selectedRoomLongitude };
+  const googleMapsAPIKEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyD9PYNRBguf86JNhplo75DhSibdbjcQhPE',
+    googleMapsApiKey: googleMapsAPIKEY,
   });
 
   const center = useMemo(() => map_center, []);

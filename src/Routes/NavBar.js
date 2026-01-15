@@ -2,15 +2,14 @@ import { useContext } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import appNamesArray from '../data/appNames';
 
 // modules
 import { firebaseAuth } from '../Configuration/Firebase';
 import { UserContext } from '../App';
 
 const NavbarComponent = () => {
-  // website brand name.
-  // SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
-  const brand_name = 'SwiftStay';
+  const brand_name = appNamesArray[0];
 
   const navigate = useNavigate();
 

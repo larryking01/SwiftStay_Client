@@ -14,14 +14,11 @@ import { AiOutlineMail } from 'react-icons/ai';
 
 import { UserContext } from '../App';
 import { firebaseAuth } from '../Configuration/Firebase';
+import appNamesArray from '../data/appNames';
 
 const SignUp = () => {
-  // website brand name.
-  // SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
-  const brand_name = 'SwiftStay';
-
+  const brand_name = appNamesArray[0];
   const navigate = useNavigate();
-
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
   // handling sign up user detail state.

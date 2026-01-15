@@ -11,8 +11,10 @@ import { AiOutlineMail } from 'react-icons/ai';
 // modules
 import { firebaseAuth } from '../Configuration/Firebase';
 import { UserContext } from '../App';
+import appNamesArray from '../data/appNames';
 
 const Login = () => {
+  const brand_name = appNamesArray[0];
   const navigate = useNavigate();
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -122,9 +124,6 @@ const Login = () => {
     });
   }, []);
 
-  // website brand name.
-  // SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
-  const brand_name = 'SwiftStay';
 
   return (
     <div className="log-in-wrapper">

@@ -1,335 +1,356 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import InputGroup from 'react-bootstrap/InputGroup'
-import { BsFacebook, BsApple, BsGoogle, BsFillEyeSlashFill, BsFillEyeFill, BsFillPersonFill } from 'react-icons/bs'
-import { AiOutlineMail } from 'react-icons/ai'
+import { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import InputGroup from 'react-bootstrap/InputGroup';
+import {
+  BsFillEyeSlashFill,
+  BsFillEyeFill,
+  BsFillPersonFill,
+} from 'react-icons/bs';
+import { AiOutlineMail } from 'react-icons/ai';
 
-// modules
-import { UserContext } from '../App'
-import { firebaseAuth } from '../Configuration/Firebase'
-
-
-
-
-
-
-
-
-const SignUp = ( ) => {
-
-// website brand name.
-// SwiftStay, BookHaven, Coast Hotels, SnapStay, RoomRover
-const brand_name = 'SwiftStay'
-
-
-const navigate = useNavigate()
-
-const { currentUser, setCurrentUser } = useContext( UserContext )
-
-
-// handling sign up user detail state.
-const [ signUpEmail, setSignUpEmail ] = useState('')
-const [ signUpFirstName, setSignUpFirstName ] = useState('')
-const [ signUpLastName, setSignUpLastName ] = useState('')
-const [ signUpPassword, setSignUpPassword ] = useState('')
-const [ signUpConfirmPassword, setSignUpConfirmPassword ] = useState('')
-
-
-// handling user input errors.
-const [ firstNameErrorExists, setFirstNameErrorExists ] = useState( false )
-const [ lastNameErrorExists, setLastNameErrorExists ] = useState( false )
-const [ emailErrorExists, setEmailErrorExists ] = useState( false )
-const [ passwordErrorExists, setPasswordErrorExists ] = useState( false )
-const [ confirmPasswordErrorExists, setConfirmPasswordErrorExists ] = useState( false )
-
-const [ firstNameErrorMessage, setFirstNameErrorMessage ] = useState( null )
-const [ lastNameErrorMessage, setLastNameErrorMessage ] = useState( null )
-const [ emailErrorMessage, setEmailErrorMessage ] = useState( null )
-const [ passwordErrorMessage, setPasswordErrorMessage ] = useState( null )
-const [ confirmPasswordErrorMessage, setConfirmPasswordErrorMessage ] = useState( null )
-
-const [ passwordVisible, setPasswordVisible ] = useState( false )
-const [ confirmPasswordVisible, setConfirmPasswordVisible ] = useState( false )
-
-const [ otherError, setOtherError ] = useState( null ) 
-
-
-// updating state values.
-const UpdateSignUpFirstName = ( event ) => {
-    setFirstNameErrorExists( false )
-    setSignUpFirstName( event.target.value.trim() )
-}
-
-const UpdateSignUpLastName = ( event ) => {
-    setLastNameErrorExists( false )
-    setSignUpLastName( event.target.value.trim() )
-}
-
-const UpdateSignUpEmail = ( event ) => {
-    setEmailErrorExists( false )
-    setSignUpEmail( event.target.value.trim() )
-}
-
-
-const UpdateSignUpPassword = ( event ) => {
-    setPasswordErrorExists( false )
-    setSignUpPassword( event.target.value )
-}
-
-const UpdateSignUpConfirmPassword = ( event ) => {
-    setConfirmPasswordErrorExists( false )
-    setSignUpConfirmPassword( event.target.value )
-
-}
-
-
-const TogglePasswordVisible = ( ) => {
-    setPasswordVisible( !passwordVisible )
-}
-
-const ToggleConfirmPasswordVisible = ( ) => {
-    setConfirmPasswordVisible( !confirmPasswordVisible )
-}
+import { UserContext } from '../App';
+import appNamesArray from '../data/appNames';
 
 
 
 
-// function to create user with email and password.
-const CreateNewUser = async ( ) => {
 
-    try {            
-        // resetting all error states
-        setFirstNameErrorExists( false )
-        setLastNameErrorExists( false )
-        setEmailErrorExists( false )
-        setPasswordErrorExists( false )
-        setConfirmPasswordErrorExists( false )
-        setOtherError( null )
+const SignUp = () => {
+  const brand_name = appNamesArray[0];
+  const navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
-        // ensuring form does not submit if any required field is empty. ( step 1 )
-        if ( signUpEmail.length < 1 || signUpFirstName.length < 1 || signUpLastName.length < 1 || signUpPassword.length < 1 || signUpConfirmPassword.length < 1 ) {
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-            if( signUpFirstName.length < 1 ) {
-                setFirstNameErrorExists( true )
-                setFirstNameErrorMessage('This field cannot be empty *')
-            } 
-            else { setFirstNameErrorExists( false ) }
+  // handling user input errors.
+  const [firstNameErrorExists, setFirstNameErrorExists] = useState(false);
+  const [lastNameErrorExists, setLastNameErrorExists] = useState(false);
+  const [emailErrorExists, setEmailErrorExists] = useState(false);
+  const [passwordErrorExists, setPasswordErrorExists] = useState(false);
+  const [confirmPasswordErrorExists, setConfirmPasswordErrorExists] =
+    useState(false);
 
-            if( signUpLastName.length < 1 ) {
-                setLastNameErrorExists( true )
-                setLastNameErrorMessage('This field cannot be empty *')
-            } 
-            else {  setLastNameErrorExists( false )}
+  const [firstNameErrorMessage, setFirstNameErrorMessage] = useState(null);
+  const [lastNameErrorMessage, setLastNameErrorMessage] = useState(null);
+  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
+  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
+    useState(null);
 
-            if( signUpEmail.length < 1 ) {
-                setEmailErrorExists( true )
-                setEmailErrorMessage('This field cannot be empty *')
-            } 
-            else { setEmailErrorExists( false) }
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-            if( signUpPassword.length < 1 ) {
-                setPasswordErrorExists( true )
-                setPasswordErrorMessage('This field cannot be empty *')
-            } 
-            else { setPasswordErrorExists( false ) }
+  const [otherError, setOtherError] = useState(null);
 
-            if( signUpConfirmPassword.length < 1 ) {
-                setConfirmPasswordErrorExists( true )
-                setConfirmPasswordErrorMessage('This field cannot be empty *')
-            } 
-            else { setConfirmPasswordErrorExists( false )}
-
-        }
-        // making sure of matching passwords ( step 2 )
-        else if ( signUpPassword !== signUpConfirmPassword ) {
-            setPasswordErrorExists( true )
-            setConfirmPasswordErrorExists( true )
-            setPasswordErrorMessage('Passwords do not match')
-            setConfirmPasswordErrorMessage('Passwords do not match')
-        }
-        // actually creating a new user if checks are passed ( step 3 )
-        else if ( signUpPassword === signUpConfirmPassword ) {
-            console.log('checks passed')
-            let existingUser = firebaseAuth.currentUser
-            if( !existingUser ) {
-                let userCredentials = await firebaseAuth.createUserWithEmailAndPassword( signUpEmail, signUpPassword )
-                if( userCredentials ) {
-                    let userProfile = firebaseAuth.currentUser
-                    let user = {
-                        email: userCredentials.user.email,
-                        photoUrl: userCredentials.user.photoURL,
-                        displayName: signUpFirstName
-                    }
-                userProfile.updateProfile( user )
-                setCurrentUser( user )
-                console.log('user created.') 
-                navigate('/')
-            }
-        } 
-        else {
-            throw new Error('a user is already logged in..')
-        }
-
-    }
-
-    else {
-        // do nothing
-    }
-
-}
-    catch( error ) {
-        switch( error.code ) {
-            case 'auth/network-request-failed':
-                setOtherError('Sorry, your account could not be created due to a poor internet connection. Try again when you have a stable network.')
-                throw new Error( error.message )
-            case 'auth/invalid-email':
-                setOtherError('Your email is invalid. Please enter a valid email and try again')
-                throw new Error('Your email is invalid. Please enter a valid email and try again')
-            default:
-                setOtherError( error.message )
-                throw new Error(`${ error.message }`)
-        }    
-    }
-
-}
-
-
-
-// making certain component always displays from top on initial render.
-    useEffect(() => {
+  // component always displays from top on initial render.
+  useEffect(() => {
     window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-        })
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, []);
 
-    }, [ ])
+  // updating state values.
+  const UpdatefirstName = (event) => {
+    setFirstNameErrorExists(false);
+    setFirstName(event.target.value.trim());
+  };
 
+  const UpdatelastName = (event) => {
+    setLastNameErrorExists(false);
+    setLastName(event.target.value.trim());
+  };
 
+  const UpdateEmail = (event) => {
+    setEmailErrorExists(false);
+    setEmail(event.target.value.trim());
+  };
 
-    return (
+  const UpdatePassword = (event) => {
+    setPasswordErrorExists(false);
+    setPassword(event.target.value);
+  };
 
-        <div className='sign-up-wrapper'>
-            <section>
-                {/* <img className='log-in-brand-logo' onClick={() => navigate('/')} /> */}
-                <h3 className='log-in-brand-logo' onClick={() => navigate('/')}>{ brand_name }</h3>
-            </section>
+  const UpdateConfirmPassword = (event) => {
+    setConfirmPasswordErrorExists(false);
+    setConfirmPassword(event.target.value);
+  };
 
-            <section className='create-account-section'>
-                <h4 className='sign-up-header-text'>Create an account</h4>
-                <p className='other-error-text'>{ otherError ? otherError : null }</p>
-                <h4 className='sign-up-header-text mb-5'>
-                    { currentUser ? currentUser.email : '' }
-                </h4>
-            </section>
+  const TogglePasswordVisible = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
-            <section className='sign-up-form'>
-                <Form>
-                    <Row md={ 2 } xs={ 1 } sm={ 1 }>
-                        <Col>
-                            <div className='input-group-margin'>
-                                <Form.Text>{ firstNameErrorExists ? firstNameErrorMessage : 'First name *'}</Form.Text>
-                                <InputGroup className={ firstNameErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control className='signup-control-focus-style' type='text' placeholder='' onChange={ UpdateSignUpFirstName } value={ signUpFirstName } />
-                                    <InputGroup.Text>{ <BsFillPersonFill /> }</InputGroup.Text>
-                                </InputGroup>
-                            </div>
-                        </Col>
+  const ToggleConfirmPasswordVisible = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible);
+  };
 
-                        <Col>
-                            <div className='input-group-margin'>
-                                <Form.Text>{ lastNameErrorExists ? lastNameErrorMessage : 'Last name *'}</Form.Text>
-                                <InputGroup className={ lastNameErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control className='signup-control-focus-style' type='text' placeholder='' onChange={ UpdateSignUpLastName } value={ signUpLastName } />
-                                    <InputGroup.Text>{ <BsFillPersonFill /> }</InputGroup.Text>
-                                </InputGroup>
-                            </div>
-                        </Col>
-                    </Row>
+  const CreateNewUser = async () => {
+    try {
+      setFirstNameErrorExists(false);
+      setLastNameErrorExists(false);
+      setEmailErrorExists(false);
+      setPasswordErrorExists(false);
+      setConfirmPasswordErrorExists(false);
+      setOtherError(null);
 
+      if (
+        email.length < 1 ||
+        firstName.length < 1 ||
+        lastName.length < 1 ||
+        password.length < 1 ||
+        confirmPassword.length < 1
+      ) {
+        if (firstName.length < 1) {
+          setFirstNameErrorExists(true);
+          setFirstNameErrorMessage('First name is required *');
+        } else {
+          setFirstNameErrorExists(false);
+        }
 
-                    <Row md={ 2 } xs={ 1 } sm={ 1 }>
-                        <Col>
-                            <div className='input-group-margin'>
-                                <Form.Text>{ emailErrorExists ? emailErrorMessage : 'Email *'}</Form.Text>
-                                <InputGroup className={ emailErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control className='signup-control-focus-style' type='email' placeholder='' onChange={ UpdateSignUpEmail } value={ signUpEmail } />
-                                    <InputGroup.Text>{ <AiOutlineMail /> }</InputGroup.Text>
-                                </InputGroup>
-                            </div>
-                        </Col>
+        if (lastName.length < 1) {
+          setLastNameErrorExists(true);
+          setLastNameErrorMessage('Last name is required *');
+        } else {
+          setLastNameErrorExists(false);
+        }
 
-                        <Col>
-                            <div className='input-group-margin'>
-                                <Form.Text>{ passwordErrorExists ? passwordErrorMessage : 'Password *'}</Form.Text>
-                                <InputGroup className={ passwordErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control className='signup-control-focus-style' type={ passwordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpPassword } value={ signUpPassword } />
-                                    <InputGroup.Text className='input-group-text' onClick={ TogglePasswordVisible }>{ passwordVisible ? <BsFillEyeFill /> : <BsFillEyeSlashFill /> }</InputGroup.Text>
-                                </InputGroup>
-                            </div>
-                        </Col>
+        if (email.length < 1) {
+          setEmailErrorExists(true);
+          setEmailErrorMessage('E-mail is required *');
+        } else {
+          setEmailErrorExists(false);
+        }
 
-                    </Row>
+        if (password.length < 1) {
+          setPasswordErrorExists(true);
+          setPasswordErrorMessage('Password is required *');
+        } else {
+          setPasswordErrorExists(false);
+        }
 
-
-                    <Row md={ 2 } xs={ 1 } sm={ 1 }>
-                        <Col>
-                            <div className='input-group-margin'>
-                                <Form.Text>{ confirmPasswordErrorExists ? confirmPasswordErrorMessage : 'Confirm password *'}</Form.Text>
-                                <InputGroup className={ confirmPasswordErrorExists ? 'input-group-error' : 'input-group-style' }>
-                                    <Form.Control className='signup-control-focus-style' type={ confirmPasswordVisible ? 'text' : 'password' } placeholder='' onChange={ UpdateSignUpConfirmPassword }  value={ signUpConfirmPassword } />
-                                    <InputGroup.Text className='input-group-text' onClick={ ToggleConfirmPasswordVisible }>{ confirmPasswordVisible ? <BsFillEyeFill/> : <BsFillEyeSlashFill /> }</InputGroup.Text>
-                                </InputGroup>
-                            </div>
-                        </Col>
-
-                        <Col>
-                            <div className='input-group-margin'>
-                                <Form.Text>Create your account now *</Form.Text>
-                                <Button variant='custom' className='sign-up-btn' onClick={ CreateNewUser }>Create account</Button>
-                            </div>
-                        </Col>
-
-                    </Row>
-
-                    <section>
-                        <Row>
-                            <p className='sign-up-already-account-text'>Already have an account? <span className='sign-in-span' onClick={ () => navigate('/login')}>Sign in</span></p>
-                            {/* <p className='sign-up-continue-with-text'>Or continue with</p> */}
-                        </Row>
-
-                        {/* <Row className='mb-5'>
-                            <Col>
-                                <BsGoogle className='alt-sign-up-icon' size={ 19 } />
-                            </Col>
-
-                            <Col>
-                                <BsApple className='alt-sign-up-icon' size={ 19 } />
-                            </Col>
-
-                            <Col>
-                                <BsFacebook className='alt-sign-up-icon' size={ 19 } />
-                            </Col>
-                        </Row> */}
-
-                        <Row className='mb-3'>
-                            <p className='sign-up-tnc-text'>By signing up, I agree to the <span className='tnc-span'>Terms and Conditions</span> and <span className='tnc-span'>Privacy Statement</span></p>
-                        </Row>
-
-                    </section>
-
-                </Form>
-
-            </section>
-        </div>
-    )
-
-}
+        if (confirmPassword.length < 1) {
+          setConfirmPasswordErrorExists(true);
+          setConfirmPasswordErrorMessage('Password confirmation is required *');
+        } else {
+          setConfirmPasswordErrorExists(false);
+        }
+      } else if (password !== confirmPassword) {
+        setPasswordErrorExists(true);
+        setConfirmPasswordErrorExists(true);
+        setPasswordErrorMessage('Passwords do not match');
+        setConfirmPasswordErrorMessage('Passwords do not match');
+      } else if (password === confirmPassword) {
+        // if (!existingUser) {
+        //   let newUser = {
+        //     firstName: firstName,
+        //     lastName: lastName,
+        //     email: email,
+        //     password: password,
+        //   }
+          // make api call to create user
+          // console.log("new user data", newUser);
+        // } else {
+          // alert('A user is already logged in. Please log out before creating a new account.');
+          // throw new Error('a user is already logged in..');
+        // }
+      }
+    } catch (error) {
+      // handle errors appropriately
+    }
+  };
 
 
+  return (
+    <div className="sign-up-wrapper">
+      <section>
+        <h3 className="log-in-brand-logo" onClick={() => navigate('/')}>
+          {brand_name}
+        </h3>
+      </section>
 
-export default SignUp
+      <section className="create-account-section">
+        <h4 className="sign-up-header-text">Create an account</h4>
+        <p className="other-error-text">{otherError ? otherError : null}</p>
+        <h4 className="sign-up-header-text mb-5">
+          {currentUser ? currentUser.email : ''}
+        </h4>
+      </section>
+
+      <section className="sign-up-form">
+        <Form>
+          <Row md={2} xs={1} sm={1}>
+            <Col>
+              <div className="input-group-margin">
+                <InputGroup
+                  className={
+                    firstNameErrorExists
+                      ? 'input-group-error'
+                      : 'input-group-style'
+                  }
+                >
+                  <Form.Control
+                    className="signup-control-focus-style"
+                    type="text"
+                    placeholder="First name *"
+                    onChange={UpdatefirstName}
+                    value={firstName}
+                  />
+                  <InputGroup.Text>{<BsFillPersonFill />}</InputGroup.Text>
+                </InputGroup>
+              </div>
+            </Col>
+
+            <Col>
+              <div className="input-group-margin">
+                <InputGroup
+                  className={
+                    lastNameErrorExists
+                      ? 'input-group-error'
+                      : 'input-group-style'
+                  }
+                >
+                  <Form.Control
+                    className="signup-control-focus-style"
+                    type="text"
+                    placeholder="Last name *"
+                    onChange={UpdatelastName}
+                    value={lastName}
+                  />
+                  <InputGroup.Text>{<BsFillPersonFill />}</InputGroup.Text>
+                </InputGroup>
+              </div>
+            </Col>
+          </Row>
+
+          <Row md={2} xs={1} sm={1}>
+            <Col>
+              <div className="input-group-margin">
+                <InputGroup
+                  className={
+                    emailErrorExists ? 'input-group-error' : 'input-group-style'
+                  }
+                >
+                  <Form.Control
+                    className="signup-control-focus-style"
+                    type="email"
+                    placeholder="E-mail *"
+                    onChange={UpdateEmail}
+                    value={email}
+                  />
+                  <InputGroup.Text>{<AiOutlineMail />}</InputGroup.Text>
+                </InputGroup>
+              </div>
+            </Col>
+
+            <Col>
+              <div className="input-group-margin">
+                <InputGroup
+                  className={
+                    passwordErrorExists
+                      ? 'input-group-error'
+                      : 'input-group-style'
+                  }
+                >
+                  <Form.Control
+                    className="signup-control-focus-style"
+                    type={passwordVisible ? 'text' : 'password'}
+                    placeholder="Password *"
+                    onChange={UpdatePassword}
+                    value={password}
+                  />
+                  <InputGroup.Text
+                    className="input-group-text"
+                    onClick={TogglePasswordVisible}
+                  >
+                    {passwordVisible ? (
+                      <BsFillEyeFill />
+                    ) : (
+                      <BsFillEyeSlashFill />
+                    )}
+                  </InputGroup.Text>
+                </InputGroup>
+              </div>
+            </Col>
+          </Row>
+
+          <Row md={2} xs={1} sm={1}>
+            <Col>
+              <div className="input-group-margin">
+                <InputGroup
+                  className={
+                    confirmPasswordErrorExists
+                      ? 'input-group-error'
+                      : 'input-group-style'
+                  }
+                >
+                  <Form.Control
+                    className="signup-control-focus-style"
+                    type={confirmPasswordVisible ? 'text' : 'password'}
+                    placeholder="Confirm password *"
+                    onChange={UpdateConfirmPassword}
+                    value={confirmPassword}
+                  />
+                  <InputGroup.Text
+                    className="input-group-text"
+                    onClick={ToggleConfirmPasswordVisible}
+                  >
+                    {confirmPasswordVisible ? (
+                      <BsFillEyeFill />
+                    ) : (
+                      <BsFillEyeSlashFill />
+                    )}
+                  </InputGroup.Text>
+                </InputGroup>
+              </div>
+            </Col>
+
+            <Col>
+              <div className="input-group-margin">
+                <Button
+                  variant="custom"
+                  className="sign-up-btn"
+                  onClick={CreateNewUser}
+                >
+                  Create account
+                </Button>
+              </div>
+            </Col>
+          </Row>
+
+          <section>
+            <Row>
+              <p className="sign-up-already-account-text">
+                Already have an account?{' '}
+                <span
+                  className="sign-in-span"
+                  onClick={() => navigate('/login')}
+                >
+                  Sign in
+                </span>
+              </p>
+            </Row>
+
+            <Row className="mb-3">
+              <p className="sign-up-tnc-text">
+                By signing up, I agree to the{' '}
+                <span className="tnc-span">Terms and Conditions</span> and{' '}
+                <span className="tnc-span">Privacy Statement</span>
+              </p>
+            </Row>
+          </section>
+        </Form>
+      </section>
+    </div>
+  );
+};
+
+export default SignUp;

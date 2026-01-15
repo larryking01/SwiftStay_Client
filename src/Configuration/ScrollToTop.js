@@ -3,10 +3,8 @@ import Button from 'react-bootstrap/Button';
 import { RxDoubleArrowUp } from 'react-icons/rx';
 
 const ScrollToTop = () => {
-  // handling button visibility state.
   const [showToTopButton, setShowToTopButton] = useState(false);
 
-  // effect to track button visibility state.
   useEffect(() => {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 700) {
@@ -17,7 +15,7 @@ const ScrollToTop = () => {
     });
   }, []);
 
-  // function to scroll to top of page.
+
   const ScrollToPageTopFunc = () => {
     return window.scrollTo({
       top: 0,

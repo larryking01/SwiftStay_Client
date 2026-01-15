@@ -6,17 +6,15 @@ import TextField from '@mui/material/TextField';
 import { UserContext } from '../App';
 
 const StartDatePicker = () => {
-  // destructuring values from context
+  // destructure values from context
   const { startDateValue, setStartDateValue, setStartDateMilliseconds } =
     useContext(UserContext);
 
-  // effect hook to store start date value in local storage
   useEffect(() => {
     window.localStorage.setItem(
       'startDateValue',
       JSON.stringify(startDateValue)
     );
-    // console.log(`local storage start date value = ${ startDateValue }`)
   }, [startDateValue]);
 
   return (
@@ -28,8 +26,6 @@ const StartDatePicker = () => {
           if (newValue !== null) {
             const date = newValue._d;
             setStartDateMilliseconds(date);
-            // console.log( `newValue._d = ${ date }` )
-
             const day = date.getDate();
             let stringDay = day.toString();
             if (stringDay.length < 2) {
@@ -46,7 +42,6 @@ const StartDatePicker = () => {
             let stringYear = year.toString();
 
             let finalDate = stringMonth + '/' + stringDay + '/' + stringYear;
-            // console.log(`final date = ${ finalDate }`)
             setStartDateValue(finalDate);
           }
         }}

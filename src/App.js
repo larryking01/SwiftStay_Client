@@ -26,9 +26,7 @@ import PaymentCanceled from './Routes/PaymentCanceled';
 const UserContext = createContext(null);
 
 const App = () => {
-  const server_url = process.env.REACT_APP_SERVER_URL;
 
-  // managing state
   const [currentUser, setCurrentUser] = useState(null);
   const [startDateValue, setStartDateValue] = useState(null);
   const [endDateValue, setEndDateValue] = useState(null);

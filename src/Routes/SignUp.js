@@ -13,20 +13,22 @@ import {
 import { AiOutlineMail } from 'react-icons/ai';
 
 import { UserContext } from '../App';
-import { firebaseAuth } from '../Configuration/Firebase';
 import appNamesArray from '../data/appNames';
+
+
+
+
 
 const SignUp = () => {
   const brand_name = appNamesArray[0];
   const navigate = useNavigate();
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
-  // handling sign up user detail state.
-  const [signUpEmail, setSignUpEmail] = useState('');
-  const [signUpFirstName, setSignUpFirstName] = useState('');
-  const [signUpLastName, setSignUpLastName] = useState('');
-  const [signUpPassword, setSignUpPassword] = useState('');
-  const [signUpConfirmPassword, setSignUpConfirmPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   // handling user input errors.
   const [firstNameErrorExists, setFirstNameErrorExists] = useState(false);
@@ -48,30 +50,39 @@ const SignUp = () => {
 
   const [otherError, setOtherError] = useState(null);
 
+  // component always displays from top on initial render.
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   // updating state values.
-  const UpdateSignUpFirstName = (event) => {
+  const UpdatefirstName = (event) => {
     setFirstNameErrorExists(false);
-    setSignUpFirstName(event.target.value.trim());
+    setFirstName(event.target.value.trim());
   };
 
-  const UpdateSignUpLastName = (event) => {
+  const UpdatelastName = (event) => {
     setLastNameErrorExists(false);
-    setSignUpLastName(event.target.value.trim());
+    setLastName(event.target.value.trim());
   };
 
-  const UpdateSignUpEmail = (event) => {
+  const UpdateEmail = (event) => {
     setEmailErrorExists(false);
-    setSignUpEmail(event.target.value.trim());
+    setEmail(event.target.value.trim());
   };
 
-  const UpdateSignUpPassword = (event) => {
+  const UpdatePassword = (event) => {
     setPasswordErrorExists(false);
-    setSignUpPassword(event.target.value);
+    setPassword(event.target.value);
   };
 
-  const UpdateSignUpConfirmPassword = (event) => {
+  const UpdateConfirmPassword = (event) => {
     setConfirmPasswordErrorExists(false);
-    setSignUpConfirmPassword(event.target.value);
+    setConfirmPassword(event.target.value);
   };
 
   const TogglePasswordVisible = () => {
@@ -82,7 +93,6 @@ const SignUp = () => {
     setConfirmPasswordVisible(!confirmPasswordVisible);
   };
 
-  // function to create user with email and password.
   const CreateNewUser = async () => {
     try {
       setFirstNameErrorExists(false);
@@ -93,105 +103,71 @@ const SignUp = () => {
       setOtherError(null);
 
       if (
-        signUpEmail.length < 1 ||
-        signUpFirstName.length < 1 ||
-        signUpLastName.length < 1 ||
-        signUpPassword.length < 1 ||
-        signUpConfirmPassword.length < 1
+        email.length < 1 ||
+        firstName.length < 1 ||
+        lastName.length < 1 ||
+        password.length < 1 ||
+        confirmPassword.length < 1
       ) {
-        if (signUpFirstName.length < 1) {
+        if (firstName.length < 1) {
           setFirstNameErrorExists(true);
-          setFirstNameErrorMessage('This field cannot be empty *');
+          setFirstNameErrorMessage('First name is required *');
         } else {
           setFirstNameErrorExists(false);
         }
 
-        if (signUpLastName.length < 1) {
+        if (lastName.length < 1) {
           setLastNameErrorExists(true);
-          setLastNameErrorMessage('This field cannot be empty *');
+          setLastNameErrorMessage('Last name is required *');
         } else {
           setLastNameErrorExists(false);
         }
 
-        if (signUpEmail.length < 1) {
+        if (email.length < 1) {
           setEmailErrorExists(true);
-          setEmailErrorMessage('This field cannot be empty *');
+          setEmailErrorMessage('E-mail is required *');
         } else {
           setEmailErrorExists(false);
         }
 
-        if (signUpPassword.length < 1) {
+        if (password.length < 1) {
           setPasswordErrorExists(true);
-          setPasswordErrorMessage('This field cannot be empty *');
+          setPasswordErrorMessage('Password is required *');
         } else {
           setPasswordErrorExists(false);
         }
 
-        if (signUpConfirmPassword.length < 1) {
+        if (confirmPassword.length < 1) {
           setConfirmPasswordErrorExists(true);
-          setConfirmPasswordErrorMessage('This field cannot be empty *');
+          setConfirmPasswordErrorMessage('Password confirmation is required *');
         } else {
           setConfirmPasswordErrorExists(false);
         }
-      } else if (signUpPassword !== signUpConfirmPassword) {
+      } else if (password !== confirmPassword) {
         setPasswordErrorExists(true);
         setConfirmPasswordErrorExists(true);
         setPasswordErrorMessage('Passwords do not match');
         setConfirmPasswordErrorMessage('Passwords do not match');
-      } else if (signUpPassword === signUpConfirmPassword) {
-        console.log('checks passed');
-        let existingUser = firebaseAuth.currentUser;
-        if (!existingUser) {
-          let userCredentials =
-            await firebaseAuth.createUserWithEmailAndPassword(
-              signUpEmail,
-              signUpPassword
-            );
-          if (userCredentials) {
-            let userProfile = firebaseAuth.currentUser;
-            let user = {
-              email: userCredentials.user.email,
-              photoUrl: userCredentials.user.photoURL,
-              displayName: signUpFirstName,
-            };
-            userProfile.updateProfile(user);
-            setCurrentUser(user);
-            console.log('user created.');
-            navigate('/');
-          }
-        } else {
-          throw new Error('a user is already logged in..');
-        }
+      } else if (password === confirmPassword) {
+        // if (!existingUser) {
+        //   let newUser = {
+        //     firstName: firstName,
+        //     lastName: lastName,
+        //     email: email,
+        //     password: password,
+        //   }
+          // make api call to create user
+          // console.log("new user data", newUser);
+        // } else {
+          // alert('A user is already logged in. Please log out before creating a new account.');
+          // throw new Error('a user is already logged in..');
+        // }
       }
     } catch (error) {
-      switch (error.code) {
-        case 'auth/network-request-failed':
-          setOtherError(
-            'Sorry, your account could not be created due to a poor internet connection. Try again when you have a stable network.'
-          );
-          throw new Error(error.message);
-        case 'auth/invalid-email':
-          setOtherError(
-            'Your email is invalid. Please enter a valid email and try again'
-          );
-          throw new Error(
-            'Your email is invalid. Please enter a valid email and try again'
-          );
-        default:
-          setOtherError(error.message);
-          throw new Error(`${error.message}`);
-      }
+      // handle errors appropriately
     }
   };
 
-  // component always displays from top on initial render.
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-  }, []);
 
   return (
     <div className="sign-up-wrapper">
@@ -214,11 +190,6 @@ const SignUp = () => {
           <Row md={2} xs={1} sm={1}>
             <Col>
               <div className="input-group-margin">
-                <Form.Text>
-                  {firstNameErrorExists
-                    ? firstNameErrorMessage
-                    : 'First name *'}
-                </Form.Text>
                 <InputGroup
                   className={
                     firstNameErrorExists
@@ -229,9 +200,9 @@ const SignUp = () => {
                   <Form.Control
                     className="signup-control-focus-style"
                     type="text"
-                    placeholder=""
-                    onChange={UpdateSignUpFirstName}
-                    value={signUpFirstName}
+                    placeholder="First name *"
+                    onChange={UpdatefirstName}
+                    value={firstName}
                   />
                   <InputGroup.Text>{<BsFillPersonFill />}</InputGroup.Text>
                 </InputGroup>
@@ -240,9 +211,6 @@ const SignUp = () => {
 
             <Col>
               <div className="input-group-margin">
-                <Form.Text>
-                  {lastNameErrorExists ? lastNameErrorMessage : 'Last name *'}
-                </Form.Text>
                 <InputGroup
                   className={
                     lastNameErrorExists
@@ -253,9 +221,9 @@ const SignUp = () => {
                   <Form.Control
                     className="signup-control-focus-style"
                     type="text"
-                    placeholder=""
-                    onChange={UpdateSignUpLastName}
-                    value={signUpLastName}
+                    placeholder="Last name *"
+                    onChange={UpdatelastName}
+                    value={lastName}
                   />
                   <InputGroup.Text>{<BsFillPersonFill />}</InputGroup.Text>
                 </InputGroup>
@@ -266,9 +234,6 @@ const SignUp = () => {
           <Row md={2} xs={1} sm={1}>
             <Col>
               <div className="input-group-margin">
-                <Form.Text>
-                  {emailErrorExists ? emailErrorMessage : 'Email *'}
-                </Form.Text>
                 <InputGroup
                   className={
                     emailErrorExists ? 'input-group-error' : 'input-group-style'
@@ -277,9 +242,9 @@ const SignUp = () => {
                   <Form.Control
                     className="signup-control-focus-style"
                     type="email"
-                    placeholder=""
-                    onChange={UpdateSignUpEmail}
-                    value={signUpEmail}
+                    placeholder="E-mail *"
+                    onChange={UpdateEmail}
+                    value={email}
                   />
                   <InputGroup.Text>{<AiOutlineMail />}</InputGroup.Text>
                 </InputGroup>
@@ -288,9 +253,6 @@ const SignUp = () => {
 
             <Col>
               <div className="input-group-margin">
-                <Form.Text>
-                  {passwordErrorExists ? passwordErrorMessage : 'Password *'}
-                </Form.Text>
                 <InputGroup
                   className={
                     passwordErrorExists
@@ -301,9 +263,9 @@ const SignUp = () => {
                   <Form.Control
                     className="signup-control-focus-style"
                     type={passwordVisible ? 'text' : 'password'}
-                    placeholder=""
-                    onChange={UpdateSignUpPassword}
-                    value={signUpPassword}
+                    placeholder="Password *"
+                    onChange={UpdatePassword}
+                    value={password}
                   />
                   <InputGroup.Text
                     className="input-group-text"
@@ -323,11 +285,6 @@ const SignUp = () => {
           <Row md={2} xs={1} sm={1}>
             <Col>
               <div className="input-group-margin">
-                <Form.Text>
-                  {confirmPasswordErrorExists
-                    ? confirmPasswordErrorMessage
-                    : 'Confirm password *'}
-                </Form.Text>
                 <InputGroup
                   className={
                     confirmPasswordErrorExists
@@ -338,9 +295,9 @@ const SignUp = () => {
                   <Form.Control
                     className="signup-control-focus-style"
                     type={confirmPasswordVisible ? 'text' : 'password'}
-                    placeholder=""
-                    onChange={UpdateSignUpConfirmPassword}
-                    value={signUpConfirmPassword}
+                    placeholder="Confirm password *"
+                    onChange={UpdateConfirmPassword}
+                    value={confirmPassword}
                   />
                   <InputGroup.Text
                     className="input-group-text"
@@ -358,7 +315,6 @@ const SignUp = () => {
 
             <Col>
               <div className="input-group-margin">
-                <Form.Text>Create your account now *</Form.Text>
                 <Button
                   variant="custom"
                   className="sign-up-btn"

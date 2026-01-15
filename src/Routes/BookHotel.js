@@ -145,14 +145,13 @@ const BookHotel = () => {
     let localStorageEndDateValue = JSON.parse(
       window.localStorage.getItem('endDateValue')
     );
-    // console.log(`localStorageEndDateValue = ${ localStorageEndDateValue }`)
     setEndDateValue(localStorageEndDateValue);
   }, [endDateValue, setEndDateValue]);
 
   //emailjs dynamic variables object.
-  let email_js_public_key = '0QP1tSD0brFOQUw2d';
-  let email_js_service_id = 'service_4njhe19';
-  let email_js_template_id = 'template_3la1zxf';
+  let email_js_public_key = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+  let email_js_service_id = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+  let email_js_template_id = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   let email_js_dynamic_variables = {
     recipient: bookingCustomerEmail,
     to_name: bookingCustomerFirstName,
@@ -161,9 +160,10 @@ const BookHotel = () => {
     booked_hotel_image: bookingHotelObject.room_cover_photo_url,
   };
 
+  
   // setting up paystack.
   const componentProps = {
-    publicKey: 'pk_test_fd4de2b58225749549a32606adf7fdff02668525',
+    publicKey: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
     currency: 'GHS',
     amount: Math.floor(totalCost * 100),
     email: bookingCustomerEmail,

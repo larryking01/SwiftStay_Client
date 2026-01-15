@@ -8,14 +8,13 @@ import TextField from '@mui/material/TextField';
 import { UserContext } from '../App';
 
 const EndDatePicker = () => {
-  // destructuring values from context
+  // destructure values from context
   const { endDateValue, setEndDateValue, setEndDateMilliseconds } =
     useContext(UserContext);
 
-  // effect hook to store end date value in local storage
+  // store end date value in local storage
   useEffect(() => {
     window.localStorage.setItem('endDateValue', JSON.stringify(endDateValue));
-    // console.log(`local storage end date value == ${ endDateValue }`)
   }, [endDateValue]);
 
   return (
@@ -27,8 +26,6 @@ const EndDatePicker = () => {
           if (newValue !== null) {
             const date = newValue._d;
             setEndDateMilliseconds(date);
-            // console.log( `date = ${ date }` )
-
             const day = date.getDate();
             let stringDay = day.toString();
             if (stringDay.length < 2) {
@@ -45,7 +42,6 @@ const EndDatePicker = () => {
             let stringYear = year.toString();
 
             let finalDate = stringMonth + '/' + stringDay + '/' + stringYear;
-            // console.log(`final date = ${ finalDate }`)
             setEndDateValue(finalDate);
           }
         }}

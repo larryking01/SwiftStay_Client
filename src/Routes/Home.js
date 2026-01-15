@@ -15,7 +15,7 @@ import background_2 from '../Media Files/Homepage Background/background_2.jpg';
 import trip_dotcom from '../Media Files/trip.com_logo.png';
 import booking_dotcom from '../Media Files/booking.com_logo.png';
 import hyatt_dotcom from '../Media Files/hyatt.com_logo.jpg';
-import hotels_dotcom from '../Media Files/hotels.com_logo.jpg';
+import hotels_dotcom from '../Media Files/hotels.com_logo.jpg'; 
 import Rating from '@mui/material/Rating';
 import StartDatePicker from '../Configuration/StartDatePicker.js';
 import EndDatePicker from '../Configuration/EndDatePicker.js';
@@ -33,7 +33,6 @@ import meeting_room_pictures_array from '../data/meetingRoomData.js';
 const Home = () => {
 
   const server_url = process.env.REACT_APP_SERVER_URL;
-
   const all_hotels_section_ref = useRef(null);
 
   const [roomsArray, setRoomsArray] = useState([]);
@@ -51,31 +50,6 @@ const Home = () => {
       behavior: 'smooth',
     });
   }, []);
-
-  useEffect(() => {
-    const fetchHotels = async () => {
-      let response = await fetch(`${server_url}/get/fetch-all-rooms`, {
-        method: 'GET',
-      });
-
-      if (response.status === 200) {
-        let data = await response.json();
-        setRoomsArray(data);
-        setIsLoadingHotels(false);
-      } else {
-        setIsLoadingHotels(false);
-        setFetchError(true);
-        setFetchErrorMessage(
-          'Sorry, we could not load available hotels due to a poor internet connection. Please check your internet connection and reload the page.'
-        );
-      }
-    };
-
-    fetchHotels();
-  }, [server_url]);
-
-
-
 
 
   // special deals pictures array.
@@ -115,7 +89,7 @@ const Home = () => {
         </section>
 
         <section className="intro-background">
-          <img src={background_2} alt="" className="intro-background-img" />
+          <img src={background_2} alt="home page background" className="intro-background-img" />
           <h3 className="welcome-phrase"> {catchPhrasesArray[1]} </h3>
 
           <section className="intro-form">
@@ -124,10 +98,6 @@ const Home = () => {
                 Easy to book, hard to say goodbye to
               </h6>
             </Row>
-
-            {/* <Form.Group className='mb-3' controlId='formBasicText'>
-            <Form.Control type='text' placeholder='Enter a hotel, city, address....' className='destination-textbox text-control-focus-style' />
-          </Form.Group> */}
 
             <Row xs={1} md={2}>
               <Col className="mb-3">
@@ -140,10 +110,6 @@ const Home = () => {
             </Row>
 
             <Row xs={12} md={12}>
-              {/* <Col className='mb-3'>
-              <Form.Control className='number-of-guests-textbox text-control-focus-style' type='text' placeholder='1 room, 2 guests' />
-            </Col> */}
-
               <Col className="mb-3">
                 <Button
                   variant="custom"

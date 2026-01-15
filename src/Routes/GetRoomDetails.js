@@ -7,13 +7,6 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Rating from '@mui/material/Rating';
 import { IoLocationSharp } from 'react-icons/io5';
-import { MdOutlinePets } from 'react-icons/md';
-import { MdEmojiFoodBeverage } from 'react-icons/md';
-import { IoMdInformationCircle } from 'react-icons/io';
-import { MdPayment } from 'react-icons/md';
-import { FaCcVisa } from 'react-icons/fa';
-import { FaCcMastercard } from 'react-icons/fa';
-import { FaCcPaypal } from 'react-icons/fa';
 import { BsPersonFill } from 'react-icons/bs';
 import { BiMinus, BiPlus } from 'react-icons/bi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,6 +19,7 @@ import Footer from './Footer';
 import StartDatePicker from '../Configuration/StartDatePicker';
 import EndDatePicker from '../Configuration/EndDatePicker';
 import Maps2 from '../Configuration/Maps2';
+import goodToKnowArray from '../data/hotelGoodToKnowData';
 
 
 
@@ -48,13 +42,11 @@ const GetRoomDetails = () => {
   const [selectedRoomDetailsObject, setselectedRoomDetailsObject] = useState(
     {}
   );
+
   const [fetchError, setFetchError] = useState(false);
   const [fetchErrorMessage, setFetchErrorMessage] = useState(null);
   const [isLoadingHotelDetails, setIsLoadingHotelDetails] = useState(true);
   const [allReviewsArray, setAllReviewsArray] = useState([]);
-  const [isLoadingReviews, setIsLoadingReviews] = useState(true);
-  const [reviewsError, setReviewsError] = useState(false);
-  const [reviewsErrorMessage, setReviewsErrorMessage] = useState(null);
   const [reviewerEmail, setReviewerEmail] = useState('');
   const [reviewBody, setReviewBody] = useState('');
   const [reviewerEmailError, setReviewerEmailError] = useState(false);
@@ -63,8 +55,11 @@ const GetRoomDetails = () => {
   const [reviewFeedback, setReviewFeedback] = useState('');
   const [showGuestExtraDetails, setShowGuestExtraDetails] = useState(false);
   const [bookingDatesNull, setBookingDatesNull] = useState(false);
+  const [isLoadingReviews, setIsLoadingReviews] = useState(true);
+  const [reviewsError, setReviewsError] = useState(false);
+  const [reviewsErrorMessage, setReviewsErrorMessage] = useState(null);
 
-  // destructuring user booking hotel extra info.
+  // destructure user booking hotel extra info.
   const {
     numberOfAdultVisitors,
     setNumberOfAdultVisitors,
@@ -90,7 +85,6 @@ const GetRoomDetails = () => {
 
   // fetch details of selected room.
   useEffect(() => {
-    // async function to fetch data.
     const FetchData = async () => {
       let response = await fetch(
         `${server_url}/get/room-details/${params.hotel_name}/${params.hotel_id}`,
@@ -102,8 +96,6 @@ const GetRoomDetails = () => {
       if (response.status === 200) {
         let data = await response.json();
         setselectedRoomDetailsObject({ ...data });
-        console.log('selected room data is');
-        console.log(data);
         setTimeout(() => {
           setIsLoadingHotelDetails(false);
         }, 1000);
@@ -145,42 +137,6 @@ const GetRoomDetails = () => {
     FetchAllReviews();
   }, []);
 
-  // good to know contents array.
-  const goodToKnowArray = [
-    {
-      icon: <MdOutlinePets size={30} />,
-      feature: 'Pets',
-      description: 'Pets are not allowed.',
-      visaIcon: '',
-      masterCardIcon: '',
-      paypalIcon: '',
-    },
-    {
-      icon: <MdEmojiFoodBeverage size={30} />,
-      feature: 'Breakfast',
-      description: 'Breakfast available.',
-      visaIcon: '',
-      masterCardIcon: '',
-      paypalIcon: '',
-    },
-    {
-      icon: <IoMdInformationCircle size={30} />,
-      feature: 'Important information from the hotel',
-      description:
-        'Please note that parking is available offsite at a discounted rate. When booking 6 rooms or more, different policies and additional supplements will apply.',
-      visaIcon: '',
-      masterCardIcon: '',
-      paypalIcon: '',
-    },
-    {
-      icon: <MdPayment size={30} />,
-      feature: 'Accepted payment methods',
-      description: 'The hotel accepts the following payment methods:',
-      visaIcon: <FaCcVisa size={30} />,
-      masterCardIcon: <FaCcMastercard size={30} />,
-      paypalIcon: <FaCcPaypal size={30} />,
-    },
-  ];
 
   // updating reviewer email state
   const HandleReviewerEmailUpdate = (event) => {
@@ -209,7 +165,6 @@ const GetRoomDetails = () => {
         setReviewBodyError(false);
       }
     } else {
-      // actually posting the review.
       setPostingReview(true);
       let response = await fetch(
         `${server_url}/post/post-review/${params.hotel_name}/${params.hotel_id}`,
@@ -245,16 +200,16 @@ const GetRoomDetails = () => {
     }
   };
 
-  // calculate length of stay
+
   const CalculateLengthOfStay = (checkInDate, checkOutDate) => {
     let lengthOfStay = checkOutDate.getTime() - checkInDate.getTime();
     lengthOfStay = Math.floor(lengthOfStay / (1000 * 60 * 60 * 24));
     return lengthOfStay;
   };
 
-  // handle book room operation.
+
   const HandleBookHotelRoom = () => {
-    if (startDateValue === null || endDateValue === null) {
+    if (startDateValue == null || endDateValue == null) {
       setBookingDatesNull(true);
       alert(
         'You have to enter both check-in and check-out dates to book hotel...'
@@ -507,85 +462,6 @@ const GetRoomDetails = () => {
               </Form>
             </section>
 
-            {/* <section className='selected-room-extra-pics-grid'>
-        <Carousel cols={ 4 } rows={ 2 } gap={ 7 } loop 
-          responsiveLayout={[
-            {
-              breakpoint: 400,
-              cols: 1,
-              rows: 1,
-              gap: 5,
-              loop: true,
-              autoplay: 1200
-            }
-        ]}>
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_1 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_3 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_4 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_5 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_6 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_7 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_8 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_9 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_2 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_3 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_4 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_5 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_6 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_7 } alt='' />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img className='selected-room-detail-grid-pic' src={ selectedRoomDetailsObject.room_extra_photo_url_8 } alt='' />
-          </Carousel.Item>
-
-        </Carousel>
-
-      </section> */}
 
             <section className="book-now-section">
               <Button
@@ -597,6 +473,7 @@ const GetRoomDetails = () => {
               </Button>
             </section>
 
+
             <section className="selected-room-details-headers">
               <Row md={5} xs={3}>
                 <Col>Description</Col>
@@ -606,7 +483,6 @@ const GetRoomDetails = () => {
                 <Col>Location</Col>
 
                 <Col>Reviews</Col>
-
                 <Col>
                   <h5 className="selected-room-details-price-text">
                     GH<span>&#8373;{selectedRoomDetailsObject.room_rate}</span>
@@ -675,7 +551,7 @@ const GetRoomDetails = () => {
                       )
                     )
                   ) : (
-                    <h3>failed to load hotel feaatures...</h3>
+                    <h3>failed to load hotel features...</h3>
                   )
                 ) : (
                   <h3>couldn't fetch selected room details...</h3>
@@ -685,7 +561,6 @@ const GetRoomDetails = () => {
 
             <section className="selected-room-details-sub-section">
               <h3 className="selected-room-details-sub-header">Our Location</h3>
-              {/* <Maps /> */}
 
               <Maps2
                 selectedRoomLatitude={selectedRoomDetailsObject.room_latitude}

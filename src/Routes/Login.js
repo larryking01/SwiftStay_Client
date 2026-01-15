@@ -9,7 +9,6 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { AiOutlineMail } from 'react-icons/ai';
 
 // modules
-import { firebaseAuth } from '../Configuration/Firebase';
 import { UserContext } from '../App';
 import appNamesArray from '../data/appNames';
 
@@ -19,101 +18,14 @@ const Login = () => {
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
-  // handling user login state
-  const [logInUserEmail, setLogInUserEmail] = useState('');
-  const [logInUserPassword, setLogInUserPassword] = useState('');
-
-  // handling user input errors.
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [emailErrorExists, setEmailErrorExists] = useState(false);
   const [passwordErrorExists, setPasswordErrorExists] = useState(false);
-
   const [emailErrorMessage, setEmailErrorMessage] = useState(null);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
   const [otherError, setOtherError] = useState(null);
-
   const [passwordVisible, setPasswordVisible] = useState(false);
-
-  const TogglePasswordVisible = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
-  const UpdateLogInUserEmail = (event) => {
-    setEmailErrorExists(false);
-    setLogInUserEmail(event.target.value.trim());
-  };
-
-  const UpdateLogInUserPassword = (event) => {
-    setPasswordErrorExists(false);
-    setLogInUserPassword(event.target.value);
-  };
-
-  // log user in.
-  const SignInUser = async () => {
-    try {
-      setEmailErrorExists(false);
-      setPasswordErrorExists(false);
-      setOtherError(null);
-
-      if (logInUserEmail.length < 1 || logInUserPassword.length < 1) {
-        if (logInUserEmail.length < 1) {
-          setEmailErrorExists(true);
-          setEmailErrorMessage('This field cannot be empty *');
-        } else {
-          setEmailErrorExists(false);
-        }
-
-        if (logInUserPassword.length < 1) {
-          setPasswordErrorExists(true);
-          setPasswordErrorMessage('This field cannot be empty *');
-        } else {
-          setPasswordErrorExists(false);
-        }
-      } else {
-        let existingUser = firebaseAuth.currentUser;
-        if (!existingUser) {
-          let userCredentials = await firebaseAuth.signInWithEmailAndPassword(
-            logInUserEmail,
-            logInUserPassword
-          );
-          if (userCredentials) {
-            console.log('display name is');
-            console.log(userCredentials.user);
-            let user = {
-              email: userCredentials.user.email,
-              displayName: userCredentials.user.displayName,
-              photoUrl: userCredentials.user.photoURL,
-            };
-            setCurrentUser(user);
-            console.log('user signed in');
-            navigate('/');
-          }
-        } else {
-          console.log(`existing user is ${existingUser.email}`);
-          throw new Error('a user is already logged in');
-        }
-      }
-    } catch (error) {
-      switch (error.code) {
-        case 'auth/network-request-failed':
-          setOtherError(
-            'Sorry, your account could not be created due to a poor internet connection. Try again when you have a stable network.'
-          );
-          throw new Error(
-            'Server could not be reached. Please make sure you have a good internet connection and try again.'
-          );
-        case 'auth/invalid-email':
-          setOtherError(
-            'Your email is invalid. Please enter a valid email and try again'
-          );
-          throw new Error(
-            'Your email is invalid. Please enter a valid email and try again'
-          );
-        default:
-          setOtherError(error.message);
-          throw new Error(`${error.message}`);
-      }
-    }
-  };
 
   // component always displays from top on initial render.
   useEffect(() => {
@@ -123,6 +35,62 @@ const Login = () => {
       behavior: 'smooth',
     });
   }, []);
+
+
+  const TogglePasswordVisible = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const UpdateEmail = (event) => {
+    setEmailErrorExists(false);
+    setEmail(event.target.value.trim());
+  };
+
+  const UpdatePassword = (event) => {
+    setPasswordErrorExists(false);
+    setPassword(event.target.value);
+  };
+
+
+
+  const SignInUser = async () => {
+    try {
+      setEmailErrorExists(false);
+      setPasswordErrorExists(false);
+      setOtherError(null);
+
+      if (email.length < 1 || password.length < 1) {
+        if (email.length < 1) {
+          setEmailErrorExists(true);
+          setEmailErrorMessage('E-mail is required *');
+        } else {
+          setEmailErrorExists(false);
+        }
+
+        if (password.length < 1) {
+          setPasswordErrorExists(true);
+          setPasswordErrorMessage('Password is required *');
+        } else {
+          setPasswordErrorExists(false);
+        }
+      } else {
+        // if (!existingUser) {
+        //   let user = {
+        //     email: email,
+        //     password: password,
+        //   }
+          // make api call to create user
+          // console.log("user credentials", user);
+        // } else {
+        //   alert('A user is already logged in. Please log out before creating a new account.');
+        //   // throw new Error('a user is already logged in..');
+        // }
+      }
+    } catch (error) {
+      // handle errors appropriately
+    }
+  };
+
 
 
   return (
@@ -148,9 +116,6 @@ const Login = () => {
           <Row md={2} xs={1} sm={1}>
             <Col>
               <div className="login-input-group-margin">
-                <Form.Text>
-                  {emailErrorExists ? emailErrorMessage : 'Email *'}
-                </Form.Text>
                 <InputGroup
                   className={
                     emailErrorExists
@@ -161,9 +126,9 @@ const Login = () => {
                   <Form.Control
                     className="login-email-control"
                     type="email"
-                    placeholder=""
-                    onChange={UpdateLogInUserEmail}
-                    value={logInUserEmail}
+                    placeholder="E-mail *"
+                    onChange={UpdateEmail}
+                    value={email}
                   />
                   <InputGroup.Text>{<AiOutlineMail />}</InputGroup.Text>
                 </InputGroup>
@@ -172,9 +137,6 @@ const Login = () => {
 
             <Col>
               <div className="login-input-group-margin">
-                <Form.Text>
-                  {passwordErrorExists ? passwordErrorMessage : 'Password *'}
-                </Form.Text>
                 <InputGroup
                   className={
                     passwordErrorExists
@@ -185,9 +147,9 @@ const Login = () => {
                   <Form.Control
                     className="login-password-control"
                     type={passwordVisible ? 'text' : 'password'}
-                    placeholder=""
-                    onChange={UpdateLogInUserPassword}
-                    value={logInUserPassword}
+                    placeholder="Password *"
+                    onChange={UpdatePassword}
+                    value={password}
                   />
                   <InputGroup.Text
                     className="login-input-group-text"

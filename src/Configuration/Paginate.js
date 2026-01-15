@@ -1,5 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
+
+
+
+
+
+
+
 
 const Paginate = () => {
   const [photoArray, setPhotoArray] = useState([]);

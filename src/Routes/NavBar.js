@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import appNamesArray from '../data/appNames';
 
 // modules
-import { firebaseAuth } from '../Configuration/Firebase';
 import { UserContext } from '../App';
 
 const NavbarComponent = () => {
@@ -14,15 +13,6 @@ const NavbarComponent = () => {
   const navigate = useNavigate();
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
-
-  // function sign out user.
-  const SignOutUser = async () => {
-    let existingUser = firebaseAuth.currentUser;
-    if (existingUser) {
-      await firebaseAuth.signOut();
-      setCurrentUser(null);
-    }
-  };
 
   return (
     <>
